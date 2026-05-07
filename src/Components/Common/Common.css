@@ -1,0 +1,19 @@
+.nav-link{
+    font-family: "Rajdhani", sans-serif;
+}
+.nav-link:hover{
+    border-top: 3px solid #9b9b9b;
+    font-size: 18px;
+    color: #333;
+}
+
+.nav-link:active{
+    border-top: 3px solid #9b9b9b;
+    font-size: 18px;
+    color: #333;
+}
+
+.navbar-nav > li{
+    padding-left:20px;
+    padding-right:20px;
+  }
