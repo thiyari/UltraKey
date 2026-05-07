@@ -17,7 +17,7 @@ function General() {
             <form>
 
               <div className="form-group row mt-4" align="left">
-                <label htmlFor="yearStart" className="col-sm-3 col-form-label">Year Start</label>
+                <label htmlFor="yearStart" className="col-sm-3 col-form-label"><b>Year Start</b></label>
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="Start Year" aria-label="startYear" aria-describedby="basic-addon1"/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The start date of the fiscal year</i></label>
@@ -26,7 +26,7 @@ function General() {
               </div>
 
               <div className="form-group row mt-2" align="left">
-                <label htmlFor="yearEnd" className="col-sm-3 col-form-label">Year End</label>
+                <label htmlFor="yearEnd" className="col-sm-3 col-form-label"><b>Year End</b></label>
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="End Year" aria-label="endYear" aria-describedby="basic-addon1"/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The end date of the fiscal year</i></label>
@@ -36,7 +36,7 @@ function General() {
 
 
               <div className="form-group row mt-2" align="left">
-                <label htmlFor="yearEnd" className="col-sm-3 col-form-label">Pre-Defined Line Items</label>
+                <label htmlFor="yearEnd" className="col-sm-3 col-form-label"><b>Pre-Defined Line Items</b></label>
                 <div className="col-sm-6">
                     <textarea 
                       className="form-control" 
