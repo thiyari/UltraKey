@@ -337,6 +337,41 @@ const Quotes = () => {
 
               <hr></hr>
 
+              <div className="row">
+                  <h5 align="left"><b>Template Design</b></h5>
+                  <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}} align="left">
+                    <i>For information on customizing your templates, please see our guide <a href='#'>here</a></i>
+                    </label>
+              </div>
+
+
+
+              <div className="form-group row mt-2" align="left">
+                <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
+                <div className="col-sm-6">
+                  Templates
+                </div>
+                <div className="col-sm-3"></div>
+              </div>
+
+
+              <div className="form-group row mt-2" align="left">
+                <label htmlFor="customCSS" className="col-sm-3 col-form-label"><b>Custom CSS</b></label>
+                <div className="col-sm-6">
+                  <textarea 
+                      className="form-control" 
+                      id="" 
+                      placeholder=""
+                      name=""
+                      rows="4"
+                      onChange=""
+                      ></textarea>
+                  <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Quotes</i></label>
+                </div>
+                <div className="col-sm-3"></div>
+              </div>
+
+
               <div className="form-group row mt-2" align="left">
                 <div className="col-sm-3">
                   <button type="submit" className="btn btn-primary">Save</button>
