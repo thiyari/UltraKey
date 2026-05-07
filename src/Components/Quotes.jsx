@@ -8,6 +8,19 @@ const Quotes = () => {
   const [selected, setSelected] = useState("Convert Quote to Invoice and send to client");
   const [checkedItems, setCheckedItems] = useState([]);
 
+
+  // 1. State to keep track of which card is selected
+  const [selectedId, setSelectedId] = useState(null);
+
+  const cardData = [
+    { id: 1, title: 'Template 1', img: 'https://www.smartsheet.com/sites/default/files/IC-Blank-Invoice-Template_WORD.png' },
+    { id: 2, title: 'Template 2', img: 'https://i.etsystatic.com/32407752/r/il/f2b633/3418650954/il_fullxfull.3418650954_1geo.jpg' },
+    { id: 3, title: 'Template 3', img: 'https://worksheets.clipart-library.com/images2/print-invoice-online/print-invoice-online-1.jpg' },
+  ];
+
+
+
+
   const handleChangeSelect = (event) => {
     setSelected(event.target.value);
   };
@@ -348,12 +361,37 @@ const Quotes = () => {
 
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
-                <div className="col-sm-6">
-                  Templates
+                <div className="col-sm-9">
+                          {cardData.map((card) => (
+                            <div className="col-md-4" key={card.id}>
+                              <div 
+                                // 2. Conditionally apply a "border-primary" or custom style if selected
+                                className={`card h-100 shadow-sm ${selectedId === card.id ? 'border-primary border-3' : ''}`}
+                                onClick={() => setSelectedId(card.id)}
+                                style={{ cursor: 'pointer', transition: '0.3s' }}
+                              >
+                                <img src={card.img} className="card-img-top" alt={card.title} />
+                                <div className="card-body text-center">
+                                  <h5 className="card-title">{card.title}</h5>
+                                  {/* Visual indicator (optional) */}
+                                  <div className="form-check d-flex justify-content-center">
+                                    <input 
+                                      className="form-check-input d-none" 
+                                      type="radio" 
+                                      checked={selectedId === card.id} 
+                                      readOnly 
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
                 </div>
-                <div className="col-sm-3"></div>
               </div>
 
+              <div className="mt-4">
+                Selected ID: {selectedId || 'None'}
+              </div>
 
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="customCSS" className="col-sm-3 col-form-label"><b>Custom CSS</b></label>
