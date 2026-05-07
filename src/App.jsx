@@ -1,6 +1,7 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Common/Header';
+import Footer from './Components/Common/Footer';
 import General from './Components/General';
 import Business from './Components/Business';
 import Quotes from './Components/Quotes';
@@ -29,7 +30,8 @@ function App() {
             <Route path="/pdf" element = {<PDF/>} />
             <Route path="/translate" element = {<Translate/>} />
           </Routes>
-        </Router>
+        <Footer/>
+      </Router>
     </div>
   )
 }

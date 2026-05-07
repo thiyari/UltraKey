@@ -3,10 +3,11 @@ import React, {useState} from 'react'
 function Business() {
 
   const [url, setUrl] = useState('');
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState(''); 
+  const [imageUrl, setImageUrl] = useState('');
 
   const handleUrlChange = (e) => {
-    setPreview(null);
+    setPreview('');
     setUrl(e.target.value);
   }
 
@@ -18,6 +19,19 @@ function Business() {
       setPreview(URL.createObjectURL(file));
     }
   };
+
+  async function submitHandler(event) {
+        event.preventDefault();
+          if (url != "") {
+            setImageUrl(url)
+          } else if (preview != "") {
+            setImageUrl(preview)
+          } else {
+            setImageUrl('')
+          }
+  }
+  
+
 
   return (
     <div className="container">
@@ -31,7 +45,7 @@ function Business() {
                 &nbsp; All of the Business details will be displayed on the Quotes & invoices.</p>
             </div>
 
-            <form>
+            <form onSubmit={submitHandler}>
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="logo" className="col-sm-3 col-form-label"><b>Logo</b></label>
