@@ -1,37 +1,37 @@
 import React, {useState} from 'react'
 
 
-const items = ["Quote Viewed","Quote Accepted"];
 
 const Quotes = () => {
 
-
+  const items = ["Quote Viewed","Quote Accepted"];
   const [selected, setSelected] = useState("Convert Quote to Invoice and send to client");
-  const [checkedItems, setCheckedItems] = useState(
-    new Array(items.length).fill(false)
-  );
-
+  const [checkedItems, setCheckedItems] = useState([]);
 
   const handleChangeSelect = (event) => {
     setSelected(event.target.value);
   };
 
-  // Toggle single checkbox
-  const handleCheckboxChange = (index) => {
-    const updated = [...checkedItems];
-    updated[index] = !updated[index];
-    setCheckedItems(updated);
-  };
-
-  // Select all / Unselect all
-  const handleToggleAll = (e) => {
-    e.preventDefault();
-    const allSelected = checkedItems.every((item) => item);
-
-    setCheckedItems(
-      new Array(items.length).fill(!allSelected)
+  // Individual checkbox change
+  const handleCheckboxChange = (item) => {
+    setCheckedItems((prev) =>
+      prev.includes(item)
+        ? prev.filter((i) => i !== item)
+        : [...prev, item]
     );
   };
+
+  // Check all / Uncheck all
+  const handleToggleAll = (e) => {
+    e.preventDefault();
+    if (checkedItems.length === items.length) {
+      setCheckedItems([]); // Uncheck all
+    } else {
+      setCheckedItems(items); // Check all
+    }
+  };
+
+  const allChecked = checkedItems.length === items.length;
 
 
   return (
@@ -316,23 +316,22 @@ const Quotes = () => {
                   <button 
                       className="btn btn-outline-primary mb-2"
                       onClick={handleToggleAll}
-                      >{checkedItems.every((item) => item)? "Deselect All": "Select All"}</button>
-                      {items.map((item, index) => (
-                        <div className="form-check" key={index}>
+                      >{allChecked ? "Deselect All" : "Select All"}</button>
+                      {items.map((item) => (
+                        <div className="form-check" key={item}>
                           <input className="form-check-input" 
                           type="checkbox"  
-                          checked={checkedItems[index]}
-                          onChange={() => handleCheckboxChange(index)}
+                          checked={checkedItems.includes(item)}
+                          onChange={() => handleCheckboxChange(item)}
                           id="flexCheckDefault"/>
                           <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                             {item}
                           </label>
                         </div>
                         ))}
-                  
-
                 </div>
                 <div className="col-sm-3"></div>
+                {/*<p>Selected: {checkedItems.join(", ")}</p>*/}
               </div>              
 
 
