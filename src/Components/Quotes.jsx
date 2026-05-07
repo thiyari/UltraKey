@@ -5,6 +5,11 @@ import React, {useState} from 'react'
 const Quotes = () => {
 
   const items = ["Quote Viewed","Quote Accepted"];
+  const options = [
+    { value: 'Convert Quote to Invoice and send to client', label: 'Convert Quote to Invoice and send to client'},
+    { value: 'Option2', label: 'Option2'},
+    { value: 'Option3', label: 'Option3'}
+  ];
   const [selected, setSelected] = useState("Convert Quote to Invoice and send to client");
   const [checkedItems, setCheckedItems] = useState([]);
 
@@ -228,9 +233,9 @@ const Quotes = () => {
                 <div className="col-sm-5">
                     <div className="d-flex justify-content-center">
                       <select className="form-select" value={selected} onChange={handleChangeSelect}>
-                        <option value="Convert Quote to Invoice and send to client">Convert Quote to Invoice and send to client</option>
-                        <option value="option2">option2</option>
-                        <option value="option3">option3</option>
+                        {options.map((option, index) => (
+                            <option value={option.value} key={index}>{option.label}</option>
+                          ))}
                       </select>
                     </div>
                 </div>
