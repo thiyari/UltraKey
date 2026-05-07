@@ -362,6 +362,7 @@ const Quotes = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
                 <div className="col-sm-9">
+                  <div className='row'>
                           {cardData.map((card) => (
                             <div className="col-md-4" key={card.id}>
                               <div 
@@ -372,8 +373,7 @@ const Quotes = () => {
                               >
                                 <img src={card.img} className="card-img-top" alt={card.title} />
                                 <div className="card-body text-center">
-                                  <h5 className="card-title">{card.title}</h5>
-                                  {/* Visual indicator (optional) */}
+                                  {/* <h5 className="card-title">{card.title}</h5> */}
                                   <div className="form-check d-flex justify-content-center">
                                     <input 
                                       className="form-check-input d-none" 
@@ -386,14 +386,15 @@ const Quotes = () => {
                               </div>
                             </div>
                           ))}
+                  </div>
                 </div>
               </div>
-
+              {/*}
               <div className="mt-4">
                 Selected ID: {selectedId || 'None'}
-              </div>
+              </div> */}
 
-              <div className="form-group row mt-2" align="left">
+              <div className="form-group row mt-4" align="left">
                 <label htmlFor="customCSS" className="col-sm-3 col-form-label"><b>Custom CSS</b></label>
                 <div className="col-sm-6">
                   <textarea 
