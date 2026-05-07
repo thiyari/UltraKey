@@ -1,12 +1,36 @@
 import React, {useState} from 'react'
 
+
+const items = ["Quote Viewed","Quote Accepted"];
+
 const Quotes = () => {
 
 
   const [selected, setSelected] = useState("Convert Quote to Invoice and send to client");
+  const [checkedItems, setCheckedItems] = useState(
+    new Array(items.length).fill(false)
+  );
+
 
   const handleChangeSelect = (event) => {
     setSelected(event.target.value);
+  };
+
+  // Toggle single checkbox
+  const handleCheckboxChange = (index) => {
+    const updated = [...checkedItems];
+    updated[index] = !updated[index];
+    setCheckedItems(updated);
+  };
+
+  // Select all / Unselect all
+  const handleToggleAll = (e) => {
+    e.preventDefault();
+    const allSelected = checkedItems.every((item) => item);
+
+    setCheckedItems(
+      new Array(items.length).fill(!allSelected)
+    );
   };
 
 
@@ -289,26 +313,31 @@ const Quotes = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="declinedQuoteMessage" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
                 <div className="col-sm-6">
-                  <button className="btn btn-outline-primary mb-2">Select / Deselect All</button>
-                  <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                    <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
-                      Quote Viewed
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                    <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
-                      Quote Accepted
-                    </label>
-                  </div>
+                  <button 
+                      className="btn btn-outline-primary mb-2"
+                      onClick={handleToggleAll}
+                      >{checkedItems.every((item) => item)? "Deselect All": "Select All"}</button>
+                      {items.map((item, index) => (
+                        <div className="form-check" key={index}>
+                          <input className="form-check-input" 
+                          type="checkbox"  
+                          checked={checkedItems[index]}
+                          onChange={() => handleCheckboxChange(index)}
+                          id="flexCheckDefault"/>
+                          <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
+                            {item}
+                          </label>
+                        </div>
+                        ))}
+                  
+
                 </div>
                 <div className="col-sm-3"></div>
               </div>              
 
 
               <hr></hr>
-              
+
               <div className="form-group row mt-2" align="left">
                 <div className="col-sm-3">
                   <button type="submit" className="btn btn-primary">Save</button>
