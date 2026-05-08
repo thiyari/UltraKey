@@ -1,0 +1,46 @@
+.app {
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+.editor-wrapper {
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.menu-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.menu-bar button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.menu-bar button:hover {
+  background: #f0f0f0;
+}
+
+.ProseMirror {
+  min-height: 250px;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  outline: none;
+}
+
+.preview {
+  margin-top: 20px;
+  background: #111;
+  color: #0f0;
+  padding: 10px;
+  font-size: 12px;
+  overflow-x: auto;
+}
