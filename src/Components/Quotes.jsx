@@ -8,11 +8,12 @@ const Quotes = () => {
 
   const items = ["Quote Viewed","Quote Accepted"];
   const options = [
+    { value: '', label: ''},
     { value: 'Convert Quote to Invoice and send to client', label: 'Convert Quote to Invoice and send to client'},
     { value: 'Option2', label: 'Option2'},
     { value: 'Option3', label: 'Option3'}
   ];
-  const [selected, setSelected] = useState("Convert Quote to Invoice and send to client");
+  const [selected, setSelected] = useState("");
   const [templateId, setTemplateId] = useState(null);
   const [checkedItems, setCheckedItems] = useState([]);
 

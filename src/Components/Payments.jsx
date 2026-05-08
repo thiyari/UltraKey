@@ -3,12 +3,14 @@ import React, {useState} from 'react'
 const Payments = () => {
 
   const options = [
+    { value: '', label: ''},
     { value: 'Left ($100.00)', label: 'Left ($100.00)'},
     { value: 'Option2', label: 'Option2'},
     { value: 'Option3', label: 'Option3'}
   ];
 
   const paymentOptions = [
+    { value: '', label: ''},
     { value: 'Payment', label: 'Payment'},
     { value: 'Option2', label: 'Option2'},
     { value: 'Option3', label: 'Option3'}
