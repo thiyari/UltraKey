@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
+import RadioButtons from './Common/RadioButtons';
 
 const Tax = () => {
   const options = ['Yes. I will enter prices inclusive of tax', 'No. I will enter prices exclusive of tax'];
-  const [selectedTaxPrice, setSelectedTaxPrice] = useState('');
-  const handleChange = (event) => {
-    setSelectedTaxPrice(event.target.value);
-  };
+  const [selectedTaxPrice, setselectedTaxPrice] = useState('');
   return (
     <div className="container">
             <div className="row">
@@ -25,27 +23,12 @@ const Tax = () => {
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="taxName" className="col-sm-3 col-form-label"><b>Prices entered with tax</b></label>
                 <div className="col-sm-4">
-                  {
-                    options.map((option)=>(
-                    <div class="form-check" key={option}>
-                      <input class="form-check-input" 
-                      type="radio" 
-                      name="taxPrice" 
-                      value={option}
-                      checked={selectedTaxPrice === option}
-                      onChange={handleChange}/>
-                      <label class="form-check-label" for="flexRadioDefault1">
-                        {option}
-                      </label>
-                    </div>
-                    ))
-                  }
-                    
+                  <RadioButtons getSelected={(option)=>{setselectedTaxPrice(option)}} options={options} name={'taxPrice'}/>
                 </div>
                 <div className="col-sm-5"></div>
               </div>
 
-              {/*<p>Selected option: {selectedTaxPrice}</p>*/}
+              {<p>Selected option: {selectedTaxPrice}</p>}
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Tax Percentage</b></label>
