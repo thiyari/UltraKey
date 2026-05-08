@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Templates from './Common/Templates';
 import CheckBoxes from './Common/CheckBoxes';
+import Dropdowns from './Common/Dropdowns';
 
 
 
@@ -13,7 +14,8 @@ const Quotes = () => {
     { value: 'Option2', label: 'Option2'},
     { value: 'Option3', label: 'Option3'}
   ];
-  const [selected, setSelected] = useState("");
+  
+  const [selectedQuote, setSelectedQuote] = useState("");
   const [templateId, setTemplateId] = useState(null);
   const [checkedItems, setCheckedItems] = useState([]);
 
@@ -200,13 +202,7 @@ const Quotes = () => {
               <div className="form-group row" align="left">
                 <label htmlFor="acceptQuoteButton" className="col-sm-3 col-form-label"><b>Accept Quote Action</b></label>
                 <div className="col-sm-5">
-                    <div className="d-flex justify-content-center">
-                      <select className="form-select" value={selected} onChange={handleChangeSelect}>
-                        {options.map((option, index) => (
-                            <option value={option.value} key={index}>{option.label}</option>
-                          ))}
-                      </select>
-                    </div>
+                    <Dropdowns options={options} getOption={(option) => setSelectedQuote(option)}/>
                 </div>
                 <div className="col-sm-4"></div>
                 <div className='col-sm-3'></div>

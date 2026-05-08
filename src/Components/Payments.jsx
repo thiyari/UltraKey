@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
+import Dropdowns from './Common/Dropdowns';
 
 const Payments = () => {
+  const [selectedCurrencyOption, setSelectedCurrencyOption] = useState("");
+  const [selectedpaymentOption, setSelectedPaymentOption] = useState("");
 
-  const options = [
+  const currencyOptions = [
     { value: '', label: 'select currency position'},
     { value: 'Left ($100.00)', label: 'Left ($100.00)'},
     { value: 'Option2', label: 'Option2'},
@@ -15,15 +18,7 @@ const Payments = () => {
     { value: 'Option2', label: 'Option2'},
     { value: 'Option3', label: 'Option3'}
   ];
-  const [selected, setSelected] = useState("");
-  const [paymentSelected, setPaymentSelected] = useState("");
 
-  const handleChangeSelect = (event) => {
-    setSelected(event.target.value);
-  };
-  const handleChangePaymentSelect = (event) => {
-    setPaymentSelected(event.target.value);
-  };
   return (
     <div className="container">
           
@@ -55,17 +50,10 @@ const Payments = () => {
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="currencyPosition" className="col-sm-3 col-form-label"><b>Currency Position</b></label>
                 <div className="col-sm-4">
-                    <div className="d-flex justify-content-center">
-                      <select className="form-select" value={selected} onChange={handleChangeSelect}>
-                        {options.map((option, index) => (
-                            <option value={option.value} key={index}>{option.label}</option>
-                          ))}
-                      </select>
-                    </div>
+                    <Dropdowns options={currencyOptions} getOption={(option) => setSelectedCurrencyOption(option)}/>
                 </div>
                 <div className="col-sm-5"></div>
               </div>
-
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="thousandSeperator" className="col-sm-3 col-form-label"><b>Thousand Seperator</b></label>
@@ -121,13 +109,7 @@ const Payments = () => {
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="currencyPosition" className="col-sm-3 col-form-label"><b>Payment Page</b></label>
                 <div className="col-sm-4">
-                    <div className="d-flex justify-content-center">
-                      <select className="form-select" value={selected} onChange={handleChangePaymentSelect}>
-                        {paymentOptions.map((option, index) => (
-                            <option value={option.value} key={index}>{option.label}</option>
-                          ))}
-                      </select>
-                    </div>
+                    <Dropdowns options={paymentOptions} getOption={(option) => setSelectedPaymentOption(option)}/>
                 </div>
                 <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
@@ -135,7 +117,6 @@ const Payments = () => {
                     <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Choose a page to use for PayPal and other <a href="#">available payment gateway</a> messages and other confirmations.<br></br>A blank page named Payment would be perfect.</i></label>
                 </div> 
               </div>
-
 
 
               <div className="form-group row mt-2" align="left">
