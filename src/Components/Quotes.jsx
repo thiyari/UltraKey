@@ -376,9 +376,9 @@ const Quotes = () => {
                                 onClick={() => setSelectedId(card.id)}
                                 style={{ cursor: 'pointer', transition: '0.3s' }}
                               >
+                                <img src={card.img} className="card-img-top" alt={card.title} />
                                 <div className="card-body text-center">
-                                  <b className="card-title">{card.title}</b> 
-                                  
+                                  {/* <h5 className="card-title">{card.title}</h5> */}
                                   <div className="form-check d-flex justify-content-center">
                                     <input 
                                       className="form-check-input d-none" 
@@ -387,9 +387,6 @@ const Quotes = () => {
                                       readOnly 
                                     />
                                   </div>
-                                  
-                                  <img src={card.img} className="card-img-top" alt={card.title} />
-
                                 </div>
                               </div>
                             </div>
@@ -397,8 +394,8 @@ const Quotes = () => {
                   </div>
                 </div>
               </div>
-              
-              { /*<div className="mt-4">
+              {/*}
+              <div className="mt-4">
                 Selected ID: {selectedId || 'None'}
               </div> */}
 
