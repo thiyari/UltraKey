@@ -28,7 +28,7 @@ const Tax = () => {
                 <div className="col-sm-5"></div>
               </div>
 
-              {<p>Selected option: {selectedTaxPrice}</p>}
+              {/*<p>Selected option: {selectedTaxPrice}</p>*/}
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Tax Percentage</b></label>
