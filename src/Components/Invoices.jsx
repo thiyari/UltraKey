@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Templates from './Common/Templates';
+import CheckBoxes from './Common/CheckBoxes';
 
 const Invoices = () => {
 
@@ -7,29 +8,6 @@ const Invoices = () => {
     const items = ["Invoice Viewed","Invoice Paid"];
     const [checkedItems, setCheckedItems] = useState([]);
     const [templateId, setTemplateId] = useState(null);
-
-  
-    // Individual checkbox change
-    const handleCheckboxChange = (item) => {
-      setCheckedItems((prev) =>
-        prev.includes(item)
-          ? prev.filter((i) => i !== item)
-          : [...prev, item]
-      );
-    };
-  
-    // Check all / Uncheck all
-    const handleToggleAll = (e) => {
-      e.preventDefault();
-      if (checkedItems.length === items.length) {
-        setCheckedItems([]); // Uncheck all
-      } else {
-        setCheckedItems(items); // Check all
-      }
-    };
-  
-    const allChecked = checkedItems.length === items.length;
-
 
   return (
     <div className="container">
@@ -199,25 +177,10 @@ const Invoices = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="declinedQuoteMessage" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
                 <div className="col-sm-6">
-                  <button 
-                      className="btn btn-outline-primary mb-2"
-                      onClick={handleToggleAll}
-                      >{allChecked ? "Deselect All" : "Select All"}</button>
-                      {items.map((item) => (
-                        <div className="form-check" key={item}>
-                          <input className="form-check-input" 
-                          type="checkbox"  
-                          checked={checkedItems.includes(item)}
-                          onChange={() => handleCheckboxChange(item)}
-                          id="flexCheckDefault"/>
-                          <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
-                            {item}
-                          </label>
-                        </div>
-                        ))}
+                    <CheckBoxes getCheckedItems={(list)=>{setCheckedItems(list)}} items={items}/>
                 </div>
                 <div className="col-sm-3"></div>
-                {/*<p>Selected: {checkedItems.join(", ")}</p>*/}
+                <p>Selected: {checkedItems.join(", ")}</p>
               </div>              
 
 
