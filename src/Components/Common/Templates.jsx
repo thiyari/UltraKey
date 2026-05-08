@@ -1,0 +1,47 @@
+import React, {useState} from 'react'
+
+
+  const cardData = [
+    { id: 1, title: 'Template 1', img: 'https://www.smartsheet.com/sites/default/files/IC-Blank-Invoice-Template_WORD.png' },
+    { id: 2, title: 'Template 2', img: 'https://i.etsystatic.com/32407752/r/il/f2b633/3418650954/il_fullxfull.3418650954_1geo.jpg' },
+    { id: 3, title: 'Template 3', img: 'https://worksheets.clipart-library.com/images2/print-invoice-online/print-invoice-online-1.jpg' },
+  ];
+
+
+const Templates = (props) => {
+
+    // 1. State to keep track of which card is selected
+  const [selectedId, setSelectedId] = useState(null);
+  props.getTemplateId(selectedId);
+
+  return (
+                  <div className='row'>
+                          {cardData.map((card) => (
+                            <div className="col-md-4" key={card.id}>
+                              <div 
+                                // 2. Conditionally apply a "border-primary" or custom style if selected
+                                className={`card h-100 shadow-sm ${selectedId === card.id ? 'border-primary border-3' : ''}`}
+                                onClick={() => setSelectedId(card.id)}
+                                style={{ cursor: 'pointer', transition: '0.3s' }}
+                              >
+                                <div className="card-body text-center">
+                                  <b className="card-title">{card.title}</b>
+                                  <div className="form-check d-flex justify-content-center">
+                                    <input 
+                                      className="form-check-input d-none" 
+                                      type="radio" 
+                                      checked={selectedId === card.id} 
+                                      readOnly 
+                                    />
+                                  </div>
+                                  <img src={card.img} className="card-img-top" alt={card.title} />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                  </div>
+
+  )
+}
+
+export default Templates
