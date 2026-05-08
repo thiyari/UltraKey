@@ -8,7 +8,7 @@ const Quotes = () => {
 
   const items = ["Quote Viewed","Quote Accepted"];
   const options = [
-    { value: '', label: ''},
+    { value: '', label: 'select quote'},
     { value: 'Convert Quote to Invoice and send to client', label: 'Convert Quote to Invoice and send to client'},
     { value: 'Option2', label: 'Option2'},
     { value: 'Option3', label: 'Option3'}
