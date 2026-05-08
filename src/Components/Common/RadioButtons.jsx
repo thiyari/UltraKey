@@ -19,7 +19,7 @@ const RadioButtons = (props) => {
                       value={option}
                       checked={selected === option}
                       onChange={handleChange}/>
-                      <label class="form-check-label" for="flexRadioDefault1">
+                      <label class="col-form-label-sm" for="flexRadioDefault1">
                         {option}
                       </label>
                     </div>
