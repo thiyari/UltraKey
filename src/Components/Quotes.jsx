@@ -360,9 +360,10 @@ const Quotes = () => {
                 </div>
               </div>
               
+              {/*
               <div className="mt-4">
                 Selected ID: {templateId || 'None'}
-              </div> 
+              </div> */}
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="customCSS" className="col-sm-3 col-form-label"><b>Custom CSS</b></label>
