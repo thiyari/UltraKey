@@ -6,7 +6,7 @@ import CheckBoxes from './Common/CheckBoxes';
 
 const Quotes = () => {
 
-  const items = ["Quote Viewed","Quote Accepted","quotes 3", "quotes 4"];
+  const items = ["Quote Viewed","Quote Accepted"];
   const options = [
     { value: 'Convert Quote to Invoice and send to client', label: 'Convert Quote to Invoice and send to client'},
     { value: 'Option2', label: 'Option2'},
