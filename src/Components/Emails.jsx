@@ -21,6 +21,8 @@ const Emails = () => {
   const [invoiceContent, setInvoiceContent] = useState('');
   const [paymentReceivedContent, setpaymentReceivedContent] = useState('');
   const [paymentRemainderContent, setpaymentRemainderContent] = useState('');
+  const [footerContent, setFooterContent] = useState('');
+
   
 
   return (
@@ -336,7 +338,92 @@ const Emails = () => {
               </div>       
 
 
-              <div className="form-group row mt-2" align="left">
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="subject" className="col-sm-3 col-form-label"><b>Subject</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="email"  
+                        className="form-control mb-2" 
+                        id="" 
+                        placeholder=""
+                        name=""
+                        value=""
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The subject of the email (wild cards are allowed).</i></label>
+                </div>
+              </div>
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
+                <div className="col-sm-4">
+                      {/* Using Text Editor Component */}
+                      <div className="app">
+                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentRemainderContent(html)}}/>
+                      </div>              
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards and HTML are allowed).</i></label>
+                </div>
+              </div>
+
+
+
+
+            <div className="row bg-light border" align="left">
+                <label className="m-2" style={{fontSize:"18px"}}>
+                  <b>Wildcards for Emails</b>
+                </label>
+                <label className='form-label text-muted m-2' style={{fontSize:"0.6rem"}}><i>
+                  The following wild cards can be used in email subjects and email content
+                  <br></br>
+                  %client_first_name%: Clients first name <br></br>
+                  %client_lst_name%: Clients last name <br></br>
+                  %client_business%: Clients business <br></br>
+                  %client_email%: Clients email address <br></br>
+                  %link%: URL to the quote <br></br>
+                  %number%: The quote or invoice number <br></br>
+                  %total%: The quote or invoice total <br></br>
+                  %last_payment%: The amount of the last payment. (return 'N/A' if no payments) <br></br>
+                  %balance%: The balance outstanding on the quote or invoice <br></br>
+                  %created%: The quote or invoice created date <br></br>
+                  %valid_until%: The date the quote is valid until <br></br>
+                  %due_date%: The date the invoice is due <br></br>
+                  %date%: Todays date. Useful on Payment emails <br></br>
+                  %order_number%: The order number of the invoice <br></br>
+                  %is_was%: If due date of the invoice is past, displays 'was' otherwise displays 'is'
+                  </i></label>
+            </div>
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="footer" className="col-sm-3 col-form-label"><b>Footer Text</b></label>
+                <div className="col-sm-4">
+                      {/* Using Text Editor Component */}
+                      <div className="app">
+                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setFooterContent(html)}}/>
+                      </div>              
+                </div>
+                <div className="col-sm-5"></div>
+              </div>
+
+
+
+
+
+              <div className="form-group row mt-4" align="left">
                 <div className="col-sm-3">
                   <button type="submit" className="btn btn-primary">Save</button>
                 </div>
