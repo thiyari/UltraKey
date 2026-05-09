@@ -9,7 +9,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import MenuBar from "./MenuBar";
 import EditorPreview from "./EditorPreview";
 
-export default function RichTextEditor() {
+export default function RichTextEditor(props) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -25,13 +25,18 @@ export default function RichTextEditor() {
         placeholder: "Start writing something powerful...",
       }),
     ],
-    content: "<div></div>",
+    content: props.value,
+    onUpdate: ({ editor }) => {
+    const html = editor.getHTML()
+    props.onChangeHTML(html)
+    },
+    immediatelyRender: false,
   });
 
   if (!editor) return null;
 
   return (
-    <div className="editor-wrapper" style={{width: 625}}>
+    <div className="editor-wrapper" style={{width: 582}}>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       {/*<EditorPreview editor={editor} />*/}
