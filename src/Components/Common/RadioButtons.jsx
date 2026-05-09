@@ -12,14 +12,14 @@ const RadioButtons = (props) => {
     <div>
         {
             props.options.map((option)=>(
-                    <div class="form-check" key={option}>
-                      <input class="form-check-input" 
+                    <div className="form-check" key={option}>
+                      <input className="form-check-input" 
                       type="radio" 
                       name={props.name} 
                       value={option}
                       checked={selected === option}
                       onChange={handleChange}/>
-                      <label class="col-form-label-sm" for="flexRadioDefault1">
+                      <label className="col-form-label-sm" htmlFor="flexRadioDefault1">
                         {option}
                       </label>
                     </div>
