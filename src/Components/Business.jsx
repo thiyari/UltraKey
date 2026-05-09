@@ -1,34 +1,25 @@
 import React, {useState} from 'react'
+import { useNavigate } from "react-router-dom";
+import { useFormContext } from "../context/FormContext";
 
 function Business() {
 
-  const [url, setUrl] = useState('');
-  const [preview, setPreview] = useState(''); 
-  const [imageUrl, setImageUrl] = useState('');
+  const navigate = useNavigate();
+  const { saveFormData, formData } = useFormContext();
 
-  const handleUrlChange = (e) => {
-    setPreview('');
-    setUrl(e.target.value);
-  }
+  const [data, setData] = useState({
+    image: formData.business.image || "",
+    name: formData.business.name || "",
+    address: formData.business.address || "",
+    info: formData.business.info || "",
+    website: formData.business.website || ""
+  });
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setUrl('');
-      // Generate a preview URL
-      setPreview(URL.createObjectURL(file));
-    }
-  };
 
   async function submitHandler(event) {
         event.preventDefault();
-          if (url != "") {
-            setImageUrl(url)
-          } else if (preview != "") {
-            setImageUrl(preview)
-          } else {
-            setImageUrl('')
-          }
+          saveFormData("business", data);
+          navigate("/pdf");
   }
   
 
@@ -56,22 +47,28 @@ function Business() {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder="https://ultrakey.com/wp-content/uploads/2024"
-                        value={url}
-                        onChange={handleUrlChange}
+                        value={data.image}
+                        onChange={(e)=>{setData({...data,image:e.target.value})}}
                         style={{fontSize:"14px"}}
                         />
                     </div>
                     <div className='col-sm-5'>
                           <div>
                               <label htmlFor="fileInput" className="btn btn-outline-primary"> Add or Upload File </label>
-                              <input className="d-none" type="file" accept="image/*" id="fileInput" onChange={handleImageChange} />
+                              <input className="d-none" type="file" accept="image/*" id="fileInput" 
+                              onChange={(e)=>{
+                                setData(
+                                    {...data,
+                                      image:URL.createObjectURL(e.target.files[0])
+                                    })
+                                  }} />
                           </div>
                     </div>
                             {/* 2. Conditionally render the image if a URL exists */}
-                          {url && (
+                          {data.image && (
                             <div style={{ marginTop: '10px' }}>
                               <img 
-                                src={url} 
+                                src={data.image} 
                                 alt="Preview from URL" 
                                 height="150"
                                 width="200"
@@ -80,11 +77,6 @@ function Business() {
                               />
                             </div>
                           )}
-                          {preview && (
-                              <div style={{ marginTop: '10px' }}>
-                                <img src={preview} alt="Preview" width="200" />
-                              </div>
-                            )}
                     <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Logo of your business, if no logo is added, the name of your business will be used instead.</i></label>
                   </div>
                 </div>
@@ -98,10 +90,10 @@ function Business() {
                   <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
+                        value={data.name}
+                        onChange={(e)=>{
+                          setData({...data,name:e.target.value})
+                        }}
                         />
                 </div>
                 <div className="col-sm-4"></div>
@@ -113,10 +105,12 @@ function Business() {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
                       placeholder=""
-                      name=""
                       rows="4"
+                      value={data.address}
+                      onChange={(e)=>{
+                          setData({...data,address:e.target.value})
+                        }}
                       ></textarea>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Add your full address and format it anyway you like. Basic HTML is allowed.</i></label>
                 </div>
@@ -129,11 +123,11 @@ function Business() {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
+                      value={data.info}
+                      onChange={(e)=>{
+                          setData({...data,info:e.target.value})
+                        }}
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Extra business info such as Business number, phone number or email address  and format is anyway you like. Basic HTML is allowed. You can add your VAT number or ABN here.</i></label>
                 </div>
@@ -147,11 +141,10 @@ function Business() {
                   <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
-                        onChange=""
+                        value={data.website}
+                        onChange={(e)=>{
+                          setData({...data,website:e.target.value})
+                        }}
                         />
                 </div>
                 <div className="col-sm-4"></div>

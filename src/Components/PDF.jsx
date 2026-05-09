@@ -1,9 +1,23 @@
 import React from 'react'
+import { useFormContext } from "../context/FormContext";
 
 const PDF = () => {
+  const { formData } = useFormContext();
+
   return (
     <div>
-      PDF Download
+      <h1>Summary</h1>
+
+      <h2>Business Info</h2>
+      <div style={{ marginTop: '10px' }}>
+          <img src={formData.business.image} alt="Preview" width="200" />
+      </div>
+      <p>Name: {formData.business.name}</p>
+      <p>Address: {formData.business.address}</p>
+      <p>Info: {formData.business.info}</p>
+      <p>Website: {formData.business.website}</p>
+
+
     </div>
   )
 }
