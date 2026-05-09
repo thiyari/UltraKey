@@ -12,10 +12,6 @@
 }
 
 .menu-bar {  
-  width: auto;
-  height: 40px;
-  position: sticky;
-  top: 0;   /* freezes at top of wrapper */
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
