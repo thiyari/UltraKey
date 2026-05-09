@@ -6,8 +6,6 @@
 
 .editor-wrapper {
   width: 600px;
-  height: 250px;
-  overflow: auto;
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
