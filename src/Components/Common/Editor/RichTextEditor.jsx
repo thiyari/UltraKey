@@ -30,13 +30,12 @@ export default function RichTextEditor(props) {
     const html = editor.getHTML()
     props.onChangeHTML(html)
     },
-    immediatelyRender: false,
   });
 
   if (!editor) return null;
 
   return (
-    <div className="editor-wrapper" style={{width: 582}}>
+    <div className="editor-wrapper">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       {/*<EditorPreview editor={editor} />*/}

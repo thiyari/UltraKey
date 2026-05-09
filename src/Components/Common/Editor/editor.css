@@ -1,16 +1,23 @@
 .app {
   max-width: 900px;
-  margin: 40px auto;
+  margin: 10px auto;
   font-family: Arial, sans-serif;
 }
 
 .editor-wrapper {
+  width: 600px;
+  height: 250px;
+  overflow: auto;
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
 }
 
-.menu-bar {
+.menu-bar {  
+  width: auto;
+  height: 40px;
+  position: sticky;
+  top: 0;   /* freezes at top of wrapper */
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -30,6 +37,7 @@
 }
 
 .ProseMirror {
+  font-size: 16px;
   min-height: 250px;
   padding: 10px;
   border-top: 1px solid #eee;

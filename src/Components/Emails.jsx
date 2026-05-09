@@ -5,7 +5,7 @@ import './Common/Editor/editor.css'
 const Emails = () => {
 
   const [initialContent, setInitialContent] = useState('<p>Hello</p>')
-  const [content, setContent] = useState('');
+  const [quoteContent, setQuoteContent] = useState('');
 
   return (
 
@@ -43,12 +43,122 @@ const Emails = () => {
                 </div>
               </div>
 
-                {/* Using Text Editor Component */}
-                <div className="app">
-                  <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setContent(html)}}/>
-                </div>              
 
-                <div>{content}</div>
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="emailName" className="col-sm-3 col-form-label"><b>Email Name</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="email"  
+                        className="form-control mb-2" 
+                        id="" 
+                        placeholder=""
+                        name=""
+                        value=""
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The name on emails to send and receive notifications (probably your business name).</i></label>
+                </div>
+              </div>
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="bccClientEmails" className="col-sm-3 col-form-label"><b>BCC on Client Emails</b></label>
+                <div className="col-sm-5">
+                  <div className="form-check">
+                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
+                      Yes. send myself a copy of all client emails (BCC). Recommended.
+                    </label>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}} htmlFor="flexCheckDefault">
+                      <i>This ensures you have a copy of the email on record</i>
+                    </label>
+                  </div>
+                </div>
+                <div className="col-sm-4"></div>
+              </div>
+
+
+              <hr></hr>
+              <div className="row">
+                  <h5 align="left"><b>Quote Available</b></h5>
+              </div>
+
+              <div className="row" align="left">
+                  <label className="form-label text-muted" style={{fontSize: "0.6rem"}}>
+                  <i>Send to the client manually, when you click the email buttons.</i></label>
+              </div>
+
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="subject" className="col-sm-3 col-form-label"><b>Subject</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="email"  
+                        className="form-control mb-2" 
+                        id="" 
+                        placeholder=""
+                        name=""
+                        value=""
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The subject of the email (wild cards are allowed).</i></label>
+                </div>
+              </div>
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
+                <div className="col-sm-4">
+                      {/* Using Text Editor Component */}
+                      <div className="app">
+                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setQuoteContent(html)}}/>
+                      </div>              
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards are allowed).</i></label>
+                </div>
+              </div>
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="buttonText" className="col-sm-3 col-form-label"><b>Button text</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="email"  
+                        className="form-control mb-2" 
+                        id="" 
+                        placeholder=""
+                        name=""
+                        value=""
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The "view this quote online" button.</i></label>
+                </div>
+              </div>
+
+
+              <hr></hr>
+        
               
               <div className="form-group row mt-2" align="left">
                 <div className="col-sm-3">
