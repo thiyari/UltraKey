@@ -4,8 +4,8 @@ import './Common/Editor/editor.css'
 
 const Emails = () => {
   return (
+    /* Using Text Editor Component */
     <div className="app">
-      <h1>Advanced Tiptap Editor</h1>
       <RichTextEditor />
     </div>
   )

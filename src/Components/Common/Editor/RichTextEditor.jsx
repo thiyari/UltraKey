@@ -25,16 +25,16 @@ export default function RichTextEditor() {
         placeholder: "Start writing something powerful...",
       }),
     ],
-    content: "<h2>Welcome to Rich Editor 🚀</h2>",
+    content: "<div></div>",
   });
 
   if (!editor) return null;
 
   return (
-    <div className="editor-wrapper w-auto">
+    <div className="editor-wrapper" style={{width: 625}}>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      <EditorPreview editor={editor} />
+      {/*<EditorPreview editor={editor} />*/}
     </div>
   );
 }
