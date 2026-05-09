@@ -20,18 +20,18 @@ export default function MenuBar({ editor }) {
 
       {/* Text styles */}
       <button onClick={() => editor.chain().focus().toggleBold().run()}>
-        Bold
+        <i class="fa-solid fa-bold fa-sm"></i>
       </button>
 
       <button onClick={() => editor.chain().focus().toggleItalic().run()}>
-        Italic
+        <i class="fa-solid fa-italic fa-sm"></i>
       </button>
 
       <button onClick={() => editor.chain().focus().toggleUnderline().run()}>
-        Underline
+        <i class="fa-solid fa-underline fa-sm"></i>
       </button>
 
-      {/* Headings */}
+      {/* Headings 
       <button onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}>
         H1
       </button>
@@ -43,49 +43,49 @@ export default function MenuBar({ editor }) {
       <button onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>
         H3
       </button>
-
+      */}
       {/* Lists */}
       <button onClick={() => editor.chain().focus().toggleBulletList().run()}>
-        Bullet List
+        <i class="fa-solid fa-list-ul fa-sm"></i>
       </button>
 
       <button onClick={() => editor.chain().focus().toggleOrderedList().run()}>
-        Numbered List
+        <i class="fa-solid fa-list-ol fa-sm"></i>
       </button>
 
       {/* Block styles */}
       <button onClick={() => editor.chain().focus().toggleBlockquote().run()}>
-        Quote
+        <i class="fa-solid fa-quote-left fa-sm"></i>
       </button>
 
       <button onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
-        Code
+        <i class="fa-solid fa-code fa-sm"></i>
       </button>
 
       {/* Alignment */}
       <button onClick={() => editor.chain().focus().setTextAlign("left").run()}>
-        Left
+        <i class="fa-solid fa-align-left fa-sm"></i>
       </button>
 
       <button onClick={() => editor.chain().focus().setTextAlign("center").run()}>
-        Center
+        <i class="fa-solid fa-align-center fa-sm"></i>
       </button>
 
       <button onClick={() => editor.chain().focus().setTextAlign("right").run()}>
-        Right
+        <i class="fa-solid fa-align-right fa-sm"></i>
       </button>
 
       {/* Link + Image */}
-      <button onClick={addLink}>Link</button>
-      <button onClick={addImage}>Image</button>
+      <button onClick={addLink}><i class="fa-solid fa-link fa-sm"></i></button>
+      <button onClick={addImage}><i class="fa-regular fa-image fa-sm"></i></button>
 
       {/* Undo / Redo */}
       <button onClick={() => editor.chain().focus().undo().run()}>
-        Undo
+        <i class="fa-solid fa-rotate-left fa-sm"></i>
       </button>
 
       <button onClick={() => editor.chain().focus().redo().run()}>
-        Redo
+        <i class="fa-solid fa-rotate-right fa-sm"></i>
       </button>
     </div>
   );

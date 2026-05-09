@@ -31,7 +31,7 @@ export default function RichTextEditor() {
   if (!editor) return null;
 
   return (
-    <div className="editor-wrapper">
+    <div className="editor-wrapper w-auto">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       <EditorPreview editor={editor} />
