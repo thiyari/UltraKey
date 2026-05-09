@@ -1,11 +1,27 @@
 import React, {useState} from 'react'
 import RichTextEditor from './Common/Editor/RichTextEditor'
+import CheckBoxes from './Common/CheckBoxes';
 import './Common/Editor/editor.css'
 
 const Emails = () => {
 
+  const items = [
+    "7 days before Due Date",
+    "1 day before Due Date",
+    "On the Due Date",
+    "1 day after Due Date",
+    "7 days after Due Date",
+    "14 days after Due Date",
+    "21 days after Due Date",
+    "30 days after Due Date"
+  ];
+  const [checkedItems, setCheckedItems] = useState([]);
   const [initialContent, setInitialContent] = useState('<p>Hello</p>')
   const [quoteContent, setQuoteContent] = useState('');
+  const [invoiceContent, setInvoiceContent] = useState('');
+  const [paymentReceivedContent, setpaymentReceivedContent] = useState('');
+  const [paymentRemainderContent, setpaymentRemainderContent] = useState('');
+  
 
   return (
 
@@ -85,6 +101,8 @@ const Emails = () => {
 
 
               <hr></hr>
+
+
               <div className="row">
                   <h5 align="left"><b>Quote Available</b></h5>
               </div>
@@ -158,8 +176,166 @@ const Emails = () => {
 
 
               <hr></hr>
-        
+
+
+
               
+              <div className="row">
+                  <h5 align="left"><b>Invoice Available</b></h5>
+              </div>
+
+              <div className="row" align="left">
+                  <label className="form-label text-muted" style={{fontSize: "0.6rem"}}>
+                  <i>Send to the client manually, when you click the email buttons.</i></label>
+              </div>
+
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="subject" className="col-sm-3 col-form-label"><b>Subject</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="email"  
+                        className="form-control mb-2" 
+                        id="" 
+                        placeholder=""
+                        name=""
+                        value=""
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The subject of the email (wild cards are allowed).</i></label>
+                </div>
+              </div>
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
+                <div className="col-sm-4">
+                      {/* Using Text Editor Component */}
+                      <div className="app">
+                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setInvoiceContent(html)}}/>
+                      </div>              
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards are allowed).</i></label>
+                </div>
+              </div>
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="buttonText" className="col-sm-3 col-form-label"><b>Button text</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="email"  
+                        className="form-control mb-2" 
+                        id="" 
+                        placeholder=""
+                        name=""
+                        value=""
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The "view this invoice online" button.</i></label>
+                </div>
+              </div>
+              
+
+
+
+
+              <hr></hr>
+
+
+
+              
+              <div className="row">
+                  <h5 align="left"><b>Payment Received</b></h5>
+              </div>
+
+              <div className="row" align="left">
+                  <label className="form-label text-muted" style={{fontSize: "0.6rem"}}>
+                  <i>Send to the client automatically, when they make a payment.</i></label>
+              </div>
+
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="subject" className="col-sm-3 col-form-label"><b>Subject</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="email"  
+                        className="form-control mb-2" 
+                        id="" 
+                        placeholder=""
+                        name=""
+                        value=""
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The subject of the email (wild cards are allowed).</i></label>
+                </div>
+              </div>
+
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
+                <div className="col-sm-4">
+                      {/* Using Text Editor Component */}
+                      <div className="app">
+                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentReceivedContent(html)}}/>
+                      </div>              
+                </div>
+                <div className="col-sm-5"></div>
+                <div className='col-sm-3'></div>
+                <div className='col-sm-9'>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards are allowed).</i></label>
+                </div>
+              </div>
+
+
+
+              <hr></hr>
+
+
+
+              
+              <div className="row">
+                  <h5 align="left"><b>Payment Remainder</b></h5>
+              </div>
+
+              <div className="row" align="left">
+                  <label className="form-label text-muted" style={{fontSize: "0.6rem"}}>
+                  <i>Send to the client automatically on the choosen days.</i></label>
+              </div>
+
+              <div className="form-group row mt-2" align="left">
+                <label htmlFor="whenToSend" className="col-sm-3 col-form-label"><b>When to Send</b></label>
+                <div className="col-sm-6">
+                    <CheckBoxes getCheckedItems={(list)=>{setCheckedItems(list)}} items={items}/>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Check when you would like payment remainders sent out.</i></label>
+                </div>
+                <div className="col-sm-3"></div>
+                {/*<p>Selected: {checkedItems.join(", ")}</p>*/}
+              </div>       
+
+
               <div className="form-group row mt-2" align="left">
                 <div className="col-sm-3">
                   <button type="submit" className="btn btn-primary">Save</button>

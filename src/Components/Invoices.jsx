@@ -175,7 +175,7 @@ const Invoices = () => {
 
 
               <div className="form-group row mt-2" align="left">
-                <label htmlFor="declinedQuoteMessage" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
+                <label htmlFor="showMeNoticesWhen" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
                 <div className="col-sm-6">
                     <CheckBoxes getCheckedItems={(list)=>{setCheckedItems(list)}} items={items}/>
                 </div>
