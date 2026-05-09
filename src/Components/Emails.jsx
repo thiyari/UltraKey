@@ -142,13 +142,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-4">
+                <div className="col-sm-9">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setQuoteContent(html)}}/>
                       </div>              
                 </div>
-                <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
                     <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards are allowed).</i></label>
@@ -219,13 +218,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-4">
+                <div className="col-sm-9">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setInvoiceContent(html)}}/>
                       </div>              
                 </div>
-                <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
                     <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards are allowed).</i></label>
@@ -298,13 +296,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-4">
+                <div className="col-sm-9">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentReceivedContent(html)}}/>
                       </div>              
                 </div>
-                <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
                     <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards are allowed).</i></label>
@@ -365,13 +362,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-4">
+                <div className="col-sm-9">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentRemainderContent(html)}}/>
                       </div>              
                 </div>
-                <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
                     <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The content of the email (wild cards and HTML are allowed).</i></label>
@@ -410,13 +406,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="footer" className="col-sm-3 col-form-label"><b>Footer Text</b></label>
-                <div className="col-sm-4">
+                <div className="col-sm-9">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setFooterContent(html)}}/>
                       </div>              
                 </div>
-                <div className="col-sm-5"></div>
               </div>
 
 
