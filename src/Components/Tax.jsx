@@ -13,7 +13,6 @@ const Tax = () => {
       name: formData.tax.name || "",
     });
   const options = ['Yes. I will enter prices inclusive of tax', 'No. I will enter prices exclusive of tax'];
-  const [selectedTaxPrice, setselectedTaxPrice] = useState('');
   
   async function submitHandler(event) {
         event.preventDefault();
