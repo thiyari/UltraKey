@@ -17,6 +17,10 @@ const PDF = () => {
       <p>Info: {formData.business.info}</p>
       <p>Website: {formData.business.website}</p>
 
+      <p>price: {formData.tax.price}</p>
+      <p>percentage: {formData.tax.percentage}</p>
+      <p>name: {formData.tax.name}</p>
+
 
     </div>
   )

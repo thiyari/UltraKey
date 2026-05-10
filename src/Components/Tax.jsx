@@ -1,9 +1,26 @@
 import React, {useState} from 'react'
 import RadioButtons from './Common/RadioButtons';
+import { useNavigate } from "react-router-dom";
+import { useFormContext } from "../context/FormContext";
 
 const Tax = () => {
+    const navigate = useNavigate();
+    const { saveFormData, formData } = useFormContext();
+  
+    const [data, setData] = useState({
+      price: formData.tax.price || "",
+      percentage: formData.tax.percentage || "",
+      name: formData.tax.name || "",
+    });
   const options = ['Yes. I will enter prices inclusive of tax', 'No. I will enter prices exclusive of tax'];
   const [selectedTaxPrice, setselectedTaxPrice] = useState('');
+  
+  async function submitHandler(event) {
+        event.preventDefault();
+          saveFormData("tax", data);
+          navigate("/pdf");
+  }
+
   return (
     <div className="container">
             <div className="row">
@@ -17,18 +34,22 @@ const Tax = () => {
             </div>
 
 
-            <form>
+            <form onSubmit={submitHandler}>
 
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="taxName" className="col-sm-3 col-form-label"><b>Prices entered with tax</b></label>
                 <div className="col-sm-4">
-                  <RadioButtons getSelected={(option)=>{setselectedTaxPrice(option)}} options={options} name={'taxPrice'}/>
+                  <RadioButtons
+                    data={data}
+                    setData={setData}
+                    options={options} 
+                    name={'taxPrice'}/>
                 </div>
                 <div className="col-sm-5"></div>
               </div>
 
-              {/*<p>Selected option: {selectedTaxPrice}</p>*/}
+              {/* <p>Selected option: {data.price}</p> */}
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Tax Percentage</b></label>
@@ -36,10 +57,8 @@ const Tax = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
+                        value={data.percentage}
+                        onChange={(e)=>{setData({...data, percentage: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -57,10 +76,8 @@ const Tax = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
+                        value={data.name}
+                        onChange={(e)=>{setData({...data, name: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
