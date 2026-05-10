@@ -25,7 +25,6 @@ const Invoices = () => {
 
     const items = ["Invoice Viewed","Invoice Paid"];
     const [checkedItems, setCheckedItems] = useState([]);
-    const [templateId, setTemplateId] = useState(null);
 
   async function submitHandler(event) {
         event.preventDefault();
@@ -218,17 +217,16 @@ const Invoices = () => {
                 <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
                 <div className="col-sm-9">
                   <Templates 
-                  getTemplateId={(id) => setTemplateId(id)}
                   data={data}
                   setData={setData}  
                   />
                 </div>
               </div>
               
-              {/*
+              
               <div className="mt-4">
-                Selected ID: {templateId || 'None'}
-              </div> */}
+                Selected ID: {data.template || 'None'}
+              </div> 
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="customCSS" className="col-sm-3 col-form-label"><b>Custom CSS</b></label>
