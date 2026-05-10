@@ -4,10 +4,6 @@ const CheckBoxes = (props) => {
     
   const [checkedItems, setCheckedItems] = useState([]);
 
-  const handleChangeSelect = (event) => {
-    setSelected(event.target.value);
-  };
-
   // Individual checkbox change
   const handleCheckboxChange = (item) => {
     setCheckedItems((prev) =>

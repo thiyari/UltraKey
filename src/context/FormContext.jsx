@@ -5,7 +5,7 @@ const FormContext = createContext();
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
     business: {},
-    invoice: {},
+    invoices: {},
     tax: {},
     translate: {}
   });
