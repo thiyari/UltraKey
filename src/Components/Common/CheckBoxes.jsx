@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {use, useEffect, useState} from 'react'
 
 const CheckBoxes = (props) => {
     
@@ -24,8 +24,11 @@ const CheckBoxes = (props) => {
   };
 
   const allChecked = checkedItems.length === props.items.length;
-  props.getCheckedItems(checkedItems);
   
+  useEffect(()=>{
+    props.getCheckedItems(checkedItems);
+  },[checkedItems])
+
   return (
     <div>
                 <button 

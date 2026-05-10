@@ -24,14 +24,12 @@ const Invoices = () => {
     });
 
     const items = ["Invoice Viewed","Invoice Paid"];
-    const [checkedItems, setCheckedItems] = useState([]);
 
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("invoices", data);
           navigate("/pdf");
   }
-
 
 
   return (
@@ -193,12 +191,12 @@ const Invoices = () => {
                     <CheckBoxes 
                         data={data}
                         setdata={setData}
-                        getCheckedItems={(list)=>{setCheckedItems(list)}} 
+                        getCheckedItems={(list)=>{setData({...data, notices: list})}} 
                         items={items}
                       />
                 </div>
                 <div className="col-sm-3"></div>
-                {/*<p>Selected: {checkedItems.join(", ")}</p>*/}
+                {/* <p>Selected: {data.notices.join(", ")}</p> */}
               </div>              
 
 
