@@ -17,7 +17,7 @@ const Tax = () => {
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("tax", data);
-          navigate("/pdf");
+          navigate("/translate");
   }
 
   return (
@@ -40,8 +40,7 @@ const Tax = () => {
                 <label htmlFor="taxName" className="col-sm-3 col-form-label"><b>Prices entered with tax</b></label>
                 <div className="col-sm-4">
                   <RadioButtons
-                    data={data}
-                    setData={setData}
+                    getSelectedItem={(item)=>{setData({...data, price: item})}}
                     options={options} 
                     name={'taxPrice'}/>
                 </div>

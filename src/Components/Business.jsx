@@ -19,7 +19,7 @@ function Business() {
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("business", data);
-          navigate("/tax");
+          navigate("/invoices");
   }
   
 

@@ -18,7 +18,7 @@ const Invoices = () => {
       hideAdjustField: formData.invoices.hideAdjustField || "",
       termsAndConditions: formData.invoices.termsAndConditions || "",
       footer: formData.invoices.footer || "",
-      notices: formData.invoices.notices || [],
+      notices: formData.invoices.notices || "",
       template: formData.invoices.template || "",
       customCSS: formData.invoices.customCSS || ""
     });
@@ -28,7 +28,7 @@ const Invoices = () => {
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("invoices", data);
-          navigate("/pdf");
+          navigate("/tax");
   }
 
 
@@ -191,7 +191,7 @@ const Invoices = () => {
                     <CheckBoxes 
                         data={data}
                         setdata={setData}
-                        getCheckedItems={(list)=>{setData({...data, notices: list})}} 
+                        getCheckedItems={(list)=>{setData({...data, notices: JSON.stringify(list)})}} 
                         items={items}
                       />
                 </div>
