@@ -26,6 +26,7 @@ const PDF = () => {
       <p>dueDate: {formData.invoices.dueDate}</p>
       <p>termsAndConditions: {formData.invoices.termsAndConditions}</p>
       <p>footer: {formData.invoices.footer}</p>
+      <p>template: {formData.invoices.template}</p>
       <p>customCSS: {formData.invoices.customCSS}</p>
 
 
