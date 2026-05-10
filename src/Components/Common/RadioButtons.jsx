@@ -6,7 +6,7 @@ const RadioButtons = (props) => {
   const handleChange = (event) => {
     setSelectedItem(event.target.value);
   }
-  
+
   useEffect(()=>{
     props.getSelectedItem(selectedItem);
   },[selectedItem])
@@ -20,7 +20,7 @@ const RadioButtons = (props) => {
                       type="radio" 
                       name={props.name} 
                       value={option}
-                      checked={((selectedItem === option) && (props.name === 'taxPrice'))}
+                      checked={selectedItem === option}
                       onChange={handleChange}/>
                       <label className="col-form-label-sm" htmlFor="flexRadioDefault1">
                         {option}
