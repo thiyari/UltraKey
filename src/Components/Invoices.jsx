@@ -55,6 +55,8 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
+                        value={data.prefix}
+                        onChange={(e)=>{setData({...data, prefix: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -70,6 +72,8 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
+                        value={data.suffix}
+                        onChange={(e)=>{setData({...data, suffix: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -100,6 +104,8 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
+                        value={data.nextNumber}
+                        onChange={(e)=>{setData({...data, nextNumber: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -117,6 +123,8 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
+                        value={data.dueDate}
+                        onChange={(e)=>{setData({...data, dueDate: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -147,6 +155,8 @@ const Invoices = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
+                      value={data.termsAndConditions}
+                      onChange={(e)=>{setData({...data, termsAndConditions: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Terms and conditions displayed on the Invoice.<br></br> Can be overriden on individual Invoices.</i></label>
                 </div>
@@ -160,6 +170,8 @@ const Invoices = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
+                      value={data.footer}
+                      onChange={(e)=>{setData({...data, footer: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>The footer will be displayed at the bottom of each Invoice. Basic HTML is allowed.</i></label>
                 </div>
@@ -205,7 +217,11 @@ const Invoices = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
                 <div className="col-sm-9">
-                  <Templates getTemplateId={(id) => setTemplateId(id)}/>
+                  <Templates 
+                  getTemplateId={(id) => setTemplateId(id)}
+                  data={data}
+                  setData={setData}  
+                  />
                 </div>
               </div>
               
@@ -220,6 +236,8 @@ const Invoices = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
+                      value={data.customCSS}
+                      onChange={(e)=>{setData({...data, customCSS: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Quotes</i></label>
                 </div>
