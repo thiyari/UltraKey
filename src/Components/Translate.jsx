@@ -1,6 +1,33 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useFormContext } from "../context/FormContext";
+import { useNavigate } from "react-router-dom";
 
 const Translate = () => {
+
+    const navigate = useNavigate();
+    const { saveFormData, formData } = useFormContext();
+  
+    const [data, setData] = useState({
+      quoteLabel: formData.translate.quoteLabel || "",
+      qutoeLabelPlural: formData.translate.qutoeLabelPlural || "",
+      invoiceLabel: formData.translate.invoiceLabel || "",
+      invoiceLabelPlural: formData.translate.invoiceLabelPlural || "",
+      hrsQty: formData.translate.hrsQty || "",
+      service: formData.translate.service || "",
+      ratePrice: formData.translate.ratePrice || "",
+      adjust: formData.translate.adjust || "",
+      subTotal: formData.translate.subTotal || "",
+      discount: formData.translate.discount || "",
+      total: formData.translate.total || "",
+      totalDue: formData.translate.totalDue || ""
+    });
+
+  async function submitHandler(event) {
+        event.preventDefault();
+          saveFormData("translate", data);
+          navigate("/pdf");
+  }
+
   return (
     <div className="container">
             <div className="row">
@@ -14,7 +41,7 @@ const Translate = () => {
             </div>
 
 
-            <form>
+            <form onSubmit={submitHandler}>
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="quoteLabel" className="col-sm-3 col-form-label"><b>Quote Label</b></label>
@@ -22,10 +49,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Quote"
-                        name=""
-                        value=""
+                        placeholder='Quote'
+                        value={data.quoteLabel}
+                        onChange={(e)=>{setData({...data, quoteLabel: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -42,16 +68,15 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Quotes"
-                        name=""
-                        value=""
+                        placeholder='Quotes'
+                        value={data.qutoeLabelPlural}
+                        onChange={(e)=>{setData({...data, qutoeLabelPlural: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
-                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>THe plural of the above</i></label>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The plural of the above</i></label>
                 </div>
               </div>
 
@@ -65,10 +90,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Invoice"
-                        name=""
-                        value=""
+                        placeholder='Invoice'
+                        value={data.invoiceLabel}
+                        onChange={(e)=>{setData({...data, invoiceLabel: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -85,16 +109,15 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Invoices"
-                        name=""
-                        value=""
+                        placeholder='Invoices'
+                        value={data.invoiceLabelPlural}
+                        onChange={(e)=>{setData({...data, invoiceLabelPlural: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
-                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>THe plural of the above</i></label>
+                    <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The plural of the above</i></label>
                 </div>
               </div>
 
@@ -105,10 +128,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Hrs/Qty"
-                        name=""
-                        value=""
+                        placeholder='Hrs/Qty'
+                        value={data.hrsQty}
+                        onChange={(e)=>{setData({...data, hrsQty: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -121,10 +143,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Service"
-                        name=""
-                        value=""
+                        placeholder='Service'
+                        value={data.service}
+                        onChange={(e)=>{setData({...data, service: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -138,10 +159,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Rate/Price"
-                        name=""
-                        value=""
+                        placeholder='Rate/Price'
+                        value={data.ratePrice}
+                        onChange={(e)=>{setData({...data, ratePrice: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -154,10 +174,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Adjust"
-                        name=""
-                        value=""
+                        placeholder='Adjust'
+                        value={data.adjust}
+                        onChange={(e)=>{setData({...data, adjust: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -172,10 +191,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Sub Total"
-                        name=""
-                        value=""
+                        placeholder='Sub Total'
+                        value={data.subTotal}
+                        onChange={(e)=>{setData({...data, subTotal: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -188,10 +206,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Discount"
-                        name=""
-                        value=""
+                        placeholder='Discount'
+                        value={data.discount}
+                        onChange={(e)=>{setData({...data, discount: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -205,10 +222,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder="Total"
-                        name=""
-                        value=""
+                        placeholder='Total'
+                        value={data.total}
+                        onChange={(e)=>{setData({...data, total: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -221,10 +237,9 @@ const Translate = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
                         placeholder="Total Due"
-                        name=""
-                        value=""
+                        value={data.totalDue}
+                        onChange={(e)=>{setData({...data, totalDue: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>

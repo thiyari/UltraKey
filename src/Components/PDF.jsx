@@ -23,7 +23,20 @@ const PDF = () => {
       <p>percentage: {formData.tax.percentage}</p>
       <p>name: {formData.tax.name}</p>
 
-
+      <br></br>
+      <h2>Translate Info</h2>
+      <p>quoteLabel: {formData.translate.quoteLabel}</p>
+      <p>qutoeLabelPlural: {formData.translate.qutoeLabelPlural}</p>
+      <p>invoiceLabel: {formData.translate.invoiceLabel}</p>
+      <p>invoiceLabelPlural: {formData.translate.invoiceLabelPlural}</p>
+      <p>hrsQty: {formData.translate.hrsQty}</p>
+      <p>service: {formData.translate.service}</p>
+      <p>ratePrice: {formData.translate.ratePrice}</p>
+      <p>adjust: {formData.translate.adjust}</p>
+      <p>subTotal: {formData.translate.subTotal}</p>
+      <p>discount: {formData.translate.discount}</p>
+      <p>total: {formData.translate.total}</p>
+      <p>totalDue: {formData.translate.totalDue}</p>
     </div>
   )
 }
