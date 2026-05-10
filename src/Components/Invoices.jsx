@@ -1,13 +1,39 @@
 import React, {useState} from 'react'
 import Templates from './Common/Templates';
 import CheckBoxes from './Common/CheckBoxes';
+import { useNavigate } from "react-router-dom";
+import { useFormContext } from "../context/FormContext";
 
 const Invoices = () => {
 
+    const navigate = useNavigate();
+    const { saveFormData, formData } = useFormContext();
+  
+    const [data, setData] = useState({
+      prefix: formData.invoices.prefix || "",
+      suffix: formData.invoices.suffix || "",
+      autoIncrement: formData.invoices.autoIncrement || "",
+      nextNumber: formData.invoices.nextNumber || "",
+      dueDate: formData.invoices.dueDate || "",
+      hideAdjustField: formData.invoices.hideAdjustField || "",
+      termsAndConditions: formData.invoices.termsAndConditions || "",
+      footer: formData.invoices.footer || "",
+      notices: formData.invoices.notices || [],
+      template: formData.invoices.template || "",
+      customCSS: formData.invoices.customCSS || ""
+    });
 
     const items = ["Invoice Viewed","Invoice Paid"];
     const [checkedItems, setCheckedItems] = useState([]);
     const [templateId, setTemplateId] = useState(null);
+
+  async function submitHandler(event) {
+        event.preventDefault();
+          saveFormData("invoices", data);
+          navigate("/pdf");
+  }
+
+
 
   return (
     <div className="container">
@@ -21,7 +47,7 @@ const Invoices = () => {
                 &nbsp; Here you find all the settings for Invoices.</p>
             </div>
 
-            <form>
+            <form onSubmit={submitHandler}>
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="prefix" className="col-sm-3 col-form-label"><b>Prefix</b></label>
@@ -136,11 +162,7 @@ const Invoices = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Terms and conditions displayed on the Invoice.<br></br> Can be overriden on individual Invoices.</i></label>
                 </div>
@@ -153,11 +175,7 @@ const Invoices = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>The footer will be displayed at the bottom of each Invoice. Basic HTML is allowed.</i></label>
                 </div>
@@ -177,7 +195,12 @@ const Invoices = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="showMeNoticesWhen" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
                 <div className="col-sm-6">
-                    <CheckBoxes getCheckedItems={(list)=>{setCheckedItems(list)}} items={items}/>
+                    <CheckBoxes 
+                        data={data}
+                        setdata={setData}
+                        getCheckedItems={(list)=>{setCheckedItems(list)}} 
+                        items={items}
+                      />
                 </div>
                 <div className="col-sm-3"></div>
                 {/*<p>Selected: {checkedItems.join(", ")}</p>*/}
@@ -212,11 +235,7 @@ const Invoices = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Quotes</i></label>
                 </div>
