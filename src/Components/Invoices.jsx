@@ -85,7 +85,11 @@ const Invoices = () => {
                 <label htmlFor="autoIncrement" className="col-sm-3 col-form-label"><b>Auto Increment</b></label>
                 <div className="col-sm-5">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <input className="form-check-input" 
+                        type="checkbox" 
+                        checked={data.autoIncrement.includes("Yes")}
+                        onChange={(e) => {(e.target.checked) && setData({...data, autoIncrement: "Yes"})}}
+                        id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Increment Invoice numbers by one. Recommended.
                     </label>
@@ -136,7 +140,11 @@ const Invoices = () => {
                 <label htmlFor="hideAdjustField" className="col-sm-3 col-form-label"><b>Hide Adjust Field</b></label>
                 <div className="col-sm-6">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <input className="form-check-input" 
+                    type="checkbox" 
+                    checked={data.hideAdjustField.includes("Yes")}
+                    onChange={(e) => {(e.target.checked) && setData({...data, hideAdjustField: "Yes"})}} 
+                    id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Hide the adjust field on the line items, I won't need this field.
                     </label>

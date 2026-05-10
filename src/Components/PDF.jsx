@@ -22,8 +22,10 @@ const PDF = () => {
       <h2>Invoice Info</h2>
       <p>prefix: {formData.invoices.prefix}</p>
       <p>suffix: {formData.invoices.suffix}</p>
+      <p>auto increment: {formData.invoices.autoIncrement}</p>
       <p>nextNumber: {formData.invoices.nextNumber}</p>
       <p>dueDate: {formData.invoices.dueDate}</p>
+      <p>hideAdjustField: {formData.invoices.hideAdjustField}</p>
       <p>termsAndConditions: {formData.invoices.termsAndConditions}</p>
       <p>footer: {formData.invoices.footer}</p>
       <p>notices: {formData.invoices.notices}</p>
