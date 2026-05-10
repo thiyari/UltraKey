@@ -55,10 +55,6 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -74,10 +70,6 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -108,10 +100,6 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -129,10 +117,6 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
