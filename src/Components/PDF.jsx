@@ -6,12 +6,12 @@ const PDF = () => {
 
   return (
     <div>
-
-      <h1> General </h1>
+      <br></br>
+      <h2> General </h2>
       <p>yearStart: {formData.general.yearStart}</p>
       <p>yearEnd: {formData.general.yearEnd}</p>
       <div>lineItems: 
-      {formData.general.lineItems.map((item, index) => (
+      {formData.general.lineItems && formData.general.lineItems.map((item, index) => (
         <div key={index}>
           <p>qty: {item.qty}</p>
           <p>title: {item.title}</p>
@@ -20,7 +20,7 @@ const PDF = () => {
         </div>
       ))} </div>
 
-
+      <br></br>
       <h2>Business Info</h2>
       <div style={{ marginTop: '10px' }}>
           <img src={formData.business.image} alt="Preview" height="100" width="350" />
@@ -46,8 +46,17 @@ const PDF = () => {
       <p>customCSS: {formData.invoices.customCSS}</p>
       <p>To Address: {formData.business.toAddress}</p>
 
-
-
+      <br></br>
+      <h2>Payments</h2>
+      <p>currencySymbol: {formData.payments.currencySymbol}</p> 
+      <p>currencyPosition: {formData.payments.currencyPosition}</p>
+      <p>thousandSeperator: {formData.payments.thousandSeperator} </p>
+      <p>decimalSeperator: {formData.payments.decimalSeperator} </p>
+      <p>numberOfDecimals: {formData.payments.numberOfDecimals} </p>
+      <p>paymentPage: {formData.payments.paymentPage}</p>
+      <p>paymentPageFooter: {formData.payments.paymentPageFooter} </p>
+      <p>bank: {formData.payments.bank} </p>
+      <p>genericPayment: {formData.payments.genericPayment} </p>
 
       <br></br>
       <h2>Tax Info</h2>

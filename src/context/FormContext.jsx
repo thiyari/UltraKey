@@ -7,6 +7,7 @@ export const FormProvider = ({ children }) => {
     general: {},
     business: {},
     invoices: {},
+    payments: {},
     tax: {},
     translate: {}
   });

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 const Dropdowns = (props) => {
 
@@ -8,7 +8,9 @@ const Dropdowns = (props) => {
     setSelected(event.target.value);
   };
 
-  props.getOption(selected);
+  useEffect(()=>{
+    props.getOption(selected);
+  },[selected])
 
   return (
                     <div className="d-flex justify-content-center">

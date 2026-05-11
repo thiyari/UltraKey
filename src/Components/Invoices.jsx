@@ -8,7 +8,6 @@ const Invoices = () => {
 
     const navigate = useNavigate();
     const { saveFormData, formData } = useFormContext();
-    const [templateId, setTemplateId] = useState(null);
   
     const [data, setData] = useState({
       prefix: formData.invoices.prefix || "",
