@@ -21,7 +21,8 @@ const Invoices = () => {
       footer: formData.invoices.footer || "",
       notices: formData.invoices.notices || "",
       template: formData.invoices.template || "",
-      customCSS: formData.invoices.customCSS || ""
+      customCSS: formData.invoices.customCSS || "",
+      toAddress: formData.invoices.toAddress || ""
     });
 
     const items = ["Invoice Viewed","Invoice Paid"];
@@ -243,6 +244,28 @@ const Invoices = () => {
                 </div>
                 <div className="col-sm-3"></div>
               </div>
+
+
+
+
+              <div className="form-group row mt-2" align="left">
+                <label htmlFor="toAddress" className="col-sm-3 col-form-label"><b>To Address</b></label>
+                <div className="col-sm-6">
+                  <textarea 
+                      className="form-control" 
+                      placeholder=""
+                      rows="4"
+                      value={data.toAddress}
+                      onChange={(e)=>{
+                          setData({...data,toAddress:e.target.value})
+                        }}
+                      ></textarea>
+                  <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Add your full address and format it anyway you like. Basic HTML is allowed.</i></label>
+                </div>
+                <div className="col-sm-3"></div>
+              </div>
+
+
 
 
               <div className="form-group row mt-2" align="left">

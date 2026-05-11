@@ -31,6 +31,7 @@ const PDF = () => {
       <p>notices: {formData.invoices.notices}</p>
       <p>template: {formData.invoices.template}</p>
       <p>customCSS: {formData.invoices.customCSS}</p>
+      <p>To Address: {formData.business.toAddress}</p>
 
 
 

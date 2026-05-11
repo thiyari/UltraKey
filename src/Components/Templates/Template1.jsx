@@ -94,9 +94,8 @@ const Template1 = () => {
                 <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
                     <b>To:</b><br></br>
                     <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
-                        {formData.business.address}
+                        {formData.invoices.toAddress}
                     </p>
-                    <p>{formData.business.info}</p>
                 </div>
                 <div className='col-sm-2'></div>
                 <div className='col-sm-5'></div>
