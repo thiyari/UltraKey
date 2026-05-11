@@ -90,7 +90,7 @@ const Template1 = () => {
 
 
 
-            <div className='row mt-5'>
+            <div className='row mt-4'>
                 <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
                     <b>To:</b><br></br>
                     <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
@@ -101,6 +101,49 @@ const Template1 = () => {
                 <div className='col-sm-5'></div>
             </div>
         
+            <div className='row mt-4' style={{padding: "30px"}}>
+                <table className="table">
+                    <thead className="thead-light">
+                        <tr>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>HRS/QTY</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>SERVICE</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>RATE/PRICE</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>ADJUST</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>SUB TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <th scope="row">4</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td></td>
+                        </tr>
+                    </tbody>
+                    </table>
+            </div>
         </div>
   )
 }
