@@ -16,7 +16,7 @@ function General() {
     async function submitHandler(event) {
         event.preventDefault();
           saveFormData("general", data);
-          navigate("/business");
+          navigate("/pdf");
     }
 
   return (
@@ -37,7 +37,9 @@ function General() {
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="yearStart" className="col-sm-3 col-form-label"><b>Year Start</b></label>
                 <div className="col-sm-3">
-                  <input type="date" className="form-control" placeholder="Start Year" aria-label="startYear" aria-describedby="basic-addon1"/>
+                  <input type="date" className="form-control" placeholder="Start Year" aria-label="startYear" aria-describedby="basic-addon1"
+                  value={data.yearStart}
+                  onChange={(e)=>setData({...data, yearStart: e.target.value})}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The start date of the fiscal year</i></label>
                 </div>
                 <div className="col-sm-4"></div>
@@ -46,7 +48,9 @@ function General() {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="yearEnd" className="col-sm-3 col-form-label"><b>Year End</b></label>
                 <div className="col-sm-3">
-                  <input type="date" className="form-control" placeholder="End Year" aria-label="endYear" aria-describedby="basic-addon1"/>
+                  <input type="date" className="form-control" placeholder="End Year" aria-label="endYear" aria-describedby="basic-addon1"
+                  value={data.yearEnd}
+                  onChange={(e)=>setData({...data, yearEnd: e.target.value})}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The end date of the fiscal year</i></label>
                 </div>
                 <div className="col-sm-4"></div>

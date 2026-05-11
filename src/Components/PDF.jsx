@@ -12,11 +12,9 @@ const PDF = () => {
       <p>yearEnd: {formData.general.yearEnd}</p>
       <p>lineItems: {formData.general.lineItems}</p>
 
-      <h1>Summary</h1>
-
       <h2>Business Info</h2>
       <div style={{ marginTop: '10px' }}>
-          <img src={formData.business.image} alt="Preview" width="200" />
+          <img src={formData.business.image} alt="Preview" height="100" width="350" />
       </div>
       <p>Name: {formData.business.name}</p>
       <p>Address: {formData.business.address}</p>

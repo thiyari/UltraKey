@@ -36,7 +36,7 @@ const Template1 = () => {
         <div className='row mt-4'>
             <div className='col-sm-3'>
                 <div style={{ float: "left"}}>
-                    <img src={formData.business.image} alt="Preview" width="200" />
+                    <img src={formData.business.image} alt="Preview" height="100" width="350" />
                 </div>
             </div>
             <div className='col-sm-6'></div>
@@ -105,41 +105,20 @@ const Template1 = () => {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>HRS/QTY</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>SERVICE</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>RATE/PRICE</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>ADJUST</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white"}}>SUB TOTAL</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>HRS/QTY</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>SERVICE</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>RATE/PRICE</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>ADJUST</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>SUB TOTAL</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td></td>
-                        </tr>
-                        <tr>
-                        <th scope="row">4</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td></td>
+                        <td style={{textAlign: "left"}}>{formData.translate.hrsQty}</td>
+                        <td style={{textAlign: "left"}}>{formData.translate.service}</td>
+                        <td style={{textAlign: "left"}}>{formData.translate.ratePrice}</td>
+                        <td style={{textAlign: "left"}}>{formData.translate.adjust}</td>
+                        <td style={{textAlign: "left"}}>{formData.translate.subTotal}</td>                        
                         </tr>
                     </tbody>
                     </table>

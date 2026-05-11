@@ -70,8 +70,8 @@ function Business() {
                               <img 
                                 src={data.image} 
                                 alt="Preview from URL" 
-                                height="150"
-                                width="200"
+                                height="100"
+                                width="350"
                                 // Handle broken links
                                 onError={(e) => { e.target.style.display = 'none'; alert('Invalid image URL'); }}
                               />
