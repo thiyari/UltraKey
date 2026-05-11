@@ -6,6 +6,12 @@ const PDF = () => {
 
   return (
     <div>
+
+      <h1> General </h1>
+      <p>yearStart: {formData.general.yearStart}</p>
+      <p>yearEnd: {formData.general.yearEnd}</p>
+      <p>lineItems: {formData.general.lineItems}</p>
+
       <h1>Summary</h1>
 
       <h2>Business Info</h2>

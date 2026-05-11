@@ -17,11 +17,11 @@ const Template1 = () => {
 
   const invoice_number = (prefix, number, suffix) => {
     if (prefix != "" && suffix == "") {
-        return <div>{prefix}-{number}</div>;
+        return <p>{prefix}-{number}</p>;
     } else if (suffix != "" && prefix == "") {
-        return <div>{number}-{suffix}</div>;
+        return <p>{number}-{suffix}</p>;
     } else {
-        return <div></div>
+        return <p></p>
     }
   }
 

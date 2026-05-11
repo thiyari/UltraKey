@@ -1,6 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useNavigate } from "react-router-dom";
+import { useFormContext } from "../context/FormContext";
 
 function General() {
+    
+    const navigate = useNavigate();
+    const { saveFormData, formData } = useFormContext();
+  
+    const [data, setData] = useState({
+      yearStart: formData.general.yearStart || "",
+      yearEnd: formData.general.yearEnd || "",
+      lineItems: formData.general.lineItems || "",
+    });
+
+    async function submitHandler(event) {
+        event.preventDefault();
+          saveFormData("general", data);
+          navigate("/business");
+    }
+
   return (
     <div className="container">
           
@@ -14,7 +32,7 @@ function General() {
             </div>
 
 
-            <form>
+            <form onSubmit={submitHandler}>
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="yearStart" className="col-sm-3 col-form-label"><b>Year Start</b></label>
@@ -40,11 +58,11 @@ function General() {
                 <div className="col-sm-6">
                     <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="3"
-                      onChange=""
+                      value={data.lineItems}
+                      onChange={(e)=>{
+                          setData({...data,lineItems:e.target.value})
+                        }}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}>
                     <i>Add 1 line item per line in this format: Qty | Title | Price | Description. Each field seperated with a | symbol.
