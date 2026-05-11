@@ -48,42 +48,55 @@ const Template1 = () => {
                 </div>
             </div>
         </div>
-            
-        <div className='row mt-2'>
-            <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
-                <b>From:</b><br></br>
-                <p style={{fontFamily: "Calibri"}}>
-                Ultrakey IT Solutions Private Limited<br></br>
-                Flat No. 204, 2nd Floor, Cyber Residency,<br></br>
-                Indira Nagar, Gachibowli,<br></br>
-                Hyderbad, Telangana, India-500032<br></br>
-                support@ultrakeyit.com<br></br>
-                GST No: 36AADCU5062A1ZO</p>
-            </div>
-            <div className='col-sm-2'></div>
-            <div className='col-sm-5'>
-                <div className='row' style={{marginRight: "10px"}}>
-                    <div className='row'>
-                        <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Invoice Number</p></div>
-                        <div className='col-sm-5' style={{textAlign: "right"}}>
-                            <p>{invoice_number(formData.invoices.prefix, formData.invoices.nextNumber, formData.invoices.suffix)}</p>   
+        
+
+            <div className='row mt-5'>
+                <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
+                    <b>From:</b><br></br>
+                    <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
+                        {formData.business.address}
+                    </p>
+                    <p>{formData.business.info}</p>
+                </div>
+                <div className='col-sm-2'></div>
+                <div className='col-sm-5'>
+                    <div className='row' style={{marginRight: "5px"}}>
+                        <div className='row'>
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Invoice Number</p></div>
+                            <div className='col-sm-5' style={{textAlign: "right"}}>
+                                <p>{invoice_number(formData.invoices.prefix, formData.invoices.nextNumber, formData.invoices.suffix)}</p>   
+                            </div>
                         </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Invoice Date</p></div>
-                        <div className='col-sm-5'style={{textAlign: "right"}}><p>{new Date().toLocaleDateString('en-GB')}</p></div>
-                    </div>
-                    <div className='row' >
-                        <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Due Date</p></div>
-                        <div className='col-sm-5'style={{textAlign: "right"}}><p>{future_date(formData.invoices.dueDate)}</p></div>
-                    </div>
-                    <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
-                        <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>TOTAL DUE</p></div>
-                        <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>due date</p></div>
+                        <div className='row'>
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Invoice Date</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p>{new Date().toLocaleDateString('en-GB')}</p></div>
+                        </div>
+                        <div className='row' >
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Due Date</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p>{future_date(formData.invoices.dueDate)}</p></div>
+                        </div>
+                        <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
+                            <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>TOTAL DUE</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>due date</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+
+
+            <div className='row mt-5'>
+                <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
+                    <b>To:</b><br></br>
+                    <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
+                        {formData.business.address}
+                    </p>
+                    <p>{formData.business.info}</p>
+                </div>
+                <div className='col-sm-2'></div>
+                <div className='col-sm-5'></div>
+            </div>
+        
         </div>
   )
 }
