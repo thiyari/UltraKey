@@ -33,6 +33,7 @@ function General() {
               keys.map((key, index) => [key, item[index]])
             )
           );
+      result.pop(); // removes last item which is undefined
       setData({...data, lineItems: result})
         };
 
@@ -93,7 +94,8 @@ function General() {
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}>
                     <i>Add 1 line item per line in this format: Qty | Title | Price | Description. Each field seperated with a | symbol.
                     <br></br>Price should be numbers only, no currency symbol
-                    <br></br>If you prefer to have item blank, you still need the | symbol like so: 1 | Web Design | | Designing the Web</i>
+                    <br></br>If you prefer to have item blank, you still need the | symbol like so: 1 | Web Design | | Designing the Web
+                    <br></br><b>Press Enter Key at the end of your last line</b></i>
                   </label>
                 </div>
                 <div className="col-sm-4"></div>
