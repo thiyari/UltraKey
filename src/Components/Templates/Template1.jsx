@@ -21,7 +21,7 @@ const Template1 = () => {
     } else if (suffix != "" && prefix == "") {
         return <p>{number}-{suffix}</p>;
     } else {
-        return <p></p>
+        return ""
     }
   }
 
@@ -105,7 +105,7 @@ const Template1 = () => {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>HRS/QTY</th>
+                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "center"}}>HRS/QTY</th>
                         <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>SERVICE</th>
                         <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>RATE/PRICE</th>
                         <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>ADJUST</th>
@@ -113,13 +113,24 @@ const Template1 = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {(formData.general.lineItems?
+                              formData.general.lineItems.map((item, index) => (
+                                <tr key={index}>
+                                <td style={{textAlign: "center"}}>{item.qty}</td>
+                                <td style={{textAlign: "left"}}>{item.title}<br></br><label className={"text-muted"}>{item.description}</label></td>
+                                <td style={{textAlign: "left"}}>{item.price}</td>
+                                <td style={{textAlign: "left"}}></td>
+                                <td style={{textAlign: "left"}}>{parseFloat(item.qty)*parseFloat(item.price)}</td>
+                                </tr>
+                            )) 
+                        :
                         <tr>
                         <td style={{textAlign: "left"}}>{formData.translate.hrsQty}</td>
                         <td style={{textAlign: "left"}}>{formData.translate.service}</td>
                         <td style={{textAlign: "left"}}>{formData.translate.ratePrice}</td>
                         <td style={{textAlign: "left"}}>{formData.translate.adjust}</td>
                         <td style={{textAlign: "left"}}>{formData.translate.subTotal}</td>                        
-                        </tr>
+                        </tr>)}
                     </tbody>
                     </table>
             </div>

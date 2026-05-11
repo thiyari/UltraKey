@@ -41,7 +41,7 @@ function General() {
     async function submitHandler(event) {
         event.preventDefault();
           saveFormData("general", data);
-          navigate("/pdf");
+          navigate("/business");
     }
 
   return (
