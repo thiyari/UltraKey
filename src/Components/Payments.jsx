@@ -38,7 +38,7 @@ const Payments = () => {
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("payments", data);
-          navigate("/pdf");
+          navigate("/tax");
   }
 
 

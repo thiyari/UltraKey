@@ -30,7 +30,6 @@ const Template1 = () => {
     style={{
       margin: 0,
       border: "2px solid darkblue",
-      minHeight: "100vh",
       boxSizing: "border-box"
     }}>
         <div className='row mt-4'>
@@ -134,6 +133,49 @@ const Template1 = () => {
                     </tbody>
                     </table>
             </div>
+
+
+
+
+            <div className='row mt-5'>
+                <div className='col-sm-5'></div>
+                <div className='col-sm-2'></div>
+                <div className='col-sm-5'>
+                    <div className='row' style={{marginRight: "5px"}}>
+                        <div className='row'>
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Sub Total</p></div>
+                            <div className='col-sm-5' style={{textAlign: "right"}}>
+                                <p>{formData.translate.subTotal}</p>   
+                            </div>
+                        </div>
+                        <div className='row'>
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.tax.name}</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p>₹0.00</p></div>
+                        </div>
+                        <div className='row' >
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "red"}}>-25000.00</p></div>
+                        </div>
+                        <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
+                            <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>TOTAL DUE</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div className='mt-4'>
+                <div className='row bg-light'>
+                    {formData.payments.genericPayment}
+                </div>
+                <hr></hr>
+                <hr></hr>
+                <div className='row bg-light'>
+                    {formData.payments.paymentPageFooter}
+                </div>
+            </div>
+
         </div>
   )
 }
