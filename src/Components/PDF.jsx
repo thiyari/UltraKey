@@ -10,7 +10,16 @@ const PDF = () => {
       <h1> General </h1>
       <p>yearStart: {formData.general.yearStart}</p>
       <p>yearEnd: {formData.general.yearEnd}</p>
-      <p>lineItems: {formData.general.lineItems}</p>
+      <div>lineItems: 
+      {formData.general.lineItems.map((item, index) => (
+        <div key={index}>
+          <p>qty: {item.qty}</p>
+          <p>title: {item.title}</p>
+          <p>price: {item.price}</p>
+          <p>description: {item.description}</p>
+        </div>
+      ))} </div>
+
 
       <h2>Business Info</h2>
       <div style={{ marginTop: '10px' }}>

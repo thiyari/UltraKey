@@ -6,13 +6,37 @@ function General() {
     
     const navigate = useNavigate();
     const { saveFormData, formData } = useFormContext();
-  
+
     const [data, setData] = useState({
       yearStart: formData.general.yearStart || "",
       yearEnd: formData.general.yearEnd || "",
       lineItems: formData.general.lineItems || "",
     });
+    
 
+
+    const handleKeyDown = (e) => {
+      let value = e.target.value;
+
+      // Handle Enter key
+      if (e.key === "Enter") {
+        value += "\n";
+      }
+
+      // Split textarea into lines
+      const extractedLines = value.split("\n");
+      const arr = extractedLines.map(item => item.split("|"))
+
+      const keys = ["qty", "title", "price", "description"];
+      const result = arr.map(item =>
+            Object.fromEntries(
+              keys.map((key, index) => [key, item[index]])
+            )
+          );
+      setData({...data, lineItems: result})
+        };
+
+    
     async function submitHandler(event) {
         event.preventDefault();
           saveFormData("general", data);
@@ -63,10 +87,8 @@ function General() {
                     <textarea 
                       className="form-control" 
                       rows="3"
-                      value={data.lineItems}
-                      onChange={(e)=>{
-                          setData({...data,lineItems:e.target.value})
-                        }}
+                      style={{fontSize: "14px"}}
+                      onKeyDown={handleKeyDown}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}>
                     <i>Add 1 line item per line in this format: Qty | Title | Price | Description. Each field seperated with a | symbol.
