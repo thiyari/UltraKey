@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/FormContext";
 
 function General() {
     
     const navigate = useNavigate();
+    const [value, setValue] = useState("");
+    const lastKeyWasEnter = useRef(false);
     const { saveFormData, formData } = useFormContext();
 
     const [data, setData] = useState({
@@ -13,6 +15,15 @@ function General() {
       lineItems: formData.general.lineItems || "",
     });
     
+    const handleBlur = () => {
+      // ignore empty input
+      if (!value.trim()) return;
+
+      if (!lastKeyWasEnter.current) {
+        alert("You didn't press Enter after the last line!");
+      }
+    };
+
 
 
     const handleKeyDown = (e) => {
@@ -20,7 +31,10 @@ function General() {
 
       // Handle Enter key
       if (e.key === "Enter") {
+        lastKeyWasEnter.current = true;
         value += "\n";
+      } else {
+        lastKeyWasEnter.current = false;
       }
 
       // Split textarea into lines
@@ -89,7 +103,10 @@ function General() {
                       className="form-control" 
                       rows="3"
                       style={{fontSize: "14px"}}
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
                       onKeyDown={handleKeyDown}
+                      onBlur={handleBlur}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}>
                     <i>Add 1 line item per line in this format: Qty | Title | Price | Description. Each field seperated with a | symbol.
