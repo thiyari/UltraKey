@@ -11,6 +11,8 @@ import Tax from './Components/Tax';
 import Emails from './Components/Emails';
 import PDF from './Components/PDF';
 import Translate from './Components/Translate';
+import Template1 from './Components/Templates/Template1';
+import Template2 from './Components/Templates/Template2';
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
             <Route path="/emails" element = {<Emails/>} />
             <Route path="/pdf" element = {<PDF/>} />
             <Route path="/translate" element = {<Translate/>} />
+            <Route path="/template1" element = {<Template1/>} />
+            <Route path="/template2" element = {<Template2/>} />
           </Routes>
         <Footer/>
       </Router>
