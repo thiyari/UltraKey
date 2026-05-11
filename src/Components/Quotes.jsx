@@ -6,7 +6,6 @@ import Dropdowns from './Common/Dropdowns';
 
 
 const Quotes = () => {
-
   const items = ["Quote Viewed","Quote Accepted"];
   const options = [
     { value: '', label: 'select quote'},
@@ -43,10 +42,7 @@ const Quotes = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
                         placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -62,10 +58,6 @@ const Quotes = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -96,10 +88,6 @@ const Quotes = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -117,10 +105,6 @@ const Quotes = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -150,11 +134,7 @@ const Quotes = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Terms and conditions displayed on the Quote.<br></br> Can be overriden on individual.</i></label>
                 </div>
@@ -167,11 +147,7 @@ const Quotes = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>The footer will be displayed at the bottom of each Quote. Basic HTML is allowed.</i></label>
                 </div>
@@ -218,11 +194,7 @@ const Quotes = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Text to add on the "Accept Quote" popup. Basic HTML is allowed.
                     <br></br>This should provide some indication to your client of what happens after accepting the Quote.</i></label>
@@ -237,11 +209,7 @@ const Quotes = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Message to display if client accepts the Quote. Basic HTML is allowed.
                     <br></br>Leave blank for the default message.</i></label>
@@ -271,11 +239,7 @@ const Quotes = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
-                      placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Message to display if client declines the Quote. Basic HTML is allowed.
                     <br></br>Leave blank for the default message.</i></label>
@@ -317,7 +281,9 @@ const Quotes = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
                 <div className="col-sm-9">
-                  <Templates getTemplateId={(id) => setTemplateId(id)}/>
+                  <Templates 
+                    getTemplateId={(selectedOption)=>{setTemplateId(selectedOption)}} 
+                  />
                 </div>
               </div>
               
@@ -331,11 +297,8 @@ const Quotes = () => {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      id="" 
                       placeholder=""
-                      name=""
                       rows="4"
-                      onChange=""
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Quotes</i></label>
                 </div>

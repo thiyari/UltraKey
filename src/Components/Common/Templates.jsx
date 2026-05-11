@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { data } from 'react-router-dom';
-
 
   const cardData = [
     { id: 'template1', title: 'Template 1', img: 'https://www.smartsheet.com/sites/default/files/IC-Blank-Invoice-Template_WORD.png' },
@@ -8,8 +7,11 @@ import { data } from 'react-router-dom';
     { id: 'template3', title: 'Template 3', img: 'https://worksheets.clipart-library.com/images2/print-invoice-online/print-invoice-online-1.jpg' },
   ];
 
-
 const Templates = (props) => {
+  const [selectedId, setSelectedId] = useState(); 
+  useEffect(()=>{
+    props.getTemplateId(selectedId);
+  },[selectedId])
 
   return (
                   <div className='row'>
@@ -17,8 +19,8 @@ const Templates = (props) => {
                             <div className="col-md-4" key={card.id}>
                               <div 
                                 // 2. Conditionally apply a "border-primary" or custom style if selected
-                                className={`card h-100 shadow-sm ${props.data.template === card.id ? 'border-primary border-3' : ''}`}
-                                onClick={() => {props.setData({...props.data, template: card.id})}}
+                                className={`card h-100 shadow-sm ${selectedId === card.id ? 'border-primary border-3' : ''}`}
+                                onClick={() => {setSelectedId(card.id)}}
                                 style={{ cursor: 'pointer', transition: '0.3s' }}
                               >
                                 <div className="card-body text-center">
@@ -27,7 +29,7 @@ const Templates = (props) => {
                                     <input 
                                       className="form-check-input d-none" 
                                       type="radio" 
-                                      checked={props.data.template === card.id} 
+                                      checked={selectedId === card.id} 
                                       readOnly 
                                     />
                                   </div>

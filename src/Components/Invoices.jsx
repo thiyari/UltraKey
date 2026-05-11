@@ -8,6 +8,7 @@ const Invoices = () => {
 
     const navigate = useNavigate();
     const { saveFormData, formData } = useFormContext();
+    const [templateId, setTemplateId] = useState(null);
   
     const [data, setData] = useState({
       prefix: formData.invoices.prefix || "",
@@ -197,8 +198,6 @@ const Invoices = () => {
                 <label htmlFor="showMeNoticesWhen" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
                 <div className="col-sm-6">
                     <CheckBoxes 
-                        data={data}
-                        setdata={setData}
                         getCheckedItems={(list)=>{setData({...data, notices: JSON.stringify(list)})}} 
                         items={items}
                       />
@@ -222,10 +221,7 @@ const Invoices = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
                 <div className="col-sm-9">
-                  <Templates 
-                  data={data}
-                  setData={setData}  
-                  />
+                  <Templates getTemplateId={(selectedOption)=>{setData({...data, template: selectedOption})}}/>
                 </div>
               </div>
               
