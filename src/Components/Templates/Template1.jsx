@@ -14,23 +14,23 @@ const Template1 = () => {
     }}>
         <div className='row mt-4'>
             <div className='col-sm-3'>
-                <div style={{ float: "left" }}>
+                <div style={{ float: "left"}}>
                     <img src={formData.business.image} alt="Preview" width="200" />
                 </div>
             </div>
             <div className='col-sm-6'></div>
-                <div className='col-sm-3'>
-                    <div className='row' style={{backgroundColor: 'darkblue'}}>
+            <div className='col-sm-3'>
+                <div className='row' style={{backgroundColor: 'darkblue'}}>
                     <div style={{float:"right", textAlign: "right"}}>
                         <p style={{fontFamily: "arial", fontSize:"26px", color: "white", padding: "2px", fontWeight: "bold"}}>{formData.translate.invoiceLabel}</p>
                     </div>
-                    </div>
                 </div>
+            </div>
         </div>
             
-        <div className='row'>
-            <div className='col-sm-3'>
-
+        <div className='row mt-2'>
+            <div className='col-sm-3' style={{backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
+                Address
             </div>
             <div className='col-sm-9'></div>
         </div>
