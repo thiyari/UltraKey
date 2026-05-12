@@ -19,6 +19,8 @@ const Payments = () => {
       paymentPageFooter: formData.payments.paymentPageFooter || "",
       bank: formData.payments.bank || "",
       genericPayment: formData.payments.genericPayment || "",
+      discount: formData.payments.discount || "",
+      paid: formData.payments.paid || ""
     });
 
   const currencyOptions = [
@@ -199,6 +201,37 @@ const Payments = () => {
                 <p className="m-2">
                 PayPal Gateway</p>
             </div>
+
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="paid" className="col-sm-3 col-form-label"><b>Paid</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="text"  
+                        className="form-control mb-2" 
+                        placeholder="Paid"
+                        value={data.paid}
+                        onChange={(e)=>{setData({...data, paid: e.target.value})}}
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+              </div>
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="discount" className="col-sm-3 col-form-label"><b>Discount</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="text"  
+                        className="form-control mb-2" 
+                        placeholder='Discount'
+                        value={data.discount}
+                        onChange={(e)=>{setData({...data, discount: e.target.value})}}
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+              </div>
 
 
               <div className="form-group row mt-4" align="left">
