@@ -53,7 +53,6 @@ const Tax = () => {
                 <div className="col-sm-4">
                     <input 
                         type="text"  
-                        disabled={(data.price === "Yes. I will enter prices inclusive of tax")}
                         className="form-control mb-2" 
                         value={data.percentage}
                         onChange={(e)=>{setData({...data, percentage: parseInt(e.target.value)})}}
@@ -73,7 +72,6 @@ const Tax = () => {
                 <div className="col-sm-4">
                     <input 
                         type="text"  
-                        disabled={(data.price === "Yes. I will enter prices inclusive of tax")}
                         className="form-control mb-2" 
                         value={data.name}
                         onChange={(e)=>{setData({...data, name: e.target.value})}}

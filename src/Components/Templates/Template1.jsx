@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useFormContext } from "../../context/FormContext";
 
 const Template1 = () => {
@@ -24,7 +24,19 @@ const Template1 = () => {
         return ""
     }
   }
-
+  const grandTotal = () => {
+    let subTotal = [];
+    let grandTotal = 0;
+    formData.general.lineItems.map((item, index) => {
+        subTotal[index] = item.price * item.qty;
+    })
+    subTotal.map((item)=>{
+        console.log(item)
+        grandTotal += item 
+    })
+    return grandTotal;
+  }
+  
   return (
     <div className='mt-4 container' 
     style={{
@@ -119,7 +131,7 @@ const Template1 = () => {
                                 <td style={{textAlign: "left"}}>{item.title}<br></br><label className={"text-muted"}>{item.description}</label></td>
                                 <td style={{textAlign: "left"}}>{item.price}</td>
                                 <td style={{textAlign: "left"}}></td>
-                                <td style={{textAlign: "left"}}>{parseFloat(item.qty)*parseFloat(item.price)}</td>
+                                <td style={{textAlign: "left"}}>{item.qty*item.price}</td>
                                 </tr>
                             )) 
                         :
@@ -145,12 +157,15 @@ const Template1 = () => {
                         <div className='row'>
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Sub Total</p></div>
                             <div className='col-sm-5' style={{textAlign: "right"}}>
-                                <p>{formData.translate.subTotal}</p>   
+                                <p>{grandTotal()}</p>   
                             </div>
                         </div>
                         <div className='row'>
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.tax.name}</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p>₹0.00</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}>
+                                <p>{(formData.tax.price == 'Yes. I will enter prices inclusive of tax')? 
+                            ((formData.tax.percentage == "")? "₹0.00": ("₹" +formData.tax.percentage+ ".00")): 
+                                (formData.tax.percentage/100) * grandTotal()}</p></div>
                         </div>
                         <div className='row' >
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
