@@ -2,10 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 const RadioButtons = (props) => {
 
-  const [selectedItem, setSelectedItem] = useState([]);
-  const handleChange = (event) => {
-    setSelectedItem(event.target.value);
-  }
+  const [selectedItem, setSelectedItem] = useState("");
 
   useEffect(()=>{
     props.getSelectedItem(selectedItem);
@@ -21,7 +18,7 @@ const RadioButtons = (props) => {
                       name={props.name} 
                       value={option}
                       checked={selectedItem === option}
-                      onChange={handleChange}/>
+                      onChange={(event)=>setSelectedItem(event.target.value)}/>
                       <label className="col-form-label-sm" htmlFor="flexRadioDefault1">
                         {option}
                       </label>

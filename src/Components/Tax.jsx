@@ -6,14 +6,13 @@ import { useFormContext } from "../context/FormContext";
 const Tax = () => {
     const navigate = useNavigate();
     const { saveFormData, formData } = useFormContext();
-  
     const [data, setData] = useState({
       price: formData.tax.price || "",
       percentage: formData.tax.percentage || "",
       name: formData.tax.name || "",
     });
   const options = ['Yes. I will enter prices inclusive of tax', 'No. I will enter prices exclusive of tax'];
-  
+
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("tax", data);
@@ -54,9 +53,10 @@ const Tax = () => {
                 <div className="col-sm-4">
                     <input 
                         type="text"  
+                        disabled={(data.price === "Yes. I will enter prices inclusive of tax")}
                         className="form-control mb-2" 
                         value={data.percentage}
-                        onChange={(e)=>{setData({...data, percentage: e.target.value})}}
+                        onChange={(e)=>{setData({...data, percentage: parseInt(e.target.value)})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -73,6 +73,7 @@ const Tax = () => {
                 <div className="col-sm-4">
                     <input 
                         type="text"  
+                        disabled={(data.price === "Yes. I will enter prices inclusive of tax")}
                         className="form-control mb-2" 
                         value={data.name}
                         onChange={(e)=>{setData({...data, name: e.target.value})}}
