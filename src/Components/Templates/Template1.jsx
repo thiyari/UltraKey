@@ -93,7 +93,7 @@ const Template1 = () => {
                         </div>
                         <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
                             <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>TOTAL DUE</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{(grandTotal()+((formData.tax.percentage/100) * grandTotal()))-formData.translate.paid}</p></div>
                         </div>
                     </div>
                 </div>
@@ -169,11 +169,14 @@ const Template1 = () => {
                         </div>
                         <div className='row' >
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "red"}}>-25000.00</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}>
+                                {(formData.translate.paid == grandTotal()?
+                                <p style={{color: "red"}}>{grandTotal()}</p>:
+                                <p style={{color: "red"}}>{formData.translate.paid}</p>)}</div>
                         </div>
                         <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
                             <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>TOTAL DUE</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{(grandTotal()+((formData.tax.percentage/100) * grandTotal()))-formData.translate.paid}</p></div>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,8 @@ const Translate = () => {
       subTotal: formData.translate.subTotal || "",
       discount: formData.translate.discount || "",
       total: formData.translate.total || "",
-      totalDue: formData.translate.totalDue || ""
+      totalDue: formData.translate.totalDue || "",
+      paid: formData.translate.paid || ""
     });
 
   async function submitHandler(event) {
@@ -246,7 +247,19 @@ const Translate = () => {
               </div>
 
 
-
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="paid" className="col-sm-3 col-form-label"><b>Paid</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="text"  
+                        className="form-control mb-2" 
+                        placeholder="Paid"
+                        value={data.paid}
+                        onChange={(e)=>{setData({...data, paid: e.target.value})}}
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+              </div>
 
 
               <div className="form-group row mt-4" align="left">
