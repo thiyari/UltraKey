@@ -55,7 +55,7 @@ const Tax = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.percentage}
-                        onChange={(e)=>{setData({...data, percentage: parseInt(e.target.value)})}}
+                        onChange={(e)=>{setData({...data, percentage: e.target.value})}}
                         />
                 </div>
                 <div className="col-sm-5"></div>

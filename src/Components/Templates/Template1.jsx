@@ -149,7 +149,7 @@ const decimals = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {(formData.general.lineItems?
+                        {
                               formData.general.lineItems.map((item, index) => (
                                 <tr key={index}>
                                 <td style={{textAlign: "center"}}>{item.qty}</td>
@@ -177,32 +177,7 @@ const decimals = () => {
                                 </td>
                                 </tr>
                             )) 
-                        :
-                        <tr>
-                        <td style={{textAlign: "center"}}>{formData.translate.hrsQty}</td>
-                        <td style={{textAlign: "left"}}>{formData.translate.service}</td>
-                        <td style={{textAlign: "center"}}>
-                            {
-                                formData.payments.currencyPosition === "left" && 
-                                `${formData.payments.currencySymbol}${thousand_seperator(formData.translate.ratePrice).trim()}${formData.payments.decimalSeperator}${decimals()}`
-                            }
-                            {
-                                formData.payments.currencyPosition === "right" && 
-                                `${thousand_seperator(formData.translate.ratePrice).trim()}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                            }
-                        </td>
-                        <td style={{textAlign: "center"}}>0.00%</td>
-                        <td style={{textAlign: "center"}}>
-                            {
-                                formData.payments.currencyPosition === "left" && 
-                                `${formData.payments.currencySymbol}${thousand_seperator(formData.translate.subTotal).trim()}${formData.payments.decimalSeperator}${decimals()}`
-                            }
-                            {
-                                formData.payments.currencyPosition === "right" && 
-                                `${thousand_seperator(formData.translate.subTotal).trim()}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                            }
-                        </td>                        
-                        </tr>)}
+                        }
                     </tbody>
                     </table>
             </div>
