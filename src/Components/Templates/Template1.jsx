@@ -166,13 +166,35 @@ const Template1 = () => {
 
 
             <div className='mt-4'>
-                <div className='row bg-light'>
-                    {formData.payments.genericPayment}
+                <div className='row bg-body-secondary p-3 m-3'>
+                <div className='col-sm-7' style={{textAlign: "left"}}>
+                    <div dangerouslySetInnerHTML={{ __html: formData.payments.genericPayment }} />
                 </div>
-                <hr></hr>
-                <hr></hr>
-                <div className='row bg-light'>
-                    {formData.payments.paymentPageFooter}
+                <div className='col-sm-5'></div>
+                </div>
+                <hr className='m-3'></hr>
+                <center>
+                    <div className='col-sm-2'></div>
+                    <div className='col-sm-8' style={{fontSize: "16px"}}>
+                        <div className='row'>
+                        Payment is due within 14 days from date of invoice. Late payment is subject to fees of 5% per month.
+                        <br></br>
+                        <b>Payment Methods:</b>
+                        <div className='row'>
+                            <div className='col-sm-3'></div>
+                            <div className='col-sm-6'>
+                        - 60% Advance Payment for Commencement
+                        - Remaining 40% Final Settlement
+                            </div>
+                            <div className='col-sm-3'></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div className='col-sm-2'></div>
+                </center>
+                <hr className='m-3'></hr>
+                <div className='row mb-3 p-2'>
+                    <div dangerouslySetInnerHTML={{ __html: formData.payments.paymentPageFooter }} />
                 </div>
             </div>
 
