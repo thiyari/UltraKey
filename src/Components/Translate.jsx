@@ -25,7 +25,7 @@ const Translate = () => {
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("translate", data);
-          navigate("/template1");
+          navigate("/pdf");
   }
 
   return (
