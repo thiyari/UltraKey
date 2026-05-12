@@ -41,6 +41,10 @@ const thousand_seperator = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, formData.payments.thousandSeperator);
 }
 
+const decimals = () => {
+    return "0".repeat(formData.payments.numberOfDecimals);
+}
+
   return (
     <div className='mt-4 container' 
     style={{
@@ -97,7 +101,7 @@ const thousand_seperator = (num) => {
                         </div>
                         <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
                             <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>TOTAL DUE</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{thousand_seperator((grandTotal()+((formData.tax.percentage/100) * grandTotal()))-formData.translate.paid)}</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{thousand_seperator((grandTotal()+((formData.tax.percentage/100) * grandTotal()))-formData.translate.paid)+formData.payments.decimalSeperator+decimals()}</p></div>
                         </div>
                     </div>
                 </div>
@@ -133,18 +137,18 @@ const thousand_seperator = (num) => {
                                 <tr key={index}>
                                 <td style={{textAlign: "center"}}>{item.qty}</td>
                                 <td style={{textAlign: "left"}}>{item.title}<br></br><label className={"text-muted"}>{item.description}</label></td>
-                                <td style={{textAlign: "center"}}>{thousand_seperator(item.price)}</td>
+                                <td style={{textAlign: "center"}}>{thousand_seperator(item.price).trim()+formData.payments.decimalSeperator+decimals()}</td>
                                 <td style={{textAlign: "center"}}>0.00%</td>
-                                <td style={{textAlign: "center"}}>{thousand_seperator(item.qty*item.price)}</td>
+                                <td style={{textAlign: "center"}}>{thousand_seperator(item.qty*item.price).trim()+formData.payments.decimalSeperator+decimals()}</td>
                                 </tr>
                             )) 
                         :
                         <tr>
                         <td style={{textAlign: "center"}}>{formData.translate.hrsQty}</td>
                         <td style={{textAlign: "left"}}>{formData.translate.service}</td>
-                        <td style={{textAlign: "center"}}>{thousand_seperator(formData.translate.ratePrice)}</td>
+                        <td style={{textAlign: "center"}}>{thousand_seperator(formData.translate.ratePrice).trim()+formData.payments.decimalSeperator+decimals()}</td>
                         <td style={{textAlign: "center"}}>0.00%</td>
-                        <td style={{textAlign: "center"}}>{thousand_seperator(formData.translate.subTotal)}</td>                        
+                        <td style={{textAlign: "center"}}>{thousand_seperator(formData.translate.subTotal).trim()+formData.payments.decimalSeperator+decimals()}</td>                        
                         </tr>)}
                     </tbody>
                     </table>
@@ -161,7 +165,7 @@ const thousand_seperator = (num) => {
                         <div className='row'>
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Sub Total</p></div>
                             <div className='col-sm-5' style={{textAlign: "right"}}>
-                                <p>{thousand_seperator(grandTotal())}</p>   
+                                <p>{thousand_seperator(grandTotal()).toString()+formData.payments.decimalSeperator+decimals()}</p>   
                             </div>
                         </div>
                         <div className='row'>
@@ -169,18 +173,18 @@ const thousand_seperator = (num) => {
                             <div className='col-sm-5'style={{textAlign: "right"}}>
                                 <p>{(formData.tax.price == 'Yes. I will enter prices inclusive of tax')? 
                             ((formData.tax.percentage == "")? "₹0.00": ("₹" +formData.tax.percentage+ ".00")): 
-                                thousand_seperator((formData.tax.percentage/100) * grandTotal())}</p></div>
+                                thousand_seperator((formData.tax.percentage/100) * grandTotal())+formData.payments.decimalSeperator+decimals()}</p></div>
                         </div>
                         <div className='row' >
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}>
                                 {(formData.translate.paid == grandTotal()?
-                                <p style={{color: "red"}}>{thousand_seperator(grandTotal())}</p>:
-                                <p style={{color: "red"}}>{thousand_seperator(formData.translate.paid)}</p>)}</div>
+                                <p style={{color: "red"}}>{thousand_seperator(grandTotal())+formData.payments.decimalSeperator+decimals()}</p>:
+                                <p style={{color: "red"}}>{thousand_seperator(formData.translate.paid)+formData.payments.decimalSeperator+decimals()}</p>)}</div>
                         </div>
                         <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
                             <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>TOTAL DUE</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{thousand_seperator((grandTotal()+((formData.tax.percentage/100) * grandTotal()))-formData.translate.paid)}</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{thousand_seperator((grandTotal()+((formData.tax.percentage/100) * grandTotal()))-formData.translate.paid)+formData.payments.decimalSeperator+decimals()}</p></div>
                         </div>
                     </div>
                 </div>
