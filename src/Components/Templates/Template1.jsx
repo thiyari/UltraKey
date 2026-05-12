@@ -138,7 +138,7 @@ const Template1 = () => {
                         <td style={{textAlign: "center"}}>{formData.translate.hrsQty}</td>
                         <td style={{textAlign: "left"}}>{formData.translate.service}</td>
                         <td style={{textAlign: "center"}}>{formData.translate.ratePrice}</td>
-                        <td style={{textAlign: "center"}}>{formData.translate.adjust}</td>
+                        <td style={{textAlign: "center"}}>0.00%</td>
                         <td style={{textAlign: "center"}}>{formData.translate.subTotal}</td>                        
                         </tr>)}
                     </tbody>
