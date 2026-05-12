@@ -23,8 +23,8 @@ const Payments = () => {
 
   const currencyOptions = [
     { value: '', label: 'select currency position'},
-    { value: 'Left ($100.00)', label: 'Left ($100.00)'},
-    { value: 'Option2', label: 'Option2'},
+    { value: 'left', label: 'Left ($100.00)'},
+    { value: 'right', label: 'Right (100.00 €)'},
     { value: 'Option3', label: 'Option3'}
   ];
 
