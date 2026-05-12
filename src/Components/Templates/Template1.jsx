@@ -31,7 +31,6 @@ const Template1 = () => {
         subTotal[index] = item.price * item.qty;
     })
     subTotal.map((item)=>{
-        console.log(item)
         grandTotal += item 
     })
     return grandTotal;
@@ -129,18 +128,18 @@ const Template1 = () => {
                                 <tr key={index}>
                                 <td style={{textAlign: "center"}}>{item.qty}</td>
                                 <td style={{textAlign: "left"}}>{item.title}<br></br><label className={"text-muted"}>{item.description}</label></td>
-                                <td style={{textAlign: "left"}}>{item.price}</td>
-                                <td style={{textAlign: "left"}}></td>
-                                <td style={{textAlign: "left"}}>{item.qty*item.price}</td>
+                                <td style={{textAlign: "center"}}>{item.price}</td>
+                                <td style={{textAlign: "center"}}>0.00%</td>
+                                <td style={{textAlign: "center"}}>{item.qty*item.price}</td>
                                 </tr>
                             )) 
                         :
                         <tr>
-                        <td style={{textAlign: "left"}}>{formData.translate.hrsQty}</td>
+                        <td style={{textAlign: "center"}}>{formData.translate.hrsQty}</td>
                         <td style={{textAlign: "left"}}>{formData.translate.service}</td>
-                        <td style={{textAlign: "left"}}>{formData.translate.ratePrice}</td>
-                        <td style={{textAlign: "left"}}>{formData.translate.adjust}</td>
-                        <td style={{textAlign: "left"}}>{formData.translate.subTotal}</td>                        
+                        <td style={{textAlign: "center"}}>{formData.translate.ratePrice}</td>
+                        <td style={{textAlign: "center"}}>{formData.translate.adjust}</td>
+                        <td style={{textAlign: "center"}}>{formData.translate.subTotal}</td>                        
                         </tr>)}
                     </tbody>
                     </table>

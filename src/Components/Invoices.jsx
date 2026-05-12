@@ -29,7 +29,7 @@ const Invoices = () => {
   async function submitHandler(event) {
         event.preventDefault();
           saveFormData("invoices", data);
-          navigate("/tax");
+          navigate("/payments");
   }
 
 
@@ -239,7 +239,7 @@ const Invoices = () => {
                       value={data.customCSS}
                       onChange={(e)=>{setData({...data, customCSS: e.target.value})}}
                       ></textarea>
-                  <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Quotes</i></label>
+                  <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Invoices</i></label>
                 </div>
                 <div className="col-sm-3"></div>
               </div>
