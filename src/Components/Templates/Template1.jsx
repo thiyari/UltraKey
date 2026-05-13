@@ -143,9 +143,9 @@ const decimals = () => {
                         <tr>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.hrsQty}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.service}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.ratePrice}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.adjust}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.subTotal}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.ratePrice}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.adjust}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.subTotal}</th>
                         </tr>
                     </thead>
                     <tbody>

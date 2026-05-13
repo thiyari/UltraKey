@@ -168,9 +168,8 @@ const Template2 = () => {
                         <tr>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.hrsQty}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.service}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.ratePrice}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.adjust}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.subTotal}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.ratePrice}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.subTotal}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -189,7 +188,6 @@ const Template2 = () => {
                                         `${thousand_seperator(item.price).trim()}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
                                     }
                                 </td>
-                                <td style={{textAlign: "center"}}>0.00%</td>
                                 <td style={{textAlign: "center"}}>
                                     {
                                         formData.payments.currencyPosition === "left" && 
