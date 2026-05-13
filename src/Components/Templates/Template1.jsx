@@ -49,7 +49,7 @@ const decimals = () => {
     <div className='mt-4 container' 
     style={{
       margin: 0,
-      border: "2px solid darkblue",
+      border: "2px solid #236ca0",
       boxSizing: "border-box"
     }}>
         <div className='row mt-4'>
@@ -60,7 +60,7 @@ const decimals = () => {
             </div>
             <div className='col-sm-6'></div>
             <div className='col-sm-3'>
-                <div className='row' style={{backgroundColor: 'darkblue'}}>
+                <div className='row' style={{backgroundColor: '#236ca0'}}>
                     <div style={{float:"right", textAlign: "right"}}>
                         <p style={{fontFamily: "arial", fontSize:"26px", color: "white", padding: "2px", fontWeight: "bold"}}>{formData.translate.invoiceLabel}</p>
                     </div>
@@ -70,7 +70,7 @@ const decimals = () => {
         
 
             <div className='row mt-5'>
-                <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
+                <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                     <b>From:</b><br></br>
                     <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
                         {formData.business.name}
@@ -99,7 +99,7 @@ const decimals = () => {
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Due Date</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}><p>{future_date(formData.invoices.dueDate)}</p></div>
                         </div>
-                        <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
+                        <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
                             <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
                                     {
@@ -127,7 +127,7 @@ const decimals = () => {
 
 
             <div className='row mt-4'>
-                <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: 'darkblue', color: 'white', textAlign:'left'}}>
+                <div className='col-sm-5' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                     <b>To:</b><br></br>
                     <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
                         {formData.invoices.toAddress}
@@ -141,11 +141,11 @@ const decimals = () => {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "center"}}>{formData.translate.hrsQty}</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>{formData.translate.service}</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>{formData.translate.ratePrice}</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>{formData.translate.adjust}</th>
-                        <th scope="col" style={{backgroundColor: "darkblue", color: "white", textAlign: "left"}}>{formData.translate.subTotal}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.hrsQty}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.service}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.ratePrice}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.adjust}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.subTotal}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -259,7 +259,7 @@ const decimals = () => {
                                 }
                             </div>
                         </div>
-                        <div className='row' style={{backgroundColor: "darkblue", padding: "10px"}}>
+                        <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
                             <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
                                                                     {

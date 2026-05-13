@@ -112,7 +112,7 @@ function General() {
                     <i>Add 1 line item per line in this format: Qty | Title | Price | Description. Each field seperated with a | symbol.
                     <br></br>Price should be numbers only, no currency symbol
                     <br></br>If you prefer to have item blank, you still need the | symbol like so: 1 | Web Design | | Designing the Web
-                    <br></br><b>Press Enter Key at the end of your last line</b></i>
+                    <br></br><b>Press Enter Key at the end of your each line and the last line</b></i>
                   </label>
                 </div>
                 <div className="col-sm-4"></div>
