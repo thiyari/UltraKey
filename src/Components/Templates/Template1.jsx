@@ -199,7 +199,7 @@ const decimals = () => {
                 <div className='col-sm-5'>
                     <div className='row' style={{marginRight: "5px"}}>
                         <div className='row'>
-                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Sub Total</p></div>
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.translate.total}</p></div>
                             <div className='col-sm-5' style={{textAlign: "right"}}>
                                 <p>
                                     {
