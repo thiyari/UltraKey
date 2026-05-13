@@ -226,7 +226,7 @@ const Template2 = () => {
                     <div className='col-sm-10'>
                         <div className='row' style={{marginRight: "5px"}}>
                             <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.translate.total}</p></div>
+                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p>{formData.translate.total}</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     <p>
                                         {
@@ -242,7 +242,7 @@ const Template2 = () => {
                             </div>
                             <hr className='row'></hr>
                                 <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{color: "green"}}>{formData.translate.discount}</p></div>
+                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "green"}}>{formData.translate.discount}</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     <p style={{color: "green"}}>
                                         {
@@ -258,7 +258,7 @@ const Template2 = () => {
                             </div>
                             <hr className='row'></hr>
                             <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.tax.name}</p></div>
+                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right"}}><p>{formData.tax.name}</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}>
                                     <p>
                                         {
@@ -283,7 +283,7 @@ const Template2 = () => {
                             </div>
                             <hr className='row'></hr>
                             <div className='row' >
-                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{color: "#236ca0"}}>Paid</p></div>
+                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "#236ca0"}}>Paid</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     {
                                     (formData.payments.paid == ((grandTotal() - formData.payments.discount) +
@@ -319,22 +319,22 @@ const Template2 = () => {
                             <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
                                 <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
-                                        {
-                                            formData.payments.currencyPosition === "left"
-                                            && `${formData.payments.currencySymbol}
-                                            ${thousand_seperator(((grandTotal() - formData.payments.discount)+
-                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
-                                                formData.payments.paid
-                                            )}${formData.payments.decimalSeperator}${decimals()}`
-                                        }
-                                        {    
-                                            formData.payments.currencyPosition === "right"
-                                            && `${thousand_seperator(((grandTotal() - formData.payments.discount) +
-                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
-                                                formData.payments.paid
-                                            )}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                                        }
-                                
+                                    {
+                                        formData.payments.currencyPosition === "left"
+                                        && `${formData.payments.currencySymbol}${thousand_seperator(
+                                            ((grandTotal() - formData.payments.discount) +
+                                            ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
+                                            formData.payments.paid
+                                        )}${formData.payments.decimalSeperator}${decimals()}`
+                                    }
+                                    {    
+                                        formData.payments.currencyPosition === "right"
+                                        && `${thousand_seperator(
+                                            ((grandTotal() - formData.payments.discount) +
+                                            ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
+                                            formData.payments.paid
+                                        )}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                    }
                                     </p></div>
                             </div>
                         </div>
