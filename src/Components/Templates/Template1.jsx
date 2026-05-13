@@ -36,9 +36,8 @@ const Template1 = () => {
     })
     return grandTotal;
   }
-  
 const thousand_seperator = (num) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, formData.payments.thousandSeperator);
+  return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, formData.payments.thousandSeperator);
 }
 
 const decimals = () => {
@@ -212,7 +211,7 @@ const decimals = () => {
 
 
 
-            <div className='row mt-5'>
+            <div className='row mt-5' style={{marginTop: "20px"}}>
                 <div className='col-sm-5'></div>
                 <div className='col-sm-2'></div>
                 <div className='col-sm-5'>

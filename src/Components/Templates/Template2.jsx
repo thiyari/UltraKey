@@ -38,7 +38,7 @@ const Template2 = () => {
     }
     
   const thousand_seperator = (num) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, formData.payments.thousandSeperator);
+    return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, formData.payments.thousandSeperator);
   }
   
   const decimals = () => {
