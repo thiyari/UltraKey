@@ -50,7 +50,7 @@ const Template2 = () => {
     <div className='mt-4 container' 
     style={{
       margin: 0,
-      border: "2px solid #236ca0",
+      border: "5px solid #236ca0",
       boxSizing: "border-box"
     }}>
         <div className='row mt-4'>
@@ -287,15 +287,18 @@ const Template2 = () => {
                                 <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{color: "236ca0"}}>Paid</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     {
-                                    (formData.payments.paid == grandTotal()?
+                                    (formData.payments.paid == ((grandTotal() - formData.payments.discount) +
+                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount)))?
                                     <p style={{color: "#236ca0"}}>
                                         {
                                             formData.payments.currencyPosition === "left" && 
-                                            `${formData.payments.currencySymbol}${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
+                                            `${"-"}${formData.payments.currencySymbol}${thousand_seperator(((grandTotal() - formData.payments.discount) +
+                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))))}${formData.payments.decimalSeperator}${decimals()}`
                                         }
                                         {
                                             formData.payments.currencyPosition === "right" && 
-                                            `${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                            `${"-"}${thousand_seperator(((grandTotal() - formData.payments.discount) +
+                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))))}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
                                         }
                                     </p>:
                                     <p style={{color: "#236ca0"}}>

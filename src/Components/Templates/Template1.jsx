@@ -233,15 +233,18 @@ const decimals = () => {
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}>
                                 {
-                                (formData.payments.paid == grandTotal()?
+                                (formData.payments.paid == (grandTotal() +
+                                                ((formData.tax.percentage / 100) * grandTotal()))?
                                 <p style={{color: "red"}}>
                                     {
                                         formData.payments.currencyPosition === "left" && 
-                                        `${formData.payments.currencySymbol}${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
+                                        `${"-"}${formData.payments.currencySymbol}${thousand_seperator(grandTotal() +
+                                                ((formData.tax.percentage / 100) * grandTotal()))}${formData.payments.decimalSeperator}${decimals()}`
                                     }
                                     {
                                         formData.payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                        `${"-"}${thousand_seperator(grandTotal() +
+                                                ((formData.tax.percentage / 100) * grandTotal()))}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
                                     }
                                 </p>:
                                 <p style={{color: "red"}}>
