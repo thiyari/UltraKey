@@ -210,117 +210,121 @@ const Template2 = () => {
 
 
 
-            <div className='row mt-5'>
-                <div className='col-sm-5'></div>
-                <div className='col-sm-2'></div>
-                <div className='col-sm-5'>
-                    <div className='row' style={{marginRight: "5px"}}>
-                        <div className='row'>
-                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Sub Total</p></div>
-                            <div className='col-sm-5' style={{textAlign: "right"}}>
-                                <p>
-                                    {
-                                        formData.payments.currencyPosition === "left" && 
-                                        `${formData.payments.currencySymbol}${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
-                                    }
-                                    {
-                                        formData.payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                                    }
-                                </p>   
-                            </div>
-                        </div>
-                        <div className='row'>
-                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.tax.name}</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}>
-                                <p>
-                                    {
-                                    formData.payments.currencyPosition === "left" && 
 
-                                    (formData.tax.price === 'Yes. I will enter prices inclusive of tax'? 
-                                        (
-                                            formData.tax.percentage === ""? "₹0.00": `${"₹"}${formData.tax.percentage}${".00"}`
-                                        ): 
-                                            `${formData.payments.currencySymbol}${thousand_seperator((formData.tax.percentage/100) * grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
-                                    )}
-                                    {
-                                    formData.payments.currencyPosition === "right" && 
 
-                                    (formData.tax.price === 'Yes. I will enter prices inclusive of tax'? 
-                                        (
-                                            formData.tax.percentage === ""? "₹0.00": `${"₹"}${formData.tax.percentage}${".00"}`
-                                        ): 
-                                            `${thousand_seperator((formData.tax.percentage/100) * grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                                    )}
-                                </p></div>
-                        </div>
-                        <div className='row' >
-                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}>
-                                {
-                                (formData.payments.paid == grandTotal()?
-                                <p style={{color: "red"}}>
-                                    {
-                                        formData.payments.currencyPosition === "left" && 
-                                        `${formData.payments.currencySymbol}${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
-                                    }
-                                    {
-                                        formData.payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                                    }
-                                </p>:
-                                <p style={{color: "red"}}>
 
-                                    {
-                                        formData.payments.currencyPosition === "left" &&
-                                        `${formData.payments.currencySymbol}${thousand_seperator(formData.payments.paid)}${formData.payments.decimalSeperator}${decimals()}`
-                                    }
-                                    {
-                                        formData.payments.currencyPosition === "right" &&
-                                        `${thousand_seperator(formData.payments.paid)}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                                    }
-                            
-                                </p>)
-                                }
-                            </div>
-                        </div>
-                        <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
-                            <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
-                                                                    {
-                                        formData.payments.currencyPosition === "left"
-                                        && `${formData.payments.currencySymbol}${thousand_seperator(
-                                            (grandTotal() +
-                                            ((formData.tax.percentage / 100) * grandTotal())) -
-                                            formData.payments.paid
-                                        )}${formData.payments.decimalSeperator}${decimals()}`
-                                    }
-                                    {    
-                                        formData.payments.currencyPosition === "right"
-                                        && `${thousand_seperator(
-                                            (grandTotal() +
-                                            ((formData.tax.percentage / 100) * grandTotal())) -
-                                            formData.payments.paid
-                                        )}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
-                                    }
-                            
-                                </p></div>
+            <div className='row mt-4'>
+                <div className='col-sm-6'>
+                    <div className='row bg-body-secondary p-3 m-3'>
+                        <div className='col-sm-12' style={{textAlign: "left"}}>
+                            <div dangerouslySetInnerHTML={{ __html: formData.payments.genericPayment }} />
                         </div>
                     </div>
                 </div>
+                <div className='col-sm-6'>
+                    <div className='row mt-5'>
+                    <div className='col-sm-2'></div>
+                    <div className='col-sm-10'>
+                        <div className='row' style={{marginRight: "5px"}}>
+                            <div className='row'>
+                                <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Sub Total</p></div>
+                                <div className='col-sm-5' style={{textAlign: "right"}}>
+                                    <p>
+                                        {
+                                            formData.payments.currencyPosition === "left" && 
+                                            `${formData.payments.currencySymbol}${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
+                                        }
+                                        {
+                                            formData.payments.currencyPosition === "right" && 
+                                            `${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                        }
+                                    </p>   
+                                </div>
+                            </div>
+                            <div className='row'>
+                                <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.tax.name}</p></div>
+                                <div className='col-sm-5'style={{textAlign: "right"}}>
+                                    <p>
+                                        {
+                                        formData.payments.currencyPosition === "left" && 
+
+                                        (formData.tax.price === 'Yes. I will enter prices inclusive of tax'? 
+                                            (
+                                                formData.tax.percentage === ""? "₹0.00": `${"₹"}${formData.tax.percentage}${".00"}`
+                                            ): 
+                                                `${formData.payments.currencySymbol}${thousand_seperator((formData.tax.percentage/100) * grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
+                                        )}
+                                        {
+                                        formData.payments.currencyPosition === "right" && 
+
+                                        (formData.tax.price === 'Yes. I will enter prices inclusive of tax'? 
+                                            (
+                                                formData.tax.percentage === ""? "₹0.00": `${"₹"}${formData.tax.percentage}${".00"}`
+                                            ): 
+                                                `${thousand_seperator((formData.tax.percentage/100) * grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                        )}
+                                    </p></div>
+                            </div>
+                            <div className='row' >
+                                <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
+                                <div className='col-sm-5'style={{textAlign: "right"}}>
+                                    {
+                                    (formData.payments.paid == grandTotal()?
+                                    <p style={{color: "red"}}>
+                                        {
+                                            formData.payments.currencyPosition === "left" && 
+                                            `${formData.payments.currencySymbol}${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
+                                        }
+                                        {
+                                            formData.payments.currencyPosition === "right" && 
+                                            `${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                        }
+                                    </p>:
+                                    <p style={{color: "red"}}>
+
+                                        {
+                                            formData.payments.currencyPosition === "left" &&
+                                            `${formData.payments.currencySymbol}${thousand_seperator(formData.payments.paid)}${formData.payments.decimalSeperator}${decimals()}`
+                                        }
+                                        {
+                                            formData.payments.currencyPosition === "right" &&
+                                            `${thousand_seperator(formData.payments.paid)}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                        }
+                                
+                                    </p>)
+                                    }
+                                </div>
+                            </div>
+                            <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
+                                <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
+                                <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
+                                                                        {
+                                            formData.payments.currencyPosition === "left"
+                                            && `${formData.payments.currencySymbol}${thousand_seperator(
+                                                (grandTotal() +
+                                                ((formData.tax.percentage / 100) * grandTotal())) -
+                                                formData.payments.paid
+                                            )}${formData.payments.decimalSeperator}${decimals()}`
+                                        }
+                                        {    
+                                            formData.payments.currencyPosition === "right"
+                                            && `${thousand_seperator(
+                                                (grandTotal() +
+                                                ((formData.tax.percentage / 100) * grandTotal())) -
+                                                formData.payments.paid
+                                            )}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                        }
+                                
+                                    </p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
-
-
-            <div className='mt-4'>
-                <div className='row bg-body-secondary p-3 m-3'>
-                <div className='col-sm-7' style={{textAlign: "left"}}>
-                    <div dangerouslySetInnerHTML={{ __html: formData.payments.genericPayment }} />
-                </div>
-                <div className='col-sm-5'></div>
-                </div>
-                <hr className='m-3'></hr>
-                
-                <hr className='m-3'></hr>
+            
+            <div className='mt-4'>                
+                <hr className='m-3' style={{border: "2px solid #236ca0"}}></hr>
                 <div className='row mb-3 p-2'>
                     <div dangerouslySetInnerHTML={{ __html: formData.payments.paymentPageFooter }} />
                 </div>
