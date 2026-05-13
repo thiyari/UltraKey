@@ -145,7 +145,7 @@ const decimals = () => {
 
 
         
-            <div className='row' style={{padding: "20px 30px 0px 30px"}}>
+            <div className='row mt-3' style={{padding: "0px 30px 0px 30px"}}>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
