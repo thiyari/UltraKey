@@ -38,7 +38,7 @@ const PDF = () => {
       </div>
 
       {/* BUTTON OUTSIDE PDF CONTENT */}
-      <button className="btn btn-primary mt-2" onClick={downloadPDF}>Download PDF</button>
+      <button className="btn btn-outline-primary mt-2" onClick={downloadPDF}>Download PDF</button>
     </div>
   );
 };
