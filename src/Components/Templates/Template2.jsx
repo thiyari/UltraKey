@@ -316,7 +316,7 @@ const Template2 = () => {
                                 </div>
                             </div>
                             
-                            <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
+                            <div className='row mt-1' style={{backgroundColor: "#236ca0", padding: "10px"}}>
                                 <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
                                     {
