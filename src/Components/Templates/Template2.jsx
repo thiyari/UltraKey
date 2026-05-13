@@ -73,13 +73,13 @@ const Template2 = () => {
               <div className='row mt-4'>
                   <div className='col-sm-12' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>From:</b><br></br>
-                      <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
+                      <p style={{fontFamily: "Calibri"}}>
                           {formData.business.name}
                       </p>
-                      <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
+                      <p style={{fontFamily: "Calibri"}}>
                           {formData.business.address}
                       </p>
-                      <p style={{fontFamily: "Calibri", marginRight: "125px"}}> 
+                      <p style={{fontFamily: "Calibri"}}> 
                           {formData.business.info}
                       </p>
                   </div>   
@@ -87,7 +87,7 @@ const Template2 = () => {
               <div className='row mt-4'>
                   <div className='col-sm-12' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>To:</b><br></br>
-                      <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
+                      <p style={{fontFamily: "Calibri"}}>
                           {formData.invoices.toAddress}
                       </p>
                   </div>
@@ -209,7 +209,7 @@ const Template2 = () => {
 
 
 
-            <div className='row'>
+            <div className='row mt-5'>
                 <div className='col-sm-6'>
                     <div className='row bg-body-secondary p-3 m-3'>
                         <div className='col-sm-12' style={{textAlign: "left"}}>
