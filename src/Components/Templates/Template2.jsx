@@ -51,7 +51,8 @@ const Template2 = () => {
     style={{
       margin: 0,
       border: "5px solid #236ca0",
-      boxSizing: "border-box"
+      boxSizing: "border-box",
+      fontSize: "16px"
     }}>
         <div className='row mt-4'>
             <div className='col-sm-3'>
@@ -71,7 +72,7 @@ const Template2 = () => {
           <div className='row'>
             <div className='col-sm-6'>
               <div className='row mt-4'>
-                  <div className='col-sm-12' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
+                  <div className='col-sm-10' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>From:</b><br></br>
                       <p style={{fontFamily: "Calibri"}}>
                           {formData.business.name}
@@ -83,20 +84,22 @@ const Template2 = () => {
                           {formData.business.info}
                       </p>
                   </div>   
+                  <div className='col-sm-2'></div>
               </div>
               <div className='row mt-4'>
-                  <div className='col-sm-12' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
+                  <div className='col-sm-10' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>To:</b><br></br>
                       <p style={{fontFamily: "Calibri"}}>
                           {formData.invoices.toAddress}
                       </p>
                   </div>
+                  <div className='col-sm-2'></div>
               </div>
             </div>
             <div className='col-sm-6'>
                 <div className='row mt-4'>
-                    <div className='col-sm-1'></div>
-                    <div className='col-sm-11'>
+                    <div className='col-sm-2'></div>
+                    <div className='col-sm-10'>
                     <div className='row' style={{marginRight: "5px"}}>
                         <div className='row'>
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{fontWeight: "bold"}}>Invoice Number</p></div>
@@ -139,11 +142,11 @@ const Template2 = () => {
 
                     <div>
                         
-                            <div className='col-sm-11 mt-4' style={{fontSize: "20px"}}>
+                            <div className='col-sm-11 mt-4'>
                                 <div className='row'>
                                 Payment is due within 14 days from date of invoice. Late payment is subject to fees of 5% per month.
                                 <br></br>
-                                <b className="mt-5" align="left" style={{color: "#236ca0"}}>Payment Methods:</b>
+                                <b className="mt-1" align="left" style={{color: "#236ca0"}}>Payment Methods:</b>
                                 <p align="left" style={{marginLeft: "20px"}}>
                                     1. 60% Advance Payment for Commencement<br></br>
                                     2. Remaining 40% Final Settlement
@@ -160,7 +163,7 @@ const Template2 = () => {
                 
             </div>
           </div>
-            <div className='row mt-4' style={{padding: "30px"}}>
+            <div className='row mt-4' style={{padding: "0px 30px 0px 30px"}}>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -209,7 +212,7 @@ const Template2 = () => {
 
 
 
-            <div className='row mt-5'>
+            <div className='row'>
                 <div className='col-sm-6'>
                     <div className='row bg-body-secondary p-3 m-3'>
                         <div className='col-sm-12' style={{textAlign: "left"}}>
@@ -219,8 +222,8 @@ const Template2 = () => {
                 </div>
                 <div className='col-sm-6'>
                     <div className='row mt-3'>
-                    <div className='col-sm-1'></div>
-                    <div className='col-sm-11'>
+                    <div className='col-sm-2'></div>
+                    <div className='col-sm-10'>
                         <div className='row' style={{marginRight: "5px"}}>
                             <div className='row'>
                                 <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.translate.total}</p></div>
@@ -238,7 +241,7 @@ const Template2 = () => {
                                 </div>
                             </div>
                             <hr className='row'></hr>
-                                                        <div className='row'>
+                                <div className='row'>
                                 <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{color: "green"}}>{formData.translate.discount}</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     <p style={{color: "green"}}>
@@ -280,7 +283,7 @@ const Template2 = () => {
                             </div>
                             <hr className='row'></hr>
                             <div className='row' >
-                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{color: "236ca0"}}>Paid</p></div>
+                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{color: "#236ca0"}}>Paid</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     {
                                     (formData.payments.paid == ((grandTotal() - formData.payments.discount) +
@@ -316,7 +319,7 @@ const Template2 = () => {
                             <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
                                 <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
-                                                                        {
+                                        {
                                             formData.payments.currencyPosition === "left"
                                             && `${formData.payments.currencySymbol}
                                             ${thousand_seperator(((grandTotal() - formData.payments.discount)+
@@ -340,9 +343,9 @@ const Template2 = () => {
                 </div>
             </div>
             
-            <div className='mt-4'>                
+            <div className='mt-2'>                
                 <hr className='m-3' style={{border: "2px solid #236ca0"}}></hr>
-                <div className='row mb-3 p-2'>
+                <div className='row mb-3 p-1'>
                     <div dangerouslySetInnerHTML={{ __html: formData.payments.paymentPageFooter }} />
                 </div>
             </div>
