@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { data } from 'react-router-dom';
+import template1 from "../../assets/template1.jpg";
+import template2 from "../../assets/template2.jpg";
+
 
   const cardData = [
-    { id: 'template1', title: 'Template 1', img: 'https://www.smartsheet.com/sites/default/files/IC-Blank-Invoice-Template_WORD.png' },
-    { id: 'template2', title: 'Template 2', img: 'https://i.etsystatic.com/32407752/r/il/f2b633/3418650954/il_fullxfull.3418650954_1geo.jpg' },
-    { id: 'template3', title: 'Template 3', img: 'https://worksheets.clipart-library.com/images2/print-invoice-online/print-invoice-online-1.jpg' },
+    { id: 'template1', title: 'Template 1', img: template1},
+    { id: 'template2', title: 'Template 2', img: template2},
+    { id: 'template3', title: 'Template 3', img: 'https://i.etsystatic.com/32407752/r/il/f2b633/3418650954/il_fullxfull.3418650954_1geo.jpg'},
   ];
 
 const Templates = (props) => {
