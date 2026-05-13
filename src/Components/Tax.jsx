@@ -39,7 +39,12 @@ const Tax = () => {
                 <label htmlFor="taxName" className="col-sm-3 col-form-label"><b>Prices entered with tax</b></label>
                 <div className="col-sm-4">
                   <RadioButtons
-                    getSelectedItem={(item)=>{setData({...data, price: item})}}
+                    getSelectedItem={(item)=>{setData(
+                      {...data, 
+                        price: item, 
+                        percentage: item === "Yes. I will enter prices inclusive of tax" ? "" : data.percentage
+                      })
+                    }}
                     options={options} 
                     name={'taxPrice'}/>
                 </div>
