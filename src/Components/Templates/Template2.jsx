@@ -47,7 +47,7 @@ const Template2 = () => {
   
 
   return (
-    <div className='mt-4 container' 
+    <div className='mt-1 container' 
     style={{
       margin: 0,
       border: "5px solid #236ca0",
@@ -71,7 +71,7 @@ const Template2 = () => {
           <div className='row'>
             <div className='col-sm-6'>
               <div className='row mt-4'>
-                  <div className='col-sm-10' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
+                  <div className='col-sm-12' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>From:</b><br></br>
                       <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
                           {formData.business.name}
@@ -83,22 +83,20 @@ const Template2 = () => {
                           {formData.business.info}
                       </p>
                   </div>   
-                  <div className='col-sm-2'></div>
               </div>
               <div className='row mt-4'>
-                  <div className='col-sm-10' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
+                  <div className='col-sm-12' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>To:</b><br></br>
                       <p style={{fontFamily: "Calibri", marginRight: "125px"}}>
                           {formData.invoices.toAddress}
                       </p>
                   </div>
-                  <div className='col-sm-2'></div>
               </div>
             </div>
             <div className='col-sm-6'>
                 <div className='row mt-4'>
-                    <div className='col-sm-2'></div>
-                    <div className='col-sm-10'>
+                    <div className='col-sm-1'></div>
+                    <div className='col-sm-11'>
                     <div className='row' style={{marginRight: "5px"}}>
                         <div className='row'>
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{fontWeight: "bold"}}>Invoice Number</p></div>
@@ -146,10 +144,10 @@ const Template2 = () => {
                                 Payment is due within 14 days from date of invoice. Late payment is subject to fees of 5% per month.
                                 <br></br>
                                 <b className="mt-5" align="left" style={{color: "#236ca0"}}>Payment Methods:</b>
-                                <ol type="1" align="left" style={{marginLeft: "20px"}}>
-                                    <li> 60% Advance Payment for Commencement </li>
-                                    <li> Remaining 40% Final Settlement </li>
-                                </ol>
+                                <p align="left" style={{marginLeft: "20px"}}>
+                                    1. 60% Advance Payment for Commencement<br></br>
+                                    2. Remaining 40% Final Settlement
+                                </p>
                                 </div>
                             </div>
                             <div className='col-sm-1'></div>
@@ -221,8 +219,8 @@ const Template2 = () => {
                 </div>
                 <div className='col-sm-6'>
                     <div className='row mt-3'>
-                    <div className='col-sm-2'></div>
-                    <div className='col-sm-10'>
+                    <div className='col-sm-1'></div>
+                    <div className='col-sm-11'>
                         <div className='row' style={{marginRight: "5px"}}>
                             <div className='row'>
                                 <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{formData.translate.total}</p></div>

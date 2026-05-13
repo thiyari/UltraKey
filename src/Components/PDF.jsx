@@ -12,7 +12,7 @@ const PDF = () => {
     const element = contentRef.current;
 
     const options = {
-      margin: 0.5,
+      margin:0.1,
       filename: "document.pdf",
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: {
@@ -30,15 +30,15 @@ const PDF = () => {
   };
 
   return (
-    <div>
+    <div className="mt-4">
       {/* PDF CONTENT */}
-      <div ref={contentRef} style={{ padding: 0 }}>
+      <div ref={contentRef}>
         {formData.invoices.template === "template1" && <Template1 />}
         {formData.invoices.template === "template2" && <Template2 />}
       </div>
 
       {/* BUTTON OUTSIDE PDF CONTENT */}
-      <button onClick={downloadPDF}>Download PDF</button>
+      <button className="btn btn-primary mt-2" onClick={downloadPDF}>Download PDF</button>
     </div>
   );
 };
