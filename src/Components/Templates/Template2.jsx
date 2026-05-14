@@ -140,13 +140,7 @@ const Template2 = () => {
                         
                             <div className='col-sm-11 mt-4'>
                                 <div className='row'>
-                                Payment is due within 14 days from date of invoice. Late payment is subject to fees of 5% per month.
-                                <br></br>
-                                <b className="mt-1" align="left" style={{color: "#236ca0"}}>Payment Methods:</b>
-                                <p align="left" style={{marginLeft: "20px"}}>
-                                    1. 60% Advance Payment for Commencement<br></br>
-                                    2. Remaining 40% Final Settlement
-                                </p>
+                                    <div dangerouslySetInnerHTML={{__html: formData.invoices.termsAndConditions }} />
                                 </div>
                             </div>
                             <div className='col-sm-1'></div>

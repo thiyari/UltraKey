@@ -305,20 +305,10 @@ const decimals = () => {
                     <div className='col-sm-2'></div>
                     <div className='col-sm-8'>
                         <div className='row'>
-                        Payment is due within 14 days from date of invoice. Late payment is subject to fees of 5% per month.
-                        <br></br>
-                        <b>Payment Methods:</b>
-                        <div className='row'>
-                            <div className='col-sm-3'></div>
-                            <div className='col-sm-6'>
-                        - 60% Advance Payment for Commencement
-                        - Remaining 40% Final Settlement
-                            </div>
-                            <div className='col-sm-3'></div>
-                        </div>
+                            <div dangerouslySetInnerHTML={{__html: formData.invoices.termsAndConditions }} />
                         </div>
                     </div>
-                    <div className='col-sm-2'></div>
+                    <div></div>
                 </center>
                 <hr className='m-3'></hr>
                 <div className='row mb-3 p-2'>
