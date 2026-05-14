@@ -294,7 +294,7 @@ const decimals = () => {
 
 
             <div className='mt-2'>
-                <div className='row bg-body-secondary p-3 m-3'>
+                <div className='row bg-body-secondary p-2 m-3'>
                 <div className='col-sm-7' style={{textAlign: "left"}}>
                     <div dangerouslySetInnerHTML={{ __html: formData.payments.genericPayment }} />
                 </div>
@@ -302,16 +302,16 @@ const decimals = () => {
                 </div>
                 <hr className='m-3'></hr>
                 <center>
-                    <div className='col-sm-2'></div>
-                    <div className='col-sm-8'>
+                    <div className='col-sm-1'></div>
+                    <div className='col-sm-10'>
                         <div className='row'>
                             <div dangerouslySetInnerHTML={{__html: formData.invoices.termsAndConditions }} />
                         </div>
                     </div>
-                    <div></div>
+                    <div className='col-sm-1'></div>
                 </center>
                 <hr className='m-3'></hr>
-                <div className='row mb-3 p-2'>
+                <div className='row mb-3'>
                     <div dangerouslySetInnerHTML={{ __html: formData.invoices.footer }} />
                 </div>
             </div>
