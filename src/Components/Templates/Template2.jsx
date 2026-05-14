@@ -76,13 +76,9 @@ const Template2 = () => {
                       <b>From:</b><br></br>
                       <p style={{fontFamily: "Calibri"}}>
                           {formData.business.name}
-                      </p>
-                      <p style={{fontFamily: "Calibri"}}>
-                          {formData.business.address}
-                      </p>
-                      <p style={{fontFamily: "Calibri"}}> 
-                          {formData.business.info}
-                      </p>
+                      </p>               
+                      <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: formData.business.address}}/>
+                      <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: formData.business.info}} /> 
                   </div>   
                   <div className='col-sm-2'></div>
               </div>
@@ -346,7 +342,7 @@ const Template2 = () => {
             <div className='mt-2'>                
                 <hr className='m-3' style={{border: "2px solid #236ca0"}}></hr>
                 <div className='row mb-3 p-1'>
-                    <div dangerouslySetInnerHTML={{ __html: formData.payments.paymentPageFooter }} />
+                    <div dangerouslySetInnerHTML={{ __html: formData.invoices.footer }} />
                 </div>
             </div>
 
