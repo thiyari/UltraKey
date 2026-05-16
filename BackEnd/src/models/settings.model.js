@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const settingsSchema = new mongoose.Schema(
 {
-  general: [{
+  general: {
     yearStart: {
       type: String,
       required: true,
@@ -32,10 +32,10 @@ const settingsSchema = new mongoose.Schema(
       }
     }],
   },
+  },
   {
     timestamps: true,
-  }]
-}
+  }
 );
 
 module.exports = mongoose.model("settings", settingsSchema);
