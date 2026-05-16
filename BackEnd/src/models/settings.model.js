@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const settingsSchema = new mongoose.Schema(
 {
   general: {
+    key: {
+      type: String,
+      required: true,
+    },
     yearStart: {
       type: String,
       required: true,

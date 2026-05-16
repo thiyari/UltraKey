@@ -19,6 +19,14 @@ class SettingsService {
     return settings;
   }
 
+  async updateOneSettings(filter, update) {
+    const updatedSettings = await settingsRepository.updateOne(filter, update);
+    if (!updatedSettings) {
+      throw new Error("Settings not found");
+    }
+    return updatedSettings;
+  }
+
   async updateSettings(id, data) {
     const updatedSettings = await settingsRepository.update(id, data);
 
