@@ -40,9 +40,25 @@ function Header() {
             <li className="nav-item">
               <Link className="nav-link" to="/translate">Translate</Link>
             </li>
+                    {/*<!-- Dropdown -->*/}
+            <li className="nav-item dropdown">
+              <Link class="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+                Services
+              </Link>
+
+              <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="#">Web Design</Link></li>
+                <li><Link className="dropdown-item" to="#">App Development</Link></li>
+                <li><Link className="dropdown-item" to="#">SEO</Link></li>
+              </ul>
+            </li>
+
           </ul>
         </div>
       </div>
+
+
+
     </nav>
 
     </div>
