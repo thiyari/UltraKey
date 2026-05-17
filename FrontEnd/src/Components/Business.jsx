@@ -94,7 +94,7 @@ function Business() {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder="https://ultrakey.com/wp-content/uploads/2024"
-                        value={data.image}
+                        value={data.image??""}
                         onChange={(e)=>{setData({...data,image:e.target.value})}}
                         style={{fontSize:"14px"}}
                         />

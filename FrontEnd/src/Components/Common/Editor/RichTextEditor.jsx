@@ -12,7 +12,10 @@ import EditorPreview from "./EditorPreview";
 export default function RichTextEditor(props) {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        link: false,
+        underline: false,
+      }),
       Underline,
       Link.configure({
         openOnClick: true,

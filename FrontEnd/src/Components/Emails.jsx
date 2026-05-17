@@ -327,7 +327,11 @@ const Emails = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="whenToSend" className="col-sm-3 col-form-label"><b>When to Send</b></label>
                 <div className="col-sm-6">
-                    <CheckBoxes getCheckedItems={(list)=>{setCheckedItems(list)}} items={items}/>
+                    <CheckBoxes 
+                      selectedItems={checkedItems}
+                      getCheckedItems={(list)=>{setCheckedItems(list)}} 
+                      items={items}
+                    />
                     <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Check when you would like payment remainders sent out.</i></label>
                 </div>
                 <div className="col-sm-3"></div>
