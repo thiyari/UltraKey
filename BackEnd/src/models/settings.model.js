@@ -99,10 +99,10 @@ const settingsSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    notices: {
+    notices: [{
       type: String,
       required: false,
-    },
+    }],
     template: {
       type: String,
       required: false,
