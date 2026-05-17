@@ -5,38 +5,64 @@ const settingsSchema = new mongoose.Schema(
   general: {
     key: {
       type: String,
-      required: true,
+      required: false,
     },
     yearStart: {
       type: String,
-      required: true,
+      required: false,
     },
 
     yearEnd: {
       type: String,
-      required: true,
+      required: false,
     },
 
     lineItems: [{
       qty: {
         type: Number,
-        required: true,
+        required: false,
       },
       title: {
         type: String,
-        required: true,
+        required: false,
       },
       price: {
         type: Number,
-        required: true,
+        required: false,
       },
       description: {
         type: String,
-        required: true,
+        required: false,
       }
     }],
   },
-  },
+  business: {
+    key: {
+      type: String,
+      required: false,
+    },
+    image: {
+      type: String,
+      required: false,
+    },
+    name: {
+      type: String,
+      required: false,
+    },
+    address: {
+      type: String,
+      required: false,
+    },
+    info: {
+      type: String,
+      required: false,
+    },
+    website: {
+      type: String,
+      required: false,
+    }
+  },    
+  },  
   {
     timestamps: true,
   }
