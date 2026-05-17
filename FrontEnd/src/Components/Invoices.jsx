@@ -1,24 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import Templates from './Common/Templates';
 import CheckBoxes from './Common/CheckBoxes';
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/FormContext";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Invoices = () => {
 
     const navigate = useNavigate();
     const { saveFormData, formData } = useFormContext();
+    const { formSubmitHandler } = useFormContext();
   
     const [data, setData] = useState({
       prefix: formData.invoices.prefix || "",
       suffix: formData.invoices.suffix || "",
-      autoIncrement: formData.invoices.autoIncrement || "",
+      autoIncrement: formData.invoices.autoIncrement || "No",
       nextNumber: formData.invoices.nextNumber || "",
       dueDate: formData.invoices.dueDate || "",
-      hideAdjustField: formData.invoices.hideAdjustField || "",
+      hideAdjustField: formData.invoices.hideAdjustField || "No",
       termsAndConditions: formData.invoices.termsAndConditions || "",
       footer: formData.invoices.footer || "",
-      notices: formData.invoices.notices || "",
+      notices: formData.invoices.notices || [],
       template: formData.invoices.template || "",
       customCSS: formData.invoices.customCSS || "",
       toAddress: formData.invoices.toAddress || ""
@@ -26,9 +29,53 @@ const Invoices = () => {
 
     const items = ["Invoice Viewed","Invoice Paid"];
 
+
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const invoices = response.data.data[0].invoices;
+
+      console.log("Document exists");
+
+      setData((prev) => ({
+        ...prev,
+        prefix: invoices.prefix,
+        suffix: invoices.suffix,
+        autoIncrement: invoices.autoIncrement,
+        nextNumber: invoices.nextNumber,
+        dueDate: invoices.dueDate,
+        hideAdjustField: invoices.hideAdjustField,
+        termsAndConditions: invoices.termsAndConditions,
+        footer: invoices.footer,
+        notices: invoices.notices,
+        template: invoices.template,
+        customCSS: invoices.customCSS,
+        toAddress: invoices.toAddress
+      }));
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);  
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);  
+
+
+
   async function submitHandler(event) {
         event.preventDefault();
+          
+          const updatedFormData = {
+            ...formData,
+            invoices: data,
+          };
+
           saveFormData("invoices", data);
+          await formSubmitHandler(updatedFormData);        
           navigate("/payments");
   }
 
@@ -53,7 +100,7 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.prefix}
+                        value={data.prefix??""}
                         onChange={(e)=>{setData({...data, prefix: e.target.value})}}
                         />
                 </div>
@@ -70,7 +117,7 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.suffix}
+                        value={data.suffix??""}
                         onChange={(e)=>{setData({...data, suffix: e.target.value})}}
                         />
                 </div>
@@ -88,7 +135,7 @@ const Invoices = () => {
                   <div className="form-check">
                     <input className="form-check-input" 
                         type="checkbox" 
-                        checked={data.autoIncrement.includes("Yes")}
+                        checked={data.autoIncrement === "Yes"}
                         onChange={(e) => {(e.target.checked)? setData({...data, autoIncrement: "Yes"}):setData({...data, autoIncrement: "No"})}}
                         id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
@@ -106,7 +153,7 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.nextNumber}
+                        value={data.nextNumber??""}
                         onChange={(e)=>{setData({...data, nextNumber: e.target.value})}}
                         />
                 </div>
@@ -125,7 +172,7 @@ const Invoices = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.dueDate}
+                        value={data.dueDate??""}
                         onChange={(e)=>{setData({...data, dueDate: e.target.value})}}
                         />
                 </div>
@@ -143,7 +190,7 @@ const Invoices = () => {
                   <div className="form-check">
                     <input className="form-check-input" 
                     type="checkbox" 
-                    checked={data.hideAdjustField.includes("Yes")}
+                    checked={data.hideAdjustField === "Yes"}
                     onChange={(e) => {(e.target.checked)? setData({...data, hideAdjustField: "Yes"}):setData({...data, hideAdjustField: "No"})}} 
                     id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
@@ -161,7 +208,7 @@ const Invoices = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
-                      value={data.termsAndConditions}
+                      value={data.termsAndConditions??""}
                       onChange={(e)=>{setData({...data, termsAndConditions: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Terms and conditions displayed on the Invoice.<br></br> Can be overriden on individual Invoices.</i></label>
@@ -176,7 +223,7 @@ const Invoices = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
-                      value={data.footer}
+                      value={data.footer??""}
                       onChange={(e)=>{setData({...data, footer: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>The footer will be displayed at the bottom of each Invoice. Basic HTML is allowed.</i></label>
@@ -198,7 +245,8 @@ const Invoices = () => {
                 <label htmlFor="showMeNoticesWhen" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
                 <div className="col-sm-6">
                     <CheckBoxes 
-                        getCheckedItems={(list)=>{setData({...data, notices: JSON.stringify(list)})}} 
+                        selectedItems={data.notices}
+                        getCheckedItems={(list)=>{setData({...data, notices: list})}} 
                         items={items}
                       />
                 </div>
@@ -221,7 +269,10 @@ const Invoices = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="template" className="col-sm-3 col-form-label"><b>Template</b></label>
                 <div className="col-sm-9">
-                  <Templates getTemplateId={(selectedOption)=>{setData({...data, template: selectedOption})}}/>
+                  <Templates 
+                    selectedTemplate={data.template}
+                    getTemplateId={(selectedOption)=>{setData({...data, template: selectedOption})}}
+                    />
                 </div>
               </div>
               
@@ -236,7 +287,7 @@ const Invoices = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
-                      value={data.customCSS}
+                      value={data.customCSS??""}
                       onChange={(e)=>{setData({...data, customCSS: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Invoices</i></label>
@@ -254,7 +305,7 @@ const Invoices = () => {
                       className="form-control" 
                       placeholder=""
                       rows="4"
-                      value={data.toAddress}
+                      value={data.toAddress??""}
                       onChange={(e)=>{
                           setData({...data,toAddress:e.target.value})
                         }}

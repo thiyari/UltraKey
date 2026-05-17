@@ -1,18 +1,21 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect, useCallback} from 'react'
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/FormContext";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 function General() {
     
     const navigate = useNavigate();
     const [value, setValue] = useState("");
     const lastKeyWasEnter = useRef(false);
     const { saveFormData, formData } = useFormContext();
+    const { formSubmitHandler } = useFormContext();
 
     const [data, setData] = useState({
       yearStart: formData.general.yearStart || "",
       yearEnd: formData.general.yearEnd || "",
-      lineItems: formData.general.lineItems || "",
+      lineItems: formData.general.lineItems || [],
     });
     
     const handleBlur = () => {
@@ -48,13 +51,57 @@ function General() {
             )
           );
       result.pop(); // removes last item which is undefined
-      setData({...data, lineItems: result})
+      setData(prev => ({
+            ...prev,
+            lineItems: result
+          }));
         };
 
+  const fetchSettings = useCallback(async () => {
     
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const general = response.data.data[0].general;
+
+      console.log("Document exists");
+
+      setData((prev) => ({
+        ...prev,
+        yearStart: general.yearStart,
+        yearEnd: general.yearEnd,
+      }));
+
+      setValue(
+        general.lineItems
+          .map(item =>
+            `${item.qty}|${item.title}|${item.price}|${item.description}`
+          )
+          .join("\n")
+      );
+
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);
+
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);
+
+
+
     async function submitHandler(event) {
         event.preventDefault();
+
+          const updatedFormData = {
+            ...formData,
+            general: data,
+          };
+
           saveFormData("general", data);
+          await formSubmitHandler(updatedFormData);
           navigate("/business");
     }
 
@@ -77,7 +124,7 @@ function General() {
                 <label htmlFor="yearStart" className="col-sm-3 col-form-label"><b>Year Start</b></label>
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="Start Year" aria-label="startYear" aria-describedby="basic-addon1"
-                  value={data.yearStart}
+                  value={data.yearStart ?? ""}
                   onChange={(e)=>setData({...data, yearStart: e.target.value})}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The start date of the fiscal year</i></label>
                 </div>
@@ -88,7 +135,7 @@ function General() {
                 <label htmlFor="yearEnd" className="col-sm-3 col-form-label"><b>Year End</b></label>
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="End Year" aria-label="endYear" aria-describedby="basic-addon1"
-                  value={data.yearEnd}
+                  value={data.yearEnd ?? ""}
                   onChange={(e)=>setData({...data, yearEnd: e.target.value})}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The end date of the fiscal year</i></label>
                 </div>
@@ -103,7 +150,7 @@ function General() {
                       className="form-control" 
                       rows="3"
                       style={{fontSize: "14px"}}
-                      value={value}
+                      value={value ?? ""}
                       onChange={(e) => setValue(e.target.value)}
                       onKeyDown={handleKeyDown}
                       onBlur={handleBlur}

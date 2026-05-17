@@ -1,8 +1,8 @@
 import React, {use, useEffect, useState} from 'react'
 
-const CheckBoxes = (props) => {
+const CheckBoxes = ({ items, selectedItems = [], getCheckedItems }) => {
     
-  const [checkedItems, setCheckedItems] = useState([]);
+  const [checkedItems, setCheckedItems] = useState(selectedItems);
 
   // Individual checkbox change
   const handleCheckboxChange = (item) => {
@@ -16,18 +16,24 @@ const CheckBoxes = (props) => {
   // Check all / Uncheck all
   const handleToggleAll = (e) => {
     e.preventDefault();
-    if (checkedItems.length === props.items.length) {
+    if (checkedItems.length === items.length) {
       setCheckedItems([]); // Uncheck all
     } else {
-      setCheckedItems(props.items); // Check all
+      setCheckedItems(items); // Check all
     }
   };
 
-  const allChecked = checkedItems.length === props.items.length;
+  const allChecked = checkedItems.length === items.length;
   
-  useEffect(()=>{
-    props.getCheckedItems(checkedItems);
-  },[checkedItems])
+  // Sync checkbox state when API data changes
+  useEffect(() => {
+    setCheckedItems(selectedItems || []);
+  }, [selectedItems]);
+
+  // Send selected values to parent
+  useEffect(() => {
+    getCheckedItems(checkedItems);
+  }, [checkedItems]);
 
   return (
     <div>
@@ -36,14 +42,14 @@ const CheckBoxes = (props) => {
                       onClick={handleToggleAll}
                       >{allChecked ? "Deselect All" : "Select All"}
                 </button>
-                      {props.items.map((item) => (
+                      {items.map((item, index) => (
                         <div className="form-check" key={item}>
                           <input className="form-check-input" 
                           type="checkbox"  
                           checked={checkedItems.includes(item)}
                           onChange={() => handleCheckboxChange(item)}
-                          id="flexCheckDefault"/>
-                          <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
+                          id={`checkbox-${index}`}/>
+                          <label className="form-check-label" htmlFor={`checkbox-${index}`} style={{fontSize: "16px"}}>
                             {item}
                           </label>
                         </div>

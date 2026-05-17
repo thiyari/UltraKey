@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/FormContext";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 function Business() {
 
   const navigate = useNavigate();
   const { saveFormData, formData } = useFormContext();
+  const { formSubmitHandler } = useFormContext();
 
   const [data, setData] = useState({
     image: formData.business.image || "",
@@ -15,10 +18,54 @@ function Business() {
     website: formData.business.website || ""
   });
 
+  const imagebased64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+
+      reader.readAsDataURL(file);
+    });
+  };
+  
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const business = response.data.data[0].business;
+
+      console.log("Document exists");
+
+      setData((prev) => ({
+        ...prev,
+        image: business.image,
+        name: business.name,
+        address: business.address,
+        info: business.info,
+        website: business.website
+      }));
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);  
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);  
 
   async function submitHandler(event) {
         event.preventDefault();
+
+          const updatedFormData = {
+            ...formData,
+            business: data,
+          };
+
           saveFormData("business", data);
+          await formSubmitHandler(updatedFormData);
           navigate("/invoices");
   }
   
@@ -56,10 +103,10 @@ function Business() {
                           <div>
                               <label htmlFor="fileInput" className="btn btn-outline-primary"> Add or Upload File </label>
                               <input className="d-none" type="file" accept="image/*" id="fileInput" 
-                              onChange={(e)=>{
+                              onChange={async (e)=>{
                                 setData(
                                     {...data,
-                                      image:URL.createObjectURL(e.target.files[0])
+                                      image: await imagebased64(e.target.files[0])
                                     })
                                   }} />
                           </div>
@@ -90,7 +137,7 @@ function Business() {
                   <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.name}
+                        value={data.name ?? ""}
                         onChange={(e)=>{
                           setData({...data,name:e.target.value})
                         }}
@@ -107,7 +154,7 @@ function Business() {
                       className="form-control" 
                       placeholder=""
                       rows="4"
-                      value={data.address}
+                      value={data.address ?? ""}
                       onChange={(e)=>{
                           setData({...data,address:e.target.value})
                         }}
@@ -123,7 +170,7 @@ function Business() {
                 <div className="col-sm-6">
                   <textarea 
                       className="form-control" 
-                      value={data.info}
+                      value={data.info ?? ""}
                       onChange={(e)=>{
                           setData({...data,info:e.target.value})
                         }}
@@ -141,7 +188,7 @@ function Business() {
                   <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.website}
+                        value={data.website ?? ""}
                         onChange={(e)=>{
                           setData({...data,website:e.target.value})
                         }}

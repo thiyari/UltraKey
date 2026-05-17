@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import { data } from 'react-router-dom';
 import template1 from "../../assets/template1.jpg";
 import template2 from "../../assets/template2.jpg";
@@ -11,10 +11,6 @@ import template2 from "../../assets/template2.jpg";
   ];
 
 const Templates = (props) => {
-  const [selectedId, setSelectedId] = useState(); 
-  useEffect(()=>{
-    props.getTemplateId(selectedId);
-  },[selectedId])
 
   return (
                   <div className='row'>
@@ -22,8 +18,8 @@ const Templates = (props) => {
                             <div className="col-md-4" key={card.id}>
                               <div 
                                 // 2. Conditionally apply a "border-primary" or custom style if selected
-                                className={`card h-100 shadow-sm ${selectedId === card.id ? 'border-primary border-3' : ''}`}
-                                onClick={() => {setSelectedId(card.id)}}
+                                className={`card h-100 shadow-sm ${props.selectedTemplate === card.id ? 'border-primary border-3' : ''}`}
+                                onClick={() => {props.getTemplateId(card.id)}}
                                 style={{ cursor: 'pointer', transition: '0.3s' }}
                               >
                                 <div className="card-body text-center">
@@ -32,7 +28,7 @@ const Templates = (props) => {
                                     <input 
                                       className="form-check-input d-none" 
                                       type="radio" 
-                                      checked={selectedId === card.id} 
+                                      checked={props.selectedTemplate === card.id} 
                                       readOnly 
                                     />
                                   </div>
