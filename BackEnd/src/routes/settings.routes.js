@@ -8,11 +8,11 @@ router.post("/", settingsController.create);
 
 router.get("/", settingsController.getAll);
 
+router.put("/", settingsController.findOneAndUpdate);
+
 router.get("/:id", settingsController.getById);
 
 router.put("/:id", settingsController.update);
-
-router.put("/", settingsController.findOneAndUpdate);
 
 router.delete("/:id", settingsController.delete);
 
