@@ -125,7 +125,7 @@ function General() {
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="Start Year" aria-label="startYear" aria-describedby="basic-addon1"
                   value={data.yearStart ?? ""}
-                  onChange={(e)=>setData({...data, yearStart: e.target.value})}/>
+                  onChange={(e)=>setData((prev) => ({...prev, yearStart: e.target.value}))}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The start date of the fiscal year</i></label>
                 </div>
                 <div className="col-sm-4"></div>
@@ -136,7 +136,7 @@ function General() {
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="End Year" aria-label="endYear" aria-describedby="basic-addon1"
                   value={data.yearEnd ?? ""}
-                  onChange={(e)=>setData({...data, yearEnd: e.target.value})}/>
+                  onChange={(e)=>setData((prev)=>({...prev, yearEnd: e.target.value}))}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The end date of the fiscal year</i></label>
                 </div>
                 <div className="col-sm-4"></div>

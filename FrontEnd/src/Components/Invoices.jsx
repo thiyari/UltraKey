@@ -101,7 +101,7 @@ const Invoices = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.prefix??""}
-                        onChange={(e)=>{setData({...data, prefix: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, prefix: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -118,7 +118,7 @@ const Invoices = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.suffix??""}
-                        onChange={(e)=>{setData({...data, suffix: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, suffix: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -136,7 +136,7 @@ const Invoices = () => {
                     <input className="form-check-input" 
                         type="checkbox" 
                         checked={data.autoIncrement === "Yes"}
-                        onChange={(e) => {(e.target.checked)? setData({...data, autoIncrement: "Yes"}):setData({...data, autoIncrement: "No"})}}
+                        onChange={(e) => {(e.target.checked)? setData((prev)=>({...prev, autoIncrement: "Yes"})):setData((prev)=>({...prev, autoIncrement: "No"}))}}
                         id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Increment Invoice numbers by one. Recommended.
@@ -154,7 +154,7 @@ const Invoices = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.nextNumber??""}
-                        onChange={(e)=>{setData({...data, nextNumber: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, nextNumber: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -173,7 +173,7 @@ const Invoices = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.dueDate??""}
-                        onChange={(e)=>{setData({...data, dueDate: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, dueDate: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -191,7 +191,7 @@ const Invoices = () => {
                     <input className="form-check-input" 
                     type="checkbox" 
                     checked={data.hideAdjustField === "Yes"}
-                    onChange={(e) => {(e.target.checked)? setData({...data, hideAdjustField: "Yes"}):setData({...data, hideAdjustField: "No"})}} 
+                    onChange={(e) => {(e.target.checked)? setData((prev)=>({...prev, hideAdjustField: "Yes"})):setData((prev)=>({...prev, hideAdjustField: "No"}))}} 
                     id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Hide the adjust field on the line items, I won't need this field.
@@ -209,7 +209,7 @@ const Invoices = () => {
                       className="form-control" 
                       rows="4"
                       value={data.termsAndConditions??""}
-                      onChange={(e)=>{setData({...data, termsAndConditions: e.target.value})}}
+                      onChange={(e)=>{setData((prev)=>({...prev, termsAndConditions: e.target.value}))}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Terms and conditions displayed on the Invoice.<br></br> Can be overriden on individual Invoices.</i></label>
                 </div>
@@ -224,7 +224,7 @@ const Invoices = () => {
                       className="form-control" 
                       rows="4"
                       value={data.footer??""}
-                      onChange={(e)=>{setData({...data, footer: e.target.value})}}
+                      onChange={(e)=>{setData((prev)=>({...prev, footer: e.target.value}))}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>The footer will be displayed at the bottom of each Invoice. Basic HTML is allowed.</i></label>
                 </div>
@@ -246,7 +246,7 @@ const Invoices = () => {
                 <div className="col-sm-6">
                     <CheckBoxes 
                         selectedItems={data.notices}
-                        getCheckedItems={(list)=>{setData({...data, notices: list})}} 
+                        getCheckedItems={(list)=>{setData((prev)=>({...prev, notices: list}))}} 
                         items={items}
                       />
                 </div>
@@ -271,7 +271,7 @@ const Invoices = () => {
                 <div className="col-sm-9">
                   <Templates 
                     selectedTemplate={data.template}
-                    getTemplateId={(selectedOption)=>{setData({...data, template: selectedOption})}}
+                    getTemplateId={(selectedOption)=>{setData((prev)=>({...prev, template: selectedOption}))}}
                     />
                 </div>
               </div>
@@ -288,7 +288,7 @@ const Invoices = () => {
                       className="form-control" 
                       rows="4"
                       value={data.customCSS??""}
-                      onChange={(e)=>{setData({...data, customCSS: e.target.value})}}
+                      onChange={(e)=>{setData((prev)=>({...prev, customCSS: e.target.value}))}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add custom CSS to your Invoices</i></label>
                 </div>
@@ -307,7 +307,7 @@ const Invoices = () => {
                       rows="4"
                       value={data.toAddress??""}
                       onChange={(e)=>{
-                          setData({...data,toAddress:e.target.value})
+                          setData((prev)=>({...prev,toAddress:e.target.value}))
                         }}
                       ></textarea>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Add your full address and format it anyway you like. Basic HTML is allowed.</i></label>

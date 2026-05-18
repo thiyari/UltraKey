@@ -98,7 +98,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Quote'
                         value={data.quoteLabel??""}
-                        onChange={(e)=>{setData({...data, quoteLabel: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, quoteLabel: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -117,7 +117,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Quotes'
                         value={data.qutoeLabelPlural??""}
-                        onChange={(e)=>{setData({...data, qutoeLabelPlural: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, qutoeLabelPlural: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -139,7 +139,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Invoice'
                         value={data.invoiceLabel??""}
-                        onChange={(e)=>{setData({...data, invoiceLabel: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, invoiceLabel: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -158,7 +158,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Invoices'
                         value={data.invoiceLabelPlural??""}
-                        onChange={(e)=>{setData({...data, invoiceLabelPlural: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, invoiceLabelPlural: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -177,7 +177,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Hrs/Qty'
                         value={data.hrsQty??""}
-                        onChange={(e)=>{setData({...data, hrsQty: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, hrsQty: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -192,7 +192,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Service'
                         value={data.service??""}
-                        onChange={(e)=>{setData({...data, service: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, service: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -208,7 +208,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Rate/Price'
                         value={data.ratePrice??""}
-                        onChange={(e)=>{setData({...data, ratePrice: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, ratePrice: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -223,7 +223,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Adjust'
                         value={data.adjust??""}
-                        onChange={(e)=>{setData({...data, adjust: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, adjust: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -240,7 +240,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Sub Total'
                         value={data.subTotal??""}
-                        onChange={(e)=>{setData({...data, subTotal: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, subTotal: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -255,7 +255,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Discount'
                         value={data.discount??""}
-                        onChange={(e)=>{setData({...data, discount: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, discount: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -271,7 +271,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder='Total'
                         value={data.total??""}
-                        onChange={(e)=>{setData({...data, total: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, total: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -286,7 +286,7 @@ const Translate = () => {
                         className="form-control mb-2" 
                         placeholder="Total Due"
                         value={data.totalDue??""}
-                        onChange={(e)=>{setData({...data, totalDue: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, totalDue: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>

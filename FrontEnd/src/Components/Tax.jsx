@@ -78,11 +78,11 @@ const Tax = () => {
                 <div className="col-sm-4">
                   <RadioButtons
                     selectedOption={data.price}
-                    getSelectedItem={(item)=>{setData(
-                      {...data, 
+                    getSelectedItem={(item)=>{setData((prev) =>
+                      ({...prev, 
                         price: item, 
                         percentage: item === "Yes. I will enter prices inclusive of tax" ? "" : data.percentage
-                      })
+                      }))
                     }}
                     options={options} 
                     name={'taxPrice'}/>
@@ -99,7 +99,7 @@ const Tax = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.percentage??""}
-                        onChange={(e)=>{setData({...data, percentage: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, percentage: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -118,7 +118,7 @@ const Tax = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.name??""}
-                        onChange={(e)=>{setData({...data, name: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, name: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>

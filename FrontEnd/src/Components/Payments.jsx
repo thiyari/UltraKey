@@ -108,7 +108,7 @@ const Payments = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.currencySymbol??""}
-                        onChange={(e)=>{setData({...data, currencySymbol: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, currencySymbol: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -120,7 +120,7 @@ const Payments = () => {
                     <Dropdowns 
                         options={currencyOptions} 
                         selectedOption={data.currencyPosition}
-                        getOption={(option) => setData({...data,currencyPosition: option})}
+                        getOption={(option) => setData((prev)=>({...prev,currencyPosition: option}))}
                       />
                 </div>
                 <div className="col-sm-5"></div>
@@ -133,7 +133,7 @@ const Payments = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.thousandSeperator??""}
-                        onChange={(e)=>{setData({...data, thousandSeperator: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, thousandSeperator: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -148,7 +148,7 @@ const Payments = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.decimalSeperator??""}
-                        onChange={(e)=>{setData({...data, decimalSeperator: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, decimalSeperator: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -163,7 +163,7 @@ const Payments = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.numberOfDecimals??""}
-                        onChange={(e)=>{setData({...data, numberOfDecimals: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, numberOfDecimals: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -177,7 +177,7 @@ const Payments = () => {
                     <Dropdowns 
                       options={paymentOptions} 
                       selectedOption={data.paymentPage}
-                      getOption={(option) => setData({...data, paymentPage: option})}
+                      getOption={(option) => setData((prev)=>({...prev, paymentPage: option}))}
                     />
                 </div>
                 <div className="col-sm-5"></div>
@@ -195,7 +195,7 @@ const Payments = () => {
                       className="form-control" 
                       rows="4"
                       value={data.paymentPageFooter??""}
-                      onChange={(e)=>{setData({...data, paymentPageFooter: e.target.value})}}
+                      onChange={(e)=>{setData((prev)=>({...prev, paymentPageFooter: e.target.value}))}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>The footer will be displayed at the bottom of the payment page. Basic HTML is allowed.
                     <br></br>Use this to provide additional payment instructions, if desired.</i></label>
@@ -220,7 +220,7 @@ const Payments = () => {
                       className="form-control" 
                       rows="4"
                       value={data.bank??""}
-                      onChange={(e)=>{setData({...data, bank: e.target.value})}}
+                      onChange={(e)=>{setData((prev)=>({...prev, bank: e.target.value}))}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add your bank account details if you wish to allow direct bank deposits. HTML is allowed.</i></label>
                 </div>
@@ -240,7 +240,7 @@ const Payments = () => {
                       className="form-control" 
                       rows="4"
                       value={data.genericPayment??""}
-                      onChange={(e)=>{setData({...data,genericPayment:e.target.value})}}
+                      onChange={(e)=>{setData((prev)=>({...prev,genericPayment:e.target.value}))}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Set a generic message or include further instructions for the user on how to pay. HTML is allowed.</i></label>
                 </div>
@@ -263,7 +263,7 @@ const Payments = () => {
                         className="form-control mb-2" 
                         placeholder="Paid"
                         value={data.paid??""}
-                        onChange={(e)=>{setData({...data, paid: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, paid: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -278,7 +278,7 @@ const Payments = () => {
                         className="form-control mb-2" 
                         placeholder='Discount'
                         value={data.discount??""}
-                        onChange={(e)=>{setData({...data, discount: e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev, discount: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>

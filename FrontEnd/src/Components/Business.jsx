@@ -19,15 +19,24 @@ function Business() {
     website: formData.business.website || ""
   });
 
-  const imagebased64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
+  const handleImageChange = (file) => {
 
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
+    if (!file) return;
 
-      reader.readAsDataURL(file);
-    });
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      setData((prev)=>({
+        ...prev,
+        image: reader.result
+      }))
+    };
+
+    reader.onerror = (error) => {
+      console.error("Error: ", error);
+    };
   };
   
 
@@ -96,7 +105,7 @@ function Business() {
                         className="form-control mb-2" 
                         placeholder="https://ultrakey.com/wp-content/uploads/2024"
                         value={data.image??""}
-                        onChange={(e)=>{setData({...data,image:e.target.value})}}
+                        onChange={(e)=>{setData((prev)=>({...prev,image:e.target.value}))}}
                         style={{fontSize:"14px"}}
                         />
                     </div>
@@ -104,12 +113,7 @@ function Business() {
                           <div>
                               <label htmlFor="fileInput" className="btn btn-outline-primary"> Add or Upload File </label>
                               <input className="d-none" type="file" accept="image/*" id="fileInput" 
-                              onChange={async (e)=>{
-                                setData(
-                                    {...data,
-                                      image: await imagebased64(e.target.files[0])
-                                    })
-                                  }} />
+                              onChange={(e)=> handleImageChange(e.target.files[0])} />
                           </div>
                     </div>
                             {/* 2. Conditionally render the image if a URL exists */}
@@ -140,7 +144,7 @@ function Business() {
                         className="form-control mb-2" 
                         value={data.name ?? ""}
                         onChange={(e)=>{
-                          setData({...data,name:e.target.value})
+                          setData((prev) => ({...prev, name:e.target.value}))
                         }}
                         />
                 </div>
@@ -157,7 +161,7 @@ function Business() {
                       rows="4"
                       value={data.address ?? ""}
                       onChange={(e)=>{
-                          setData({...data,address:e.target.value})
+                          setData((prev) => ({...prev,address:e.target.value}))
                         }}
                       ></textarea>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Add your full address and format it anyway you like. Basic HTML is allowed.</i></label>
@@ -173,7 +177,7 @@ function Business() {
                       className="form-control" 
                       value={data.info ?? ""}
                       onChange={(e)=>{
-                          setData({...data,info:e.target.value})
+                          setData((prev)=>({...prev,info:e.target.value}))
                         }}
                       rows="4"
                       ></textarea>
@@ -191,7 +195,7 @@ function Business() {
                         className="form-control mb-2" 
                         value={data.website ?? ""}
                         onChange={(e)=>{
-                          setData({...data,website:e.target.value})
+                          setData((prev)=>({...prev,website:e.target.value}))
                         }}
                         />
                 </div>
