@@ -120,7 +120,7 @@ const Invoices = () => {
     } catch (err) {
       alert(err);
     }
-          navigate("/payments");
+        navigate("/payments");
     }
 
 

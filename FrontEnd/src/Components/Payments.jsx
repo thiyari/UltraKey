@@ -1,14 +1,14 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import Dropdowns from './Common/Dropdowns';
 import { useNavigate } from "react-router-dom";
-import { useFormContext } from "../context/useFormContext";
+//import { useFormContext } from "../context/useFormContext";
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Payments = () => {
 
   const navigate = useNavigate();
-  const { saveFormData, formData } = useFormContext();
+  /*const { saveFormData, formData } = useFormContext();
   const { formSubmitHandler } = useFormContext();
 
   const [data, setData] = useState({
@@ -23,7 +23,25 @@ const Payments = () => {
       genericPayment: formData.payments.genericPayment,
       discount: formData.payments.discount,
       paid: formData.payments.paid
+    }); */
+
+
+
+  const [data, setData] = useState({
+      currencySymbol: "",
+      currencyPosition: "",
+      thousandSeperator: "",
+      decimalSeperator: "",
+      numberOfDecimals: "",
+      paymentPage: "",
+      paymentPageFooter: "",
+      bank: "",
+      genericPayment: "",
+      discount: "",
+      paid: ""
     });
+
+
 
   const currencyOptions = [
     { value: '', label: 'select currency position'},
@@ -75,13 +93,45 @@ const Payments = () => {
 
   async function submitHandler(event) {
         event.preventDefault();
-  
+        /*
         saveFormData("payments", data);
         const updatedFormData = {
             ...formData,
             payments: data,
           };
-        await formSubmitHandler(updatedFormData);        
+        await formSubmitHandler(updatedFormData);    */   
+        
+
+    try {
+      await axios.put(
+        `${apiUrl}/api/settings`,
+        {
+          payments: {
+            key: "payments",
+            currencySymbol: data.currencySymbol,
+            currencyPosition: data.currencyPosition,
+            thousandSeperator: data.thousandSeperator,
+            decimalSeperator: data.decimalSeperator,
+            numberOfDecimals: data.numberOfDecimals,
+            paymentPage: data.paymeentPage,
+            paymentPageFooter: data.paymentPageFooter,
+            bank: data.bank,
+            genericPayment: data.genericPayment,
+            discount: data.discount,
+            paid: data.paid
+          }     
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      alert(err);
+    }        
+        
+
         navigate("/tax");
   }
 
