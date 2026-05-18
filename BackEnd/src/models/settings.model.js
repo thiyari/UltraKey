@@ -170,6 +170,80 @@ const settingsSchema = new mongoose.Schema(
       required: false,
     }
   },
+  tax: {
+    key: {
+      type: String,
+      required: false,
+      unique: true
+    },  
+    price: {
+      type: String,
+      required: false
+    },
+    percentage: {
+      type: String,
+      required: false
+    },
+    name: {
+      type: String,
+      required: false      
+    },
+  },
+  translate: {
+    key: {
+      type: String,
+      required: false,
+      unique: true
+    },
+    quoteLabel: {
+      type: String,
+      required: false,      
+    },
+    qutoeLabelPlural: {
+      type: String,
+      required: false,
+    },
+    invoiceLabel: {
+      type: String,
+      required: false,
+    },
+    invoiceLabelPlural: {
+      type: String,
+      required: false,
+    },
+    hrsQty: {
+      type: String,
+      required: false,
+    },
+    service: {
+      type: String,
+      required: false,
+    },
+    ratePrice: {
+      type: String,
+      required: false,
+    },
+    adjust: {
+      type: String,
+      required: false,
+    },
+    subTotal: {
+      type: String,
+      required: false,
+    },
+    discount: {
+      type: String,
+      required: false,
+    },
+    total: {
+      type: String,
+      required: false,
+    },
+    totalDue: {
+      type: String,
+      required: false,
+    },    
+  }  
   },  
   {
     timestamps: true,
