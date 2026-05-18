@@ -17,45 +17,35 @@ function General() {
       yearEnd: formData.general.yearEnd,
       lineItems: formData.general.lineItems,
     });
-    
-    const handleBlur = () => {
-      // ignore empty input
-      if (!value.trim()) return;
-
-      if (!lastKeyWasEnter.current) {
-        alert("You didn't press Enter after the last line!");
-      }
-    };
 
 
+const handleLineItemsChange = (e) => {
+  const text = e.target.value;
 
-    const handleKeyDown = (e) => {
-      let value = e.target.value;
+  // update textarea value
+  setValue(text);
 
-      // Handle Enter key
-      if (e.key === "Enter") {
-        lastKeyWasEnter.current = true;
-        value += "\n";
-      } else {
-        lastKeyWasEnter.current = false;
-      }
+  // split lines
+  const extractedLines = text
+    .split("\n")
+    .filter(line => line.trim() !== "");
 
-      // Split textarea into lines
-      const extractedLines = value.split("\n");
-      const arr = extractedLines.map(item => item.split("|"))
+  const keys = ["qty", "title", "price", "description"];
 
-      const keys = ["qty", "title", "price", "description"];
-      const result = arr.map(item =>
-            Object.fromEntries(
-              keys.map((key, index) => [key, item[index]])
-            )
-          );
-      result.pop(); // removes last item which is undefined
-      setData(prev => ({
-            ...prev,
-            lineItems: result
-          }));
-        };
+  const result = extractedLines.map(line => {
+    const parts = line.split("|").map(item => item.trim());
+
+    return Object.fromEntries(
+      keys.map((key, index) => [key, parts[index] || ""])
+    );
+  });
+
+  setData(prev => ({
+    ...prev,
+    lineItems: result
+  }));
+};
+
 
   const fetchSettings = useCallback(async () => {
     
@@ -149,15 +139,13 @@ function General() {
                       rows="3"
                       style={{fontSize: "14px"}}
                       value={value ?? ""}
-                      onChange={(e) => setValue(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      onBlur={handleBlur}
+                      onChange={handleLineItemsChange}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}>
                     <i>Add 1 line item per line in this format: Qty | Title | Price | Description. Each field seperated with a | symbol.
                     <br></br>Price should be numbers only, no currency symbol
                     <br></br>If you prefer to have item blank, you still need the | symbol like so: 1 | Web Design | | Designing the Web
-                    <br></br><b>Press Enter Key at the end of your each line and the last line</b></i>
+                    </i>
                   </label>
                 </div>
                 <div className="col-sm-4"></div>
