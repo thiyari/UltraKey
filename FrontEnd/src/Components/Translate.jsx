@@ -85,6 +85,38 @@ const Translate = () => {
             translate: data,
           };
         await formSubmitHandler(updatedFormData);   */     
+
+
+
+    try {
+      await axios.put(
+        `${apiUrl}/api/settings`,
+        {
+          translate: {
+            key: "translate",
+            quoteLabel: data.quoteLabel,
+            qutoeLabelPlural: data.qutoeLabelPlural,
+            invoiceLabel: data.invoiceLabel,
+            invoiceLabelPlural: data.invoiceLabelPlural,
+            hrsQty: data.hrsQty,
+            service: data.service,
+            ratePrice: data.ratePrice,
+            adjust: data.adjust,
+            subTotal: data.subTotal,
+            discount: data.discount,
+            total: data.total,
+            totalDue: data.totalDuee,
+          }     
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      alert(err);
+    }
         navigate("/pdf");
   }
 
