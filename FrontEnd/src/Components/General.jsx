@@ -7,7 +7,7 @@ const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 function General() {
     
     const navigate = useNavigate();
-    const [value, setValue] = useState("");
+    const [textLines, setTextLines] = useState("");
     const lastKeyWasEnter = useRef(false);
     const { saveFormData, formData } = useFormContext();
     const { formSubmitHandler } = useFormContext();
@@ -23,7 +23,7 @@ const handleLineItemsChange = (e) => {
   const text = e.target.value;
 
   // update textarea value
-  setValue(text);
+  setTextLines(text);
 
   // split lines
   const extractedLines = text
@@ -59,9 +59,10 @@ const handleLineItemsChange = (e) => {
       setData({
         yearStart: general.yearStart,
         yearEnd: general.yearEnd,
+        lineItems: general.lineItems
       });
 
-      setValue(
+      setTextLines(
         general.lineItems
           .map(item =>
             `${item.qty}|${item.title}|${item.price}|${item.description}`
@@ -138,7 +139,7 @@ const handleLineItemsChange = (e) => {
                       className="form-control" 
                       rows="3"
                       style={{fontSize: "14px"}}
-                      value={value ?? ""}
+                      value={textLines}
                       onChange={handleLineItemsChange}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}>
