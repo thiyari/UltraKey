@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
-import { useFormContext } from "../context/useFormContext";
+//import { useFormContext } from "../context/useFormContext";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -7,7 +7,7 @@ const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Translate = () => {
 
     const navigate = useNavigate();
-    const { saveFormData, formData } = useFormContext();
+    /*const { saveFormData, formData } = useFormContext();
     const { formSubmitHandler } = useFormContext();
   
     const [data, setData] = useState({
@@ -23,8 +23,23 @@ const Translate = () => {
       discount: formData.translate.discount,
       total: formData.translate.total,
       totalDue: formData.translate.totalDue,
-    });
+    }); */
 
+  
+    const [data, setData] = useState({
+      quoteLabel: "",
+      qutoeLabelPlural: "",
+      invoiceLabel: "",
+      invoiceLabelPlural: "",
+      hrsQty: "",
+      service: "",
+      ratePrice: "",
+      adjust: "",
+      subTotal: "",
+      discount: "",
+      total: "",
+      totalDue: "",
+    });
 
 
   const fetchSettings = useCallback(async () => {
@@ -63,13 +78,13 @@ const Translate = () => {
 
   async function submitHandler(event) {
         event.preventDefault();
-
+        /*
         saveFormData("translate", data);
         const updatedFormData = {
             ...formData,
             translate: data,
           };
-        await formSubmitHandler(updatedFormData);        
+        await formSubmitHandler(updatedFormData);   */     
         navigate("/pdf");
   }
 

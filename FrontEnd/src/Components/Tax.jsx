@@ -1,20 +1,27 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import RadioButtons from './Common/RadioButtons';
 import { useNavigate } from "react-router-dom";
-import { useFormContext } from "../context/useFormContext";
+//import { useFormContext } from "../context/useFormContext";
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Tax = () => {
     const navigate = useNavigate();
-    const { saveFormData, formData } = useFormContext();
+    /*const { saveFormData, formData } = useFormContext();
     const { formSubmitHandler } = useFormContext();
     
     const [data, setData] = useState({
       price: formData.tax.price,
       percentage: formData.tax.percentage,
       name: formData.tax.name,
+    }); */
+
+    const [data, setData] = useState({
+      price: "",
+      percentage: "",
+      name: "",
     });
+
   const options = ['Yes. I will enter prices inclusive of tax', 'No. I will enter prices exclusive of tax'];
 
 
@@ -46,13 +53,35 @@ const Tax = () => {
 
   async function submitHandler(event) {
         event.preventDefault();
-
+          /*
           saveFormData("tax", data);
           const updatedFormData = {
             ...formData,
             tax: data,
           };          
-          await formSubmitHandler(updatedFormData);        
+          await formSubmitHandler(updatedFormData);       */ 
+
+    try {
+      await axios.put(
+        `${apiUrl}/api/settings`,
+        {
+          tax: {
+            key: "tax",
+            price: data.price,
+            percentage: data.percentage,
+            name: data.name,
+          }     
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      alert(err);
+    }
+          
           navigate("/translate");
   }
 
