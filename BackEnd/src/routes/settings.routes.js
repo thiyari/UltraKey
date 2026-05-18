@@ -12,6 +12,8 @@ router.get("/:id", settingsController.getById);
 
 router.put("/:id", settingsController.update);
 
+router.put("/", settingsController.findOneAndUpdate);
+
 router.delete("/:id", settingsController.delete);
 
 module.exports = router;

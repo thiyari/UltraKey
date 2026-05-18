@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react'
 import { useNavigate } from "react-router-dom";
-import { useFormContext } from "../context/useFormContext";
+//import { useFormContext } from "../context/useFormContext";
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
@@ -9,15 +9,20 @@ function General() {
     const navigate = useNavigate();
     const [textLines, setTextLines] = useState("");
     const lastKeyWasEnter = useRef(false);
-    const { saveFormData, formData } = useFormContext();
+    /*const { saveFormData, formData } = useFormContext();
     const { formSubmitHandler } = useFormContext();
 
     const [data, setData] = useState({
       yearStart: formData.general.yearStart,
       yearEnd: formData.general.yearEnd,
       lineItems: formData.general.lineItems,
-    });
+    }); */
 
+    const [data, setData] = useState({
+      yearStart: "",
+      yearEnd: "",
+      lineItems: [],
+    });
 
 const handleLineItemsChange = (e) => {
   const text = e.target.value;
@@ -84,13 +89,34 @@ const handleLineItemsChange = (e) => {
 
     async function submitHandler(event) {
         event.preventDefault();
-
+        /*
           saveFormData("general", data);
           const updatedFormData = {
             ...formData,
             general: data,
           };
-          await formSubmitHandler(updatedFormData);
+          await formSubmitHandler(updatedFormData); */
+
+    try {
+      await axios.put(
+        `${apiUrl}/api/settings`,
+        {
+          general: {
+            key: "general",
+            yearStart: data.yearStart,
+            yearEnd: data.yearEnd,
+            lineItems: data.lineItems,
+          }     
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      alert(err);
+    }
           navigate("/business");
     }
 

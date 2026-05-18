@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import { useNavigate } from "react-router-dom";
-import { useFormContext } from "../context/useFormContext";
+//import { useFormContext } from "../context/useFormContext";
 
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 function Business() {
 
   const navigate = useNavigate();
-  const { saveFormData, formData } = useFormContext();
+  /*const { saveFormData, formData } = useFormContext();
   const { formSubmitHandler } = useFormContext();
 
   const [data, setData] = useState({
@@ -17,6 +17,14 @@ function Business() {
     address: formData.business.address,
     info: formData.business.info,
     website: formData.business.website
+  }); */
+
+  const [data, setData] = useState({
+    image: "",
+    name: "",
+    address: "",
+    info: "",
+    website: ""
   });
 
   const handleImageChange = (file) => {
@@ -67,14 +75,38 @@ function Business() {
 
   async function submitHandler(event) {
         event.preventDefault();
-
+          /*
           saveFormData("business", data);
           const updatedFormData = {
             ...formData,
             business: data,
           };          
-          await formSubmitHandler(updatedFormData);
-          navigate("/invoices");
+          await formSubmitHandler(updatedFormData); */
+
+
+    try {
+      await axios.put(
+        `${apiUrl}/api/settings`,
+        {
+          business: {
+            key: "business",
+            image: data.image,
+            name: data.name,
+            address: data.address,
+            info: data.info,
+            website: data.website,
+          }
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      alert(err);
+    }
+      navigate("/invoices");
   }
   
 

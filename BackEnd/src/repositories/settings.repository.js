@@ -13,8 +13,8 @@ class SettingsRepository {
     return await Settings.findById(id);
   }
 
-  async updateOne(filter, update) {
-    return await Settings.updateOne(filter, update);
+  async findOneAndUpdate(filter, update, options) {
+    return await Settings.findOneAndUpdate(filter, update, options);
   }
   
   async update(id, data) {
