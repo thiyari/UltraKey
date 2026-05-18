@@ -13,18 +13,18 @@ const Invoices = () => {
     const { formSubmitHandler } = useFormContext();
   
     const [data, setData] = useState({
-      prefix: formData.invoices.prefix || "",
-      suffix: formData.invoices.suffix || "",
-      autoIncrement: formData.invoices.autoIncrement || "No",
-      nextNumber: formData.invoices.nextNumber || "",
-      dueDate: formData.invoices.dueDate || "",
-      hideAdjustField: formData.invoices.hideAdjustField || "No",
-      termsAndConditions: formData.invoices.termsAndConditions || "",
-      footer: formData.invoices.footer || "",
-      notices: formData.invoices.notices || [],
-      template: formData.invoices.template || "",
-      customCSS: formData.invoices.customCSS || "",
-      toAddress: formData.invoices.toAddress || ""
+      prefix: formData.invoices.prefix,
+      suffix: formData.invoices.suffix,
+      autoIncrement: formData.invoices.autoIncrement,
+      nextNumber: formData.invoices.nextNumber,
+      dueDate: formData.invoices.dueDate,
+      hideAdjustField: formData.invoices.hideAdjustField,
+      termsAndConditions: formData.invoices.termsAndConditions,
+      footer: formData.invoices.footer,
+      notices: formData.invoices.notices,
+      template: formData.invoices.template,
+      customCSS: formData.invoices.customCSS,
+      toAddress: formData.invoices.toAddress
     });
 
     const items = ["Invoice Viewed","Invoice Paid"];
@@ -40,8 +40,7 @@ const Invoices = () => {
 
       console.log("Document exists");
 
-      setData((prev) => ({
-        ...prev,
+      setData({
         prefix: invoices.prefix,
         suffix: invoices.suffix,
         autoIncrement: invoices.autoIncrement,
@@ -54,7 +53,7 @@ const Invoices = () => {
         template: invoices.template,
         customCSS: invoices.customCSS,
         toAddress: invoices.toAddress
-      }));
+      });
     } catch (error) {
       console.log("Document not found");
     }  
@@ -69,12 +68,11 @@ const Invoices = () => {
   async function submitHandler(event) {
         event.preventDefault();
           
+          saveFormData("invoices", data);
           const updatedFormData = {
             ...formData,
             invoices: data,
-          };
-
-          saveFormData("invoices", data);
+          };          
           await formSubmitHandler(updatedFormData);        
           navigate("/payments");
   }

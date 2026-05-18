@@ -11,9 +11,9 @@ const Tax = () => {
     const { formSubmitHandler } = useFormContext();
     
     const [data, setData] = useState({
-      price: formData.tax.price || "",
-      percentage: formData.tax.percentage || "",
-      name: formData.tax.name || "",
+      price: formData.tax.price,
+      percentage: formData.tax.percentage,
+      name: formData.tax.name,
     });
   const options = ['Yes. I will enter prices inclusive of tax', 'No. I will enter prices exclusive of tax'];
 
@@ -28,12 +28,11 @@ const Tax = () => {
 
       console.log("Document exists");
 
-      setData((prev) => ({
-        ...prev,
+      setData({
         price: tax.price,
         percentage: tax.percentage,
         name: tax.name,
-      }));
+      });
     } catch (error) {
       console.log("Document not found");
     }  
@@ -47,12 +46,12 @@ const Tax = () => {
 
   async function submitHandler(event) {
         event.preventDefault();
-  
-        const updatedFormData = {
+
+          saveFormData("tax", data);
+          const updatedFormData = {
             ...formData,
             tax: data,
-          };
-          saveFormData("tax", data);
+          };          
           await formSubmitHandler(updatedFormData);        
           navigate("/translate");
   }

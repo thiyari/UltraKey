@@ -12,11 +12,11 @@ function Business() {
   const { formSubmitHandler } = useFormContext();
 
   const [data, setData] = useState({
-    image: formData.business.image || "",
-    name: formData.business.name || "",
-    address: formData.business.address || "",
-    info: formData.business.info || "",
-    website: formData.business.website || ""
+    image: formData.business.image,
+    name: formData.business.name,
+    address: formData.business.address,
+    info: formData.business.info,
+    website: formData.business.website
   });
 
   const handleImageChange = (file) => {
@@ -49,14 +49,13 @@ function Business() {
 
       console.log("Document exists");
 
-      setData((prev) => ({
-        ...prev,
+      setData({
         image: business.image,
         name: business.name,
         address: business.address,
         info: business.info,
         website: business.website
-      }));
+      });
     } catch (error) {
       console.log("Document not found");
     }  
@@ -69,12 +68,11 @@ function Business() {
   async function submitHandler(event) {
         event.preventDefault();
 
+          saveFormData("business", data);
           const updatedFormData = {
             ...formData,
             business: data,
-          };
-
-          saveFormData("business", data);
+          };          
           await formSubmitHandler(updatedFormData);
           navigate("/invoices");
   }

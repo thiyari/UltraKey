@@ -12,17 +12,17 @@ const Payments = () => {
   const { formSubmitHandler } = useFormContext();
 
   const [data, setData] = useState({
-      currencySymbol: formData.payments.currencySymbol || "",
-      currencyPosition: formData.payments.currencyPosition || "",
-      thousandSeperator: formData.payments.thousandSeperator || "",
-      decimalSeperator: formData.payments.decimalSeperator || "",
-      numberOfDecimals: formData.payments.numberOfDecimals || "",
-      paymentPage: formData.payments.paymentPage || "",
-      paymentPageFooter: formData.payments.paymentPageFooter || "",
-      bank: formData.payments.bank || "",
-      genericPayment: formData.payments.genericPayment || "",
-      discount: formData.payments.discount || "",
-      paid: formData.payments.paid || ""
+      currencySymbol: formData.payments.currencySymbol,
+      currencyPosition: formData.payments.currencyPosition,
+      thousandSeperator: formData.payments.thousandSeperator,
+      decimalSeperator: formData.payments.decimalSeperator,
+      numberOfDecimals: formData.payments.numberOfDecimals,
+      paymentPage: formData.payments.paymentPage,
+      paymentPageFooter: formData.payments.paymentPageFooter,
+      bank: formData.payments.bank,
+      genericPayment: formData.payments.genericPayment,
+      discount: formData.payments.discount,
+      paid: formData.payments.paid
     });
 
   const currencyOptions = [
@@ -50,8 +50,7 @@ const Payments = () => {
 
       console.log("Document exists");
 
-      setData((prev) => ({
-        ...prev,
+      setData({
         currencySymbol: payments.currencySymbol,
         currencyPosition: payments.currencyPosition,
         thousandSeperator: payments.thousandSeperator,
@@ -63,7 +62,7 @@ const Payments = () => {
         genericPayment: payments.genericPayment,
         discount: payments.discount,
         paid: payments.paid
-      }));
+      });
     } catch (error) {
       console.log("Document not found");
     }  
@@ -77,11 +76,11 @@ const Payments = () => {
   async function submitHandler(event) {
         event.preventDefault();
   
+        saveFormData("payments", data);
         const updatedFormData = {
             ...formData,
             payments: data,
           };
-        saveFormData("payments", data);
         await formSubmitHandler(updatedFormData);        
         navigate("/tax");
   }

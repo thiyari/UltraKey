@@ -11,18 +11,18 @@ const Translate = () => {
     const { formSubmitHandler } = useFormContext();
   
     const [data, setData] = useState({
-      quoteLabel: formData.translate.quoteLabel || "",
-      qutoeLabelPlural: formData.translate.qutoeLabelPlural || "",
-      invoiceLabel: formData.translate.invoiceLabel || "",
-      invoiceLabelPlural: formData.translate.invoiceLabelPlural || "",
-      hrsQty: formData.translate.hrsQty || "",
-      service: formData.translate.service || "",
-      ratePrice: formData.translate.ratePrice || "",
-      adjust: formData.translate.adjust || "",
-      subTotal: formData.translate.subTotal || "",
-      discount: formData.translate.discount || "",
-      total: formData.translate.total || "",
-      totalDue: formData.translate.totalDue || "",
+      quoteLabel: formData.translate.quoteLabel,
+      qutoeLabelPlural: formData.translate.qutoeLabelPlural,
+      invoiceLabel: formData.translate.invoiceLabel,
+      invoiceLabelPlural: formData.translate.invoiceLabelPlural,
+      hrsQty: formData.translate.hrsQty,
+      service: formData.translate.service,
+      ratePrice: formData.translate.ratePrice,
+      adjust: formData.translate.adjust,
+      subTotal: formData.translate.subTotal,
+      discount: formData.translate.discount,
+      total: formData.translate.total,
+      totalDue: formData.translate.totalDue,
     });
 
 
@@ -36,8 +36,7 @@ const Translate = () => {
 
       console.log("Document exists");
 
-      setData((prev) => ({
-        ...prev,
+      setData({
         quoteLabel: translate.quoteLabel,
         qutoeLabelPlural: translate.qutoeLabelPlural,
         invoiceLabel: translate.invoiceLabel,
@@ -50,7 +49,7 @@ const Translate = () => {
         discount: translate.discount,
         total: translate.total,
         totalDue: translate.totalDue,
-      }));
+      });
     } catch (error) {
       console.log("Document not found");
     }  
@@ -65,14 +64,13 @@ const Translate = () => {
   async function submitHandler(event) {
         event.preventDefault();
 
+        saveFormData("translate", data);
         const updatedFormData = {
             ...formData,
             translate: data,
           };
-
-          saveFormData("translate", data);
-          await formSubmitHandler(updatedFormData);        
-          navigate("/pdf");
+        await formSubmitHandler(updatedFormData);        
+        navigate("/pdf");
   }
 
   return (

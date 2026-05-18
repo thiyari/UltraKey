@@ -13,9 +13,9 @@ function General() {
     const { formSubmitHandler } = useFormContext();
 
     const [data, setData] = useState({
-      yearStart: formData.general.yearStart || "",
-      yearEnd: formData.general.yearEnd || "",
-      lineItems: formData.general.lineItems || [],
+      yearStart: formData.general.yearStart,
+      yearEnd: formData.general.yearEnd,
+      lineItems: formData.general.lineItems,
     });
     
     const handleBlur = () => {
@@ -66,11 +66,10 @@ function General() {
 
       console.log("Document exists");
 
-      setData((prev) => ({
-        ...prev,
+      setData({
         yearStart: general.yearStart,
         yearEnd: general.yearEnd,
-      }));
+      });
 
       setValue(
         general.lineItems
@@ -95,12 +94,11 @@ function General() {
     async function submitHandler(event) {
         event.preventDefault();
 
+          saveFormData("general", data);
           const updatedFormData = {
             ...formData,
             general: data,
           };
-
-          saveFormData("general", data);
           await formSubmitHandler(updatedFormData);
           navigate("/business");
     }

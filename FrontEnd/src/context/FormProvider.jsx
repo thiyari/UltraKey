@@ -6,12 +6,75 @@ const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
-    general: {},
-    business: {},
-    invoices: {},
-    payments: {},
-    tax: {},
-    translate: {},
+          general: {
+            key: "",
+            yearStart: "",
+            yearEnd: "",
+            lineItems: [],
+          },
+
+          business: {
+            key: "",
+            image: "",
+            name: "",
+            address: "",
+            info: "",
+            website: "",
+          },
+
+          invoices: {
+            key: "",
+            prefix: "",
+            suffix: "",
+            autoIncrement: "No",
+            nextNumber: "",
+            dueDate: "",
+            hideAdjustField: "No",
+            termsAndConditions: "",
+            footer: "",
+            notices: [],
+            template: "",
+            customCSS: "",
+            toAddress: "",
+          },
+
+          payments: {
+            key: "",
+            currencySymbol: "",
+            currencyPosition: "",
+            thousandSeperator: "",
+            decimalSeperator: "",
+            numberOfDecimals: "",
+            paymentPage: "",
+            paymentPageFooter: "",
+            bank: "",
+            genericPayment: "",
+            discount: "",
+            paid: "",
+          },
+
+          tax: {
+            key: "",
+            price: "",
+            percentage: "",
+            name: "",
+          },
+          
+          translate: {
+            key: "",
+            quoteLabel: "",
+            qutoeLabelPlural: "",
+            invoiceLabel: "",
+            invoiceLabelPlural: "",
+            hrsQty: "",
+            service: "",
+            ratePrice: "",
+            adjust: "",
+            subTotal: "",
+            discount: "",
+            total: "",
+            totalDue: ""  
+          }        
   });
 
   // Save page data
