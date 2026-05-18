@@ -51,8 +51,7 @@ export const FormProvider = ({ children }) => {
             nextNumber: updatedFormData.invoices.nextNumber,
             dueDate: updatedFormData.invoices.dueDate,
             hideAdjustField: updatedFormData.invoices.hideAdjustField,
-            termsAndConditions:
-              updatedFormData.invoices.termsAndConditions,
+            termsAndConditions: updatedFormData.invoices.termsAndConditions,
             footer: updatedFormData.invoices.footer,
             notices: updatedFormData.invoices.notices,
             template: updatedFormData.invoices.template,
@@ -81,8 +80,22 @@ export const FormProvider = ({ children }) => {
             percentage: updatedFormData.tax.percentage,
             name: updatedFormData.tax.name,
           },
-
           
+          translate: {
+            key: "translate",
+            quoteLabel: updatedFormData.translate.quoteLabel,
+            qutoeLabelPlural: updatedFormData.translate.qutoeLabelPlural,
+            invoiceLabel: updatedFormData.translate.invoiceLabel,
+            invoiceLabelPlural: updatedFormData.translate.invoiceLabelPlural,
+            hrsQty: updatedFormData.translate.hrsQty,
+            service: updatedFormData.translate.service,
+            ratePrice: updatedFormData.translate.ratePrice,
+            adjust: updatedFormData.translate.adjust,
+            subTotal: updatedFormData.translate.subTotal,
+            discount: updatedFormData.translate.discount,
+            total: updatedFormData.translate.total,
+            totalDue: updatedFormData.translate.totalDue  
+          }        
         },
         {
           headers: {

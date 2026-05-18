@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { useFormContext } from "../context/useFormContext";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Translate = () => {
 
     const navigate = useNavigate();
     const { saveFormData, formData } = useFormContext();
+    const { formSubmitHandler } = useFormContext();
   
     const [data, setData] = useState({
       quoteLabel: formData.translate.quoteLabel || "",
@@ -22,9 +25,53 @@ const Translate = () => {
       totalDue: formData.translate.totalDue || "",
     });
 
+
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const translate = response.data.data[0].translate;
+
+      console.log("Document exists");
+
+      setData((prev) => ({
+        ...prev,
+        quoteLabel: translate.quoteLabel,
+        qutoeLabelPlural: translate.qutoeLabelPlural,
+        invoiceLabel: translate.invoiceLabel,
+        invoiceLabelPlural: translate.invoiceLabelPlural,
+        hrsQty: translate.hrsQty,
+        service: translate.service,
+        ratePrice: translate.ratePrice,
+        adjust: translate.adjust,
+        subTotal: translate.subTotal,
+        discount: translate.discount,
+        total: translate.total,
+        totalDue: translate.totalDue,
+      }));
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);  
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);  
+
+
+
   async function submitHandler(event) {
         event.preventDefault();
+
+        const updatedFormData = {
+            ...formData,
+            translate: data,
+          };
+
           saveFormData("translate", data);
+          await formSubmitHandler(updatedFormData);        
           navigate("/pdf");
   }
 
@@ -50,7 +97,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Quote'
-                        value={data.quoteLabel}
+                        value={data.quoteLabel??""}
                         onChange={(e)=>{setData({...data, quoteLabel: e.target.value})}}
                         />
                 </div>
@@ -69,7 +116,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Quotes'
-                        value={data.qutoeLabelPlural}
+                        value={data.qutoeLabelPlural??""}
                         onChange={(e)=>{setData({...data, qutoeLabelPlural: e.target.value})}}
                         />
                 </div>
@@ -91,7 +138,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Invoice'
-                        value={data.invoiceLabel}
+                        value={data.invoiceLabel??""}
                         onChange={(e)=>{setData({...data, invoiceLabel: e.target.value})}}
                         />
                 </div>
@@ -110,7 +157,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Invoices'
-                        value={data.invoiceLabelPlural}
+                        value={data.invoiceLabelPlural??""}
                         onChange={(e)=>{setData({...data, invoiceLabelPlural: e.target.value})}}
                         />
                 </div>
@@ -129,7 +176,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Hrs/Qty'
-                        value={data.hrsQty}
+                        value={data.hrsQty??""}
                         onChange={(e)=>{setData({...data, hrsQty: e.target.value})}}
                         />
                 </div>
@@ -144,7 +191,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Service'
-                        value={data.service}
+                        value={data.service??""}
                         onChange={(e)=>{setData({...data, service: e.target.value})}}
                         />
                 </div>
@@ -160,7 +207,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Rate/Price'
-                        value={data.ratePrice}
+                        value={data.ratePrice??""}
                         onChange={(e)=>{setData({...data, ratePrice: e.target.value})}}
                         />
                 </div>
@@ -175,7 +222,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Adjust'
-                        value={data.adjust}
+                        value={data.adjust??""}
                         onChange={(e)=>{setData({...data, adjust: e.target.value})}}
                         />
                 </div>
@@ -192,7 +239,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Sub Total'
-                        value={data.subTotal}
+                        value={data.subTotal??""}
                         onChange={(e)=>{setData({...data, subTotal: e.target.value})}}
                         />
                 </div>
@@ -207,7 +254,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Discount'
-                        value={data.discount}
+                        value={data.discount??""}
                         onChange={(e)=>{setData({...data, discount: e.target.value})}}
                         />
                 </div>
@@ -223,7 +270,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Total'
-                        value={data.total}
+                        value={data.total??""}
                         onChange={(e)=>{setData({...data, total: e.target.value})}}
                         />
                 </div>
@@ -238,7 +285,7 @@ const Translate = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder="Total Due"
-                        value={data.totalDue}
+                        value={data.totalDue??""}
                         onChange={(e)=>{setData({...data, totalDue: e.target.value})}}
                         />
                 </div>
