@@ -13,6 +13,18 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            {/*<!-- Dropdown -->*/}
+            <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+                Services
+              </Link>
+
+              <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="#">Web Design</Link></li>
+                <li><Link className="dropdown-item" to="#">App Development</Link></li>
+                <li><Link className="dropdown-item" to="#">SEO</Link></li>
+              </ul>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/">General</Link>
             </li>
@@ -40,19 +52,6 @@ function Header() {
             <li className="nav-item">
               <Link className="nav-link" to="/translate">Translate</Link>
             </li>
-                    {/*<!-- Dropdown -->*/}
-            <li className="nav-item dropdown">
-              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
-                Services
-              </Link>
-
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="#">Web Design</Link></li>
-                <li><Link className="dropdown-item" to="#">App Development</Link></li>
-                <li><Link className="dropdown-item" to="#">SEO</Link></li>
-              </ul>
-            </li>
-
           </ul>
         </div>
       </div>
