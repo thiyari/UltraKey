@@ -6,6 +6,7 @@ const settingsSchema = new mongoose.Schema(
     key: {
       type: String,
       required: false,
+      unique: true
     },
     yearStart: {
       type: String,
@@ -40,6 +41,7 @@ const settingsSchema = new mongoose.Schema(
     key: {
       type: String,
       required: false,
+      unique: true
     },
     image: {
       type: String,
@@ -66,6 +68,7 @@ const settingsSchema = new mongoose.Schema(
     key: {
       type: String,
       required: false,
+      unique: true
     },
     prefix: {
       type: String,
@@ -116,6 +119,57 @@ const settingsSchema = new mongoose.Schema(
       required: false,
     }
   },      
+  payments: {
+    key: {
+      type: String,
+      required: false,
+      unique: true
+    },
+    currencySymbol: {
+      type: String,
+      required: false,
+    },
+    currencyPosition: {
+      type: String,
+      required: false,
+    },
+    thousandSeperator: {
+      type: String,
+      required: false,
+    },
+    decimalSeperator: {
+      type: String,
+      required: false,
+    },
+    numberOfDecimals: {
+      type: String,
+      required: false,
+    },
+    paymentPage: {
+      type: String,
+      required: false,      
+    },
+    paymentPageFooter: {
+      type: String,
+      required: false,      
+    },
+    bank: {
+      type: String,
+      required: false,
+    },
+    genericPayment: {
+      type: String,
+      required: false,
+    },
+    discount: {
+      type: String,
+      required: false,
+    },
+    paid: {
+      type: String,
+      required: false,
+    }
+  },
   },  
   {
     timestamps: true,

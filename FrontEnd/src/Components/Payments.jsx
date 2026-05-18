@@ -2,12 +2,15 @@ import React, {useState} from 'react'
 import Dropdowns from './Common/Dropdowns';
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/FormContext";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Payments = () => {
 
 
   const navigate = useNavigate();
   const { saveFormData, formData } = useFormContext();
+  const { formSubmitHandler } = useFormContext();
 
   const [data, setData] = useState({
       currencySymbol: formData.payments.currencySymbol || "",
@@ -39,8 +42,14 @@ const Payments = () => {
 
   async function submitHandler(event) {
         event.preventDefault();
-          saveFormData("payments", data);
-          navigate("/tax");
+  
+        const updatedFormData = {
+            ...formData,
+            payments: data,
+          };
+        saveFormData("payments", data);
+        await formSubmitHandler(updatedFormData);        
+        navigate("/tax");
   }
 
 

@@ -53,6 +53,20 @@ export const FormProvider = ({ children }) => {
                 template: updatedFormData.invoices.template,
                 customCSS: updatedFormData.invoices.customCSS,
                 toAddress: updatedFormData.invoices.toAddress
+            },
+              payments: {
+                key: "payments",
+                currencySymbol: updatedFormData.payments.currencySymbol,
+                currencyPosition: updatedFormData.payments.currencyPosition,
+                thousandSeperator: updatedFormData.payments.thousandSeperator,
+                decimalSeperator: updatedFormData.payments.decimalSeperator,
+                numberOfDecimals: updatedFormData.payments.numberOfDecimals,
+                paymentPage: updatedFormData.payments.paymentPage,
+                paymentPageFooter: updatedFormData.payments.paymentPageFooter,
+                bank: updatedFormData.payments.bank,
+                genericPayment: updatedFormData.payments.genericPayment,
+                discount: updatedFormData.payments.discount,
+                paid: updatedFormData.payments.paid
             }
           },
           {

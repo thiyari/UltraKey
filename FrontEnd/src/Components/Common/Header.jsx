@@ -42,7 +42,7 @@ function Header() {
             </li>
                     {/*<!-- Dropdown -->*/}
             <li className="nav-item dropdown">
-              <Link class="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
                 Services
               </Link>
 
