@@ -17,9 +17,9 @@ const Template2 = () => {
   
     const invoice_number = (prefix, number, suffix) => {
       if (prefix != "" && suffix == "") {
-          return <p>{prefix}-{number}</p>;
+          return `${prefix}-${number}`;
       } else if (suffix != "" && prefix == "") {
-          return <p>{number}-{suffix}</p>;
+          return `${number}-${suffix}`;
       } else {
           return ""
       }
