@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import RadioButtons from './Common/RadioButtons';
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/useFormContext";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Tax = () => {
     const navigate = useNavigate();
     const { saveFormData, formData } = useFormContext();
+    const { formSubmitHandler } = useFormContext();
+    
     const [data, setData] = useState({
       price: formData.tax.price || "",
       percentage: formData.tax.percentage || "",
@@ -13,9 +17,43 @@ const Tax = () => {
     });
   const options = ['Yes. I will enter prices inclusive of tax', 'No. I will enter prices exclusive of tax'];
 
+
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const tax = response.data.data[0].tax;
+
+      console.log("Document exists");
+
+      setData((prev) => ({
+        ...prev,
+        price: tax.price,
+        percentage: tax.percentage,
+        name: tax.name,
+      }));
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);  
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);  
+
+
+
   async function submitHandler(event) {
         event.preventDefault();
+  
+        const updatedFormData = {
+            ...formData,
+            tax: data,
+          };
           saveFormData("tax", data);
+          await formSubmitHandler(updatedFormData);        
           navigate("/translate");
   }
 
@@ -39,6 +77,7 @@ const Tax = () => {
                 <label htmlFor="taxName" className="col-sm-3 col-form-label"><b>Prices entered with tax</b></label>
                 <div className="col-sm-4">
                   <RadioButtons
+                    selectedOption={data.price}
                     getSelectedItem={(item)=>{setData(
                       {...data, 
                         price: item, 

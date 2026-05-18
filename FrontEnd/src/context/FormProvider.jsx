@@ -74,6 +74,15 @@ export const FormProvider = ({ children }) => {
             discount: updatedFormData.payments.discount,
             paid: updatedFormData.payments.paid,
           },
+
+          tax: {
+            key: "tax",
+            price: updatedFormData.tax.price,
+            percentage: updatedFormData.tax.percentage,
+            name: updatedFormData.tax.name,
+          },
+
+          
         },
         {
           headers: {
