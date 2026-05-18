@@ -98,7 +98,7 @@ const Tax = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.percentage}
+                        value={data.percentage??""}
                         onChange={(e)=>{setData({...data, percentage: e.target.value})}}
                         />
                 </div>
@@ -117,7 +117,7 @@ const Tax = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.name}
+                        value={data.name??""}
                         onChange={(e)=>{setData({...data, name: e.target.value})}}
                         />
                 </div>
