@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import Dropdowns from './Common/Dropdowns';
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/useFormContext";
@@ -6,7 +6,6 @@ import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Payments = () => {
-
 
   const navigate = useNavigate();
   const { saveFormData, formData } = useFormContext();
@@ -39,6 +38,41 @@ const Payments = () => {
     { value: 'Option2', label: 'Option2'},
     { value: 'Option3', label: 'Option3'}
   ];
+
+
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const payments = response.data.data[0].payments;
+
+      console.log("Document exists");
+
+      setData((prev) => ({
+        ...prev,
+        currencySymbol: payments.currencySymbol,
+        currencyPosition: payments.currencyPosition,
+        thousandSeperator: payments.thousandSeperator,
+        decimalSeperator: payments.decimalSeperator,
+        numberOfDecimals: payments.numberOfDecimals,
+        paymentPage: payments.paymentPage,
+        paymentPageFooter: payments.paymentPageFooter,
+        bank: payments.bank,
+        genericPayment: payments.genericPayment,
+        discount: payments.discount,
+        paid: payments.paid
+      }));
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);  
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);  
+
 
   async function submitHandler(event) {
         event.preventDefault();
@@ -73,7 +107,7 @@ const Payments = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.currencySymbol}
+                        value={data.currencySymbol??""}
                         onChange={(e)=>{setData({...data, currencySymbol: e.target.value})}}
                         />
                 </div>
@@ -83,7 +117,11 @@ const Payments = () => {
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="currencyPosition" className="col-sm-3 col-form-label"><b>Currency Position</b></label>
                 <div className="col-sm-4">
-                    <Dropdowns options={currencyOptions} getOption={(option) => setData({...data,currencyPosition: option})}/>
+                    <Dropdowns 
+                        options={currencyOptions} 
+                        selectedOption={data.currencyPosition}
+                        getOption={(option) => setData({...data,currencyPosition: option})}
+                      />
                 </div>
                 <div className="col-sm-5"></div>
               </div>
@@ -94,7 +132,7 @@ const Payments = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.thousandSeperator}
+                        value={data.thousandSeperator??""}
                         onChange={(e)=>{setData({...data, thousandSeperator: e.target.value})}}
                         />
                 </div>
@@ -109,7 +147,7 @@ const Payments = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.decimalSeperator}
+                        value={data.decimalSeperator??""}
                         onChange={(e)=>{setData({...data, decimalSeperator: e.target.value})}}
                         />
                 </div>
@@ -124,7 +162,7 @@ const Payments = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value={data.numberOfDecimals}
+                        value={data.numberOfDecimals??""}
                         onChange={(e)=>{setData({...data, numberOfDecimals: e.target.value})}}
                         />
                 </div>
@@ -136,7 +174,11 @@ const Payments = () => {
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="currencyPosition" className="col-sm-3 col-form-label"><b>Payment Page</b></label>
                 <div className="col-sm-4">
-                    <Dropdowns options={paymentOptions} getOption={(option) => setData({...data, paymentPage: option})}/>
+                    <Dropdowns 
+                      options={paymentOptions} 
+                      selectedOption={data.paymentPage}
+                      getOption={(option) => setData({...data, paymentPage: option})}
+                    />
                 </div>
                 <div className="col-sm-5"></div>
                 <div className='col-sm-3'></div>
@@ -152,7 +194,7 @@ const Payments = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
-                      value={data.paymentPageFooter}
+                      value={data.paymentPageFooter??""}
                       onChange={(e)=>{setData({...data, paymentPageFooter: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>The footer will be displayed at the bottom of the payment page. Basic HTML is allowed.
@@ -177,7 +219,7 @@ const Payments = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
-                      value={data.bank}
+                      value={data.bank??""}
                       onChange={(e)=>{setData({...data, bank: e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Add your bank account details if you wish to allow direct bank deposits. HTML is allowed.</i></label>
@@ -197,7 +239,7 @@ const Payments = () => {
                   <textarea 
                       className="form-control" 
                       rows="4"
-                      value={data.genericPayment}
+                      value={data.genericPayment??""}
                       onChange={(e)=>{setData({...data,genericPayment:e.target.value})}}
                       ></textarea>
                   <label className="form-label text-muted mt-2" style={{fontSize: "0.6rem"}}><i>Set a generic message or include further instructions for the user on how to pay. HTML is allowed.</i></label>
@@ -220,7 +262,7 @@ const Payments = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder="Paid"
-                        value={data.paid}
+                        value={data.paid??""}
                         onChange={(e)=>{setData({...data, paid: e.target.value})}}
                         />
                 </div>
@@ -235,7 +277,7 @@ const Payments = () => {
                         type="text"  
                         className="form-control mb-2" 
                         placeholder='Discount'
-                        value={data.discount}
+                        value={data.discount??""}
                         onChange={(e)=>{setData({...data, discount: e.target.value})}}
                         />
                 </div>

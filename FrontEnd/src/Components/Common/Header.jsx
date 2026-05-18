@@ -16,13 +16,13 @@ function Header() {
             {/*<!-- Dropdown -->*/}
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
-                Services
+                Panels
               </Link>
 
               <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="#">Web Design</Link></li>
-                <li><Link className="dropdown-item" to="#">App Development</Link></li>
-                <li><Link className="dropdown-item" to="#">SEO</Link></li>
+                <li><Link className="dropdown-item" to="#">Clients</Link></li>
+                <li><Link className="dropdown-item" to="#">Quotes</Link></li>
+                <li><Link className="dropdown-item" to="#">Invoices</Link></li>
               </ul>
             </li>
             <li className="nav-item">
