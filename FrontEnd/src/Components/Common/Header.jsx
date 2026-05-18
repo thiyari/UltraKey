@@ -13,18 +13,6 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            {/*<!-- Dropdown -->*/}
-            <li className="nav-item dropdown">
-              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
-                Panels
-              </Link>
-
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="#">Clients</Link></li>
-                <li><Link className="dropdown-item" to="#">Quotes</Link></li>
-                <li><Link className="dropdown-item" to="#">Invoices</Link></li>
-              </ul>
-            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/">General</Link>
             </li>
@@ -47,10 +35,22 @@ function Header() {
               <Link className="nav-link" to="/emails">Emails</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/pdf">PDF</Link>
+              <Link className="nav-link" to="/translate">Translate</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/translate">Translate</Link>
+              <Link className="nav-link" to="/pdf">PDF</Link>
+            </li>
+            {/*<!-- Dropdown -->*/}
+            <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+                Panels
+              </Link>
+
+              <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="#">Clients</Link></li>
+                <li><Link className="dropdown-item" to="#">Quotes</Link></li>
+                <li><Link className="dropdown-item" to="#">Invoices</Link></li>
+              </ul>
             </li>
           </ul>
         </div>
