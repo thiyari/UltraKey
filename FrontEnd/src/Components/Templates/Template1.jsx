@@ -45,7 +45,7 @@ const decimals = () => {
 }
 
   return (
-    <div className='container' 
+    <div className='container-fluid' 
     style={{
       margin: 0,
       border: "2px solid #236ca0",
