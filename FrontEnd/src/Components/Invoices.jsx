@@ -2,14 +2,14 @@ import React, {useState, useEffect, useCallback} from 'react'
 import Templates from './Common/Templates';
 import CheckBoxes from './Common/CheckBoxes';
 import { useNavigate } from "react-router-dom";
-import { useFormContext } from "../context/useFormContext";
+//import { useFormContext } from "../context/useFormContext";
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Invoices = () => {
 
     const navigate = useNavigate();
-    const { saveFormData, formData } = useFormContext();
+    /*const { saveFormData, formData } = useFormContext();
     const { formSubmitHandler } = useFormContext();
   
     const [data, setData] = useState({
@@ -25,7 +25,23 @@ const Invoices = () => {
       template: formData.invoices.template,
       customCSS: formData.invoices.customCSS,
       toAddress: formData.invoices.toAddress
-    });
+    }); */
+
+
+    const [data, setData] = useState({
+      prefix: "",
+      suffix: "",
+      autoIncrement: "No",
+      nextNumber: "",
+      dueDate: "",
+      hideAdjustField: "No",
+      termsAndConditions: "",
+      footer: "",
+      notices: [],
+      template: "",
+      customCSS: "",
+      toAddress: ""
+    });    
 
     const items = ["Invoice Viewed","Invoice Paid"];
 
@@ -67,15 +83,45 @@ const Invoices = () => {
 
   async function submitHandler(event) {
         event.preventDefault();
-          
+        /*  
           saveFormData("invoices", data);
           const updatedFormData = {
             ...formData,
             invoices: data,
           };          
-          await formSubmitHandler(updatedFormData);        
+          await formSubmitHandler(updatedFormData);     */  
+          
+
+    try {
+      await axios.put(
+        `${apiUrl}/api/settings`,
+        { invoices: {
+          key: "invoices",
+          prefix: data.prefix,
+          suffix: data.suffix,
+          autoIncrement: data.autoIncrement,
+          nextNumber: data.nextNumber,
+          dueDate: data.dueDate,
+          hideAdjustField: data.hideAdjustField,
+          termsAndConditions: data.termsAndConditions,
+          footer: data.footer,
+          notices: data.notices,
+          template: data.template,
+          customCSS: data.customCSS,
+          toAddress: data.toAddress 
+          }
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      alert(err);
+    }
           navigate("/payments");
-  }
+    }
 
 
   return (
