@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const New = () => {
+    const [showPassword, setShowPassword] = useState(false);
   return (
     <div>
         <form>
@@ -43,13 +44,15 @@ const New = () => {
                 <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Password*</b></label>
                 <div className="col-sm-7">
                     <input 
-                        type="password"  
+                        type={showPassword ? "text" : "password"}  
                         className="form-control mb-2" 
+                        placeholder="Enter password"
                         required
                         />
                 </div>
                 <div className="col-sm-2">
-                    <button className="btn btn-outline-primary">Show password</button>
+                    <button type="button" className="btn btn-outline-primary" 
+                    onClick={() => setShowPassword(!showPassword)}>{showPassword ? "Hide Password" : "Show Password"}</button>
                 </div>
               </div>
 
