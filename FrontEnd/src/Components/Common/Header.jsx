@@ -7,7 +7,7 @@ function Header() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light border">
       <div className="container">
-        <Link className="navbar-brand" to="/">
+        <button className="navbar-brand" style={{border: "None"}}>
             {/*<!-- Dropdown -->*/}
             <li className="nav-item dropdown list-unstyled">
               <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"></Link>
@@ -17,7 +17,7 @@ function Header() {
                 <li><Link className="dropdown-item" to="#">Invoices Panel</Link></li>
               </ul>
             </li>        
-        </Link>
+        </button>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
