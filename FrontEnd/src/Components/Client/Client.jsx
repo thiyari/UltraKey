@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import RadioButtons from '../Common/RadioButtons';
+import New from './New';
+import Existing from './Existing';
 
-const options = ['Existing User', 'Create New Year'];
+const options = ['Existing User', 'Create New User'];
 const Client = () => {
     const [type, setType] = useState('');
   return (
@@ -16,7 +18,6 @@ const Client = () => {
             </div>
 
 
-            <form>
               <div className="form-group row" align="left">
                 <label htmlFor="taxName" className="col-sm-3 col-form-label">Add new client from:</label>
                 <RadioButtons
@@ -25,107 +26,8 @@ const Client = () => {
                     getSelectedItem={(selected)=>setType(selected)}
                     name={'client'}/>
               </div>
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Business/Client Name*</b></label>
-                <div className="col-sm-9">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        value=""
-                        onChange=""
-                        />
-                </div>
-              </div>
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Email*</b></label>
-                <div className="col-sm-9">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        value=""
-                        onChange=""
-                        />
-                </div>
-              </div>
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>UserName*</b></label>
-                <div className="col-sm-9">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        value=""
-                        onChange=""
-                        />
-                </div>
-              </div>
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Passoword*</b></label>
-                <div className="col-sm-9">
-                    <button className="btn btn-outline-primary mt-2">Show password</button>
-                </div>
-              </div>
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>First Name</b></label>
-                <div className="col-sm-9">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        value=""
-                        onChange=""
-                        />
-                </div>
-              </div>
-
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Last Name</b></label>
-                <div className="col-sm-9">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        value=""
-                        onChange=""
-                        />
-                </div>
-              </div>
-
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Website</b></label>
-                <div className="col-sm-9">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        value=""
-                        onChange=""
-                        />
-                </div>
-              </div>
-
-
-
-              <div className="form-group row mt-2" align="left">
-                <div className="col-sm-3">
-                  <button type="submit" className="btn btn-primary">Add New Client</button>
-                </div>
-                <div className="col-sm-4"></div>
-                <div className="col-sm-3"></div>
-              </div>
-
-
-            </form>
-
+              {(type === "Create New User") && <New/>}
+              {(type === "Existing User") && <Existing/>}
     </div>
   )
 }
