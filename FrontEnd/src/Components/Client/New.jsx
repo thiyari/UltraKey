@@ -59,7 +59,7 @@ const New = () => {
 
 
 
-              <div className="form-group row mt-2" align="left">
+              <div className="form-group row mt-4" align="left">
                 <label htmlFor="yearEnd" className="col-sm-3 col-form-label"><b>Address</b></label>
                 <div className="col-sm-9">
                     <textarea 
@@ -71,7 +71,7 @@ const New = () => {
               </div>
 
 
-              <div className="form-group row mt-2" align="left">
+              <div className="form-group row mt-4" align="left">
                 <label htmlFor="yearEnd" className="col-sm-3 col-form-label"><b>Extra Info</b></label>
                 <div className="col-sm-9">
                     <textarea 
