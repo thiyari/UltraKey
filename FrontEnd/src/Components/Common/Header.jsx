@@ -7,7 +7,17 @@ function Header() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light border">
       <div className="container">
-        <Link className="navbar-brand" to="/"></Link>
+        <Link className="navbar-brand" to="/">
+            {/*<!-- Dropdown -->*/}
+            <li className="nav-item dropdown list-unstyled">
+              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"></Link>
+              <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="#">Clients Panel</Link></li>
+                <li><Link className="dropdown-item" to="#">Quotes Panel</Link></li>
+                <li><Link className="dropdown-item" to="#">Invoices Panel</Link></li>
+              </ul>
+            </li>        
+        </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -39,18 +49,6 @@ function Header() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/pdf">PDF</Link>
-            </li>
-            {/*<!-- Dropdown -->*/}
-            <li className="nav-item dropdown">
-              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
-                Panels
-              </Link>
-
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="#">Clients</Link></li>
-                <li><Link className="dropdown-item" to="#">Quotes</Link></li>
-                <li><Link className="dropdown-item" to="#">Invoices</Link></li>
-              </ul>
             </li>
           </ul>
         </div>
