@@ -10,11 +10,11 @@ function Header() {
         <button className="navbar-brand" style={{border: "None"}}>
             {/*<!-- Dropdown -->*/}
             <li className="nav-item dropdown list-unstyled">
-              <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"></Link>
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"></a>
               <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="#">Clients Panel</Link></li>
-                <li><Link className="dropdown-item" to="#">Quotes Panel</Link></li>
-                <li><Link className="dropdown-item" to="#">Invoices Panel</Link></li>
+                <li><a className="dropdown-item" href="#">Clients Panel</a></li>
+                <li><a className="dropdown-item" href="#">Quotes Panel</a></li>
+                <li><a className="dropdown-item" href="#">Invoices Panel</a></li>
               </ul>
             </li>        
         </button>
@@ -24,31 +24,31 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/">General</Link>
+              <a className="nav-link" href="/">General</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/business">Business</Link>
+              <a className="nav-link" href="/business">Business</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/quotes">Quotes</Link>
+              <a className="nav-link" href="/quotes">Quotes</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/invoices">Invoices</Link>
+              <a className="nav-link" href="/invoices">Invoices</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/payments">Payments</Link>
+              <a className="nav-link" href="/payments">Payments</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/tax">Tax</Link>
+              <a className="nav-link" href="/tax">Tax</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/emails">Emails</Link>
+              <a className="nav-link" href="/emails">Emails</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/translate">Translate</Link>
+              <a className="nav-link" href="/translate">Translate</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/pdf">PDF</Link>
+              <a className="nav-link" href="/pdf">PDF</a>
             </li>
           </ul>
         </div>
