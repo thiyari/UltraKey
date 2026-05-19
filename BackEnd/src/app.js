@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const settingsRoutes = require("./routes/settings.routes");
+const clientsRoutes = require("./routes/clients.routes")
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(cors(
 
 
 app.use("/api/settings", settingsRoutes);
+app.use("/api/clients", clientsRoutes)
 
 module.exports = app;

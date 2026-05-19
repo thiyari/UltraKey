@@ -1,5 +1,4 @@
 const settingsService = require("../services/settings.service");
-const Settings = require("../models/settings.model");
 
 class SettingsController {
 
