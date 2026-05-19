@@ -80,15 +80,15 @@ const [translate, setTranslate] = useState({
       return futureDate.toLocaleDateString('en-GB');
     }
   
-    const invoice_number = (prefix, number, suffix) => {
-      if (prefix != "" && suffix == "") {
-          return `${prefix}-${number}`;
-      } else if (suffix != "" && prefix == "") {
-          return `${number}-${suffix}`;
-      } else {
-          return ""
-      }
+  const invoice_number = (prefix, number, suffix) => {
+    if (prefix != "" && suffix == "") {
+        return `${prefix}-${number}`;
+    } else if (suffix != "" && prefix == "") {
+        return `${number}-${suffix}`;
+    } else {
+        return ""
     }
+  }
   
     const grandTotal = () => {
       let subTotal = [];
