@@ -81,9 +81,9 @@ const [translate, setTranslate] = useState({
   }
 
   const invoice_number = (prefix, number, suffix) => {
-    if (prefix != "" && suffix == "") {
+    if (prefix != null && suffix == null) {
         return `${prefix}-${number}`;
-    } else if (suffix != "" && prefix == "") {
+    } else if (suffix != null && prefix == null) {
         return `${number}-${suffix}`;
     } else {
         return ""
