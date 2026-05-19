@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors(
-    {   origin: [process.env.CLIENT_URL],
+    {   origin: [process.env.CLIENT_URL, process.env.TEST_URL],
         methods: ['POST','GET','PUT','DELETE','PATCH','OPTIONS'],
         allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
         credentials:true,            //access-control-allow-credentials:true
