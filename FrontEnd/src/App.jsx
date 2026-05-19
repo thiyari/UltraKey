@@ -2,18 +2,18 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Common/Header';
 import Footer from './Components/Common/Footer';
-import General from './Components/General';
-import Business from './Components/Business';
-import Quotes from './Components/Quotes';
-import Invoices from './Components/Invoices';
-import Payments from './Components/Payments';
-import Tax from './Components/Tax';
-import Emails from './Components/Emails';
-import PDF from './Components/PDF';
-import Translate from './Components/Translate';
+import General from './Components/Settings/General';
+import Business from './Components/Settings/Business';
+import Quotes from './Components/Settings/Quotes';
+import Invoices from './Components/Settings/Invoices';
+import Payments from './Components/Settings/Payments';
+import Tax from './Components/Settings/Tax';
+import Emails from './Components/Settings/Emails';
+import PDF from './Components/Settings/PDF';
+import Translate from './Components/Settings/Translate';
 import Template1 from './Components/Templates/Template1';
 import Template2 from './Components/Templates/Template2';
-import Client from './Components/Client';
+import Client from './Components/Client/Client';
 
 function App() {
 

@@ -1,7 +1,7 @@
 import React, {useState,useCallback} from 'react'
-import RichTextEditor from './Common/Editor/RichTextEditor'
-import CheckBoxes from './Common/CheckBoxes';
-import './Common/Editor/editor.css'
+import RichTextEditor from '../Common/Editor/RichTextEditor'
+import CheckBoxes from '../Common/CheckBoxes';
+import '../Common/Editor/editor.css';
 
 const Emails = () => {
 
@@ -427,7 +427,7 @@ const Emails = () => {
                   <button type="submit" className="btn btn-primary">Save</button>
                 </div>
                 <div className="col-sm-4"></div>
-                <div className="col-sm-3"></div>
+                <div className="col-sm-5"></div>
               </div>
 
             </form>  

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react'
-import Templates from './Common/Templates';
-import CheckBoxes from './Common/CheckBoxes';
+import Templates from '../Common/Templates';
+import CheckBoxes from '../Common/CheckBoxes';
 import { useNavigate } from "react-router-dom";
 //import { useFormContext } from "../context/useFormContext";
 import axios from 'axios';

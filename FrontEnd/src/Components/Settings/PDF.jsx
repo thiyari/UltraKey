@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import html2pdf from "html2pdf.js";
 //import { useFormContext } from "../context/useFormContext";
-import Template1 from "./Templates/Template1";
-import Template2 from "./Templates/Template2";
+import Template1 from "../Templates/Template1";
+import Template2 from "../Templates/Template2";
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;

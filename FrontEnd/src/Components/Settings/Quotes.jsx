@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react'
-import Templates from './Common/Templates';
-import CheckBoxes from './Common/CheckBoxes';
-import Dropdowns from './Common/Dropdowns';
+import Templates from '../Common/Templates';
+import CheckBoxes from '../Common/CheckBoxes';
+import Dropdowns from '../Common/Dropdowns';
 
 
 
@@ -315,7 +315,7 @@ const Quotes = () => {
                   <button type="submit" className="btn btn-primary">Save</button>
                 </div>
                 <div className="col-sm-4"></div>
-                <div className="col-sm-3"></div>
+                <div className="col-sm-5"></div>
               </div>
 
 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
-import Dropdowns from './Common/Dropdowns';
+import Dropdowns from '../Common/Dropdowns';
 import { useNavigate } from "react-router-dom";
 //import { useFormContext } from "../context/useFormContext";
 import axios from 'axios';
