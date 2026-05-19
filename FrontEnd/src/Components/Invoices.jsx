@@ -290,9 +290,7 @@ const Invoices = () => {
                 <div className="col-sm-6">
                     <CheckBoxes 
                         selectedItems={data.notices}
-                        getCheckedItems={useCallback((list) => {
-                                          setData((prev) => ({ ...prev, notices: list }));
-                                        }, [])} 
+                        getCheckedItems={useCallback((list) => {setData((prev) => ({ ...prev, notices: list }))}, [])} 
                         items={items}
                       />
                 </div>

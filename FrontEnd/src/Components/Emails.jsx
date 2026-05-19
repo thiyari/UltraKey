@@ -329,7 +329,7 @@ const Emails = () => {
                 <div className="col-sm-6">
                     <CheckBoxes 
                       selectedItems={checkedItems}
-                      getCheckedItems={(list)=>{setCheckedItems(list)}} 
+                      getCheckedItems={useCallback((list) => { setCheckedItems(list)}, [])} 
                       items={items}
                     />
                     <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Check when you would like payment remainders sent out.</i></label>

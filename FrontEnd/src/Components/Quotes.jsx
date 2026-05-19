@@ -262,7 +262,8 @@ const Quotes = () => {
                 <div className="col-sm-6">
                     <CheckBoxes 
                     selectedItems={checkedItems}
-                    getCheckedItems={(list)=>{setCheckedItems(list)}} items={items}/>
+                    getCheckedItems={useCallback((list) => { setCheckedItems(list)}, [])} 
+                    items={items}/>
                 </div>
                 <div className="col-sm-3"></div>
                 {/*<p>Selected: {checkedItems.join(", ")}</p>*/}
