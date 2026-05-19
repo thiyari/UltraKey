@@ -72,7 +72,7 @@ const Quotes = () => {
                 <label htmlFor="autoIncrement" className="col-sm-3 col-form-label"><b>Auto Increment</b></label>
                 <div className="col-sm-5">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <input className="form-check-input" type="checkbox" id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Increment Quote numbers by one. Recommended.
                     </label>
@@ -119,7 +119,7 @@ const Quotes = () => {
                 <label htmlFor="hideAdjustField" className="col-sm-3 col-form-label"><b>Hide Adjust Field</b></label>
                 <div className="col-sm-6">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <input className="form-check-input" type="checkbox" id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Hide the adjust field on the line items, I won't need this field.
                     </label>
@@ -165,7 +165,7 @@ const Quotes = () => {
                 <label htmlFor="acceptQuoteButton" className="col-sm-3 col-form-label"><b>Accept Quote Button</b></label>
                 <div className="col-sm-5">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <input className="form-check-input" type="checkbox" id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. show the "Accept Quote" button on Quotes.
                     </label>
@@ -223,7 +223,7 @@ const Quotes = () => {
                 <label htmlFor="declineReason" className="col-sm-3 col-form-label"><b>Decline Reason Required</b></label>
                 <div className="col-sm-5">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <input className="form-check-input" type="checkbox" id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Make the "Reason for declining" field required.
                     </label>

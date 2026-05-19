@@ -10,8 +10,6 @@ const New = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value=""
-                        onChange=""
                         required
                         />
                 </div>
@@ -23,8 +21,6 @@ const New = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value=""
-                        onChange=""
                         required
                         />
                 </div>
@@ -37,8 +33,6 @@ const New = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value=""
-                        onChange=""
                         required
                         />
                 </div>
@@ -47,8 +41,15 @@ const New = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Password*</b></label>
-                <div className="col-sm-9">
-                    <button className="btn btn-outline-primary mt-2">Show password</button>
+                <div className="col-sm-7">
+                    <input 
+                        type="password"  
+                        className="form-control mb-2" 
+                        required
+                        />
+                </div>
+                <div className="col-sm-2">
+                    <button className="btn btn-outline-primary">Show password</button>
                 </div>
               </div>
 
@@ -62,8 +63,6 @@ const New = () => {
                       className="form-control" 
                       rows="2"
                       style={{fontSize: "14px"}}
-                      value=""
-                      onChange=""
                       ></textarea>
                 </div>
               </div>
@@ -76,8 +75,6 @@ const New = () => {
                       className="form-control" 
                       rows="2"
                       style={{fontSize: "14px"}}
-                      value=""
-                      onChange=""
                       ></textarea>
                 </div>
               </div>
@@ -89,8 +86,6 @@ const New = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value=""
-                        onChange=""
                         />
                 </div>
               </div>
@@ -103,8 +98,6 @@ const New = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value=""
-                        onChange=""
                         />
                 </div>
               </div>
@@ -117,8 +110,6 @@ const New = () => {
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value=""
-                        onChange=""
                         />
                 </div>
               </div>      

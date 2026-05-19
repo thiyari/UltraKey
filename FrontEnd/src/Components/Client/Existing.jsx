@@ -1,17 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
+import Dropdowns from '../Common/Dropdowns';
+
+  const userOptions = [
+    { value: '', label: 'Choose client'},
+  ];
 
 const Existing = () => {
+    const [existingUser, setExistingUser] = useState('');
   return (
     <div>
         <form>
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="currencyPosition" className="col-sm-3 col-form-label"><b>Select Existing User*</b></label>
+                <div className="col-sm-9">
+                    <Dropdowns 
+                        options={userOptions} 
+                        selectedOption={existingUser}
+                        getOption={(option) => setExistingUser(option)}
+                      />
+                </div>
+              </div>
+            
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Business/Client Name*</b></label>
                 <div className="col-sm-9">
                     <input 
                         type="text"  
                         className="form-control mb-2" 
-                        value=""
-                        onChange=""
                         required
                         />
                 </div>
@@ -26,8 +43,6 @@ const Existing = () => {
                       className="form-control" 
                       rows="2"
                       style={{fontSize: "14px"}}
-                      value=""
-                      onChange=""
                       ></textarea>
                 </div>
               </div>
@@ -40,8 +55,6 @@ const Existing = () => {
                       className="form-control" 
                       rows="2"
                       style={{fontSize: "14px"}}
-                      value=""
-                      onChange=""
                       ></textarea>
                 </div>
               </div>

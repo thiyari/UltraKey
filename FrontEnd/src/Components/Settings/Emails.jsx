@@ -48,10 +48,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -69,10 +65,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -89,7 +81,7 @@ const Emails = () => {
                 <label htmlFor="bccClientEmails" className="col-sm-3 col-form-label"><b>BCC on Client Emails</b></label>
                 <div className="col-sm-5">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <input className="form-check-input" type="checkbox" id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. send myself a copy of all client emails (BCC). Recommended.
                     </label>
@@ -124,10 +116,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -162,10 +150,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -200,10 +184,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -237,10 +217,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -278,10 +254,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>
@@ -348,10 +320,6 @@ const Emails = () => {
                     <input 
                         type="email"  
                         className="form-control mb-2" 
-                        id="" 
-                        placeholder=""
-                        name=""
-                        value=""
                         />
                 </div>
                 <div className="col-sm-5"></div>

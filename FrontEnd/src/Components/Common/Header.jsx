@@ -7,7 +7,7 @@ function Header() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light border">
       <div className="container">
-        <button className="navbar-brand" style={{border: "None"}}>
+        <button className="navbar-brand border" style={{border: "None", backgroundColor: "transparent"}}>
             {/*<!-- Dropdown -->*/}
             <li className="nav-item dropdown list-unstyled">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"></a>
