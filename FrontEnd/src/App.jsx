@@ -13,7 +13,7 @@ import PDF from './Components/PDF';
 import Translate from './Components/Translate';
 import Template1 from './Components/Templates/Template1';
 import Template2 from './Components/Templates/Template2';
-
+import Client from './Components/Client';
 
 function App() {
 
@@ -33,6 +33,7 @@ function App() {
             <Route path="/translate" element = {<Translate/>} />
             <Route path="/template1" element = {<Template1/>} />
             <Route path="/template2" element = {<Template2/>} />
+            <Route path="/client" element = {<Client/>} />
           </Routes>
         <Footer/>
       </Router>

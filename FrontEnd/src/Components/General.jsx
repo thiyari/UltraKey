@@ -183,7 +183,7 @@ const handleLineItemsChange = (e) => {
                   <button type="submit" className="btn btn-primary">Save</button>
                 </div>
                 <div className="col-sm-4"></div>
-                <div className="col-sm-3"></div>
+                <div className="col-sm-5"></div>
               </div>
             </form>
 
