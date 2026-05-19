@@ -1,9 +1,74 @@
-import React, {useState} from 'react'
-import { useFormContext } from "../../context/useFormContext";
+import React, {useState, useEffect, useCallback} from 'react'
+//import { useFormContext } from "../../context/useFormContext";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Template2 = () => {
 
-    const { formData } = useFormContext();
+    //const { formData } = useFormContext();
+const [general, setGeneral] = useState({
+      yearStart: "",
+      yearEnd: "",
+      lineItems: [],
+});
+
+const [business, setBusiness] = useState({
+    image: "",
+    name: "",
+    address: "",
+    info: "",
+    website: ""
+});
+
+const [invoices, setInvoices] = useState({
+      prefix: "",
+      suffix: "",
+      autoIncrement: "No",
+      nextNumber: "",
+      dueDate: "",
+      hideAdjustField: "No",
+      termsAndConditions: "",
+      footer: "",
+      notices: [],
+      template: "",
+      customCSS: "",
+      toAddress: ""
+});
+
+const [payments, setPayments] = useState({
+      currencySymbol: "",
+      currencyPosition: "",
+      thousandSeperator: "",
+      decimalSeperator: "",
+      numberOfDecimals: "",
+      paymentPage: "",
+      paymentPageFooter: "",
+      bank: "",
+      genericPayment: "",
+      discount: "",
+      paid: ""
+});
+
+const [tax, setTax] = useState({
+      price: "",
+      percentage: "",
+      name: "",
+});
+
+const [translate, setTranslate] = useState({
+      quoteLabel: "",
+      qutoeLabelPlural: "",
+      invoiceLabel: "",
+      invoiceLabelPlural: "",
+      hrsQty: "",
+      service: "",
+      ratePrice: "",
+      adjust: "",
+      subTotal: "",
+      discount: "",
+      total: "",
+      totalDue: "",
+});
     
     const future_date = (days) => {
       // Today's date
@@ -28,7 +93,7 @@ const Template2 = () => {
     const grandTotal = () => {
       let subTotal = [];
       let grandTotal = 0;
-      formData.general.lineItems.map((item, index) => {
+      general.lineItems.map((item, index) => {
           subTotal[index] = item.price * item.qty;
       })
       subTotal.map((item)=>{
@@ -38,13 +103,44 @@ const Template2 = () => {
     }
     
   const thousand_seperator = (num) => {
-    return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, formData.payments.thousandSeperator);
+    return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, payments.thousandSeperator);
   }
   
   const decimals = () => {
-      return "0".repeat(formData.payments.numberOfDecimals);
+      return "0".repeat(payments.numberOfDecimals);
   }
+
+
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const general = response.data.data[0].general;
+      const business = response.data.data[0].business;
+      const invoices = response.data.data[0].invoices;
+      const payments = response.data.data[0].payments;
+      const tax = response.data.data[0].tax;
+      const translate = response.data.data[0].translate;
+
+      setGeneral(general);
+      setBusiness(business);
+      setInvoices(invoices);
+      setPayments(payments);
+      setTax(tax);
+      setTranslate(translate);
+
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);  
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);  
   
+
 
   return (
     <div className='mt-1 container' 
@@ -57,14 +153,21 @@ const Template2 = () => {
         <div className='row mt-4'>
             <div className='col-sm-3'>
                 <div style={{ float: "left"}}>
-                    <img src={formData.business.image} alt="Preview" height="100" width="350" />
+                        {business.image ? (
+                        <img
+                            src={business.image}
+                            alt="Preview"
+                            height="100"
+                            width="350"
+                        />
+                        ) : null}
                 </div>
             </div>
             <div className='col-sm-5'></div>
             <div className='col-sm-4'>
                 <div className='row' style={{backgroundColor: '#236ca0'}}>
                     <div style={{float:"right", textAlign: "right"}}>
-                        <p style={{fontFamily: "arial", fontSize:"26px", color: "white", padding: "4px", fontWeight: "bold"}}>{formData.translate.invoiceLabel}</p>
+                        <p style={{fontFamily: "arial", fontSize:"26px", color: "white", padding: "4px", fontWeight: "bold"}}>{translate.invoiceLabel}</p>
                     </div>
                 </div>
             </div>
@@ -75,10 +178,10 @@ const Template2 = () => {
                   <div className='col-sm-10' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>From:</b><br></br>
                       <p style={{fontFamily: "Calibri"}}>
-                          {formData.business.name}
+                          {business.name}
                       </p>               
-                      <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: formData.business.address}}/>
-                      <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: formData.business.info}} /> 
+                      <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: business.address}}/>
+                      <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: business.info}} /> 
                   </div>   
                   <div className='col-sm-2'></div>
               </div>
@@ -86,7 +189,7 @@ const Template2 = () => {
                   <div className='col-sm-10' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>To:</b><br></br>
                       <p style={{fontFamily: "Calibri"}}>
-                          {formData.invoices.toAddress}
+                          {invoices.toAddress}
                       </p>
                   </div>
                   <div className='col-sm-2'></div>
@@ -100,7 +203,7 @@ const Template2 = () => {
                         <div className='row'>
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{fontWeight: "bold"}}>Invoice Number</p></div>
                             <div className='col-sm-5' style={{textAlign: "right"}}>
-                                <p>{invoice_number(formData.invoices.prefix, formData.invoices.nextNumber, formData.invoices.suffix)}</p>   
+                                <p>{invoice_number(invoices.prefix, invoices.nextNumber, invoices.suffix)}</p>   
                             </div>
                         </div>
                         <div className='row'>
@@ -109,26 +212,26 @@ const Template2 = () => {
                         </div>
                         <div className='row' >
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p style={{fontWeight: "bold"}}>Due Date</p></div>
-                            <div className='col-sm-5'style={{textAlign: "right"}}><p>{future_date(formData.invoices.dueDate)}</p></div>
+                            <div className='col-sm-5'style={{textAlign: "right"}}><p>{future_date(invoices.dueDate)}</p></div>
                         </div>
                         <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
-                            <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
+                            <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{translate.totalDue}</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
                                     {
-                                        formData.payments.currencyPosition === "left"
-                                        && `${formData.payments.currencySymbol}${thousand_seperator(
-                                            ((grandTotal() - formData.payments.discount) +
-                                            ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
-                                            formData.payments.paid
-                                        )}${formData.payments.decimalSeperator}${decimals()}`
+                                        payments.currencyPosition === "left"
+                                        && `${payments.currencySymbol}${thousand_seperator(
+                                            ((grandTotal() - payments.discount) +
+                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            payments.paid
+                                        )}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {    
-                                        formData.payments.currencyPosition === "right"
+                                        payments.currencyPosition === "right"
                                         && `${thousand_seperator(
-                                            ((grandTotal() - formData.payments.discount) +
-                                            ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
-                                            formData.payments.paid
-                                        )}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                            ((grandTotal() - payments.discount) +
+                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            payments.paid
+                                        )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                 </p></div>
                         </div>
@@ -140,7 +243,7 @@ const Template2 = () => {
                         
                             <div className='col-sm-11 mt-4'>
                                 <div className='row'>
-                                    <div dangerouslySetInnerHTML={{__html: formData.invoices.termsAndConditions }} />
+                                    <div dangerouslySetInnerHTML={{__html: invoices.termsAndConditions }} />
                                 </div>
                             </div>
                             <div className='col-sm-1'></div>
@@ -157,36 +260,36 @@ const Template2 = () => {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.hrsQty}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{formData.translate.service}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.ratePrice}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{formData.translate.subTotal}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.hrsQty}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{translate.service}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.ratePrice}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.subTotal}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                              formData.general.lineItems.map((item, index) => (
+                              general.lineItems.map((item, index) => (
                                 <tr key={index}>
                                 <td style={{textAlign: "center"}}>{item.qty}</td>
                                 <td style={{textAlign: "left"}}>{item.title}<br></br><label className={"text-muted"}>{item.description}</label></td>
                                 <td style={{textAlign: "center"}}>
                                     { 
-                                        formData.payments.currencyPosition === "left" && 
-                                        `${formData.payments.currencySymbol}${thousand_seperator(item.price).trim()}${formData.payments.decimalSeperator}${decimals()}`
+                                        payments.currencyPosition === "left" && 
+                                        `${payments.currencySymbol}${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
-                                       formData.payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(item.price).trim()}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                       payments.currencyPosition === "right" && 
+                                        `${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                 </td>
                                 <td style={{textAlign: "center"}}>
                                     {
-                                        formData.payments.currencyPosition === "left" && 
-                                        `${formData.payments.currencySymbol}${thousand_seperator(item.qty*item.price).trim()}${formData.payments.decimalSeperator}${decimals()}`
+                                        payments.currencyPosition === "left" && 
+                                        `${payments.currencySymbol}${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
-                                        formData.payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(item.qty*item.price).trim()}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                        payments.currencyPosition === "right" && 
+                                        `${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                 </td>
                                 </tr>
@@ -206,7 +309,7 @@ const Template2 = () => {
                 <div className='col-sm-6'>
                     <div className='row bg-body-secondary p-3 m-3'>
                         <div className='col-sm-12' style={{textAlign: "left"}}>
-                            <div dangerouslySetInnerHTML={{ __html: formData.payments.genericPayment }} />
+                            <div dangerouslySetInnerHTML={{ __html: payments.genericPayment }} />
                         </div>
                     </div>
                 </div>
@@ -216,58 +319,58 @@ const Template2 = () => {
                     <div className='col-sm-10'>
                         <div className='row' style={{marginRight: "5px"}}>
                             <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p>{formData.translate.total}</p></div>
+                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p>{translate.total}</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     <p>
                                         {
-                                            formData.payments.currencyPosition === "left" && 
-                                            `${formData.payments.currencySymbol}${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}`
+                                            payments.currencyPosition === "left" && 
+                                            `${payments.currencySymbol}${thousand_seperator(grandTotal())}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
-                                            formData.payments.currencyPosition === "right" && 
-                                            `${thousand_seperator(grandTotal())}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                            payments.currencyPosition === "right" && 
+                                            `${thousand_seperator(grandTotal())}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                     </p>   
                                 </div>
                             </div>
                             <hr className='row'></hr>
                                 <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "green"}}>{formData.translate.discount}</p></div>
+                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "green"}}>{translate.discount}</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     <p style={{color: "green"}}>
                                         {
-                                            formData.payments.currencyPosition === "left" && 
-                                            `${formData.payments.currencySymbol}${thousand_seperator(formData.payments.discount)}${formData.payments.decimalSeperator}${decimals()}`
+                                            payments.currencyPosition === "left" && 
+                                            `${payments.currencySymbol}${thousand_seperator(payments.discount)}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
-                                            formData.payments.currencyPosition === "right" && 
-                                            `${thousand_seperator(formData.payments.discount)}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                            payments.currencyPosition === "right" && 
+                                            `${thousand_seperator(payments.discount)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                     </p>   
                                 </div>
                             </div>
                             <hr className='row'></hr>
                             <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right"}}><p>{formData.tax.name}</p></div>
+                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right"}}><p>{tax.name}</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}>
                                     <p>
                                         {
-                                        formData.payments.currencyPosition === "left" && 
+                                        payments.currencyPosition === "left" && 
 
-                                        (formData.tax.price === 'Yes. I will enter prices inclusive of tax'? 
+                                        (tax.price === 'Yes. I will enter prices inclusive of tax'? 
                                             (
-                                                formData.tax.percentage === ""? "₹0.00": `${"₹"}${formData.tax.percentage}${".00"}`
+                                                tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
                                             ): 
-                                                `${formData.payments.currencySymbol}${thousand_seperator((formData.tax.percentage/100) * (grandTotal() - formData.payments.discount))}${formData.payments.decimalSeperator}${decimals()}`
+                                                `${payments.currencySymbol}${thousand_seperator((tax.percentage/100) * (grandTotal() - payments.discount))}${payments.decimalSeperator}${decimals()}`
                                         )}
                                         {
-                                        formData.payments.currencyPosition === "right" && 
+                                        payments.currencyPosition === "right" && 
 
-                                        (formData.tax.price === 'Yes. I will enter prices inclusive of tax'? 
+                                        (tax.price === 'Yes. I will enter prices inclusive of tax'? 
                                             (
-                                                formData.tax.percentage === ""? "₹0.00": `${"₹"}${formData.tax.percentage}${".00"}`
+                                                tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
                                             ): 
-                                                `${thousand_seperator((formData.tax.percentage/100) * (grandTotal() - formData.payments.discount))}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                                `${thousand_seperator((tax.percentage/100) * (grandTotal() - payments.discount))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         )}
                                     </p></div>
                             </div>
@@ -276,29 +379,29 @@ const Template2 = () => {
                                 <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "#236ca0"}}>Paid</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     {
-                                    (formData.payments.paid == ((grandTotal() - formData.payments.discount) +
-                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount)))?
+                                    (payments.paid == ((grandTotal() - payments.discount) +
+                                                ((tax.percentage / 100) * (grandTotal() - payments.discount)))?
                                     <p style={{color: "#236ca0"}}>
                                         {
-                                            formData.payments.currencyPosition === "left" && 
-                                            `${"-"}${formData.payments.currencySymbol}${thousand_seperator(((grandTotal() - formData.payments.discount) +
-                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))))}${formData.payments.decimalSeperator}${decimals()}`
+                                            payments.currencyPosition === "left" && 
+                                            `${"-"}${payments.currencySymbol}${thousand_seperator(((grandTotal() - payments.discount) +
+                                                ((tax.percentage / 100) * (grandTotal() - payments.discount))))}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
-                                            formData.payments.currencyPosition === "right" && 
-                                            `${"-"}${thousand_seperator(((grandTotal() - formData.payments.discount) +
-                                                ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))))}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                            payments.currencyPosition === "right" && 
+                                            `${"-"}${thousand_seperator(((grandTotal() - payments.discount) +
+                                                ((tax.percentage / 100) * (grandTotal() - payments.discount))))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                     </p>:
                                     <p style={{color: "#236ca0"}}>
 
                                         {
-                                            formData.payments.currencyPosition === "left" &&
-                                            `${formData.payments.currencySymbol}${thousand_seperator(formData.payments.paid)}${formData.payments.decimalSeperator}${decimals()}`
+                                            payments.currencyPosition === "left" &&
+                                            `${payments.currencySymbol}${thousand_seperator(payments.paid)}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
-                                            formData.payments.currencyPosition === "right" &&
-                                            `${thousand_seperator(formData.payments.paid)}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                            payments.currencyPosition === "right" &&
+                                            `${thousand_seperator(payments.paid)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                 
                                     </p>)
@@ -307,23 +410,23 @@ const Template2 = () => {
                             </div>
                             
                             <div className='row mt-1' style={{backgroundColor: "#236ca0", padding: "10px"}}>
-                                <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{formData.translate.totalDue}</p></div>
+                                <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{translate.totalDue}</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
                                     {
-                                        formData.payments.currencyPosition === "left"
-                                        && `${formData.payments.currencySymbol}${thousand_seperator(
-                                            ((grandTotal() - formData.payments.discount) +
-                                            ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
-                                            formData.payments.paid
-                                        )}${formData.payments.decimalSeperator}${decimals()}`
+                                        payments.currencyPosition === "left"
+                                        && `${payments.currencySymbol}${thousand_seperator(
+                                            ((grandTotal() - payments.discount) +
+                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            payments.paid
+                                        )}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {    
-                                        formData.payments.currencyPosition === "right"
+                                        payments.currencyPosition === "right"
                                         && `${thousand_seperator(
-                                            ((grandTotal() - formData.payments.discount) +
-                                            ((formData.tax.percentage / 100) * (grandTotal() - formData.payments.discount))) -
-                                            formData.payments.paid
-                                        )}${formData.payments.decimalSeperator}${decimals()}${formData.payments.currencySymbol}`
+                                            ((grandTotal() - payments.discount) +
+                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            payments.paid
+                                        )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                     </p></div>
                             </div>
@@ -336,7 +439,7 @@ const Template2 = () => {
             <div className='mt-2'>                
                 <hr className='m-3' style={{border: "2px solid #236ca0"}}></hr>
                 <div className='row mb-3 p-1'>
-                    <div dangerouslySetInnerHTML={{ __html: formData.invoices.footer }} />
+                    <div dangerouslySetInnerHTML={{ __html: invoices.footer }} />
                 </div>
             </div>
 

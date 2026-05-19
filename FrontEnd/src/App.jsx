@@ -18,7 +18,7 @@ import Template2 from './Components/Templates/Template2';
 function App() {
 
   return (
-    <div className='container-fluid'>
+    <div className='container'>
       <Router>
         <Header/>
           <Routes>

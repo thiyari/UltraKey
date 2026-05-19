@@ -48,7 +48,7 @@ const Translate = () => {
       const response = await axios.get(`${apiUrl}/api/settings`);
 
       const translate = response.data.data[0].translate;
-
+      
       console.log("Document exists");
 
       setData({
@@ -105,7 +105,7 @@ const Translate = () => {
             subTotal: data.subTotal,
             discount: data.discount,
             total: data.total,
-            totalDue: data.totalDuee,
+            totalDue: data.totalDue,
           }     
         },
         {

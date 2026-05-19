@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import html2pdf from "html2pdf.js";
-import { useFormContext } from "../context/useFormContext";
+//import { useFormContext } from "../context/useFormContext";
 import Template1 from "./Templates/Template1";
 import Template2 from "./Templates/Template2";
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const PDF = () => {
-  const { formData } = useFormContext();
+  //const { formData } = useFormContext();
   const contentRef = useRef();
+  const [invoicesTemplate, setInvoicesTemplate] = useState();
 
   const downloadPDF = () => {
     const element = contentRef.current;
@@ -27,14 +30,37 @@ const PDF = () => {
     };
 
     html2pdf().set(options).from(element).save();
+
   };
+
+
+
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+
+      const template = response.data.data[0].invoices.template;
+      console.log("Document exists");
+      setInvoicesTemplate(template);
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);  
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);  
+
+
 
   return (
     <div className="mt-4">
       {/* PDF CONTENT */}
       <div ref={contentRef}>
-        {formData.invoices.template === "template1" && <Template1 />}
-        {formData.invoices.template === "template2" && <Template2 />}
+        {invoicesTemplate === "template1" && <Template1 />}
+        {invoicesTemplate === "template2" && <Template2 />}
       </div>
 
       {/* BUTTON OUTSIDE PDF CONTENT */}
