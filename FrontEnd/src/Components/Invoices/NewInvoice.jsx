@@ -1,6 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
+import LineItems from './LineItems';
 
 const NewInvoice = () => {
+  const [cards, setCards] = useState([
+    { id: 1, title: "Item 1" },
+  ]);
+  // Add new card
+  const addLineItem = () => {
+    const newCard = {
+      id: Date.now(),
+      title: `Item ${cards.length + 1}`,
+    };
+
+    setCards([...cards, newCard]);
+  };
+
+  // Delete card
+  const deleteLineItem = (id) => {
+    const updatedCards = cards.filter((card) => card.id !== id);
+    setCards(updatedCards);
+  };
+
   return (
     <div className='container'>
       <div className='row mt-3 p-2 border' style={{backgroundColor: "#f8f9fb"}}>
@@ -14,64 +34,66 @@ const NewInvoice = () => {
                         placeholder='Enter Invoice Title'
                         required
                         />
-                    <div class="card text rounded-0 mt-5">
-                        <div class="card-header" align="left">
+                    <div className="card text rounded-0 mt-5">
+                        <div className="card-header" align="left">
                           <strong>Description</strong>
                         </div>
-                        <div class="card-body" align="left">
+                        <div className="card-body" align="left">
                         </div>
                     </div>
-                    <div class="card text rounded-0 mt-4">
-                        <div class="card-header" align="left">
+                    <div className="card text rounded-0 mt-4">
+                        <div className="card-header" align="left">
                           <strong>Line Items</strong>
                         </div>
-                        <div class="card-body" align="left">
+                        <div className="card-body" align="left">
+                          <LineItems cards={cards} deleteCard={deleteLineItem}/>
+                          <a className='btn btn-outline-primary rounded-0' onClick={addLineItem}>Add Another Item</a>
                         </div>
                     </div>
-                    <div class="card text rounded-0 mt-4">
-                        <div class="card-header" align="left">
+                    <div className="card text rounded-0 mt-4">
+                        <div className="card-header" align="left">
                           <strong>Payments</strong>
                         </div>
-                        <div class="card-body" align="left">
+                        <div className="card-body" align="left">
                         </div>
                     </div>
-                    <div class="card text rounded-0 mt-4">
-                        <div class="card-header" align="left">
+                    <div className="card text rounded-0 mt-4">
+                        <div className="card-header" align="left">
                           <strong>Terms and Conditions</strong>
                         </div>
-                        <div class="card-body" align="left">
+                        <div className="card-body" align="left">
                         </div>
                     </div>
                 </div>
         </div>
         </div>
         <div className='col-sm-3'>
-          <div class="card text rounded-0">
-            <div class="card-header" align="left">
+          <div className="card text rounded-0">
+            <div className="card-header" align="left">
               <strong>Publish</strong>
             </div>
-            <div class="card-body" align="right">
-              <a href="#" class="btn btn-primary rounded-0">Publish</a>
+            <div className="card-body" align="right">
+              <a href="#" className="btn btn-primary rounded-0">Publish</a>
             </div>
           </div>
-          <div class="card mt-4 text rounded-0">
-            <div class="card-header" align="left">
+          <div className="card mt-4 text rounded-0">
+            <div className="card-header" align="left">
               <strong>Invoice Details</strong>
             </div>
-            <div class="card-body" align="left">
+            <div className="card-body" align="left">
               {/* sub parts*/}
-                <div class="card mt-4 text rounded-0">
-                  <div class="card-header" align="left">
+                <div className="card mt-4 text rounded-0">
+                  <div className="card-header" align="left">
                     <strong>Payment Settings</strong>
                   </div>
-                  <div class="card-body" align="left">
+                  <div className="card-body" align="left">
                   </div>
                 </div>
-                <div class="card mt-4 text rounded-0">
-                  <div class="card-header" align="left">
+                <div className="card mt-4 text rounded-0">
+                  <div className="card-header" align="left">
                     <strong>Tax Settings</strong>
                   </div>
-                  <div class="card-body" align="left">
+                  <div className="card-body" align="left">
                   </div>
                 </div>
             </div>
