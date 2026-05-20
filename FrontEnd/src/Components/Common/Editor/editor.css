@@ -5,7 +5,7 @@
 }
 
 .editor-wrapper {
-  width: 582px;
+  width: auto;
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 8px;
@@ -46,4 +46,22 @@
   padding: 10px;
   font-size: 12px;
   overflow-x: auto;
+}
+
+blockquote {
+  border-left: 4px solid #999;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #555;
+  position: relative;
+}
+
+blockquote::before {
+  content: "“";
+  font-size: 3rem;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  color: #ccc;
 }

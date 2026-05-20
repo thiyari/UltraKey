@@ -55,10 +55,10 @@ export default function MenuBar({ editor }) {
         <i className="fa-solid fa-list-ol fa-sm"></i>
       </button>
 
-      {/* Block styles 
+      {/* Block styles */} 
       <button onClick={(e) => {e.preventDefault(); editor.chain().focus().toggleBlockquote().run()}}>
         <i className="fa-solid fa-quote-left fa-sm"></i>
-      </button> */}
+      </button>
 
       <button onClick={(e) => {e.preventDefault(); editor.chain().focus().toggleCodeBlock().run()}}>
         <i className="fa-solid fa-code fa-sm"></i>

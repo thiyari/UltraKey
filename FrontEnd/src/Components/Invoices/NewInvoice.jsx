@@ -1,16 +1,17 @@
 import React, {useState} from 'react'
 import LineItems from './LineItems';
 import Payments from './Payments';
+import RichTextEditor from '../Common/Editor/RichTextEditor';
 
 const NewInvoice = () => {
-  
   const [lineItemCards, setLineItemCards] = useState([
     { id: 1, number: 1 },
   ]);
   const [paymentCards, setPaymentCards] = useState([
     { id: 1, number: 1 },
   ]);
-
+  const [description, setDescription] = useState("");
+  const [termsAndConditions, setTermsAndConditions] = useState("");
   // Add new LineItem card
   const addLineItemCard = () => {
     const newLineItemCard = {
@@ -63,6 +64,10 @@ const NewInvoice = () => {
                           <strong>Description</strong>
                         </div>
                         <div className="card-body" align="left">
+                            {/* Using Text Editor Component */}
+                            <div className="app">
+                                <RichTextEditor onChangeHTML={(html)=>{setDescription(html)}}/>
+                            </div>  
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4">
@@ -88,6 +93,10 @@ const NewInvoice = () => {
                           <strong>Terms and Conditions</strong>
                         </div>
                         <div className="card-body" align="left">
+                           {/* Using Text Editor Component */}
+                            <div className="app">
+                                <RichTextEditor onChangeHTML={(html)=>{setTermsAndConditions(html)}}/>
+                            </div>  
                         </div>
                     </div>
                 </div>

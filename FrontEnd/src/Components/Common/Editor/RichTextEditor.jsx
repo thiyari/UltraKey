@@ -5,6 +5,7 @@ import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import TextAlign from "@tiptap/extension-text-align";
 import Placeholder from "@tiptap/extension-placeholder";
+import Blockquote from '@tiptap/extension-blockquote'
 
 import MenuBar from "./MenuBar";
 import EditorPreview from "./EditorPreview";
@@ -21,6 +22,7 @@ export default function RichTextEditor(props) {
         openOnClick: true,
       }),
       Image,
+      Blockquote,
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
