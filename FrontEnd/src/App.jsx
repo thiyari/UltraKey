@@ -19,7 +19,7 @@ import NewInvoice from './Components/Invoices/NewInvoice';
 function App() {
 
   return (
-    <div className='container'>
+    <div className='container-fluid'>
       <Router>
         <Header/>
           <Routes>

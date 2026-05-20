@@ -112,7 +112,7 @@ function Business() {
 
 
   return (
-    <div className="container">
+    <div className="container-fluid">
           
             <div className="row">
                 <h5 className="mt-4" align="left"><b>Business Settings</b></h5>

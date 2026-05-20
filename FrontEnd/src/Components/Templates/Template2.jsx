@@ -143,7 +143,7 @@ const [translate, setTranslate] = useState({
 
 
   return (
-    <div className='mt-1 container' 
+    <div className='mt-1 container-fluid' 
     style={{
       margin: 0,
       border: "5px solid #236ca0",

@@ -7,7 +7,7 @@ const options = ['Existing User', 'Create New User'];
 const Client = () => {
     const [type, setType] = useState('');
   return (
-    <div className="container">
+    <div className="container-fluid">
             <div className="row">
                 <h5 className="mt-4" align="left"><b>Add New Client</b></h5>
             </div>

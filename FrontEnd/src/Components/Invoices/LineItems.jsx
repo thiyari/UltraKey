@@ -9,6 +9,13 @@ const LineItems = ({cards, deleteCard}) => {
                     <b>Item {card.number}</b>
                 </div>
                 <div className="card-body" align="right">
+                    <div className='row pl-2 p-2'>
+                        <div className='col-sm-2 border'>Mani</div>
+                        <div className='col-sm-4 border'>Mani</div>
+                        <div className='col-sm-2 border'>Mani</div>
+                        <div className='col-sm-2 border'>Mani</div>
+                        <div className='col-sm-2 border'>Mani</div>
+                    </div>
                     <button className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Item</button>
                 </div>
             </div>          

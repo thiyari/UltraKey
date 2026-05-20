@@ -138,7 +138,7 @@ const Payments = () => {
 
 
   return (
-    <div className="container">
+    <div className="container-fluid">
           
             <div className="row">
                 <h5 className="mt-4" align="left"><b>Payment Settings</b></h5>

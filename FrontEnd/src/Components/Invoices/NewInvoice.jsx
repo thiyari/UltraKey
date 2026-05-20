@@ -47,7 +47,7 @@ const NewInvoice = () => {
 
 
   return (
-    <div className='container'>
+    <div className='container-fluid'>
       <div className='row mt-3 p-2 border' style={{backgroundColor: "#f8f9fb"}}>
         <label align="left" className="p-2"><b>&nbsp;Add New Invoice</b></label>
         <div className='col-sm-9'>
