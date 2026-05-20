@@ -130,11 +130,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-9">
+                <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setQuoteContent(html)}}/>
-                      </div>              
+                      </div>    
+                <div className="col-sm-1"></div>          
                 </div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
@@ -198,11 +199,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-9">
+                <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setInvoiceContent(html)}}/>
-                      </div>              
+                      </div>    
+                <div className="col-sm-1"></div>          
                 </div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
@@ -268,11 +270,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-9">
+                <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentReceivedContent(html)}}/>
-                      </div>              
+                      </div>    
+                <div className="col-sm-1"></div>                    
                 </div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
@@ -334,11 +337,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="content" className="col-sm-3 col-form-label"><b>Content</b></label>
-                <div className="col-sm-9">
+                <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentRemainderContent(html)}}/>
-                      </div>              
+                      </div>     
+                <div className="col-sm-1"></div>                   
                 </div>
                 <div className='col-sm-3'></div>
                 <div className='col-sm-9'>
@@ -378,11 +382,12 @@ const Emails = () => {
 
               <div className="form-group row mt-4" align="left">
                 <label htmlFor="footer" className="col-sm-3 col-form-label"><b>Footer Text</b></label>
-                <div className="col-sm-9">
+                <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
                         <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setFooterContent(html)}}/>
-                      </div>              
+                      </div>             
+                <div className="col-sm-1"></div>           
                 </div>
               </div>
 
