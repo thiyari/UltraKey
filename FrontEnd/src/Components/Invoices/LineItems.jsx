@@ -1,6 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const LineItems = ({cards, deleteCard}) => {
+
+  const options = ["Add a pre-defined line item", "Other"];
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleUp = () => {
+    setSelectedIndex((prev) =>
+      prev === 0 ? options.length - 1 : prev - 1
+    );
+  };
+
+  const handleDown = () => {
+    setSelectedIndex((prev) =>
+      prev === options.length - 1 ? 0 : prev + 1
+    );
+  };
+    
+
   return (
       <div>
         {cards.map((card) => (
@@ -8,15 +26,90 @@ const LineItems = ({cards, deleteCard}) => {
                 <div className="card-header" align="left">
                     <b>Item {card.number}</b>
                 </div>
-                <div className="card-body" align="right">
-                    <div className='row pl-2 p-2'>
-                        <div className='col-sm-2 border'>Mani</div>
-                        <div className='col-sm-4 border'>Mani</div>
-                        <div className='col-sm-2 border'>Mani</div>
-                        <div className='col-sm-2 border'>Mani</div>
-                        <div className='col-sm-2 border'>Mani</div>
+                <div className="card-body">
+                    <div className='row mb-4'>
+                        <div className='col-sm-2'>
+                            <div className='form-group' align='left'>
+                                <label className="form-label">Qty</label>
+                                <input type="text" className="form-control rounded-0" placeholder='1'/>
+                            </div>
+                        </div>
+                        <div className='col-sm-4'>
+                            <div className='form-group' align='left'>
+                                <label className="form-label">Item Title</label>
+                                <input type="text" className="form-control rounded-0"/>
+                            </div>
+                        </div>
+                        <div className='col-sm-2'>
+                            <div className='form-group' align='left'>
+                                <label className="form-label">Adjust (%)</label>
+                                <input type="text" placeholder='0' className="form-control rounded-0"/>
+                            </div>
+                        </div>
+                        <div className='col-sm-2'>
+                            <div className='form-group' align='left'>
+                                <label className="form-label">Rate (₹)</label>
+                                <input type="text" placeholder='0' className="form-control rounded-0"/>
+                            </div>
+                        </div>
+                        <div className='col-sm-2'>
+                            <div className='form-group' align='right'>
+                                <label className="form-label">Amount (₹)</label>
+                                <label className="form-label">₹0.00</label>
+                            </div>
+                        </div>
                     </div>
-                    <button className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Item</button>
+                    <div className='row mb-4'>
+                        <div className='col-sm-6'>
+                            <div className='form-group' align='left'>
+                                <label className="form-label">Description</label>
+                                <input type="text" 
+                                    placeholder='Brief description of the work carried out for this line item (optional)' 
+                                    className="form-control rounded-0"/>
+                            </div>
+                        </div>
+                        <div className='col-sm-2'>
+                            <div className='form-group' align='left'>
+                                <label className="form-label">Taxable</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" 
+                                        type="checkbox" 
+                                        id="flexCheckDefault"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-sm-2'></div>
+                        <div className='col-sm-2'></div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-6' align='left'>
+                                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+
+                                    {/* Select dropdown */}
+                                    <select className="form-select rounded-0"
+                                        value={options[selectedIndex]}
+                                        onChange={(e) =>
+                                        setSelectedIndex(options.indexOf(e.target.value))
+                                        }
+                                    >
+                                        {options.map((option, index) => (
+                                        <option key={index} value={option}>
+                                            {option}
+                                        </option>
+                                        ))}
+                                    </select>
+
+                            {/* Up button */}
+                            <button className="px-3 py-1" onClick={handleUp} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-up" style={{color: "blue"}}></i></button>
+
+                            {/* Down button */}
+                            <button className="px-3 py-1" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
+                            </div>
+                        </div>
+                        <div className='col-sm-6' align='right'>
+                            <button className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Item</button>
+                        </div>
+                    </div>
                 </div>
             </div>          
         ))}

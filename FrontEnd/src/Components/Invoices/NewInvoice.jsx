@@ -12,6 +12,14 @@ const NewInvoice = () => {
   ]);
   const [description, setDescription] = useState("");
   const [termsAndConditions, setTermsAndConditions] = useState("");
+
+{/*
+  const htmlToText = (html) => {
+    const div = document.createElement('div')
+    div.innerHTML = html
+    return div.textContent || div.innerText || ''
+  } */}
+
   // Add new LineItem card
   const addLineItemCard = () => {
     const newLineItemCard = {
