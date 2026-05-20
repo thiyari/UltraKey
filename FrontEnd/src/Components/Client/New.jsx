@@ -71,7 +71,7 @@ const New = () => {
                 <label htmlFor="taxPercentage" className="col-sm-3 col-form-label"><b>Email*</b></label>
                 <div className="col-sm-9">
                     <input 
-                        type="text"  
+                        type="email"  
                         className="form-control mb-2" 
                         value={email}
                         onChange={(e)=>{setEmail(e.target.value)}}

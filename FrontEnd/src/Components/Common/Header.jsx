@@ -14,7 +14,7 @@ function Header() {
               <ul className="dropdown-menu">
                 <li><a className="dropdown-item" href="/client">Clients Panel</a></li>
                 <li><a className="dropdown-item" href="#">Quotes Panel</a></li>
-                <li><a className="dropdown-item" href="#">Invoices Panel</a></li>
+                <li><a className="dropdown-item" href="/new-invoice">Invoices Panel</a></li>
               </ul>
             </li>        
         </button>

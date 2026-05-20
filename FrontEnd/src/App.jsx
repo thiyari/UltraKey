@@ -14,6 +14,7 @@ import Translate from './Components/Settings/Translate';
 import Template1 from './Components/Templates/Template1';
 import Template2 from './Components/Templates/Template2';
 import Client from './Components/Client/Client';
+import NewInvoice from './Components/Invoices/NewInvoice';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/template1" element = {<Template1/>} />
             <Route path="/template2" element = {<Template2/>} />
             <Route path="/client" element = {<Client/>} />
+            <Route path="/new-invoice" element = {<NewInvoice/>} />
           </Routes>
         <Footer/>
       </Router>
