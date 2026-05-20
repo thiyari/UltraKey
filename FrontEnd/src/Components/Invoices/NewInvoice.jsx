@@ -1,25 +1,49 @@
 import React, {useState} from 'react'
 import LineItems from './LineItems';
+import Payments from './Payments';
 
 const NewInvoice = () => {
-  const [cards, setCards] = useState([
+  
+  const [lineItemCards, setLineItemCards] = useState([
     { id: 1, number: 1 },
   ]);
-  // Add new card
-  const addCard = () => {
-    const newCard = {
+  const [paymentCards, setPaymentCards] = useState([
+    { id: 1, number: 1 },
+  ]);
+
+  // Add new LineItem card
+  const addLineItemCard = () => {
+    const newLineItemCard = {
       id: Date.now(),
-      number: cards.length + 1,
+      number: lineItemCards.length + 1,
     };
 
-    setCards([...cards, newCard]);
+    setLineItemCards([...lineItemCards, newLineItemCard]);
   };
 
-  // Delete card
-  const deleteCard = (id) => {
-    const updatedCards = cards.filter((card) => card.id !== id);
-    setCards(updatedCards);
+  // Add new Payment card
+  const addPaymentCard = () => {
+    const newPaymentCard = {
+      id: Date.now(),
+      number: paymentCards.length + 1,
+    };
+
+    setPaymentCards([...paymentCards, newPaymentCard]);
   };
+
+
+  // Delete LineItem card
+  const deleteLineItemCard = (id) => {
+    const updatedLineItemCards = lineItemCards.filter((card) => card.id !== id);
+    setLineItemCards(updatedLineItemCards);
+  };
+
+  // Delete Payment card
+  const deletePaymentCard = (id) => {
+    const updatedPaymentCards = paymentCards.filter((card) => card.id !== id);
+    setPaymentCards(updatedPaymentCards);
+  };
+
 
   return (
     <div className='container'>
@@ -46,8 +70,8 @@ const NewInvoice = () => {
                           <strong>Line Items</strong>
                         </div>
                         <div className="card-body" align="left">
-                          <LineItems cards={cards} deleteCard={deleteCard}/>
-                          <a className='btn btn-outline-primary rounded-0' onClick={addCard}>Add Another Item</a>
+                          <LineItems cards={lineItemCards} deleteCard={deleteLineItemCard}/>
+                          <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4">
@@ -55,9 +79,11 @@ const NewInvoice = () => {
                           <strong>Payments</strong>
                         </div>
                         <div className="card-body" align="left">
+                          <Payments cards={paymentCards} deleteCard={deletePaymentCard}/>
+                          <a className='btn btn-outline-primary rounded-0' onClick={addPaymentCard}>Add Another Item</a>
                         </div>
                     </div>
-                    <div className="card text rounded-0 mt-4">
+                    <div className="card text rounded-0 mt-4 mb-4">
                         <div className="card-header" align="left">
                           <strong>Terms and Conditions</strong>
                         </div>
