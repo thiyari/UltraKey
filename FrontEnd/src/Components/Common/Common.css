@@ -17,3 +17,12 @@
     padding-left:20px;
     padding-right:20px;
   }
+
+
+.dropdown-toggle.no-arrow::after {
+    display: none;
+}
+
+.dropdown-toggle:hover{
+    border-top: none;
+}
