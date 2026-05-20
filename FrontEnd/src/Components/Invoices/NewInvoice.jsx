@@ -3,20 +3,20 @@ import LineItems from './LineItems';
 
 const NewInvoice = () => {
   const [cards, setCards] = useState([
-    { id: 1, title: "Item 1" },
+    { id: 1, number: 1 },
   ]);
   // Add new card
-  const addLineItem = () => {
+  const addCard = () => {
     const newCard = {
       id: Date.now(),
-      title: `Item ${cards.length + 1}`,
+      number: cards.length + 1,
     };
 
     setCards([...cards, newCard]);
   };
 
   // Delete card
-  const deleteLineItem = (id) => {
+  const deleteCard = (id) => {
     const updatedCards = cards.filter((card) => card.id !== id);
     setCards(updatedCards);
   };
@@ -46,8 +46,8 @@ const NewInvoice = () => {
                           <strong>Line Items</strong>
                         </div>
                         <div className="card-body" align="left">
-                          <LineItems cards={cards} deleteCard={deleteLineItem}/>
-                          <a className='btn btn-outline-primary rounded-0' onClick={addLineItem}>Add Another Item</a>
+                          <LineItems cards={cards} deleteCard={deleteCard}/>
+                          <a className='btn btn-outline-primary rounded-0' onClick={addCard}>Add Another Item</a>
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4">
