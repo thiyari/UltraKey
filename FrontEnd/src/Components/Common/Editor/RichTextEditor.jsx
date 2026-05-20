@@ -22,7 +22,6 @@ export default function RichTextEditor(props) {
         openOnClick: true,
       }),
       Image,
-      Blockquote,
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
@@ -43,7 +42,7 @@ export default function RichTextEditor(props) {
     <div className="editor-wrapper">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      {/*<EditorPreview editor={editor} />*/}
+      {/* <EditorPreview editor={editor} /> */}
     </div>
   );
 }
