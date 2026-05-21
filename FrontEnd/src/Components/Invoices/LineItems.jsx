@@ -30,31 +30,31 @@ const LineItems = ({cards, deleteCard}) => {
                     <div className='row mb-4'>
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
-                                <label className="form-label">Qty</label>
-                                <input type="text" className="form-control rounded-0" placeholder='1'/>
+                                <label className="form-label small">Qty</label>
+                                <input type="text" className="form-control form-control-sm rounded-0" placeholder='1'/>
                             </div>
                         </div>
                         <div className='col-sm-4'>
                             <div className='form-group' align='left'>
-                                <label className="form-label">Item Title</label>
-                                <input type="text" className="form-control rounded-0"/>
+                                <label className="form-label small">Item Title</label>
+                                <input type="text" className="form-control form-control-sm rounded-0"/>
                             </div>
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
-                                <label className="form-label">Adjust (%)</label>
-                                <input type="text" placeholder='0' className="form-control rounded-0"/>
+                                <label className="form-label small">Adjust (%)</label>
+                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"/>
                             </div>
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
-                                <label className="form-label">Rate (₹)</label>
-                                <input type="text" placeholder='0' className="form-control rounded-0"/>
+                                <label className="form-label small">Rate (₹)</label>
+                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"/>
                             </div>
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='right'>
-                                <label className="form-label">Amount (₹)</label>
+                                <label className="form-label small">Amount (₹)</label>
                                 <label className="form-label">₹0.00</label>
                             </div>
                         </div>
@@ -62,15 +62,15 @@ const LineItems = ({cards, deleteCard}) => {
                     <div className='row mb-4'>
                         <div className='col-sm-6'>
                             <div className='form-group' align='left'>
-                                <label className="form-label">Description</label>
+                                <label className="form-label small">Description</label>
                                 <input type="text" 
                                     placeholder='Brief description of the work carried out for this line item (optional)' 
-                                    className="form-control rounded-0"/>
+                                    className="form-control form-control-sm rounded-0"/>
                             </div>
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
-                                <label className="form-label">Taxable</label>
+                                <label className="form-label form-control-sm small">Taxable</label>
                                 <div className="form-check">
                                     <input className="form-check-input" 
                                         type="checkbox" 
@@ -86,7 +86,7 @@ const LineItems = ({cards, deleteCard}) => {
                                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
 
                                     {/* Select dropdown */}
-                                    <select className="form-select rounded-0"
+                                    <select className="form-select form-select sm rounded-0"
                                         value={options[selectedIndex]}
                                         onChange={(e) =>
                                         setSelectedIndex(options.indexOf(e.target.value))

@@ -91,31 +91,31 @@ const NewInvoice = () => {
                               <div className="col-sm-6" align="right">
                                   <div className="card rounded-0">
                                       <div className="card-header bg-transparent text-end">
-                                        <b>Invoice Totals</b>
+                                        <label className='form-label small'><b>Invoice Totals</b></label>
                                       </div>
                                       <div className="card-body">
                                         <div className='row'>
                                           <div className="col-sm-6 text-start">
-                                              <label className='form-label'>Sub Total</label><br></br>
-                                              <label className='form-label'>GST (18%)</label><br></br>
-                                              <label className='form-label'>Discount<a href='#'> edit</a></label><br></br>
-                                              <label className='form-label'>Paid <a href='#'>edit</a></label><br></br>
+                                              <label className='form-label small'>Sub Total</label><br></br>
+                                              <label className='form-label small'>GST (18%)</label><br></br>
+                                              <label className='form-label small'>Discount<a href='#'> edit</a></label><br></br>
+                                              <label className='form-label small'>Paid <a href='#'>edit</a></label><br></br>
                                           </div>
                                           <div className="col-sm-6 text-end">
-                                              <label className='form-label'>₹0.00</label><br></br>
-                                              <label className='form-label'>₹0.00</label><br></br>
-                                              <label className='form-label text-danger'>-₹0.00</label><br></br>
-                                              <label className='form-label text-danger'>-₹0.00</label><br></br>
+                                              <label className='form-label small'>₹0.00</label><br></br>
+                                              <label className='form-label small'>₹0.00</label><br></br>
+                                              <label className='form-label text-danger small'>-₹0.00</label><br></br>
+                                              <label className='form-label text-danger small'>-₹0.00</label><br></br>
                                           </div>
                                         </div>
                                       </div>
                                       <div className="card-footer">
                                         <div className="row">
                                             <div className="col-sm-6 text-start">
-                                                <label className='form-label'><strong>Total Due</strong></label>
+                                                <label className='form-label small'><strong>Total Due</strong></label>
                                             </div>
                                             <div className="col-sm-6 text-end">
-                                                <label className='form-label'><strong>₹0.00</strong></label>
+                                                <label className='form-label small'><strong>₹0.00</strong></label>
                                             </div>
                                           </div>
                                       </div>
