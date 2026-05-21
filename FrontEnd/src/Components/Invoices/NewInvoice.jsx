@@ -96,7 +96,7 @@ const NewInvoice = () => {
                                       }`}
                                       onClick={() => setActiveTab("editor")}
                                     >
-                                      Editor
+                                      Visual
                                     </button>
                                   </li>
 
@@ -107,7 +107,7 @@ const NewInvoice = () => {
                                       }`}
                                       onClick={() => setActiveTab("preview")}
                                     >
-                                      Preview
+                                      Code
                                     </button>
                                   </li>
                                 </ul>
