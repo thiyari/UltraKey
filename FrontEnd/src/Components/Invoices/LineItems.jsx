@@ -86,7 +86,7 @@ const LineItems = ({cards, deleteCard}) => {
                                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
 
                                     {/* Select dropdown */}
-                                    <select className="form-select form-select sm rounded-0"
+                                    <select className="form-select form-select-sm rounded-0"
                                         value={options[selectedIndex]}
                                         onChange={(e) =>
                                         setSelectedIndex(options.indexOf(e.target.value))
@@ -100,10 +100,10 @@ const LineItems = ({cards, deleteCard}) => {
                                     </select>
 
                             {/* Up button */}
-                            <button className="px-3 py-1" onClick={handleUp} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-up" style={{color: "blue"}}></i></button>
+                            <button className="px-3" onClick={handleUp} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-up" style={{color: "blue"}}></i></button>
 
                             {/* Down button */}
-                            <button className="px-3 py-1" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
+                            <button className="px-3" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
                             </div>
                         </div>
                         <div className='col-sm-6' align='right'>

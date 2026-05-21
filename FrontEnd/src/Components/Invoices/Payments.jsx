@@ -1,6 +1,13 @@
-import React from 'react'
-import Dropdown from './'import = '../Common/Dropdowns';
+import React, {useState} from 'react'
+import Dropdowns from '../Common/Dropdowns';
+
 const Payments = ({cards, deleteCard}) => {
+const [selectedPayments, setSelectedPayments] = "";
+const [selectedStatus, setSelectedStatus] = "";
+const paymentOptions = ['select method','generic','others']
+const statusOptions = ['select status','paid','overdue']
+
+
   return (
     <div>
       <div>
@@ -26,7 +33,19 @@ const Payments = ({cards, deleteCard}) => {
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Payment Method</label>
-                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"/>
+                                    {/* Select dropdown */}
+                                    <select className="form-select form-select-sm rounded-0"
+                                        value={selectedPayments}
+                                        onChange={(e) =>
+                                        setSelectedPayments(e.target.value)
+                                        }
+                                    >
+                                        {paymentOptions.map((option, index) => (
+                                        <option key={index} value={option}>
+                                            {option}
+                                        </option>
+                                        ))}
+                                    </select>
                             </div>
                         </div>
                         <div className='col-sm-4'>
@@ -38,8 +57,19 @@ const Payments = ({cards, deleteCard}) => {
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Status</label>
-                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"/>
-                                <Dropdowns />
+                                    {/* Select dropdown */}
+                                    <select className="form-select form-select-sm rounded-0"
+                                        value={selectedStatus}
+                                        onChange={(e) =>
+                                        setSelectedStatus(e.target.value)
+                                        }
+                                    >
+                                        {statusOptions.map((option, index) => (
+                                        <option key={index} value={option}>
+                                            {option}
+                                        </option>
+                                        ))}
+                                    </select>
                             </div>
                         </div>
                     </div>
