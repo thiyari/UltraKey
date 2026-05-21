@@ -1,12 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useCallback} from 'react'
 import LineItems from '../Invoices/LineItems';
 import RichTextEditor from '../Common/Editor/RichTextEditor';
 import EditorPreview from '../Common/Editor/EditorPreview';
+import CheckBoxes from '../Common/CheckBoxes';
 
 const clientOptions = ['Choose Client','client1','client2']
 const statusOptions = ['Draft','Published']
 const currencyOptions = ['Default Currency','USD','INR']
 const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
+const discussionOptions = ['Allow Comments','Allow tracebacks and pingbacks']
 
 const NewQuote = () => {
   
@@ -25,6 +27,7 @@ const NewQuote = () => {
   const [currencyIndex, setCurrencyIndex] = useState(0);
   const [taxPriceIndex, setTaxPriceIndex] = useState(0);
   const [paymentMethods, setPaymentMethods] = useState("No");
+  const [discussionItems, setDiscussionItems] = useState([]);
 
 {/*
   const htmlToText = (html) => {
@@ -223,6 +226,19 @@ const NewQuote = () => {
                              {/* Tabs section ends */} 
                         </div>
                     </div>
+
+                    <div className="card text rounded-0 mt-4 mb-4">
+                        <div className="card-header" align="left">
+                          <strong>Discussion</strong>
+                        </div>
+                        <div className="card-body" align="left">
+                          <CheckBoxes 
+                          items={discussionOptions}
+                          selectedItems={discussionItems}
+                          getCheckedItems={useCallback((items) => {setDiscussionItems((prev) => ({ ...prev, items }))}, [])}/>
+                        </div>
+                    </div>
+
                 </div>
         </div>
         </div>
