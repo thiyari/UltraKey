@@ -221,13 +221,13 @@ const NewInvoice = () => {
                               <div className="card-body">
                                 {activeTab === "editor" && (
                                   <RichTextEditor
-                                    value={description}
+                                    value={termsAndConditions}
                                     onChangeHTML={(html) => setTermsAndConditions(html)}
                                   />
                                 )}
 
                                 {activeTab === "preview" && (
-                                  <EditorPreview content={description} />
+                                  <EditorPreview content={termsAndConditions} />
                                 )}
                               </div>
                             </div>
