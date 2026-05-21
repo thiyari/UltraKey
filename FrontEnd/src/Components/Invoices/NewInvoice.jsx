@@ -5,8 +5,11 @@ import RichTextEditor from '../Common/Editor/RichTextEditor';
 
 const clientOptions = ['Choose Client','client1','client2']
 const statusOptions = ['Draft','Published']
+const currencyOptions = ['Default Currency','USD','INR']
+const taxPrice = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
 
 const NewInvoice = () => {
+  
   const [lineItemCards, setLineItemCards] = useState([
     { id: 1, number: 1 },
   ]);
@@ -18,6 +21,9 @@ const NewInvoice = () => {
   const [termsAndConditions, setTermsAndConditions] = useState("");
   const [clientIndex, setClientIndex] = useState(0);
   const [statusIndex, setStatusIndex] = useState(0);
+  const [currencyIndex, setCurrencyIndex] = useState(0);
+  const [taxPriceIndex, setTaxPriceIndex] = useState(0);
+  const [paymentMethods, setPaymentMethods] = useState("No");
 
 {/*
   const htmlToText = (html) => {
@@ -229,7 +235,33 @@ const NewInvoice = () => {
                     <strong>Payment Settings</strong>
                   </div>
                   <div className="card-body" align="left">
-                    Currency
+                    <label className='form-label'><strong>Currency</strong></label>
+                    <div>
+                      {/* Select dropdown */}
+                      <select className="form-select form-select-sm rounded-0"
+                        value={currencyOptions[currencyIndex]}
+                        onChange={(e) =>
+                        setCurrencyIndex(currencyOptions.indexOf(e.target.value))
+                      }
+                      >
+                      {currencyOptions.map((option, index) => (
+                      <option key={index} value={option}>
+                          {option}
+                      </option>
+                      ))}
+                      </select>
+                  </div>
+                    <label className='form-label mt-3'><strong>Currency Symbol</strong></label>
+                    <input type='text' className='form-control form-control-sm rounded-0' placeholder='₹'/>
+                    <label className='form-label mt-3'><strong>Payment Methods</strong></label>
+                    <div className="form-check">
+                      <input className="form-check-input" 
+                          type="checkbox" 
+                          checked={paymentMethods === "Yes"}
+                          onChange={(e) => e.target.checked? setPaymentMethods("Yes"): setPaymentMethods("No")}
+                          id="flexCheckDefault"/>
+                      <label className="form-check-label" htmlFor="flexCheckDefault">Generic</label>
+                    </div>
                   </div>
                 </div>
                 <div className="card mt-4 text rounded-0">
