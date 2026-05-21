@@ -96,7 +96,7 @@ const NewInvoice = () => {
                                       <div className="card-body">
                                         <div className='row'>
                                           <div className="col-sm-6 text-start">
-                                              <label className='form-label'>Subtotal</label><br></br>
+                                              <label className='form-label'>Sub Total</label><br></br>
                                               <label className='form-label'>GST (18%)</label><br></br>
                                               <label className='form-label'>Discount<a href='#'> edit</a></label><br></br>
                                               <label className='form-label'>Paid <a href='#'>edit</a></label><br></br>
