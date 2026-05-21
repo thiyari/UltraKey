@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const LineItems = ({cards, deleteCard}) => {
 
-  const options = ["Add a pre-defined line item", "Other"];
+  const options = ["Add a pre-defined line item", "Create New Item"];
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 

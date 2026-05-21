@@ -13,7 +13,7 @@ function Header() {
               <a className="nav-link dropdown-toggle no-arrow" href="#" role="button" data-bs-toggle="dropdown"><i className="fa-solid fa-ellipsis-vertical p-1"></i></a>
               <ul className="dropdown-menu">
                 <li><a className="dropdown-item" href="/client">Clients Panel</a></li>
-                <li><a className="dropdown-item" href="#">Quotes Panel</a></li>
+                <li><a className="dropdown-item" href="/new-quote">Quotes Panel</a></li>
                 <li><a className="dropdown-item" href="/new-invoice">Invoices Panel</a></li>
               </ul>
             </li>        
