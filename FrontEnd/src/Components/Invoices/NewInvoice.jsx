@@ -83,8 +83,45 @@ const NewInvoice = () => {
                           <strong>Line Items</strong>
                         </div>
                         <div className="card-body" align="left">
-                          <LineItems cards={lineItemCards} deleteCard={deleteLineItemCard}/>
-                          <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>
+                            <LineItems cards={lineItemCards} deleteCard={deleteLineItemCard}/>
+                            <div className="row">
+                              <div className="col-sm-6" align="left">
+                                <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>
+                              </div>
+                              <div className="col-sm-6" align="right">
+                                  <div className="card rounded-0">
+                                      <div className="card-header bg-transparent text-end">
+                                        <b>Invoice Totals</b>
+                                      </div>
+                                      <div className="card-body">
+                                        <div className='row'>
+                                          <div className="col-sm-6 text-start">
+                                              <label className='form-label'>Subtotal</label><br></br>
+                                              <label className='form-label'>GST (18%)</label><br></br>
+                                              <label className='form-label'>Discount<a href='#'> edit</a></label><br></br>
+                                              <label className='form-label'>Paid <a href='#'>edit</a></label><br></br>
+                                          </div>
+                                          <div className="col-sm-6 text-end">
+                                              <label className='form-label'>₹0.00</label><br></br>
+                                              <label className='form-label'>₹0.00</label><br></br>
+                                              <label className='form-label text-danger'>-₹0.00</label><br></br>
+                                              <label className='form-label text-danger'>-₹0.00</label><br></br>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div className="card-footer">
+                                        <div className="row">
+                                            <div className="col-sm-6 text-start">
+                                                <label className='form-label'><strong>Total Due</strong></label>
+                                            </div>
+                                            <div className="col-sm-6 text-end">
+                                                <label className='form-label'><strong>₹0.00</strong></label>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4">
@@ -93,7 +130,7 @@ const NewInvoice = () => {
                         </div>
                         <div className="card-body" align="left">
                           <Payments cards={paymentCards} deleteCard={deletePaymentCard}/>
-                          <a className='btn btn-outline-primary rounded-0' onClick={addPaymentCard}>Add Another Item</a>
+                          <a className='btn btn-outline-primary rounded-0' onClick={addPaymentCard}>Add Another Payment</a>
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4 mb-4">
