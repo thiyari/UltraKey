@@ -6,7 +6,7 @@ import RichTextEditor from '../Common/Editor/RichTextEditor';
 const clientOptions = ['Choose Client','client1','client2']
 const statusOptions = ['Draft','Published']
 const currencyOptions = ['Default Currency','USD','INR']
-const taxPrice = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
+const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
 
 const NewInvoice = () => {
   
@@ -174,7 +174,7 @@ const NewInvoice = () => {
             </div>
             <div className="card-body" align="left">
               <div className='row'>
-                <label className='form-label'><strong>Client</strong></label>
+                <label className='form-label small'><strong>Client</strong></label>
                 <div className='col-sm-5'>
                 <button className='btn btn-outline-primary btn-sm rounded-1'>
                   Edit Client</button></div>
@@ -197,7 +197,7 @@ const NewInvoice = () => {
                   ))}
                   </select>
               </div>
-              <label className='form-label'><strong>Status</strong></label>
+              <label className='form-label small'><strong>Status</strong></label>
               <div>
                   {/* Select dropdown */}
                   <select className="form-select form-select-sm rounded-0"
@@ -213,7 +213,7 @@ const NewInvoice = () => {
                   ))}
                   </select>
               </div>
-              <label className='form-label mt-3'><strong>Invoice Number</strong></label>
+              <label className='form-label small mt-3'><strong>Invoice Number</strong></label>
               <div className='row'>
                 <div className='col-sm-3'>
                   <label className='ps-3'><i>AKEYI-</i></label>
@@ -223,11 +223,11 @@ const NewInvoice = () => {
                 </div>
                 <div className='col-sm-2'></div>
               </div>
-              <label className='form-label mt-3'><strong>Order Number</strong></label>
+              <label className='form-label small mt-3'><strong>Order Number</strong></label>
               <input type='text' className='form-control form-control-sm rounded-0'></input>
-              <label className='form-label mt-3'><strong>Created Date</strong></label>
+              <label className='form-label small mt-3'><strong>Created Date</strong></label>
               <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"/>
-              <label className='form-label mt-3'><strong>Due Date</strong></label>
+              <label className='form-label small mt-3'><strong>Due Date</strong></label>
               <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"/>
               {/* sub parts*/}
                 <div className="card mt-4 text rounded-0">
@@ -235,7 +235,7 @@ const NewInvoice = () => {
                     <strong>Payment Settings</strong>
                   </div>
                   <div className="card-body" align="left">
-                    <label className='form-label'><strong>Currency</strong></label>
+                    <label className='form-label small'><strong>Currency</strong></label>
                     <div>
                       {/* Select dropdown */}
                       <select className="form-select form-select-sm rounded-0"
@@ -251,9 +251,9 @@ const NewInvoice = () => {
                       ))}
                       </select>
                   </div>
-                    <label className='form-label mt-3'><strong>Currency Symbol</strong></label>
+                    <label className='form-label small mt-3'><strong>Currency Symbol</strong></label>
                     <input type='text' className='form-control form-control-sm rounded-0' placeholder='₹'/>
-                    <label className='form-label mt-3'><strong>Payment Methods</strong></label>
+                    <label className='form-label small mt-3'><strong>Payment Methods</strong></label>
                     <div className="form-check">
                       <input className="form-check-input" 
                           type="checkbox" 
@@ -269,7 +269,24 @@ const NewInvoice = () => {
                     <strong>Tax Settings</strong>
                   </div>
                   <div className="card-body" align="left">
-                    Prices entered with tax
+                    <label className='form-label small'><strong>Prices entered with tax</strong></label>
+                    <div>
+                        {/* Select dropdown */}
+                        <select className="form-select form-select-sm rounded-0"
+                          value={taxPriceOptions[taxPriceIndex]}
+                          onChange={(e) =>
+                          setTaxPriceIndex(taxPriceOptions.indexOf(e.target.value))
+                        }
+                        >
+                        {taxPriceOptions.map((option, index) => (
+                        <option key={index} value={option}>
+                            {option}
+                        </option>
+                        ))}
+                        </select>
+                    </div>
+                    <label className='form-label mt-3 small'><strong>Tax Rate (%)</strong></label>
+                    <input className='form-control form-control-sm rounded-0' placeholder='18'></input>
                   </div>
                 </div>
             </div>
