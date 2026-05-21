@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Dropdown from './'import = '../Common/Dropdowns';
 const Payments = ({cards, deleteCard}) => {
   return (
     <div>
@@ -39,7 +39,7 @@ const Payments = ({cards, deleteCard}) => {
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Status</label>
                                 <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"/>
-
+                                <Dropdowns />
                             </div>
                         </div>
                     </div>
