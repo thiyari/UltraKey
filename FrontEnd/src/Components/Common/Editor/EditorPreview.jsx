@@ -1,10 +1,13 @@
-export default function EditorPreview({ editor }) {
-  if (!editor) return null;
+import pretty from "pretty";
+
+export default function EditorPreview({ content }) {
+
+  const formattedHTML = pretty(content);
 
   return (
-    <div className="preview">
-      <h3>HTML Output</h3>
-      <pre>{editor.getHTML()}</pre>
+    <div className="preview-area text-start">
+      {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
+      <pre>{formattedHTML}</pre>
     </div>
   );
 }

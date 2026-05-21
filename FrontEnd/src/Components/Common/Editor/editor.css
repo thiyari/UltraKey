@@ -65,3 +65,12 @@ blockquote::before {
   top: -10px;
   color: #ccc;
 }
+
+
+.preview-area pre {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

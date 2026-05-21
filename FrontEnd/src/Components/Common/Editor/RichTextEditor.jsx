@@ -42,7 +42,6 @@ export default function RichTextEditor(props) {
     <div className="editor-wrapper">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      {/* <EditorPreview editor={editor} /> */}
     </div>
   );
 }
