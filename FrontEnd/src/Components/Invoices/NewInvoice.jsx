@@ -3,6 +3,9 @@ import LineItems from './LineItems';
 import Payments from './Payments';
 import RichTextEditor from '../Common/Editor/RichTextEditor';
 
+const clientOptions = ['Choose Client','client1','client2']
+const statusOptions = ['Draft','Published']
+
 const NewInvoice = () => {
   const [lineItemCards, setLineItemCards] = useState([
     { id: 1, number: 1 },
@@ -10,8 +13,11 @@ const NewInvoice = () => {
   const [paymentCards, setPaymentCards] = useState([
     { id: 1, number: 1 },
   ]);
+
   const [description, setDescription] = useState("");
   const [termsAndConditions, setTermsAndConditions] = useState("");
+  const [clientIndex, setClientIndex] = useState(0);
+  const [statusIndex, setStatusIndex] = useState(0);
 
 {/*
   const htmlToText = (html) => {
@@ -161,12 +167,69 @@ const NewInvoice = () => {
               <strong>Invoice Details</strong>
             </div>
             <div className="card-body" align="left">
+              <div className='row'>
+                <label className='form-label'><strong>Client</strong></label>
+                <div className='col-sm-5'>
+                <button className='btn btn-outline-primary btn-sm rounded-1'>
+                  Edit Client</button></div>
+                   <div className='col-sm-7'>
+                <button className='btn btn-outline-primary btn-sm rounded-1'>
+                 Add New Client</button></div>
+              </div>
+              <div>
+                  {/* Select dropdown */}
+                  <select className="form-select form-select-sm rounded-0 my-3"
+                    value={clientOptions[clientIndex]}
+                    onChange={(e) =>
+                    setClientIndex(clientOptions.indexOf(e.target.value))
+                  }
+                  >
+                  {clientOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                      {option}
+                  </option>
+                  ))}
+                  </select>
+              </div>
+              <label className='form-label'><strong>Status</strong></label>
+              <div>
+                  {/* Select dropdown */}
+                  <select className="form-select form-select-sm rounded-0"
+                    value={statusOptions[statusIndex]}
+                    onChange={(e) =>
+                    setStatusIndex(statusOptions.indexOf(e.target.value))
+                  }
+                  >
+                  {statusOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                      {option}
+                  </option>
+                  ))}
+                  </select>
+              </div>
+              <label className='form-label mt-3'><strong>Invoice Number</strong></label>
+              <div className='row'>
+                <div className='col-sm-3'>
+                  <label className='ps-3'><i>AKEYI-</i></label>
+                </div>
+                <div className='col-sm-7'>
+                  <input type='text' className='form-control form-control-sm rounded-0'/>
+                </div>
+                <div className='col-sm-2'></div>
+              </div>
+              <label className='form-label mt-3'><strong>Order Number</strong></label>
+              <input type='text' className='form-control form-control-sm rounded-0'></input>
+              <label className='form-label mt-3'><strong>Created Date</strong></label>
+              <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"/>
+              <label className='form-label mt-3'><strong>Due Date</strong></label>
+              <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"/>
               {/* sub parts*/}
                 <div className="card mt-4 text rounded-0">
                   <div className="card-header" align="left">
                     <strong>Payment Settings</strong>
                   </div>
                   <div className="card-body" align="left">
+                    Currency
                   </div>
                 </div>
                 <div className="card mt-4 text rounded-0">
@@ -174,6 +237,7 @@ const NewInvoice = () => {
                     <strong>Tax Settings</strong>
                   </div>
                   <div className="card-body" align="left">
+                    Prices entered with tax
                   </div>
                 </div>
             </div>
