@@ -17,7 +17,7 @@ const statusOptions = ['select status','paid','overdue']
                     <b>Payment {card.number}</b>
                 </div>
                 <div className="card-body" align="right">
-                    <div className='row mb-4'>
+                    <div className='row mb-1'>
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Date</label>
@@ -72,8 +72,16 @@ const statusOptions = ['select status','paid','overdue']
                                     </select>
                             </div>
                         </div>
+                        
                     </div>
-
+                    <div className='row'>
+                        <div className='col-sm-12'>
+                            <div className='form-group' align='left'>
+                                <label className="form-label small">Memo</label>
+                                <input type="text" className="form-control mb-3 rounded-0"/>
+                            </div>
+                        </div>
+                    </div>
                     <button className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Item</button>
                 </div>
             </div>          
