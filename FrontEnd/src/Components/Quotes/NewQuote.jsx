@@ -86,7 +86,7 @@ const NewQuote = () => {
                           <strong>Description</strong>
                         </div>
                         <div className="card-body" align="left">
-                            <Tabs content={description} onChangeHMTL={(html) => setDescription(html)} />
+                            <Tabs content={description} onChangeHTML={(html) => setDescription(html)} />
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4">

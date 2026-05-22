@@ -84,7 +84,7 @@ const NewInvoice = () => {
                           <strong>Description</strong>
                         </div>
                         <div className="card-body" align="left">
-                          <Tabs content={description} onChangeHMTL={(html) => setDescription(html)}/>
+                          <Tabs content={description} onChangeHTML={(html) => setDescription(html)}/>
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4">
@@ -147,7 +147,7 @@ const NewInvoice = () => {
                           <strong>Terms and Conditions</strong>
                         </div>
                         <div className="card-body" align="left">
-                            <Tabs content={termsAndConditions} onChangeHMTL={(html) => setTermsAndConditions(html)}/>
+                            <Tabs content={termsAndConditions} onChangeHTML={(html) => setTermsAndConditions(html)}/>
                         </div>
                     </div>
                 </div>
