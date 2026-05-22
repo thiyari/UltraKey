@@ -221,7 +221,7 @@ const [translate, setTranslate] = useState({
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
                                             ((grandTotal() - payments.discount) +
-                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
@@ -229,7 +229,7 @@ const [translate, setTranslate] = useState({
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
                                             ((grandTotal() - payments.discount) +
-                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
@@ -361,7 +361,7 @@ const [translate, setTranslate] = useState({
                                             (
                                                 tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
                                             ): 
-                                                `${payments.currencySymbol}${thousand_seperator((tax.percentage/100) * (grandTotal() - payments.discount))}${payments.decimalSeperator}${decimals()}`
+                                                `${payments.currencySymbol}${thousand_seperator(Math.round((tax.percentage/100) * (grandTotal() - payments.discount)))}${payments.decimalSeperator}${decimals()}`
                                         )}
                                         {
                                         payments.currencyPosition === "right" && 
@@ -370,7 +370,7 @@ const [translate, setTranslate] = useState({
                                             (
                                                 tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
                                             ): 
-                                                `${thousand_seperator((tax.percentage/100) * (grandTotal() - payments.discount))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                                `${thousand_seperator(Math.round((tax.percentage/100) * (grandTotal() - payments.discount)))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         )}
                                     </p></div>
                             </div>
@@ -380,17 +380,17 @@ const [translate, setTranslate] = useState({
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     {
                                     (payments.paid == ((grandTotal() - payments.discount) +
-                                                ((tax.percentage / 100) * (grandTotal() - payments.discount)))?
+                                                (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount))))?
                                     <p style={{color: "#236ca0"}}>
                                         {
                                             payments.currencyPosition === "left" && 
                                             `${"-"}${payments.currencySymbol}${thousand_seperator(((grandTotal() - payments.discount) +
-                                                ((tax.percentage / 100) * (grandTotal() - payments.discount))))}${payments.decimalSeperator}${decimals()}`
+                                                (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))))}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
                                             payments.currencyPosition === "right" && 
                                             `${"-"}${thousand_seperator(((grandTotal() - payments.discount) +
-                                                ((tax.percentage / 100) * (grandTotal() - payments.discount))))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                                (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                     </p>:
                                     <p style={{color: "#236ca0"}}>
@@ -416,7 +416,7 @@ const [translate, setTranslate] = useState({
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
                                             ((grandTotal() - payments.discount) +
-                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
@@ -424,7 +424,7 @@ const [translate, setTranslate] = useState({
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
                                             ((grandTotal() - payments.discount) +
-                                            ((tax.percentage / 100) * (grandTotal() - payments.discount))) -
+                                            (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }

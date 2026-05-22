@@ -222,7 +222,7 @@ const decimals = () => {
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
                                             (grandTotal() +
-                                            ((tax.percentage / 100) * grandTotal())) -
+                                            (Math.round((tax.percentage / 100) * grandTotal()))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
@@ -230,7 +230,7 @@ const decimals = () => {
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
                                             (grandTotal() +
-                                            ((tax.percentage / 100) * grandTotal())) -
+                                            (Math.round((tax.percentage / 100) * grandTotal()))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
@@ -324,7 +324,7 @@ const decimals = () => {
                                         (
                                             tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
                                         ): 
-                                            `${payments.currencySymbol}${thousand_seperator((tax.percentage/100) * grandTotal())}${payments.decimalSeperator}${decimals()}`
+                                            `${payments.currencySymbol}${thousand_seperator(Math.round((tax.percentage/100) * grandTotal()))}${payments.decimalSeperator}${decimals()}`
                                     )}
                                     {
                                     payments.currencyPosition === "right" && 
@@ -333,7 +333,7 @@ const decimals = () => {
                                         (
                                             tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
                                         ): 
-                                            `${thousand_seperator((tax.percentage/100) * grandTotal())}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                            `${thousand_seperator(Math.round((tax.percentage/100) * grandTotal()))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     )}
                                 </p></div>
                         </div>
@@ -342,17 +342,17 @@ const decimals = () => {
                             <div className='col-sm-5'style={{textAlign: "right"}}>
                                 {
                                 (payments.paid == (grandTotal() +
-                                                ((tax.percentage / 100) * grandTotal()))?
+                                                (Math.round((tax.percentage / 100) * grandTotal())))?
                                 <p style={{color: "red"}}>
                                     {
                                         payments.currencyPosition === "left" && 
                                         `${"-"}${payments.currencySymbol}${thousand_seperator(grandTotal() +
-                                                ((tax.percentage / 100) * grandTotal()))}${payments.decimalSeperator}${decimals()}`
+                                                (Math.round((tax.percentage / 100) * grandTotal())))}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
                                         payments.currencyPosition === "right" && 
                                         `${"-"}${thousand_seperator(grandTotal() +
-                                                ((tax.percentage / 100) * grandTotal()))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                                (Math.round((tax.percentage / 100) * grandTotal())))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                 </p>:
                                 <p style={{color: "red"}}>
@@ -377,7 +377,7 @@ const decimals = () => {
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
                                             (grandTotal() +
-                                            ((tax.percentage / 100) * grandTotal())) -
+                                            (Math.round((tax.percentage / 100) * grandTotal()))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
@@ -385,7 +385,7 @@ const decimals = () => {
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
                                             (grandTotal() +
-                                            ((tax.percentage / 100) * grandTotal())) -
+                                            (Math.round((tax.percentage / 100) * grandTotal()))) -
                                             payments.paid
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
