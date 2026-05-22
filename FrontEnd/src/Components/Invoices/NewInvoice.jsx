@@ -119,7 +119,7 @@ const NewInvoice = () => {
       }));
 
         setLineItemCards(formattedItems);
-      } else if (selectedItemIndex === 0) {
+      } else {
         setLineItemCards([
             { 
               id: Date.now(), 
