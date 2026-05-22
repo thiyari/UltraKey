@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import LineItems from './LineItems';
 import Payments from './Payments';
-import RichTextEditor from '../Common/Editor/RichTextEditor';
-import EditorPreview from '../Common/Editor/EditorPreview';
+import Tabs from '../Common/Tabs/Tabs';
 
 const clientOptions = ['Choose Client','client1','client2']
 const statusOptions = ['Draft','Published']
@@ -11,7 +10,6 @@ const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will
 
 const NewInvoice = () => {
   
-  const [activeTab, setActiveTab] = useState("editor");
   const [lineItemCards, setLineItemCards] = useState([
     { id: 1, number: 1 },
   ]);
@@ -86,48 +84,7 @@ const NewInvoice = () => {
                           <strong>Description</strong>
                         </div>
                         <div className="card-body" align="left">
-                          {/* Tabs section starts */}
-                            <div className="card text-center">
-                              <div className="card-header">
-                                <ul className="nav nav-tabs card-header-tabs">
-                                  <li className="nav-item">
-                                    <button
-                                      className={`nav-link ${
-                                        activeTab === "editor" ? "active" : ""
-                                      }`}
-                                      onClick={() => setActiveTab("editor")}
-                                    >
-                                      Visual
-                                    </button>
-                                  </li>
-
-                                  <li className="nav-item">
-                                    <button
-                                      className={`nav-link ${
-                                        activeTab === "preview" ? "active" : ""
-                                      }`}
-                                      onClick={() => setActiveTab("preview")}
-                                    >
-                                      Code
-                                    </button>
-                                  </li>
-                                </ul>
-                              </div>
-
-                              <div className="card-body">
-                                {activeTab === "editor" && (
-                                  <RichTextEditor
-                                    value={description}
-                                    onChangeHTML={(html) => setDescription(html)}
-                                  />
-                                )}
-
-                                {activeTab === "preview" && (
-                                  <EditorPreview content={description} />
-                                )}
-                              </div>
-                            </div>
-                             {/* Tabs section ends */}
+                          <Tabs content={description} onChangeHMTL={(html) => setDescription(html)}/>
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4">
@@ -190,48 +147,7 @@ const NewInvoice = () => {
                           <strong>Terms and Conditions</strong>
                         </div>
                         <div className="card-body" align="left">
-                          {/* Tabs section starts */}
-                            <div className="card text-center">
-                              <div className="card-header">
-                                <ul className="nav nav-tabs card-header-tabs">
-                                  <li className="nav-item">
-                                    <button
-                                      className={`nav-link ${
-                                        activeTab === "editor" ? "active" : ""
-                                      }`}
-                                      onClick={() => setActiveTab("editor")}
-                                    >
-                                      Visual
-                                    </button>
-                                  </li>
-
-                                  <li className="nav-item">
-                                    <button
-                                      className={`nav-link ${
-                                        activeTab === "preview" ? "active" : ""
-                                      }`}
-                                      onClick={() => setActiveTab("preview")}
-                                    >
-                                      Code
-                                    </button>
-                                  </li>
-                                </ul>
-                              </div>
-
-                              <div className="card-body">
-                                {activeTab === "editor" && (
-                                  <RichTextEditor
-                                    value={termsAndConditions}
-                                    onChangeHTML={(html) => setTermsAndConditions(html)}
-                                  />
-                                )}
-
-                                {activeTab === "preview" && (
-                                  <EditorPreview content={termsAndConditions} />
-                                )}
-                              </div>
-                            </div>
-                             {/* Tabs section ends */} 
+                            <Tabs content={termsAndConditions} onChangeHMTL={(html) => setTermsAndConditions(html)}/>
                         </div>
                     </div>
                 </div>
