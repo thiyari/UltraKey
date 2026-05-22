@@ -23,7 +23,17 @@ const NewInvoice = () => {
   ]);
 
   const [paymentCards, setPaymentCards] = useState([
-    { id: Date.now(), number: 1 },
+    { 
+      id: Date.now(), 
+      number: 1, 
+      date: "",
+      amount: "",
+      paymentMethod: "",
+      paymentId: "",
+      status: "",
+      memo: ""
+    
+    },
   ]);
 
 
@@ -62,6 +72,12 @@ const NewInvoice = () => {
     const newPaymentCard = {
       id: Date.now(),
       number: paymentCards.length + 1,
+      date: "",
+      amount: "",
+      paymentMethod: "",
+      paymentId: "",
+      status: "",
+      memo: ""
     };
 
     setPaymentCards([...paymentCards, newPaymentCard]);
@@ -77,6 +93,18 @@ const NewInvoice = () => {
       )
     );
   };
+
+
+    // Handle input change
+  const handlePaymentItemsChange = (id, fieldName, value) => {
+    setPaymentCards(prev =>
+      prev.map(item =>
+        item.id === id
+          ? { ...item, [fieldName]: value }
+          : item
+      )
+    );
+  };  
 
 
   // Delete LineItem card
@@ -143,6 +171,7 @@ const NewInvoice = () => {
   }, [fetchSettings]);
 
 
+console.log(lineItemCards)
 
   return (
     <div className='container-fluid'>
@@ -220,7 +249,10 @@ const NewInvoice = () => {
                           <strong>Payments</strong>
                         </div>
                         <div className="card-body" align="left">
-                          <Payments cards={paymentCards} deleteCard={deletePaymentCard}/>
+                          <Payments 
+                          cards={paymentCards} 
+                          handlePaymentItemsChange={handlePaymentItemsChange}
+                          deleteCard={deletePaymentCard}/>
                           <a className='btn btn-outline-primary rounded-0' onClick={addPaymentCard}>Add Another Payment</a>
                         </div>
                     </div>
