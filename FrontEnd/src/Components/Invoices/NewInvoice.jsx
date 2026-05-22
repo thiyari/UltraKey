@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import LineItems from './LineItems';
 import Payments from './Payments';
 import Tabs from '../Common/Tabs/Tabs';
+import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const clientOptions = ['Choose Client','client1','client2']
 const statusOptions = ['Draft','Published']
 const currencyOptions = ['Default Currency','USD','INR']
@@ -17,6 +19,7 @@ const NewInvoice = () => {
     { id: 1, number: 1 },
   ]);
 
+  const [preDefinedItems, setPreDefinedItems] = useState([]);
   const [description, setDescription] = useState("");
   const [termsAndConditions, setTermsAndConditions] = useState("");
   const [clientIndex, setClientIndex] = useState(0);
@@ -66,6 +69,31 @@ const NewInvoice = () => {
   };
 
 
+
+  const fetchSettings = useCallback(async () => {
+    
+  try {
+      const response = await axios.get(`${apiUrl}/api/settings`);
+      
+      const general = response.data.data[0].general;
+
+      console.log("Document exists");
+
+      setPreDefinedItems(general.lineItems.map((item)=>item))
+      
+    } catch (error) {
+      console.log("Document not found");
+    }  
+  },[]);
+
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);
+
+
+
+
   return (
     <div className='container-fluid'>
       <div className='row mt-3 p-2 border' style={{backgroundColor: "#f8f9fb"}}>
@@ -92,7 +120,10 @@ const NewInvoice = () => {
                           <strong>Line Items</strong>
                         </div>
                         <div className="card-body" align="left">
-                            <LineItems cards={lineItemCards} deleteCard={deleteLineItemCard}/>
+                            <LineItems
+                            preDefinedItems = {preDefinedItems} 
+                            cards={lineItemCards} 
+                            deleteCard={deleteLineItemCard}/>
                             <div className="row">
                               <div className="col-sm-6" align="left">
                                 <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>

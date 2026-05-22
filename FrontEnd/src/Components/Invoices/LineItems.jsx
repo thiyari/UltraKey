@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
 
-const LineItems = ({cards, deleteCard}) => {
+const LineItems = ({preDefinedItems, cards, deleteCard}) => {
 
-  const options = ["Add a pre-defined line item", "Create New Item"];
+  let options = ['Add a pre-define line item']  
+    preDefinedItems.map((item, index)=>
+            {
+                options[index+1]=`Line ${index+1}: "${item.qty}|${item.title}|${item.price}|${item.description}"`
+            });
+  
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -99,11 +104,14 @@ const LineItems = ({cards, deleteCard}) => {
                                         ))}
                                     </select>
 
+                            {/* Down button */}
+                            <button className="px-3" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
+
+
                             {/* Up button */}
                             <button className="px-3" onClick={handleUp} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-up" style={{color: "blue"}}></i></button>
 
-                            {/* Down button */}
-                            <button className="px-3" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
+
                             </div>
                         </div>
                         <div className='col-sm-6' align='right'>
