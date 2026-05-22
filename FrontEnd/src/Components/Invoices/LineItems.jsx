@@ -5,9 +5,8 @@ const LineItems = ({preDefinedItems, cards, deleteCard, handleLineItemsChange}) 
   let options = ['Add a pre-define line item']  
     preDefinedItems.map((item, index)=>
             {
-                options[index+1]=`Line ${index+1}: "${item.qty}|${item.title}|${item.price}|${item.description}"`
+                options[index+1]=`Add Line ${index+1}=> "${item.qty}|${item.title}|${item.price}|${item.description}"`
             });
-  
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
