@@ -27,7 +27,7 @@ const NewInvoice = () => {
   ]);
 
 
-  const [preDefinedItems, setPreDefinedItems] = useState([]);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const [description, setDescription] = useState("");
   const [termsAndConditions, setTermsAndConditions] = useState("");
   const [clientIndex, setClientIndex] = useState(0);
@@ -91,6 +91,11 @@ const NewInvoice = () => {
     setPaymentCards(updatedPaymentCards);
   };
 
+  const handleSelectedIndex = (index) => {
+    console.log("Selected Index:", index);
+    setSelectedItemIndex(index);
+  };
+
 
 
   const fetchSettings = useCallback(async () => {
@@ -101,13 +106,36 @@ const NewInvoice = () => {
       const general = response.data.data[0].general;
 
       console.log("Document exists");
+      
+      if(selectedItemIndex === 1){
+      // Convert backend items into frontend card structure
+      const formattedItems = general.lineItems.map((item, index) => ({
+        id: Date.now() + index,
+        number: index + 1,
+        qty: item.qty || "",
+        title: item.title || "",
+        price: item.price || "",
+        description: item.description || ""
+      }));
 
-      setPreDefinedItems(general.lineItems.map((item)=>item))
+        setLineItemCards(formattedItems);
+      } else if (selectedItemIndex === 0) {
+        setLineItemCards([
+            { 
+              id: Date.now(), 
+              number: 1,
+              qty: "",
+              title: "",
+              price: "",
+              description: ""
+            }]
+        )
+      }
       
     } catch (error) {
       console.log("Document not found");
     }  
-  },[]);
+  },[selectedItemIndex]);
 
 
   useEffect(() => {
@@ -143,7 +171,7 @@ const NewInvoice = () => {
                         </div>
                         <div className="card-body" align="left">
                             <LineItems
-                            preDefinedItems = {preDefinedItems} 
+                            onSelectedIndexChange = {handleSelectedIndex} 
                             cards={lineItemCards} 
                             handleLineItemsChange={handleLineItemsChange}
                             deleteCard={deleteLineItemCard}/>

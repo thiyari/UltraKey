@@ -1,28 +1,45 @@
 import React, {useState} from 'react'
 
-const LineItems = ({preDefinedItems, cards, deleteCard, handleLineItemsChange}) => {
+const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsChange}) => {
 
-  let options = ['Add a pre-define line item']  
-    preDefinedItems.map((item, index)=>
-            {
-                options[index+1]=`Add Line ${index+1}=> "${item.qty}|${item.title}|${item.price}|${item.description}"`
-            });
+  let options = ['Add new items manually', 'Add a pre-define line items']  
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const handleUp = () => {
-    setSelectedIndex((prev) =>
-      prev === 0 ? options.length - 1 : prev - 1
-    );
-  };
+    const handleUp = () => {
+    const newIndex =
+      selectedIndex === 0
+        ? options.length - 1
+        : selectedIndex - 1;
 
-  const handleDown = () => {
-    setSelectedIndex((prev) =>
-      prev === options.length - 1 ? 0 : prev + 1
-    );
+    setSelectedIndex(newIndex);
+
+    // send to parent
+    onSelectedIndexChange(newIndex);
+    };
+
+    const handleDown = () => {
+    const newIndex =
+      selectedIndex === options.length - 1
+        ? 0
+        : selectedIndex + 1;
+
+    setSelectedIndex(newIndex);
+
+    // send to parent
+    onSelectedIndexChange(newIndex);
+    };
     
-  };
-    
+   const handleSelect = (event) => {
+
+    const index = options.indexOf(event.target.value);
+
+    setSelectedIndex(index);
+
+    // send to parent
+    onSelectedIndexChange(index);
+
+   } 
 
   return (
       <div>
@@ -105,9 +122,7 @@ const LineItems = ({preDefinedItems, cards, deleteCard, handleLineItemsChange}) 
                                     {/* Select dropdown */}
                                     <select className="form-select form-select-sm rounded-0"
                                         value={options[selectedIndex]}
-                                        onChange={(e) =>
-                                        setSelectedIndex(options.indexOf(e.target.value))
-                                        }
+                                        onChange={handleSelect}
                                     >
                                         {options.map((option, index) => (
                                         <option key={index} value={option}>
