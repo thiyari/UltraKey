@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const LineItems = ({preDefinedItems, cards, deleteCard}) => {
+const LineItems = ({preDefinedItems, cards, deleteCard, handleLineItemsChange}) => {
 
   let options = ['Add a pre-define line item']  
     preDefinedItems.map((item, index)=>
@@ -21,6 +21,7 @@ const LineItems = ({preDefinedItems, cards, deleteCard}) => {
     setSelectedIndex((prev) =>
       prev === options.length - 1 ? 0 : prev + 1
     );
+    
   };
     
 
@@ -36,13 +37,19 @@ const LineItems = ({preDefinedItems, cards, deleteCard}) => {
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Qty</label>
-                                <input type="text" className="form-control form-control-sm rounded-0" placeholder='1'/>
+                                <input type="text" className="form-control form-control-sm rounded-0" placeholder='1'
+                                    value={card.qty}
+                                    onChange={(e)=>handleLineItemsChange(card.id, "qty", e.target.value)}
+                                    />
                             </div>
                         </div>
                         <div className='col-sm-4'>
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Item Title</label>
-                                <input type="text" className="form-control form-control-sm rounded-0"/>
+                                <input type="text" className="form-control form-control-sm rounded-0"
+                                    value={card.title}
+                                    onChange={(e)=>handleLineItemsChange(card.id, "title", e.target.value)}
+                                />
                             </div>
                         </div>
                         <div className='col-sm-2'>
@@ -54,7 +61,10 @@ const LineItems = ({preDefinedItems, cards, deleteCard}) => {
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Rate (₹)</label>
-                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"/>
+                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"
+                                    value={card.price}
+                                    onChange={(e)=>handleLineItemsChange(card.id, "price", e.target.value)}
+                                />
                             </div>
                         </div>
                         <div className='col-sm-2'>
@@ -70,7 +80,10 @@ const LineItems = ({preDefinedItems, cards, deleteCard}) => {
                                 <label className="form-label small">Description</label>
                                 <input type="text" 
                                     placeholder='Brief description of the work carried out for this line item (optional)' 
-                                    className="form-control form-control-sm rounded-0"/>
+                                    className="form-control form-control-sm rounded-0"
+                                    value={card.description}
+                                    onChange={(e)=>handleLineItemsChange(card.id, "description", e.target.value)}
+                                    />
                             </div>
                         </div>
                         <div className='col-sm-2'>

@@ -13,11 +13,19 @@ const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will
 const NewInvoice = () => {
   
   const [lineItemCards, setLineItemCards] = useState([
-    { id: 1, number: 1 },
+    { id: Date.now(), 
+      number: 1,
+      qty: "",
+      title: "",
+      price: "",
+      description: ""
+    },
   ]);
+
   const [paymentCards, setPaymentCards] = useState([
-    { id: 1, number: 1 },
+    { id: Date.now(), number: 1 },
   ]);
+
 
   const [preDefinedItems, setPreDefinedItems] = useState([]);
   const [description, setDescription] = useState("");
@@ -40,6 +48,10 @@ const NewInvoice = () => {
     const newLineItemCard = {
       id: Date.now(),
       number: lineItemCards.length + 1,
+      qty: "",
+      title: "",
+      price: "",
+      description: ""
     };
 
     setLineItemCards([...lineItemCards, newLineItemCard]);
@@ -53,6 +65,17 @@ const NewInvoice = () => {
     };
 
     setPaymentCards([...paymentCards, newPaymentCard]);
+  };
+
+    // Handle input change
+  const handleLineItemsChange = (id, fieldName, value) => {
+    setLineItemCards(prev =>
+      prev.map(item =>
+        item.id === id
+          ? { ...item, [fieldName]: value }
+          : item
+      )
+    );
   };
 
 
@@ -91,7 +114,7 @@ const NewInvoice = () => {
     fetchSettings();
   }, [fetchSettings]);
 
-
+  console.log(lineItemCards)
 
 
   return (
@@ -123,6 +146,7 @@ const NewInvoice = () => {
                             <LineItems
                             preDefinedItems = {preDefinedItems} 
                             cards={lineItemCards} 
+                            handleLineItemsChange={handleLineItemsChange}
                             deleteCard={deleteLineItemCard}/>
                             <div className="row">
                               <div className="col-sm-6" align="left">
