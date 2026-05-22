@@ -114,7 +114,6 @@ const NewInvoice = () => {
     fetchSettings();
   }, [fetchSettings]);
 
-  console.log(lineItemCards)
 
 
   return (
