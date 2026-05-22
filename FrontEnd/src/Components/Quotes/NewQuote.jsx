@@ -235,10 +235,10 @@ const NewQuote = () => {
                           <CheckBoxes 
                           items={discussionOptions}
                           selectedItems={discussionItems}
-                          getCheckedItems={useCallback((items) => {setDiscussionItems((prev) => ({ ...prev, items }))}, [])}/>
+                          getCheckedItems={useCallback((items) => {
+                            setDiscussionItems(items), []})}/>
                         </div>
                     </div>
-
                 </div>
         </div>
         </div>

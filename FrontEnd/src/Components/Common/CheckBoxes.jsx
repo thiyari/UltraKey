@@ -33,7 +33,7 @@ const CheckBoxes = ({ items, selectedItems = [], getCheckedItems }) => {
   // Send selected values to parent
   useEffect(() => {
     getCheckedItems(checkedItems);
-  }, []);
+  }, [checkedItems]);
 
   return (
     <div>
