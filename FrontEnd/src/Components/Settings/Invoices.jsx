@@ -288,14 +288,16 @@ const Invoices = () => {
               <div className="form-group row mt-2" align="left">
                 <label htmlFor="showMeNoticesWhen" className="col-sm-3 col-form-label"><b>Show me notices when</b></label>
                 <div className="col-sm-6">
-                    <CheckBoxes 
-                        selectedItems={data.notices}
-                        getCheckedItems={useCallback((list) => {setData((prev) => ({ ...prev, notices: list }))}, [])} 
-                        items={items}
-                      />
+                  <CheckBoxes
+                    selectedItems={data.notices}
+                    getCheckedItems={(list) =>
+                      setData((prev) => ({ ...prev, notices: list }))
+                    }
+                    items={items}
+                  />
                 </div>
                 <div className="col-sm-3"></div>
-                {/* <p>Selected: {data.notices.join(", ")}</p> */}
+                {<p>Selected: {data.notices.join(", ")}</p>}
               </div>              
 
 
