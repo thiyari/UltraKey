@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React from 'react'
 import { data } from 'react-router-dom';
 import template1 from "../../assets/template1.jpg";
 import template2 from "../../assets/template2.jpg";
