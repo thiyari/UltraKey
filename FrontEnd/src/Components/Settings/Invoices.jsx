@@ -297,7 +297,7 @@ const Invoices = () => {
                   />
                 </div>
                 <div className="col-sm-3"></div>
-                {<p>Selected: {data.notices.join(", ")}</p>}
+                {/* <p>Selected: {data.notices.join(", ")}</p> */}
               </div>              
 
 
