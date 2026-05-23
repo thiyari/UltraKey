@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const clientOptions = ['Choose Client','client1','client2']
-const statusOptions = ['Draft','Published']
+const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
 const currencyOptions = ['Select Currency','INR','USD']
 const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
 
