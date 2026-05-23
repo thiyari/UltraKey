@@ -4,7 +4,7 @@ import Dropdowns from '../Common/Dropdowns';
 const Payments = ({cards, handlePaymentItemsChange, deleteCard}) => {
 const [selectedPayments, setSelectedPayments] = "";
 const [selectedStatus, setSelectedStatus] = "";
-const paymentOptions = ['select method','generic','others']
+const paymentOptions = ["select method","Generic", "Cash", "Card"]
 const statusOptions = ['select status','paid','overdue']
 
 
@@ -43,9 +43,20 @@ const statusOptions = ['select status','paid','overdue']
                                     <select
                                     className="form-select form-select-sm rounded-0"
                                     value={card.paymentMethod || ""}
-                                    onChange={(e) =>
-                                        handlePaymentItemsChange(card.id, "paymentMethod", e.target.value)
-                                    }
+                                    onChange={(e) => {
+                                                const value = e.target.value;
+                                                // Update select
+                                                handlePaymentItemsChange(
+                                                card.id,
+                                                "paymentMethod",
+                                                value
+                                                );
+
+                                                // Reflect back to checkbox
+                                                setPaymentMethods(
+                                                value === "Generic" ? "Yes" : "No"
+                                                );
+                                            }}
                                     >
                                     {paymentOptions.map((option, index) => (
                                         <option key={index} value={option}>

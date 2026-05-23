@@ -177,6 +177,7 @@ const NewInvoice = () => {
     fetchSettings();
   }, [fetchSettings]);
 
+
   useEffect(()=>{
     
     if (taxable === "Yes") {
@@ -204,6 +205,12 @@ useEffect(() => {
     setTaxable("No");
   }
 }, [taxPriceIndex]);
+
+
+useEffect(() => {
+
+})
+
 
   return (
     <div className='container-fluid'>
@@ -413,7 +420,20 @@ useEffect(() => {
                       <input className="form-check-input" 
                           type="checkbox" 
                           checked={paymentMethods === "Yes"}
-                          onChange={(e) => e.target.checked? setPaymentMethods("Yes"): setPaymentMethods("No")}
+                          onChange={(e) => {
+                                  const checked = e.target.checked;
+                                  // Update level 1
+                                  setPaymentMethods(checked ? "Yes" : "No")
+
+                                  // Update level 2 select values
+                                  setPaymentCards((prev) =>
+                                    prev.map((card) => ({
+                                      ...card,
+                                      paymentMethod: checked ? "Generic" : ""
+                                    }))
+                                  );
+                          }}
+                        
                           id="flexCheckDefault"/>
                       <label className="form-check-label" htmlFor="flexCheckDefault">Generic</label>
                     </div>
