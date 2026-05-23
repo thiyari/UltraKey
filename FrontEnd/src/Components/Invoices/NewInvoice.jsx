@@ -45,6 +45,9 @@ const NewInvoice = () => {
   const [currencyIndex, setCurrencyIndex] = useState(0);
   const [taxPriceIndex, setTaxPriceIndex] = useState(0);
   const [paymentMethods, setPaymentMethods] = useState("No");
+  const [currencySymbol, setCurrencySymbol] = useState("");
+  const [tax, setTax] = useState("");
+  const [defaultTaxPercentage, setDefaultTaxPercentage] = useState("");
 
 {/*
   const htmlToText = (html) => {
@@ -132,6 +135,8 @@ const NewInvoice = () => {
       const response = await axios.get(`${apiUrl}/api/settings`);
       
       const general = response.data.data[0].general;
+      const payments = response.data.data[0].payments;
+      const tax = response.data.data[0].tax;
 
       console.log("Document exists");
       
@@ -159,7 +164,8 @@ const NewInvoice = () => {
             }]
         )
       }
-      
+      setCurrencySymbol(payments.currencySymbol);
+      setDefaultTaxPercentage(tax.percentage)
     } catch (error) {
       console.log("Document not found");
     }  
@@ -170,8 +176,6 @@ const NewInvoice = () => {
     fetchSettings();
   }, [fetchSettings]);
 
-
-console.log(lineItemCards)
 
   return (
     <div className='container-fluid'>
@@ -360,7 +364,10 @@ console.log(lineItemCards)
                       </select>
                   </div>
                     <label className='form-label small mt-3'><strong>Currency Symbol</strong></label>
-                    <input type='text' className='form-control form-control-sm rounded-0' placeholder='₹'/>
+                    <input type='text' className='form-control form-control-sm rounded-0' placeholder=''
+                      value={currencySymbol}
+                      onChange={(e)=>setCurrencySymbol(e.target.value)}
+                    />
                     <label className='form-label small mt-3'><strong>Payment Methods</strong></label>
                     <div className="form-check">
                       <input className="form-check-input" 
@@ -382,9 +389,16 @@ console.log(lineItemCards)
                         {/* Select dropdown */}
                         <select className="form-select form-select-sm rounded-0"
                           value={taxPriceOptions[taxPriceIndex]}
-                          onChange={(e) =>
-                          setTaxPriceIndex(taxPriceOptions.indexOf(e.target.value))
-                        }
+                          onChange={(e) => {
+                             const selectedIndex = taxPriceOptions.indexOf(e.target.value);
+                                  setTaxPriceIndex(selectedIndex);
+                                  // update input value based on selected option
+                                  if (e.target.value === 'No. I will enter prices exclusive of tax') {
+                                    setTax(defaultTaxPercentage);
+                                  } else {
+                                    setTax("")
+                                  }
+                          }}
                         >
                         {taxPriceOptions.map((option, index) => (
                         <option key={index} value={option}>
@@ -394,7 +408,10 @@ console.log(lineItemCards)
                         </select>
                     </div>
                     <label className='form-label mt-3 small'><strong>Tax Rate (%)</strong></label>
-                    <input className='form-control form-control-sm rounded-0' placeholder='18'></input>
+                    <input className='form-control form-control-sm rounded-0' placeholder='0'
+                        value={tax}
+                        onChange={(e) => setTax(e.target.value)}
+                    />
                   </div>
                 </div>
             </div>
