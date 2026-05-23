@@ -5,7 +5,6 @@ import Tabs from '../Common/Tabs/Tabs';
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
-const clientOptions = ['Choose Client','client1','client2']
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
 const currencyOptions = ['Select Currency','INR','USD']
 const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
@@ -57,6 +56,7 @@ const NewInvoice = () => {
   const [createdDate, setCreatedDate] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [dueDays, setDueDays] = useState("");
+  const [clientOptions, setClientOptions] = useState([]);
 
 {/*
   const htmlToText = (html) => {
@@ -152,7 +152,7 @@ const future_date = (created_date, days) => {
       const tax = response.data.data[0].tax;
       const invoices = response.data.data[0].invoices;
 
-      console.log("Document exists");
+      console.log("Settings Document exists");
       
       if(selectedItemIndex === 1){
       // Convert backend items into frontend card structure
@@ -187,8 +187,21 @@ const future_date = (created_date, days) => {
       setDueDays(invoices.dueDate);
 
     } catch (error) {
-      console.log("Document not found");
-    }  
+      console.log("Settings Document not found");
+    } 
+    
+    try{
+      const response = await axios.get(`${apiUrl}/api/clients`);
+      
+      const usernames = response.data.data.map((item)=>item.username);
+
+      console.log("Clients Document exists");
+      setClientOptions(['Select Client', ...usernames]);
+    } catch (error) {
+      console.log("Clients Document not found")
+    }
+
+
   },[selectedItemIndex]);
 
 
