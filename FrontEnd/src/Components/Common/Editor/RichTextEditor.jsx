@@ -9,6 +9,7 @@ import Blockquote from '@tiptap/extension-blockquote'
 
 import MenuBar from "./MenuBar";
 import EditorPreview from "./EditorPreview";
+import { useEffect } from "react";
 
 export default function RichTextEditor(props) {
   const editor = useEditor({
@@ -29,12 +30,25 @@ export default function RichTextEditor(props) {
         placeholder: "Start writing something powerful...",
       }),
     ],
-    content: props.value,
+    content: props.value || "",
     onUpdate: ({ editor }) => {
     const html = editor.getHTML()
     props.onChangeHTML(html)
     },
   });
+
+  // ✅ IMPORTANT: sync backend updates into editor
+  useEffect(() => {
+    if (!editor) return;
+
+    const isSame = editor.getHTML() === props.value;
+    if (!isSame) {
+     editor.commands.setContent(props.value || "", {
+        emitUpdate: false,
+      });
+    }
+  }, [props.value, editor]);
+
 
   if (!editor) return null;
 

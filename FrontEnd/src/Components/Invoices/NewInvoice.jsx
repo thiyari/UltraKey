@@ -138,6 +138,7 @@ const NewInvoice = () => {
       const general = response.data.data[0].general;
       const payments = response.data.data[0].payments;
       const tax = response.data.data[0].tax;
+      const invoices = response.data.data[0].invoices;
 
       console.log("Document exists");
       
@@ -167,6 +168,7 @@ const NewInvoice = () => {
       }
       setDefaultCurrencySymbol(payments.currencySymbol);
       setDefaultTaxPercentage(tax.percentage)
+      setTermsAndConditions(invoices.termsAndConditions);
     } catch (error) {
       console.log("Document not found");
     }  
