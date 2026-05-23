@@ -51,7 +51,9 @@ const NewInvoice = () => {
   const [defaultCurrencySymbol, setDefaultCurrencySymbol] = useState("");
   const [defaultTaxPercentage, setDefaultTaxPercentage] = useState("");
   const [taxable, setTaxable] = useState("No");
-
+  const [prefix, setPrefix] = useState("");
+  const [suffix, setSuffix] = useState("");
+  const [invoiceNumber, setInvoiceNumber] = useState("");
 {/*
   const htmlToText = (html) => {
     const div = document.createElement('div')
@@ -171,6 +173,9 @@ const NewInvoice = () => {
       setDefaultCurrencySymbol(payments.currencySymbol);
       setDefaultTaxPercentage(tax.percentage)
       setTermsAndConditions(invoices.termsAndConditions);
+      setPrefix(invoices.prefix);
+      setSuffix(invoices.suffix);
+      setInvoiceNumber(invoices.nextNumber)
     } catch (error) {
       console.log("Document not found");
     }  
@@ -367,14 +372,19 @@ useEffect(() => {
                   </select>
               </div>
               <label className='form-label small mt-3'><strong>Invoice Number</strong></label>
-              <div className='row'>
-                <div className='col-sm-3'>
-                  <label className='ps-3'><i>AKEYI-</i></label>
+              <div className='row g-0 px-3'>
+                <div className='col-sm-4'>
+                  <label className='form-label small ms-4 my-1'><i>{prefix?`${prefix}-`:""}</i></label>
                 </div>
-                <div className='col-sm-7'>
-                  <input type='text' className='form-control form-control-sm rounded-0'/>
+                <div className='col-sm-4'>
+                  <input type='text' className='form-control form-control-sm rounded-0'
+                    value={invoiceNumber}
+                    onChange={(e)=>setInvoiceNumber(e.target.value)}
+                  />
                 </div>
-                <div className='col-sm-2'></div>
+                <div className='col-sm-4'>
+                  <label className='form-label small my-1'><i>{suffix?`-${suffix}`:""}</i></label>
+                </div>
               </div>
               <label className='form-label small mt-3'><strong>Order Number</strong></label>
               <input type='text' className='form-control form-control-sm rounded-0'></input>
