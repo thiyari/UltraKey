@@ -125,7 +125,6 @@ const NewInvoice = () => {
   };
 
   const handleSelectedIndex = (index) => {
-    console.log("Selected Index:", index);
     setSelectedItemIndex(index);
   };
 
@@ -178,6 +177,36 @@ const NewInvoice = () => {
     fetchSettings();
   }, [fetchSettings]);
 
+  useEffect(()=>{
+    
+    if (taxable === "Yes") {
+    const index = taxPriceOptions.indexOf(
+      "No. I will enter prices exclusive of tax"
+    );
+      setTaxPriceIndex(index);
+      setTax(defaultTaxPercentage);
+    } else {
+    const index = taxPriceOptions.indexOf(
+      "Yes. I will enter prices inclusive of tax"
+    );
+      setTaxPriceIndex(index);
+      setTax("");      
+    }
+
+  },[taxable, defaultTaxPercentage])
+
+useEffect(() => {
+  const selectedOption = taxPriceOptions[taxPriceIndex];
+
+  if (
+    selectedOption ===
+    "No. I will enter prices exclusive of tax"
+  ) {
+    setTaxable("Yes");
+  } else {
+    setTaxable("No");
+  }
+}, [taxPriceIndex]);
 
   return (
     <div className='container-fluid'>
