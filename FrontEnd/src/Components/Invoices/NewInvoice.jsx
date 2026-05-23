@@ -54,6 +54,10 @@ const NewInvoice = () => {
   const [prefix, setPrefix] = useState("");
   const [suffix, setSuffix] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [createdDate, setCreatedDate] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [dueDays, setDueDays] = useState("");
+
 {/*
   const htmlToText = (html) => {
     const div = document.createElement('div')
@@ -132,7 +136,11 @@ const NewInvoice = () => {
     setSelectedItemIndex(index);
   };
 
-
+const future_date = (created_date, days) => {
+    const date = new Date(created_date);
+    date.setDate(date.getDate() + Number(days));
+    return  date.toISOString().split('T')[0];
+};
 
   const fetchSettings = useCallback(async () => {
     
@@ -175,7 +183,9 @@ const NewInvoice = () => {
       setTermsAndConditions(invoices.termsAndConditions);
       setPrefix(invoices.prefix);
       setSuffix(invoices.suffix);
-      setInvoiceNumber(invoices.nextNumber)
+      setInvoiceNumber(invoices.nextNumber);
+      setDueDays(invoices.dueDate);
+
     } catch (error) {
       console.log("Document not found");
     }  
@@ -389,9 +399,24 @@ useEffect(() => {
               <label className='form-label small mt-3'><strong>Order Number</strong></label>
               <input type='text' className='form-control form-control-sm rounded-0'></input>
               <label className='form-label small mt-3'><strong>Created Date</strong></label>
-              <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"/>
+              <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"
+                value={createdDate}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setCreatedDate(value);
+
+                  if (value && dueDays) {
+                    const calculatedDue = future_date(value, dueDays);
+                    setDueDate(calculatedDue);
+                  }
+                }}
+              />
+              
               <label className='form-label small mt-3'><strong>Due Date</strong></label>
-              <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"/>
+              <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"
+                  value={dueDate}
+                  onChange={(e)=> setDueDate(e.target.value)}
+              />
               {/* sub parts*/}
                 <div className="card mt-4 text rounded-0">
                   <div className="card-header" align="left">
