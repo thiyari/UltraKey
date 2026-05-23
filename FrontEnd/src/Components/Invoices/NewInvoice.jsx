@@ -17,6 +17,7 @@ const NewInvoice = () => {
       number: 1,
       qty: "",
       title: "",
+      adjust: "",
       price: "",
       description: ""
     },
@@ -65,6 +66,7 @@ const NewInvoice = () => {
       number: lineItemCards.length + 1,
       qty: "",
       title: "",
+      adjust: "",
       price: "",
       description: ""
     };

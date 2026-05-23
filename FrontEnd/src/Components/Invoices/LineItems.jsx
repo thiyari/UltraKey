@@ -71,7 +71,10 @@ const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsCha
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Adjust (%)</label>
-                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"/>
+                                <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"
+                                    value={card.adjust}
+                                    onChange={(e)=>handleLineItemsChange(card.id, "adjust", e.target.value)}                                
+                                />
                             </div>
                         </div>
                         <div className='col-sm-2'>
