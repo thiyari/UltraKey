@@ -49,6 +49,7 @@ const NewInvoice = () => {
   const [tax, setTax] = useState("");
   const [defaultCurrencySymbol, setDefaultCurrencySymbol] = useState("");
   const [defaultTaxPercentage, setDefaultTaxPercentage] = useState("");
+  const [taxable, setTaxable] = useState("No");
 
 {/*
   const htmlToText = (html) => {
@@ -208,7 +209,9 @@ const NewInvoice = () => {
                             onSelectedIndexChange = {handleSelectedIndex} 
                             cards={lineItemCards} 
                             handleLineItemsChange={handleLineItemsChange}
-                            deleteCard={deleteLineItemCard}/>
+                            deleteCard={deleteLineItemCard}
+                            selectedTax={taxable}
+                            onTaxable={(selected)=>setTaxable(selected)}/>
                             <div className="row">
                               <div className="col-sm-6" align="left">
                                 <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>

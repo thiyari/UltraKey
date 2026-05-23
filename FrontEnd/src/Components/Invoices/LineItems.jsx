@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsChange}) => {
+const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsChange, onTaxable, selectedTax}) => {
 
   let options = ['Add new items manually', 'Add a pre-define line items']  
 
@@ -108,7 +108,10 @@ const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsCha
                                 <div className="form-check">
                                     <input className="form-check-input" 
                                         type="checkbox" 
-                                        id="flexCheckDefault"/>
+                                        id="flexCheckDefault"
+                                        checked={selectedTax === "Yes"}
+                                        onChange={(e) => {(e.target.checked)? onTaxable("Yes"): onTaxable("No")}}
+                                        />
                                 </div>
                             </div>
                         </div>
