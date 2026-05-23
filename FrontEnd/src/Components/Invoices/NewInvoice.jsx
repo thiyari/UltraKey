@@ -7,7 +7,7 @@ import axios from 'axios';
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const clientOptions = ['Choose Client','client1','client2']
 const statusOptions = ['Draft','Published']
-const currencyOptions = ['Default Currency','USD','INR']
+const currencyOptions = ['Select Currency','INR','USD']
 const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
 
 const NewInvoice = () => {
@@ -47,6 +47,7 @@ const NewInvoice = () => {
   const [paymentMethods, setPaymentMethods] = useState("No");
   const [currencySymbol, setCurrencySymbol] = useState("");
   const [tax, setTax] = useState("");
+  const [defaultCurrencySymbol, setDefaultCurrencySymbol] = useState("");
   const [defaultTaxPercentage, setDefaultTaxPercentage] = useState("");
 
 {/*
@@ -164,7 +165,7 @@ const NewInvoice = () => {
             }]
         )
       }
-      setCurrencySymbol(payments.currencySymbol);
+      setDefaultCurrencySymbol(payments.currencySymbol);
       setDefaultTaxPercentage(tax.percentage)
     } catch (error) {
       console.log("Document not found");
@@ -352,9 +353,19 @@ const NewInvoice = () => {
                       {/* Select dropdown */}
                       <select className="form-select form-select-sm rounded-0"
                         value={currencyOptions[currencyIndex]}
-                        onChange={(e) =>
-                        setCurrencyIndex(currencyOptions.indexOf(e.target.value))
-                      }
+                        onChange={(e) => {
+     
+                             const selectedIndex = currencyOptions.indexOf(e.target.value);
+                                  setCurrencyIndex(selectedIndex);
+                                  // update input value based on selected option
+                                  if (e.target.value === 'INR') {
+                                    setCurrencySymbol(defaultCurrencySymbol);
+                                  } else if (e.target.value === 'USD') {
+                                    setCurrencySymbol("$")
+                                  } else {
+                                    setCurrencySymbol("")
+                                  }                       
+                      }}
                       >
                       {currencyOptions.map((option, index) => (
                       <option key={index} value={option}>
