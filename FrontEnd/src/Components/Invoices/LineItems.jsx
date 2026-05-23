@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsChange, onTaxable, selectedTax}) => {
 
-  let options = ['Add new items manually', 'Add a pre-define line items']  
+  let options = ['Add new items manually', 'Add pre-define line items']  
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
