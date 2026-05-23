@@ -198,10 +198,7 @@ const NewInvoice = () => {
 useEffect(() => {
   const selectedOption = taxPriceOptions[taxPriceIndex];
 
-  if (
-    selectedOption ===
-    "No. I will enter prices exclusive of tax"
-  ) {
+  if (selectedOption === "No. I will enter prices exclusive of tax") {
     setTaxable("Yes");
   } else {
     setTaxable("No");
