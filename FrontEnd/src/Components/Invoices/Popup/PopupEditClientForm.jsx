@@ -12,11 +12,7 @@ import ClientForm from "./ClientForm";
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 
-const PopupEditClientForm = ({
-  open,
-  onClose,
-  clientId,
-}) => {
+const PopupEditClientForm = ({open,onClose,username}) => {
   const [formData, setFormData] = useState({
     clientName: "",
     businessName: "",
@@ -38,22 +34,23 @@ const PopupEditClientForm = ({
   };
 
   useEffect(() => {
-    if (clientId) {
+    if (username) {
+      setFormData((prev)=>({...prev, username: username}))
       fetchClient();
     }
-  }, [clientId]);
+  }, [username]);
 
-  const fetchClient = async () => {
+ /* const fetchClient = async () => {
     try {
       const response = await axios.get(
-        `${apiUrl}/api/clients/${clientId}`
+        `${apiUrl}/api/clients/${username}`
       );
 
       setFormData(response.data);
     } catch (err) {
       console.log(err);
     }
-  };
+  };*/
 
   const handleSubmit = async () => {
     try {
