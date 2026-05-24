@@ -3,7 +3,7 @@ import LineItems from './LineItems';
 import Payments from './Payments';
 import Tabs from '../Common/Tabs/Tabs';
 import axios from 'axios';
-import PopupClientEditForm from '../Common/Popup/PopupEditClientForm';
+import PopupEditClientForm from '../Common/Popup/PopupEditClientForm';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
