@@ -47,17 +47,17 @@ const PopupEditClientForm = ({open,onClose,username}) => {
       );
 
       const data = response.data.data.find((item)=>(item.username === username))
-      setClientId(data._id)
+      setClientId(data?._id)
       setFormData({
-        businessName: data.businessOrClientName,
-        userName: data.username,
-        email: data.email,
-        password: data.password,
-        address: data.address,
-        extraInfo: data.extraInfo,
-        firstName: data.firstname,
-        lastName: data.lastname,
-        website: data.website,
+        businessName: data?.businessOrClientName,
+        userName: data?.username,
+        email: data?.email,
+        password: data?.password,
+        address: data?.address,
+        extraInfo: data?.extraInfo,
+        firstName: data?.firstname,
+        lastName: data?.lastname,
+        website: data?.website,
       })
     } catch (err) {
       console.log(err);
