@@ -3,6 +3,7 @@ import LineItems from './LineItems';
 import Payments from './Payments';
 import Tabs from '../Common/Tabs/Tabs';
 import axios from 'axios';
+import PopupForm from '../Common/Popup/PopupForm';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
@@ -57,6 +58,7 @@ const NewInvoice = () => {
   const [dueDate, setDueDate] = useState("");
   const [dueDays, setDueDays] = useState("");
   const [clientOptions, setClientOptions] = useState([]);
+  const [open, setOpen] = useState(false);
 
 {/*
   const htmlToText = (html) => {
@@ -356,9 +358,18 @@ useEffect(() => {
             <div className="card-body" align="left">
               <div className='row'>
                 <label className='form-label small'><strong>Client</strong></label>
-                <div className='col-sm-5'>
-                <button className='btn btn-outline-primary btn-sm rounded-1'>
-                  Edit Client</button></div>
+                  <div className='col-sm-5'>
+                    <button
+                      className='btn btn-outline-primary btn-sm rounded-1'
+                      onClick={() => setOpen(true)}>
+                      Edit Client
+                    </button>
+                    <PopupForm 
+                    open={open} 
+                    onClose={() => setOpen(false)} 
+                    username={clientOptions[clientIndex]}
+                    />
+                  </div>
                    <div className='col-sm-7'>
                 <button className='btn btn-outline-primary btn-sm rounded-1'>
                  Add New Client</button></div>
