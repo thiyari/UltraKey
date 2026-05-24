@@ -8,20 +8,11 @@ const ClientForm = ({ formData, handleChange }) => {
         margin="dense"
         label="Username"
         name="userName"
-        value={formData.username}
+        value={formData.userName}
         onChange={handleChange}
         fullWidth
       />
 
-
-      <TextField
-        margin="dense"
-        label="Client Name"
-        name="clientName"
-        value={formData.clientName}
-        onChange={handleChange}
-        fullWidth
-      />
 
       <TextField
         margin="dense"

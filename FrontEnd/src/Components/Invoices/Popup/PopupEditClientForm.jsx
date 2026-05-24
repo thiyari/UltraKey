@@ -14,7 +14,6 @@ const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 
 const PopupEditClientForm = ({open,onClose,username}) => {
   const [formData, setFormData] = useState({
-    clientName: "",
     businessName: "",
     userName: "",
     email: "",
@@ -42,11 +41,22 @@ const PopupEditClientForm = ({open,onClose,username}) => {
 
   const fetchClient = async () => {
     try {
-      //const response = await axios.get(
-        //`${apiUrl}/api/clients/${username}`
-      //);
+      const response = await axios.get(
+        `${apiUrl}/api/clients`
+      );
 
-      //setFormData(response.data);
+      const data = response.data.data.find((item)=>(item.username === username))
+      setFormData({
+        businessName: data.businessOrClientName,
+        userName: data.username,
+        email: data.email,
+        password: data.password,
+        address: data.address,
+        extraInfo: data.extraInfo,
+        firstName: data.firstname,
+        lastName: data.lastname,
+        website: data.website,
+      })
     } catch (err) {
       console.log(err);
     }

@@ -14,7 +14,6 @@ const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 
 const PopupCreateClientForm = ({ open, onClose }) => {
   const [formData, setFormData] = useState({
-    clientName: "",
     businessName: "",
     userName: "",
     email: "",
@@ -58,7 +57,6 @@ const PopupCreateClientForm = ({ open, onClose }) => {
         alert(err);
       }
       setFormData({
-        clientName: "",
         businessName: "",
         userName: "",
         email: "",
