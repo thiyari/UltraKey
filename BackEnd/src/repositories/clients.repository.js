@@ -14,9 +14,10 @@ class ClientsRepository {
   }
   
   async update(id, data) {
-    return await Clients.findByIdAndUpdate(id, data, {
-      new: true,
-    });
+    return await Clients.findByIdAndUpdate(id, data,                 
+        {
+            returnDocument: "after"
+        });
   }
 
   async delete(id) {
