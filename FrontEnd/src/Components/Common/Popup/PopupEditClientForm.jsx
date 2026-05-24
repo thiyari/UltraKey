@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
-const PopupClientEditForm = ({ open, onClose, username }) => {
+const PopupEditClientForm = ({ open, onClose, username }) => {
   const [formData, setFormData] = useState({
     clientName: "",
     businessName: "",
@@ -23,12 +23,6 @@ const PopupClientEditForm = ({ open, onClose, username }) => {
     lastName: "",
     website: "",
   });
-
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleTogglePassword = () => {
-    setShowPassword((prev) => !prev);
-  };
 
   const handleChange = (e) => {
     setFormData({
@@ -187,4 +181,4 @@ const PopupClientEditForm = ({ open, onClose, username }) => {
   );
 };
 
-export default PopupClientEditForm;
+export default PopupEditClientForm;

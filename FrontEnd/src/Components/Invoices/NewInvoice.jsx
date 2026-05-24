@@ -364,7 +364,7 @@ useEffect(() => {
                       onClick={() => setOpen(true)}>
                       Edit Client
                     </button>
-                    <PopupClientEditForm 
+                    <PopupEditClientForm 
                     open={open} 
                     onClose={() => setOpen(false)} 
                     username={clientOptions[clientIndex]}
