@@ -16,7 +16,7 @@ const PopupEditClientForm = ({open,onClose,username}) => {
   const [formData, setFormData] = useState({
     clientName: "",
     businessName: "",
-    username: "",
+    userName: "",
     email: "",
     password: "",
     address: "",
@@ -40,17 +40,17 @@ const PopupEditClientForm = ({open,onClose,username}) => {
     }
   }, [username]);
 
- /* const fetchClient = async () => {
+  const fetchClient = async () => {
     try {
-      const response = await axios.get(
-        `${apiUrl}/api/clients/${username}`
-      );
+      //const response = await axios.get(
+        //`${apiUrl}/api/clients/${username}`
+      //);
 
-      setFormData(response.data);
+      //setFormData(response.data);
     } catch (err) {
       console.log(err);
     }
-  };*/
+  };
 
   const handleSubmit = async () => {
     try {

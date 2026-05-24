@@ -7,7 +7,7 @@ const ClientForm = ({ formData, handleChange }) => {
       <TextField
         margin="dense"
         label="Username"
-        name="username"
+        name="userName"
         value={formData.username}
         onChange={handleChange}
         fullWidth

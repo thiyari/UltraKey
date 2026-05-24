@@ -16,7 +16,7 @@ const PopupCreateClientForm = ({ open, onClose }) => {
   const [formData, setFormData] = useState({
     clientName: "",
     businessName: "",
-    username: "",
+    userName: "",
     email: "",
     password: "",
     address: "",
@@ -40,7 +40,7 @@ const PopupCreateClientForm = ({ open, onClose }) => {
           {
               businessOrClientName: formData.businessName,
               email: formData.email,
-              username: formData.username,
+              username: formData.userName,
               password: formData.password,
               address: formData.address,
               extraInfo: formData.extraInfo,
@@ -60,7 +60,7 @@ const PopupCreateClientForm = ({ open, onClose }) => {
       setFormData({
         clientName: "",
         businessName: "",
-        username: "",
+        userName: "",
         email: "",
         password: "",
         address: "",
