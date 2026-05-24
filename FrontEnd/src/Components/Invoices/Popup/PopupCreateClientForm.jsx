@@ -34,18 +34,46 @@ const PopupCreateClientForm = ({ open, onClose }) => {
   };
 
   const handleSubmit = async () => {
-    try {
-      await axios.post(`${apiUrl}/api/clients`, formData);
-
-      onClose();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  try {
+      await axios.post(
+        `${apiUrl}/api/clients`,
+          {
+              businessOrClientName: formData.businessName,
+              email: formData.email,
+              username: formData.username,
+              password: formData.password,
+              address: formData.address,
+              extraInfo: formData.extraInfo,
+              firstname: formData.firstName,
+              lastname: formData.lastName,
+              website: formData.website
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      } catch (err) {
+        alert(err);
+      }
+      setFormData({
+        clientName: "",
+        businessName: "",
+        username: "",
+        email: "",
+        password: "",
+        address: "",
+        extraInfo: "",
+        firstName: "",
+        lastName: "",
+        website: "",        
+      })
+  }
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-      <DialogTitle>Create Client</DialogTitle>
+      <DialogTitle>Add New Client</DialogTitle>
 
       <DialogContent dividers>
         <ClientForm
