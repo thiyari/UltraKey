@@ -69,6 +69,7 @@ const PopupCreateClientForm = ({ open, onClose }) => {
         lastName: "",
         website: "",        
       })
+      window.location.reload();
   }
 
   return (
