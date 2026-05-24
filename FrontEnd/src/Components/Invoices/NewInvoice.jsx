@@ -4,6 +4,7 @@ import Payments from './Payments';
 import Tabs from '../Common/Tabs/Tabs';
 import axios from 'axios';
 import PopupEditClientForm from '../Common/Popup/PopupEditClientForm';
+import PopupCreateClientForm from '../Common/Popup/PopupCreateClientForm';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
@@ -371,8 +372,14 @@ useEffect(() => {
                     />
                   </div>
                    <div className='col-sm-7'>
-                <button className='btn btn-outline-primary btn-sm rounded-1'>
-                 Add New Client</button></div>
+                <button className='btn btn-outline-primary btn-sm rounded-1' 
+                    onClick={() => setOpen(true)}>
+                 Add New Client</button>
+                    <PopupCreateClientForm
+                    open={open} 
+                    onClose={() => setOpen(false)} 
+                    />
+                 </div>
               </div>
               <div>
                   {/* Select dropdown */}

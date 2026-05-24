@@ -38,7 +38,7 @@ const PopupEditClientForm = ({ open, onClose, username }) => {
       const response = await axios.get(`${apiUrl}/api/clients`);
       
       const result = response.data.data.map((item)=>item);
-      console.log(result)
+      
       console.log("Clients Document exists");
     } catch (error) {
       console.log("Clients Document not found")
