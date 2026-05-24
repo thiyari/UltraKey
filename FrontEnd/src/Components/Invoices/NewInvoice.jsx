@@ -59,7 +59,8 @@ const NewInvoice = () => {
   const [dueDate, setDueDate] = useState("");
   const [dueDays, setDueDays] = useState("");
   const [clientOptions, setClientOptions] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
 {/*
   const htmlToText = (html) => {
@@ -362,22 +363,22 @@ useEffect(() => {
                   <div className='col-sm-5'>
                     <button
                       className='btn btn-outline-primary btn-sm rounded-1'
-                      onClick={() => setOpen(true)}>
+                      onClick={() => setEditOpen(true)}>
                       Edit Client
                     </button>
                     <PopupEditClientForm 
-                    open={open} 
-                    onClose={() => setOpen(false)} 
+                    open={editOpen} 
+                    onClose={() => setEditOpen(false)} 
                     username={clientOptions[clientIndex]}
                     />
                   </div>
                    <div className='col-sm-7'>
                 <button className='btn btn-outline-primary btn-sm rounded-1' 
-                    onClick={() => setOpen(true)}>
+                    onClick={() => setCreateOpen(true)}>
                  Add New Client</button>
                     <PopupCreateClientForm
-                    open={open} 
-                    onClose={() => setOpen(false)} 
+                    open={createOpen} 
+                    onClose={() => setCreateOpen(false)} 
                     />
                  </div>
               </div>
