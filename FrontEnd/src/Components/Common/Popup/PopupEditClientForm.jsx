@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
-const PopupForm = ({ open, onClose, username }) => {
+const PopupClientEditForm = ({ open, onClose, username }) => {
   const [formData, setFormData] = useState({
     clientName: "",
     businessName: "",
@@ -23,6 +23,12 @@ const PopupForm = ({ open, onClose, username }) => {
     lastName: "",
     website: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -73,6 +79,15 @@ const PopupForm = ({ open, onClose, username }) => {
       <DialogContent dividers>
         <TextField
           margin="dense"
+          label="Username"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          fullWidth
+        />
+
+        <TextField
+          margin="dense"
           label="Client Name"
           name="clientName"
           value={formData.clientName}
@@ -85,15 +100,6 @@ const PopupForm = ({ open, onClose, username }) => {
           label="Business/Client Name"
           name="businessName"
           value={formData.businessName}
-          onChange={handleChange}
-          fullWidth
-        />
-
-        <TextField
-          margin="dense"
-          label="Username"
-          name="username"
-          value={formData.username}
           onChange={handleChange}
           fullWidth
         />
@@ -181,4 +187,4 @@ const PopupForm = ({ open, onClose, username }) => {
   );
 };
 
-export default PopupForm;
+export default PopupClientEditForm;

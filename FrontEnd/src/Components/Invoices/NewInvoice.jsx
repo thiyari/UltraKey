@@ -3,7 +3,7 @@ import LineItems from './LineItems';
 import Payments from './Payments';
 import Tabs from '../Common/Tabs/Tabs';
 import axios from 'axios';
-import PopupForm from '../Common/Popup/PopupForm';
+import PopupClientEditForm from '../Common/Popup/PopupEditClientForm';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
@@ -364,7 +364,7 @@ useEffect(() => {
                       onClick={() => setOpen(true)}>
                       Edit Client
                     </button>
-                    <PopupForm 
+                    <PopupClientEditForm 
                     open={open} 
                     onClose={() => setOpen(false)} 
                     username={clientOptions[clientIndex]}
