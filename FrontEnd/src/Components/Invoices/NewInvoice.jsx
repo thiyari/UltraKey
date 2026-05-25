@@ -43,7 +43,7 @@ const NewInvoice = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const [description, setDescription] = useState("");
   const [termsAndConditions, setTermsAndConditions] = useState("");
-  const [clientIndex, setClientIndex] = useState(0);
+  const [selectedClient, setSelectedClient] = useState('Select Client');
   const [statusIndex, setStatusIndex] = useState(0);
   const [currencyIndex, setCurrencyIndex] = useState(0);
   const [taxPriceIndex, setTaxPriceIndex] = useState(0);
@@ -436,7 +436,7 @@ const total_due = () => {
                     <PopupEditClientForm 
                     open={editOpen} 
                     onClose={() => setEditOpen(false)} 
-                    username={clientOptions[clientIndex]}
+                    username={selectedClient}
                     refreshClients={fetchClients}
                     />
                   </div>
@@ -453,11 +453,10 @@ const total_due = () => {
               </div>
               <div>
                   {/* Select dropdown */}
-                  <select className="form-select form-select-sm rounded-0 my-3"
-                    value={clientOptions[clientIndex]}
-                    onChange={(e) =>
-                    setClientIndex(clientOptions.indexOf(e.target.value))
-                  }
+                  <select
+                    className="form-select form-select-sm rounded-0 my-3"
+                    value={selectedClient}
+                    onChange={(e) => setSelectedClient(e.target.value)}
                   >
                   {clientOptions.map((option, index) => (
                   <option key={index} value={option}>
