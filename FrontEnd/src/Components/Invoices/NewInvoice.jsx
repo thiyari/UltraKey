@@ -285,7 +285,8 @@ useEffect(() => {
                             handleLineItemsChange={handleLineItemsChange}
                             deleteCard={deleteLineItemCard}
                             selectedTax={taxable}
-                            onTaxable={(selected)=>setTaxable(selected)}/>
+                            onTaxable={(selected)=>setTaxable(selected)}
+                            currencySymbol={currencySymbol}/>
                             <div className="row">
                               <div className="col-sm-6" align="left">
                                 <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>
@@ -326,10 +327,10 @@ useEffect(() => {
                                               </label><br></br>
                                           </div>
                                           <div className="col-sm-6 text-end">
-                                              <label className='form-label small'>₹0.00</label><br></br>
-                                              <label className='form-label small'>₹0.00</label><br></br>
-                                              <label className='form-label text-danger small'>-₹{discount}.00</label><br></br>
-                                              <label className='form-label text-danger small'>-₹{paid}.00</label><br></br>
+                                              <label className='form-label small'>{currencySymbol}0.00</label><br></br>
+                                              <label className='form-label small'>{currencySymbol}0.00</label><br></br>
+                                              <label className='form-label text-danger small'>-{currencySymbol}{discount}.00</label><br></br>
+                                              <label className='form-label text-danger small'>-{currencySymbol}{paid}.00</label><br></br>
                                           </div>
                                         </div>
                                       </div>
@@ -339,7 +340,7 @@ useEffect(() => {
                                                 <label className='form-label small'><strong>Total Due</strong></label>
                                             </div>
                                             <div className="col-sm-6 text-end">
-                                                <label className='form-label small'><strong>₹0.00</strong></label>
+                                                <label className='form-label small'><strong>{currencySymbol}0.00</strong></label>
                                             </div>
                                           </div>
                                       </div>

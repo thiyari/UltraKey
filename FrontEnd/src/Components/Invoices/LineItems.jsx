@@ -1,6 +1,14 @@
 import React, {useState} from 'react'
 
-const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsChange, onTaxable, selectedTax}) => {
+const LineItems = ({
+    onSelectedIndexChange, 
+    cards, 
+    deleteCard, 
+    handleLineItemsChange, 
+    onTaxable, 
+    selectedTax,
+    currencySymbol
+}) => {
 
   let options = ['Add new items manually', 'Add pre-define line items']  
 
@@ -88,8 +96,8 @@ const LineItems = ({onSelectedIndexChange, cards, deleteCard, handleLineItemsCha
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='right'>
-                                <label className="form-label small">Amount (₹)</label>
-                                <label className="form-label">₹0.00</label>
+                                <label className="form-label small">Amount (₹)</label><br></br>
+                                <label className="form-label">{currencySymbol}0.00</label>
                             </div>
                         </div>
                     </div>
