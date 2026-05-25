@@ -255,14 +255,19 @@ useEffect(() => {
 
 
 useEffect(() => {
-  let total = 0;
+  let totalAmount = 0;
 
   lineItemCards.forEach((item) => {
-    total += Number(item.qty) * Number(item.price);
+    totalAmount += Number(item.qty) * Number(item.price);
   });
-  setGST(Math.round((tax / 100) * subTotal))
-  setSubTotal(total);
-}, [lineItemCards, tax, subTotal]); 
+  setSubTotal(totalAmount);
+
+  const discountedTotal = totalAmount - Number(discount);
+  const gstAmount = Math.round((Number(tax) / 100) * discountedTotal);
+
+  setGST(gstAmount);
+
+}, [lineItemCards, tax, subTotal, discount]); 
 
 
 const thousand_seperator = (num) => {
@@ -273,6 +278,11 @@ const decimals = () => {
     return "0".repeat(numberOfDecimals);
 }
 
+const total_due = () => {
+
+    const result = ((subTotal - discount) + GST) - paid
+    return result
+}
   return (
     <div className='container-fluid'>
       <div className='row mt-3 p-2 border' style={{backgroundColor: "#f8f9fb"}}>
@@ -364,7 +374,7 @@ const decimals = () => {
                                                 <label className='form-label small'><strong>Total Due</strong></label>
                                             </div>
                                             <div className="col-sm-6 text-end">
-                                                <label className='form-label small'><strong>{currencySymbol}{thousand_seperator(0)}{decimalSeperator}{decimals()}</strong></label>
+                                                <label className='form-label small'><strong>{currencySymbol}{thousand_seperator(total_due())}{decimalSeperator}{decimals()}</strong></label>
                                             </div>
                                           </div>
                                       </div>
