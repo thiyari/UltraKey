@@ -90,7 +90,7 @@ const LineItems = ({
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
-                                <label className="form-label small">Rate (₹)</label>
+                                <label className="form-label small">Rate ({currencySymbol})</label>
                                 <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"
                                     value={card.price}
                                     onChange={(e)=>handleLineItemsChange(card.id, "price", e.target.value)}
@@ -99,7 +99,7 @@ const LineItems = ({
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='right'>
-                                <label className="form-label small">Amount (₹)</label><br></br>
+                                <label className="form-label small">Amount ({currencySymbol})</label><br></br>
                                 <label className="form-label">{currencySymbol}{thousandSeperator(card.qty*card.price)}{decimalSeperator}{numberOfDecimals}</label>
                             </div>
                         </div>
