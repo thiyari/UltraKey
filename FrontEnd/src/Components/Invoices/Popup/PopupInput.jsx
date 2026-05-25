@@ -23,7 +23,7 @@ const PopupInput = ({open, onClose, onInput}) => {
       <DialogContent dividers>
               <TextField
                 margin="dense"
-                label="input"
+                label="Enter Value"
                 name="input"
                 fullWidth
                 value={input}
