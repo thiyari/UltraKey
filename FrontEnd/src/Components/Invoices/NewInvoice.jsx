@@ -285,12 +285,18 @@ const decimals = () => {
 }
 
 const total_due = () => {
-
     const result = ((subTotal - discount) + GST) - paid
     return result
 }
+
+const submitHandler = async (e) => {
+  e.preventDefault(); 
+    // Prepare data to be sent to the backend 
+}
+
   return (
     <div className='container-fluid'>
+      <form onSubmit={submitHandler}>
       <div className='row mt-3 p-2 border' style={{backgroundColor: "#f8f9fb"}}>
         <label align="left" className="p-2"><b>&nbsp;Add New Invoice</b></label>
         <div className='col-sm-9'>
@@ -420,7 +426,7 @@ const total_due = () => {
               <strong>Publish</strong>
             </div>
             <div className="card-body" align="right">
-              <a href="#" className="btn btn-primary rounded-0">Publish</a>
+              <button type="submit" className="btn btn-primary rounded-0">Publish</button>
             </div>
           </div>
           <div className="card mt-4 text rounded-0">
@@ -623,6 +629,7 @@ const total_due = () => {
           </div>
       </div>
       </div>
+      </form>
     </div>
   )
 }
