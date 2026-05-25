@@ -12,7 +12,7 @@ import ClientForm from "./ClientForm";
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 
-const PopupEditClientForm = ({open,onClose,username}) => {
+const PopupEditClientForm = ({open,onClose,username,refreshClients}) => {
   const [clientId, setClientId] = useState("");
   const [formData, setFormData] = useState({
     businessName: "",
@@ -80,12 +80,11 @@ const PopupEditClientForm = ({open,onClose,username}) => {
               website: formData.website
         }
       );
-
+      refreshClients();
       onClose();
     } catch (err) {
       console.log(err);
     }
-    window.location.reload();
   };
 
   return (

@@ -204,25 +204,30 @@ const future_date = (created_date, days) => {
     } catch (error) {
       console.log("Settings Document not found");
     } 
-    
-    try{
-      const response = await axios.get(`${apiUrl}/api/clients`);
-      
-      const usernames = response.data.data.map((item)=>item.username);
-
-      console.log("Clients Document exists");
-      setClientOptions(['Select Client', ...usernames]);
-    } catch (error) {
-      console.log("Clients Document not found")
-    }
-
 
   },[selectedItemIndex]);
+
+    
+const fetchClients = useCallback(async () => {
+  try {
+        const response = await axios.get(`${apiUrl}/api/clients`);
+
+        const usernames = response.data.data.map(
+          (item) => item.username
+        );
+
+        setClientOptions(['Select Client', ...usernames]);
+
+      } catch (error) {
+        console.log("Clients Document not found");
+      }
+    }, []);
 
 
   useEffect(() => {
     fetchSettings();
-  }, [fetchSettings]);
+    fetchClients();
+  }, [fetchSettings, fetchClients]);
 
 
   useEffect(()=>{
@@ -432,6 +437,7 @@ const total_due = () => {
                     open={editOpen} 
                     onClose={() => setEditOpen(false)} 
                     username={clientOptions[clientIndex]}
+                    refreshClients={fetchClients}
                     />
                   </div>
                    <div className='col-sm-7'>
@@ -441,6 +447,7 @@ const total_due = () => {
                     <PopupCreateClientForm
                     open={createOpen} 
                     onClose={() => setCreateOpen(false)} 
+                    refreshClients={fetchClients}
                     />
                  </div>
               </div>

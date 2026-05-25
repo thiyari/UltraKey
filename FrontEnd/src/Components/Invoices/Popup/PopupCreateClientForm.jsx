@@ -12,7 +12,7 @@ import ClientForm from "./ClientForm";
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 
-const PopupCreateClientForm = ({ open, onClose }) => {
+const PopupCreateClientForm = ({ open, onClose, refreshClients }) => {
   const [formData, setFormData] = useState({
     businessName: "",
     userName: "",
@@ -53,21 +53,22 @@ const PopupCreateClientForm = ({ open, onClose }) => {
             },
           }
         );
+        setFormData({
+          businessName: "",
+          userName: "",
+          email: "",
+          password: "",
+          address: "",
+          extraInfo: "",
+          firstName: "",
+          lastName: "",
+          website: "",        
+        })
+        refreshClients();
+        onClose();
       } catch (err) {
         alert(err);
       }
-      setFormData({
-        businessName: "",
-        userName: "",
-        email: "",
-        password: "",
-        address: "",
-        extraInfo: "",
-        firstName: "",
-        lastName: "",
-        website: "",        
-      })
-      window.location.reload();
   }
 
   return (
