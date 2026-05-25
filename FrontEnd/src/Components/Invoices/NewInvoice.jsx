@@ -66,6 +66,7 @@ const NewInvoice = () => {
   const [paidOpen, setPaidOpen] = useState(false);
   const [discount, setDiscount] = useState("");
   const [paid, setPaid] = useState("");
+  const [subTotal, setSubTotal] = useState(0);
 
 {/*
   const htmlToText = (html) => {
@@ -150,6 +151,7 @@ const future_date = (created_date, days) => {
     date.setDate(date.getDate() + Number(days));
     return  date.toISOString().split('T')[0];
 };
+
 
   const fetchSettings = useCallback(async () => {
     
@@ -249,8 +251,14 @@ useEffect(() => {
 
 
 useEffect(() => {
+  let total = 0;
 
-})
+  lineItemCards.forEach((item) => {
+    total += Number(item.qty) * Number(item.price);
+  });
+
+  setSubTotal(total);
+}, [lineItemCards]);
 
 
   return (
@@ -327,7 +335,7 @@ useEffect(() => {
                                               </label><br></br>
                                           </div>
                                           <div className="col-sm-6 text-end">
-                                              <label className='form-label small'>{currencySymbol}0.00</label><br></br>
+                                              <label className='form-label small'>{currencySymbol}{subTotal}.00</label><br></br>
                                               <label className='form-label small'>{currencySymbol}0.00</label><br></br>
                                               <label className='form-label text-danger small'>-{currencySymbol}{discount}.00</label><br></br>
                                               <label className='form-label text-danger small'>-{currencySymbol}{paid}.00</label><br></br>

@@ -97,7 +97,7 @@ const LineItems = ({
                         <div className='col-sm-2'>
                             <div className='form-group' align='right'>
                                 <label className="form-label small">Amount (₹)</label><br></br>
-                                <label className="form-label">{currencySymbol}0.00</label>
+                                <label className="form-label">{currencySymbol}{card.qty*card.price}.00</label>
                             </div>
                         </div>
                     </div>
