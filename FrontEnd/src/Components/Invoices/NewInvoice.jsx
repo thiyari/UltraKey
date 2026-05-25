@@ -50,7 +50,7 @@ const NewInvoice = () => {
   const [paymentMethods, setPaymentMethods] = useState("No");
   const [currencySymbol, setCurrencySymbol] = useState("");
   const [tax, setTax] = useState("");
-  const [defaultTaxPercentage, setDefaultTaxPercentage] = useState("");
+  const [taxPercentage, setTaxPercentage] = useState("");
   const [taxable, setTaxable] = useState("No");
   const [prefix, setPrefix] = useState("");
   const [suffix, setSuffix] = useState("");
@@ -192,7 +192,7 @@ const future_date = (created_date, days) => {
         )
       }
       setCurrencySymbol(payments.currencySymbol);
-      setDefaultTaxPercentage(tax.percentage)
+      setTaxPercentage(tax.percentage)
       setTermsAndConditions(invoices.termsAndConditions);
       setPrefix(invoices.prefix);
       setSuffix(invoices.suffix);
@@ -232,7 +232,7 @@ const future_date = (created_date, days) => {
       "No. I will enter prices exclusive of tax"
     );
       setTaxPriceIndex(index);
-      setTax(defaultTaxPercentage);
+      setTax(taxPercentage);
     } else {
     const index = taxPriceOptions.indexOf(
       "Yes. I will enter prices inclusive of tax"
@@ -241,7 +241,7 @@ const future_date = (created_date, days) => {
       setTax("");      
     }
 
-  },[taxable, defaultTaxPercentage])
+  },[taxable, taxPercentage])
 
 useEffect(() => {
   const selectedOption = taxPriceOptions[taxPriceIndex];
@@ -577,7 +577,7 @@ const decimals = () => {
                                   setTaxPriceIndex(selectedIndex);
                                   // update input value based on selected option
                                   if (e.target.value === 'No. I will enter prices exclusive of tax') {
-                                    setTax(defaultTaxPercentage);
+                                    setTax(taxPercentage);
                                   } else {
                                     setTax("")
                                   }
