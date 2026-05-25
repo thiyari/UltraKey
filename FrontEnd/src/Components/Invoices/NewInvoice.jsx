@@ -39,7 +39,8 @@ const NewInvoice = () => {
     },
   ]);
 
-
+  const [title, setTitle] = useState("");
+  const [orderNumber, setOrderNumber] = useState("");
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const [description, setDescription] = useState("");
   const [termsAndConditions, setTermsAndConditions] = useState("");
@@ -299,7 +300,9 @@ const total_due = () => {
                         type="text"  
                         className="form-control mb-2 rounded-0" 
                         placeholder='Enter Invoice Title'
-                        required
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required  
                         />
                     <div className="card text rounded-0 mt-5">
                         <div className="card-header" align="left">
@@ -497,7 +500,10 @@ const total_due = () => {
                 </div>
               </div>
               <label className='form-label small mt-3'><strong>Order Number</strong></label>
-              <input type='text' className='form-control form-control-sm rounded-0'></input>
+              <input type='text' className='form-control form-control-sm rounded-0'
+                value={orderNumber}
+                onChange={(e) => setOrderNumber(e.target.value)}
+              />
               <label className='form-label small mt-3'><strong>Created Date</strong></label>
               <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"
                 value={createdDate}
