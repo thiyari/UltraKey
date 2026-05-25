@@ -5,6 +5,7 @@ import Tabs from '../Common/Tabs/Tabs';
 import axios from 'axios';
 import PopupEditClientForm from './Popup/PopupEditClientForm';
 import PopupCreateClientForm from './Popup/PopupCreateClientForm';
+import PopupInput from './Popup/PopupInput';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
@@ -61,6 +62,10 @@ const NewInvoice = () => {
   const [clientOptions, setClientOptions] = useState([]);
   const [createOpen, setCreateOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [discountOpen, setDiscountOpen] = useState(false);
+  const [paidOpen, setPaidOpen] = useState(false);
+  const [discount, setDiscount] = useState("");
+  const [paid, setPaid] = useState("");
 
 {/*
   const htmlToText = (html) => {
@@ -295,14 +300,36 @@ useEffect(() => {
                                           <div className="col-sm-6 text-start">
                                               <label className='form-label small'>Sub Total</label><br></br>
                                               <label className='form-label small'>GST (18%)</label><br></br>
-                                              <label className='form-label small'>Discount<a href='#'> edit</a></label><br></br>
-                                              <label className='form-label small'>Paid <a href='#'>edit</a></label><br></br>
+                                              <label className='form-label small'>Discount <a href='#'                     open={editOpen} 
+                                                  onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setDiscountOpen(true);
+                                                  }}
+                                              >edit</a>
+                                              <PopupInput
+                                                open={discountOpen} 
+                                                onClose={() => setDiscountOpen(false)} 
+                                                onInput={(input)=>setDiscount(input)}
+                                                />
+                                              </label><br></br>
+                                              <label className='form-label small'>Paid <a href='#'
+                                                onClick={(e) => {
+                                                      e.preventDefault();
+                                                      setPaidOpen(true);
+                                                    }}
+                                              >edit</a>
+                                              <PopupInput
+                                                open={paidOpen} 
+                                                onClose={() => setPaidOpen(false)} 
+                                                onInput={(input)=>setPaid(input)}
+                                                />
+                                              </label><br></br>
                                           </div>
                                           <div className="col-sm-6 text-end">
                                               <label className='form-label small'>₹0.00</label><br></br>
                                               <label className='form-label small'>₹0.00</label><br></br>
-                                              <label className='form-label text-danger small'>-₹0.00</label><br></br>
-                                              <label className='form-label text-danger small'>-₹0.00</label><br></br>
+                                              <label className='form-label text-danger small'>-₹{discount}.00</label><br></br>
+                                              <label className='form-label text-danger small'>-₹{paid}.00</label><br></br>
                                           </div>
                                         </div>
                                       </div>
