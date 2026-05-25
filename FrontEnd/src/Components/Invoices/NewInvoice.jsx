@@ -50,7 +50,6 @@ const NewInvoice = () => {
   const [paymentMethods, setPaymentMethods] = useState("No");
   const [currencySymbol, setCurrencySymbol] = useState("");
   const [tax, setTax] = useState("");
-  const [defaultCurrencySymbol, setDefaultCurrencySymbol] = useState("");
   const [defaultTaxPercentage, setDefaultTaxPercentage] = useState("");
   const [taxable, setTaxable] = useState("No");
   const [prefix, setPrefix] = useState("");
@@ -192,7 +191,7 @@ const future_date = (created_date, days) => {
             }]
         )
       }
-      setDefaultCurrencySymbol(payments.currencySymbol);
+      setCurrencySymbol(payments.currencySymbol);
       setDefaultTaxPercentage(tax.percentage)
       setTermsAndConditions(invoices.termsAndConditions);
       setPrefix(invoices.prefix);
@@ -519,7 +518,7 @@ const decimals = () => {
                                   setCurrencyIndex(selectedIndex);
                                   // update input value based on selected option
                                   if (e.target.value === 'INR') {
-                                    setCurrencySymbol(defaultCurrencySymbol);
+                                    setCurrencySymbol("₹");
                                   } else if (e.target.value === 'USD') {
                                     setCurrencySymbol("$")
                                   } else {
