@@ -317,7 +317,7 @@ const decimals = () => {
                                         <div className='row'>
                                           <div className="col-sm-6 text-start">
                                               <label className='form-label small'>Sub Total</label><br></br>
-                                              <label className='form-label small'>GST (18%)</label><br></br>
+                                              <label className='form-label small'>GST ({tax}%)</label><br></br>
                                               <label className='form-label small'>Discount <a href='#'                     
                                                   onClick={(e) => {
                                                     e.preventDefault();
