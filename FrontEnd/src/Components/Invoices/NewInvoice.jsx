@@ -71,6 +71,7 @@ const NewInvoice = () => {
   const [thousandSeperator, setThousandSeperator] = useState("");
   const [numberOfDecimals, setNumberOfDecimals] = useState("");
   const [decimalSeperator, setDecimalSeperator] = useState("");
+  const [totalDue,setTotalDue] = useState(0);
 {/*
   const htmlToText = (html) => {
     const div = document.createElement('div')
@@ -149,11 +150,11 @@ const NewInvoice = () => {
     setSelectedItemIndex(index);
   };
 
-const future_date = (created_date, days) => {
-    const date = new Date(created_date);
-    date.setDate(date.getDate() + Number(days));
-    return  date.toISOString().split('T')[0];
-};
+  const future_date = (created_date, days) => {
+      const date = new Date(created_date);
+      date.setDate(date.getDate() + Number(days));
+      return  date.toISOString().split('T')[0];
+  };
 
 
   const fetchSettings = useCallback(async () => {
@@ -266,6 +267,7 @@ useEffect(() => {
   lineItemCards.forEach((item) => {
     totalAmount += Number(item.qty) * Number(item.price);
   });
+
   setSubTotal(totalAmount);
 
   const discountedTotal = totalAmount - Number(discount);
@@ -273,7 +275,13 @@ useEffect(() => {
 
   setGST(gstAmount);
 
-}, [lineItemCards, tax, subTotal, discount]); 
+  setTotalDue(discountedTotal + gstAmount - Number(paid));
+}, [
+  lineItemCards,
+  tax ?? 0,
+  discount ?? 0,
+  paid ?? 0
+]);
 
 
 const thousand_seperator = (num) => {
@@ -282,11 +290,6 @@ const thousand_seperator = (num) => {
 
 const decimals = () => {
     return "0".repeat(numberOfDecimals);
-}
-
-const total_due = () => {
-    const result = ((subTotal - discount) + GST) - paid
-    return result
 }
 
 const submitHandler = async (e) => {
@@ -388,7 +391,7 @@ const submitHandler = async (e) => {
                                                 <label className='form-label small'><strong>Total Due</strong></label>
                                             </div>
                                             <div className="col-sm-6 text-end">
-                                                <label className='form-label small'><strong>{currencySymbol}{thousand_seperator(total_due())}{decimalSeperator}{decimals()}</strong></label>
+                                                <label className='form-label small'><strong>{currencySymbol}{thousand_seperator(totalDue)}{decimalSeperator}{decimals()}</strong></label>
                                             </div>
                                           </div>
                                       </div>
