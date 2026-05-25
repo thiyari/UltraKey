@@ -72,6 +72,7 @@ const NewInvoice = () => {
   const [numberOfDecimals, setNumberOfDecimals] = useState("");
   const [decimalSeperator, setDecimalSeperator] = useState("");
   const [totalDue,setTotalDue] = useState(0);
+  const [toAddress, setToAddress] = useState("");
 {/*
   const htmlToText = (html) => {
     const div = document.createElement('div')
@@ -294,7 +295,20 @@ const decimals = () => {
 
 const submitHandler = async (e) => {
   e.preventDefault(); 
-    // Prepare data to be sent to the backend 
+
+  try {
+        const response = await axios.get(`${apiUrl}/api/clients`);
+    
+        const client = response.data.data.find((client) => (client.username === selectedClient));
+        const name = `${client.firstname} ${client.lastname}\n`;
+        const address = `${client.address}\n${client.extraInfo}\n${client.website}`;
+        const to_address = `${name}${address}`;
+        setToAddress(to_address);
+
+
+      } catch (error) {
+        console.log("Error in publishing invoice: ", error);
+      }
 }
 
   return (
@@ -310,8 +324,7 @@ const submitHandler = async (e) => {
                         className="form-control mb-2 rounded-0" 
                         placeholder='Enter Invoice Title'
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required  
+                        onChange={(e) => setTitle(e.target.value)}  
                         />
                     <div className="card text rounded-0 mt-5">
                         <div className="card-header" align="left">
