@@ -68,7 +68,9 @@ const NewInvoice = () => {
   const [paid, setPaid] = useState("");
   const [subTotal, setSubTotal] = useState(0);
   const [GST, setGST] = useState(0);
-
+  const [thousandSeperator, setThousandSeperator] = useState("");
+  const [numberOfDecimals, setNumberOfDecimals] = useState("");
+  const [decimalSeperator, setDecimalSeperator] = useState("");
 {/*
   const htmlToText = (html) => {
     const div = document.createElement('div')
@@ -197,7 +199,9 @@ const future_date = (created_date, days) => {
       setSuffix(invoices.suffix);
       setInvoiceNumber(invoices.nextNumber);
       setDueDays(invoices.dueDate);
-
+      setThousandSeperator(payments.thousandSeperator);
+      setNumberOfDecimals(payments.numberOfDecimals);
+      setDecimalSeperator(payments.decimalSeperator);
     } catch (error) {
       console.log("Settings Document not found");
     } 
@@ -261,14 +265,14 @@ useEffect(() => {
   setSubTotal(total);
 }, [lineItemCards, tax, subTotal]); 
 
-/*
+
 const thousand_seperator = (num) => {
-  return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, payments.thousandSeperator);
+  return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, thousandSeperator);
 }
 
 const decimals = () => {
-    return "0".repeat(payments.numberOfDecimals);
-}*/
+    return "0".repeat(numberOfDecimals);
+}
 
   return (
     <div className='container-fluid'>
@@ -303,7 +307,11 @@ const decimals = () => {
                             deleteCard={deleteLineItemCard}
                             selectedTax={taxable}
                             onTaxable={(selected)=>setTaxable(selected)}
-                            currencySymbol={currencySymbol}/>
+                            currencySymbol={currencySymbol}
+                            thousandSeperator={(number)=>thousand_seperator(number)}
+                            decimalSeperator={decimalSeperator}
+                            numberOfDecimals={decimals()}
+                            />
                             <div className="row">
                               <div className="col-sm-6" align="left">
                                 <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>
@@ -344,10 +352,10 @@ const decimals = () => {
                                               </label><br></br>
                                           </div>
                                           <div className="col-sm-6 text-end">
-                                              <label className='form-label small'>{currencySymbol}{subTotal}.00</label><br></br>
-                                              <label className='form-label small'>{currencySymbol}{GST}.00</label><br></br>
-                                              <label className='form-label text-danger small'>-{currencySymbol}{discount}.00</label><br></br>
-                                              <label className='form-label text-danger small'>-{currencySymbol}{paid}.00</label><br></br>
+                                              <label className='form-label small'>{currencySymbol}{thousand_seperator(subTotal)}{decimalSeperator}{decimals()}</label><br></br>
+                                              <label className='form-label small'>{currencySymbol}{thousand_seperator(GST)}{decimalSeperator}{decimals()}</label><br></br>
+                                              <label className='form-label text-danger small'>-{currencySymbol}{thousand_seperator(discount)}{decimalSeperator}{decimals()}</label><br></br>
+                                              <label className='form-label text-danger small'>-{currencySymbol}{thousand_seperator(paid)}{decimalSeperator}{decimals()}</label><br></br>
                                           </div>
                                         </div>
                                       </div>
@@ -357,7 +365,7 @@ const decimals = () => {
                                                 <label className='form-label small'><strong>Total Due</strong></label>
                                             </div>
                                             <div className="col-sm-6 text-end">
-                                                <label className='form-label small'><strong>{currencySymbol}0.00</strong></label>
+                                                <label className='form-label small'><strong>{currencySymbol}{thousand_seperator(0)}{decimalSeperator}{decimals()}</strong></label>
                                             </div>
                                           </div>
                                       </div>

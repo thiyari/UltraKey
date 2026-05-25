@@ -7,7 +7,10 @@ const LineItems = ({
     handleLineItemsChange, 
     onTaxable, 
     selectedTax,
-    currencySymbol
+    currencySymbol,
+    thousandSeperator,
+    decimalSeperator,
+    numberOfDecimals
 }) => {
 
   let options = ['Add new items manually', 'Add pre-define line items']  
@@ -97,7 +100,7 @@ const LineItems = ({
                         <div className='col-sm-2'>
                             <div className='form-group' align='right'>
                                 <label className="form-label small">Amount (₹)</label><br></br>
-                                <label className="form-label">{currencySymbol}{card.qty*card.price}.00</label>
+                                <label className="form-label">{currencySymbol}{thousandSeperator(card.qty*card.price)}{decimalSeperator}{numberOfDecimals}</label>
                             </div>
                         </div>
                     </div>
