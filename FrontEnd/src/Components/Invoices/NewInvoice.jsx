@@ -64,8 +64,8 @@ const NewInvoice = () => {
   const [editOpen, setEditOpen] = useState(false);
   const [discountOpen, setDiscountOpen] = useState(false);
   const [paidOpen, setPaidOpen] = useState(false);
-  const [discount, setDiscount] = useState("");
-  const [paid, setPaid] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [paid, setPaid] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
   const [GST, setGST] = useState(0);
   const [thousandSeperator, setThousandSeperator] = useState("");
