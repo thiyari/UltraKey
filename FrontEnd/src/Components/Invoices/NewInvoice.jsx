@@ -67,6 +67,7 @@ const NewInvoice = () => {
   const [discount, setDiscount] = useState("");
   const [paid, setPaid] = useState("");
   const [subTotal, setSubTotal] = useState(0);
+  const [GST, setGST] = useState(0);
 
 {/*
   const htmlToText = (html) => {
@@ -256,10 +257,18 @@ useEffect(() => {
   lineItemCards.forEach((item) => {
     total += Number(item.qty) * Number(item.price);
   });
-
+  setGST(Math.round((tax / 100) * subTotal))
   setSubTotal(total);
-}, [lineItemCards]);
+}, [lineItemCards, tax, subTotal]); 
 
+/*
+const thousand_seperator = (num) => {
+  return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, payments.thousandSeperator);
+}
+
+const decimals = () => {
+    return "0".repeat(payments.numberOfDecimals);
+}*/
 
   return (
     <div className='container-fluid'>
@@ -309,7 +318,7 @@ useEffect(() => {
                                           <div className="col-sm-6 text-start">
                                               <label className='form-label small'>Sub Total</label><br></br>
                                               <label className='form-label small'>GST (18%)</label><br></br>
-                                              <label className='form-label small'>Discount <a href='#'                     open={editOpen} 
+                                              <label className='form-label small'>Discount <a href='#'                     
                                                   onClick={(e) => {
                                                     e.preventDefault();
                                                     setDiscountOpen(true);
@@ -336,7 +345,7 @@ useEffect(() => {
                                           </div>
                                           <div className="col-sm-6 text-end">
                                               <label className='form-label small'>{currencySymbol}{subTotal}.00</label><br></br>
-                                              <label className='form-label small'>{currencySymbol}0.00</label><br></br>
+                                              <label className='form-label small'>{currencySymbol}{GST}.00</label><br></br>
                                               <label className='form-label text-danger small'>-{currencySymbol}{discount}.00</label><br></br>
                                               <label className='form-label text-danger small'>-{currencySymbol}{paid}.00</label><br></br>
                                           </div>
