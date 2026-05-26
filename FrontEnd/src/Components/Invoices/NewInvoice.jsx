@@ -56,8 +56,8 @@ const NewInvoice = () => {
   const [prefix, setPrefix] = useState("");
   const [suffix, setSuffix] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
-  const [createdDate, setCreatedDate] = useState(new Date());
-  const [dueDate, setDueDate] = useState(new Date());
+  const [createdDate, setCreatedDate] = useState("");
+  const [dueDate, setDueDate] = useState("");
   const [dueDays, setDueDays] = useState("");
   const [clientOptions, setClientOptions] = useState([]);
   const [createOpen, setCreateOpen] = useState(false);
@@ -310,7 +310,7 @@ const submitHandler = async (e) => {
         const response = await axios.get(`${apiUrl}/api/clients`);
     
         const client = response.data.data.find((client) => (client.username === selectedClient));
-        
+
         setClient({
           address: client.address,
           email: client.email,

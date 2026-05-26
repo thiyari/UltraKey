@@ -19,8 +19,8 @@ function General() {
     }); */
 
     const [data, setData] = useState({
-      yearStart: new Date(),
-      yearEnd: new Date(),
+      yearStart: "",
+      yearEnd: "",
       lineItems: [],
     });
 
