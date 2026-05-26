@@ -72,7 +72,17 @@ const NewInvoice = () => {
   const [numberOfDecimals, setNumberOfDecimals] = useState("");
   const [decimalSeperator, setDecimalSeperator] = useState("");
   const [totalDue,setTotalDue] = useState(0);
-  const [toAddress, setToAddress] = useState("");
+  const [client, setClient] = useState({
+      address: "",
+      email: "",
+      businessOrClientName: "",
+      extraInfo: "",
+      firstname: "",
+      lastname: "",
+      password: "",
+      username: "",
+      website: ""
+  });
 {/*
   const htmlToText = (html) => {
     const div = document.createElement('div')
@@ -300,11 +310,62 @@ const submitHandler = async (e) => {
         const response = await axios.get(`${apiUrl}/api/clients`);
     
         const client = response.data.data.find((client) => (client.username === selectedClient));
-        const name = `${client.firstname} ${client.lastname}\n`;
-        const address = `${client.address}\n${client.extraInfo}\n${client.website}`;
-        const to_address = `${name}${address}`;
-        setToAddress(to_address);
+          
+        setClient({
+          address: client.address,
+          email: client.email,
+          businessOrClientName: client.businessOrClientName,
+          extraInfo: client.extraInfo,
+          firstname: client.firstname,
+          lastname: client.lastname,
+          password: client.password,
+          username: client.username,
+          website: client.website
+        });
 
+      await axios.post(
+        `${apiUrl}/api/invoices`,
+          {
+            title: title,
+            description: description,
+            lineItems: lineItemCards.map((item) => ({
+              qty: item.qty,
+              title: item.title,
+              adjust: item.adjust,
+              price: item.price,
+              description: item.description
+            })),
+            subTotal: subTotal,
+            GST: GST,
+            discount: discount,
+            paid: paid,
+            totalDue: totalDue,
+            payments: paymentCards.map((item) => ({
+              date: item.date,
+              amount: item.amount,
+              paymentMethod: item.paymentMethod,
+              paymentId: item.paymentId,
+              status: item.status,
+              memo: item.memo
+            })),
+            termsAndConditions: termsAndConditions,
+            client: client,
+            status: statusIndex,
+            prefix: prefix,
+            suffix: suffix,
+            invoiceNumber: invoiceNumber,
+            orderNumber: orderNumber,
+            createdDate: createdDate,
+            dueDate: dueDate,
+            currency: currencyIndex,
+            tax: tax
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
       } catch (error) {
         console.log("Error in publishing invoice: ", error);
