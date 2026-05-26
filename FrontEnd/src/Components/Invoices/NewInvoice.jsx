@@ -531,7 +531,7 @@ const submitHandler = async (e) => {
                 value={createdDate ? createdDate.toISOString().split("T")[0] : ""}
                 onChange={(e) => {
                   const value = e.target.value;
-                  setCreatedDate(new Date(value));
+                  setCreatedDate(value ? new Date(value) : "");
 
                   if (value && dueDays) {
                     const calculatedDue = future_date(value, dueDays);
@@ -543,7 +543,7 @@ const submitHandler = async (e) => {
               <label className='form-label small mt-3'><strong>Due Date</strong></label>
               <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"
                   value={dueDate ? dueDate.toISOString().split("T")[0] : ""}
-                  onChange={(e)=> setDueDate(new Date(e.target.value))}
+                  onChange={(e)=> setDueDate(e.target.value ? new Date(e.target.value) : "")}
               />
               {/* sub parts*/}
                 <div className="card mt-4 text rounded-0">
