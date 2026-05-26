@@ -56,8 +56,8 @@ const NewInvoice = () => {
   const [prefix, setPrefix] = useState("");
   const [suffix, setSuffix] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
-  const [createdDate, setCreatedDate] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const [createdDate, setCreatedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [dueDate, setDueDate] = useState(new Date().toISOString().split('T')[0]);
   const [dueDays, setDueDays] = useState("");
   const [clientOptions, setClientOptions] = useState([]);
   const [createOpen, setCreateOpen] = useState(false);
