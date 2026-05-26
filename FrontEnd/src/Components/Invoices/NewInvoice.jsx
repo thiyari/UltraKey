@@ -186,6 +186,7 @@ const NewInvoice = () => {
         number: index + 1,
         qty: item.qty || "",
         title: item.title || "",
+        adjust: "",
         price: item.price || "",
         description: item.description || ""
       }));
@@ -198,6 +199,7 @@ const NewInvoice = () => {
               number: 1,
               qty: "",
               title: "",
+              adjust: "",
               price: "",
               description: ""
             }]
