@@ -119,7 +119,7 @@ const LineItems = ({
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
                                 <label className="form-label form-control-sm small">Taxable</label>
-                                <div className="form-check">
+                                <div className="form-check" style={{marginLeft: "10px"}}>
                                     <input className="form-check-input" 
                                         type="checkbox" 
                                         id="flexCheckDefault"
