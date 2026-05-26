@@ -8,13 +8,14 @@ const settingsSchema = new mongoose.Schema(
       required: false,
       unique: true
     },
+    
     yearStart: {
-      type: String,
+      type: Date,
       required: false,
     },
 
     yearEnd: {
-      type: String,
+      type: Date,
       required: false,
     },
 
