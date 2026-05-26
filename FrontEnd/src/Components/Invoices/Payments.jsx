@@ -107,7 +107,7 @@ const statusOptions = ['select status','paid','overdue']
                             </div>
                         </div>
                     </div>
-                    <button className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Payment</button>
+                    <button type="button" className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Payment</button>
                 </div>
             </div>          
         ))}

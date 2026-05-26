@@ -149,17 +149,17 @@ const LineItems = ({
                                     </select>
 
                             {/* Down button */}
-                            <button className="px-3" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
+                            <button type="button" className="px-3" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
 
 
                             {/* Up button */}
-                            <button className="px-3" onClick={handleUp} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-up" style={{color: "blue"}}></i></button>
+                            <button type="button" className="px-3" onClick={handleUp} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-up" style={{color: "blue"}}></i></button>
 
 
                             </div>
                         </div>
                         <div className='col-sm-6' align='right'>
-                            <button className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Item</button>
+                            <button type="button" className="btn btn-outline-danger rounded-0" onClick={() => deleteCard(card.id)}>Remove Item</button>
                         </div>
                     </div>
                 </div>

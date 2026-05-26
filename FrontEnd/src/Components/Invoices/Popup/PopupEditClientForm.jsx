@@ -99,9 +99,11 @@ const PopupEditClientForm = ({open,onClose,username,refreshClients}) => {
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button type="button" onClick={onClose}>
+          Cancel
+        </Button>
 
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button type="button" variant="contained" onClick={handleSubmit}>
           Update
         </Button>
       </DialogActions>

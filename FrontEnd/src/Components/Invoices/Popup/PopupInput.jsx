@@ -32,9 +32,11 @@ const PopupInput = ({open, onClose, onInput}) => {
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button type="button" onClick={onClose}>
+          Cancel
+        </Button>
 
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button type="button" variant="contained" onClick={handleSubmit}>
           Add
         </Button>
       </DialogActions>

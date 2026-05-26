@@ -414,7 +414,7 @@ const submitHandler = async (e) => {
                             />
                             <div className="row">
                               <div className="col-sm-6" align="left">
-                                <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>
+                                <button type="button" className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</button>
                               </div>
                               <div className="col-sm-6" align="right">
                                   <div className="card rounded-0">
@@ -483,7 +483,7 @@ const submitHandler = async (e) => {
                           cards={paymentCards} 
                           handlePaymentItemsChange={handlePaymentItemsChange}
                           deleteCard={deletePaymentCard}/>
-                          <a className='btn btn-outline-primary rounded-0' onClick={addPaymentCard}>Add Another Payment</a>
+                          <button type="button" className='btn btn-outline-primary rounded-0' onClick={addPaymentCard}>Add Another Payment</button>
                         </div>
                     </div>
                     <div className="card text rounded-0 mt-4 mb-4">
@@ -515,6 +515,7 @@ const submitHandler = async (e) => {
                 <label className='form-label small'><strong>Client</strong></label>
                   <div className='col-sm-5'>
                     <button
+                      type="button"
                       className='btn btn-outline-primary btn-sm rounded-1'
                       onClick={() => setEditOpen(true)}>
                       Edit Client
@@ -527,7 +528,7 @@ const submitHandler = async (e) => {
                     />
                   </div>
                    <div className='col-sm-7'>
-                <button className='btn btn-outline-primary btn-sm rounded-1' 
+                <button type="button" className='btn btn-outline-primary btn-sm rounded-1' 
                     onClick={() => setCreateOpen(true)}>
                  Add New Client</button>
                     <PopupCreateClientForm

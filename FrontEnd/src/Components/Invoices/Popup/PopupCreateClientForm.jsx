@@ -83,9 +83,11 @@ const PopupCreateClientForm = ({ open, onClose, refreshClients }) => {
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button type="button" onClick={onClose}>
+          Cancel
+        </Button>
 
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button type="button" variant="contained" onClick={handleSubmit}>
           Create
         </Button>
       </DialogActions>
