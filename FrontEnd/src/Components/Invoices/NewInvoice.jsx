@@ -310,7 +310,7 @@ const submitHandler = async (e) => {
         const response = await axios.get(`${apiUrl}/api/clients`);
     
         const client = response.data.data.find((client) => (client.username === selectedClient));
-          
+        
         setClient({
           address: client.address,
           email: client.email,
