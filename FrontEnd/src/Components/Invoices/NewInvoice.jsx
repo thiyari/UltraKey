@@ -56,8 +56,8 @@ const NewInvoice = () => {
   const [prefix, setPrefix] = useState("");
   const [suffix, setSuffix] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
-  const [createdDate, setCreatedDate] = useState(new Date().toISOString().split('T')[0]);
-  const [dueDate, setDueDate] = useState(new Date().toISOString().split('T')[0]);
+  const [createdDate, setCreatedDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState(new Date());
   const [dueDays, setDueDays] = useState("");
   const [clientOptions, setClientOptions] = useState([]);
   const [createOpen, setCreateOpen] = useState(false);
@@ -154,7 +154,7 @@ const NewInvoice = () => {
   const future_date = (created_date, days) => {
       const date = new Date(created_date);
       date.setDate(date.getDate() + Number(days));
-      return  date.toISOString().split('T')[0];
+      return  date;
   };
 
 
@@ -528,10 +528,10 @@ const submitHandler = async (e) => {
               />
               <label className='form-label small mt-3'><strong>Created Date</strong></label>
               <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"
-                value={createdDate}
+                value={createdDate ? createdDate.toISOString().split("T")[0] : ""}
                 onChange={(e) => {
                   const value = e.target.value;
-                  setCreatedDate(value);
+                  setCreatedDate(new Date(value));
 
                   if (value && dueDays) {
                     const calculatedDue = future_date(value, dueDays);
@@ -542,8 +542,8 @@ const submitHandler = async (e) => {
               
               <label className='form-label small mt-3'><strong>Due Date</strong></label>
               <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"
-                  value={dueDate}
-                  onChange={(e)=> setDueDate(e.target.value)}
+                  value={dueDate ? dueDate.toISOString().split("T")[0] : ""}
+                  onChange={(e)=> setDueDate(new Date(e.target.value))}
               />
               {/* sub parts*/}
                 <div className="card mt-4 text rounded-0">
