@@ -44,9 +44,9 @@ const NewInvoice = () => {
   const [description, setDescription] = useState("");
   const [termsAndConditions, setTermsAndConditions] = useState("");
   const [selectedClient, setSelectedClient] = useState('Select Client');
-  const [statusIndex, setStatusIndex] = useState(0);
-  const [currencyIndex, setCurrencyIndex] = useState(0);
-  const [taxPriceIndex, setTaxPriceIndex] = useState(0);
+  const [status, setStatus] = useState(statusOptions[0]);
+  const [currency, setCurrency] = useState(currencyOptions[0]);
+  const [taxPriceOption, setTaxPriceOption] = useState(taxPriceOptions[0]);
   const [paymentMethods, setPaymentMethods] = useState("No");
   const [currencySymbol, setCurrencySymbol] = useState("");
   const [tax, setTax] = useState("");
@@ -241,34 +241,25 @@ const fetchClients = useCallback(async () => {
     fetchClients();
   }, [fetchSettings, fetchClients]);
 
-
-  useEffect(()=>{
-    
-    if (taxable === "Yes") {
-    const index = taxPriceOptions.indexOf(
-      "No. I will enter prices exclusive of tax"
-    );
-      setTaxPriceIndex(index);
-      setTax(taxPercentage);
-    } else {
-    const index = taxPriceOptions.indexOf(
-      "Yes. I will enter prices inclusive of tax"
-    );
-      setTaxPriceIndex(index);
-      setTax("");      
-    }
-
-  },[taxable, taxPercentage])
+useEffect(() => {
+  if (taxable === "Yes") {
+    setTaxPriceOption("No. I will enter prices exclusive of tax");
+    setTax(taxPercentage);
+  } else {
+    setTaxPriceOption("Yes. I will enter prices inclusive of tax");
+    setTax("");
+  }
+}, [taxable, taxPercentage]);
 
 useEffect(() => {
-  const selectedOption = taxPriceOptions[taxPriceIndex];
-
-  if (selectedOption === "No. I will enter prices exclusive of tax") {
+  if (taxPriceOption === "No. I will enter prices exclusive of tax") {
+    setTax(taxPercentage);
     setTaxable("Yes");
   } else {
+    setTax("");
     setTaxable("No");
   }
-}, [taxPriceIndex]);
+}, [taxPriceOption, taxPercentage]);
 
 
 useEffect(() => {
@@ -349,14 +340,14 @@ const submitHandler = async (e) => {
             })),
             termsAndConditions: termsAndConditions,
             client: client,
-            status: statusIndex,
+            status: status,
             prefix: prefix,
             suffix: suffix,
             invoiceNumber: invoiceNumber,
             orderNumber: orderNumber,
             createdDate: createdDate,
             dueDate: dueDate,
-            currency: currencyIndex,
+            currency: currency,
             tax: tax
           },
           {
@@ -555,9 +546,9 @@ const submitHandler = async (e) => {
               <div>
                   {/* Select dropdown */}
                   <select className="form-select form-select-sm rounded-0"
-                    value={statusOptions[statusIndex]}
+                    value={status}
                     onChange={(e) =>
-                    setStatusIndex(statusOptions.indexOf(e.target.value))
+                    setStatus(e.target.value)
                   }
                   >
                   {statusOptions.map((option, index) => (
@@ -616,20 +607,15 @@ const submitHandler = async (e) => {
                     <div>
                       {/* Select dropdown */}
                       <select className="form-select form-select-sm rounded-0"
-                        value={currencyOptions[currencyIndex]}
+                        value={currency}
                         onChange={(e) => {
-     
-                             const selectedIndex = currencyOptions.indexOf(e.target.value);
-                                  setCurrencyIndex(selectedIndex);
-                                  // update input value based on selected option
-                                  if (e.target.value === 'INR') {
-                                    setCurrencySymbol("₹");
-                                  } else if (e.target.value === 'USD') {
-                                    setCurrencySymbol("$")
-                                  } else {
-                                    setCurrencySymbol("")
-                                  }                       
-                      }}
+                          const value = e.target.value;
+                          setCurrency(value);
+
+                          if (value === 'INR') setCurrencySymbol("₹");
+                          else if (value === 'USD') setCurrencySymbol("$");
+                          else setCurrencySymbol("");
+                        }}
                       >
                       {currencyOptions.map((option, index) => (
                       <option key={index} value={option}>
@@ -676,16 +662,16 @@ const submitHandler = async (e) => {
                     <div>
                         {/* Select dropdown */}
                         <select className="form-select form-select-sm rounded-0"
-                          value={taxPriceOptions[taxPriceIndex]}
+                          value={taxPriceOption}
                           onChange={(e) => {
-                             const selectedIndex = taxPriceOptions.indexOf(e.target.value);
-                                  setTaxPriceIndex(selectedIndex);
-                                  // update input value based on selected option
-                                  if (e.target.value === 'No. I will enter prices exclusive of tax') {
-                                    setTax(taxPercentage);
-                                  } else {
-                                    setTax("")
-                                  }
+                            const value = e.target.value;
+                            setTaxPriceOption(value);
+
+                            if (value === 'No. I will enter prices exclusive of tax') {
+                              setTax(taxPercentage);
+                            } else {
+                              setTax("");
+                            }
                           }}
                         >
                         {taxPriceOptions.map((option, index) => (
