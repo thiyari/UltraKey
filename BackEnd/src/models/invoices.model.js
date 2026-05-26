@@ -82,9 +82,43 @@ const invoicesSchema = new mongoose.Schema(
         type: String,
         required: false,
     },
-    toAddress: {
-        type: String,
-        required: false,
+    client: {
+        address: {
+            type: String,
+            required: false,
+        },
+        businessOrClientName: {
+            type: String,
+            required: false,
+        },
+        email: {
+            type: String,
+            required: false,
+        },
+        extraInfo: {
+            type: String,
+            required: false,
+        },
+        firstname: {
+            type: String,
+            required: false,
+        },
+        lastname: {
+            type: String,
+            required: false,
+        },
+        password: {
+            type: String,
+            required: false,
+        },
+        username: {
+            type: String,
+            required: false,
+        },
+        website: {
+            type: String,
+            required: false,
+        }
     },
     status: {
         type: String,
