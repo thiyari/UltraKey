@@ -6,6 +6,7 @@ import axios from 'axios';
 import PopupEditClientForm from './Popup/PopupEditClientForm';
 import PopupCreateClientForm from './Popup/PopupCreateClientForm';
 import PopupInput from './Popup/PopupInput';
+import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
@@ -359,9 +360,31 @@ const submitHandler = async (e) => {
           }
         );
 
+            setTitle("");
+            setDescription("");
+            setLineItemCards([]);
+            setSubTotal(0);
+            setGST(0);
+            setDiscount(0);
+            setPaid(0);
+            setTotalDue(0);
+            setPaymentCards([]);
+            setTermsAndConditions("");
+            setClient(null);
+            setStatus("");
+            setPrefix("");
+            setSuffix("");
+            setInvoiceNumber("");
+            setOrderNumber("");
+            setCreatedDate("");
+            setDueDate("");
+            setCurrency("");
+            setTax("");
+
       } catch (error) {
         console.log("Error in publishing invoice: ", error);
       }
+      navigate("/pdf");
 }
 
   return (
