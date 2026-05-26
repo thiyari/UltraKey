@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require('cors');
 const settingsRoutes = require("./routes/settings.routes");
 const clientsRoutes = require("./routes/clients.routes")
+const invoicesRoutes = require("./routes/invoices.routes")
 
 const app = express();
 
@@ -18,5 +19,7 @@ app.use(cors(
 
 app.use("/api/settings", settingsRoutes);
 app.use("/api/clients", clientsRoutes)
+app.use("/api/invoices", invoicesRoutes)
+
 
 module.exports = app;
