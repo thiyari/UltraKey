@@ -62,8 +62,8 @@ const handleLineItemsChange = (e) => {
       console.log("Document exists");
 
       setData({
-        yearStart: general.yearStart,
-        yearEnd: general.yearEnd,
+        yearStart: new Date(general.yearStart),
+        yearEnd: new Date(general.yearEnd),
         lineItems: general.lineItems
       });
 
@@ -139,7 +139,7 @@ const handleLineItemsChange = (e) => {
                 <label htmlFor="yearStart" className="col-sm-3 col-form-label"><b>Year Start</b></label>
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="Start Year" aria-label="startYear" aria-describedby="basic-addon1"
-                  value={data.yearStart ? new Date(data.yearStart).toISOString().split("T")[0] : ""}
+                  value={data.yearStart ? data.yearStart.toISOString().split("T")[0] : ""}
                   onChange={(e)=>setData((prev) => ({...prev, yearStart: new Date(e.target.value)}))}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The start date of the fiscal year</i></label>
                 </div>
@@ -150,7 +150,7 @@ const handleLineItemsChange = (e) => {
                 <label htmlFor="yearEnd" className="col-sm-3 col-form-label"><b>Year End</b></label>
                 <div className="col-sm-3">
                   <input type="date" className="form-control" placeholder="End Year" aria-label="endYear" aria-describedby="basic-addon1"
-                  value={data.yearEnd ? new Date(data.yearEnd).toISOString().split("T")[0] : ""}
+                  value={data.yearEnd ? data.yearEnd.toISOString().split("T")[0] : ""}
                   onChange={(e)=>setData((prev)=>({...prev, yearEnd: new Date(e.target.value)}))}/>
                   <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>The end date of the fiscal year</i></label>
                 </div>
