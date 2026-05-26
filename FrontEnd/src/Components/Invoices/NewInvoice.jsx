@@ -35,7 +35,6 @@ const NewInvoice = () => {
       paymentId: "",
       status: "",
       memo: ""
-    
     },
   ]);
 

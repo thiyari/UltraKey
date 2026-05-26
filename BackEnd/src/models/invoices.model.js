@@ -54,7 +54,7 @@ const invoicesSchema = new mongoose.Schema(
     },
     payments: [{
         date: {
-            type: String,
+            type: Date,
             required: false,
         },
         amount: {

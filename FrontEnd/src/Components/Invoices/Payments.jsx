@@ -22,8 +22,8 @@ const statusOptions = ['select status','paid','overdue']
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Date</label>
                                 <input type="date" className="form-control form-control-sm rounded-0" aria-label="date" aria-describedby="basic-addon1"
-                                    value={card.date}
-                                    onChange={(e)=>handlePaymentItemsChange(card.id, "date", e.target.value)}                                
+                                    value={card.date ? card.date.toISOString().split('T')[0] : ''}
+                                    onChange={(e)=>handlePaymentItemsChange(card.id, "date", new Date(e.target.value))}                                
                                 />
                             </div>
                         </div>
