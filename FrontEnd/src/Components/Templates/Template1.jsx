@@ -363,7 +363,7 @@ const decimals = () => {
 
                                     (invoiceData.taxPriceOption === 'Yes. I will enter prices inclusive of tax'? 
                                         (
-                                            invoiceData.tax === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
+                                            invoiceData.tax === ""? `${invoiceData.currencySymbol}0.00`: `${invoiceData.currencySymbol}${invoiceData.tax}${".00"}`
                                         ): 
                                             `${invoiceData.currencySymbol}${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}`
                                     )}
@@ -372,7 +372,7 @@ const decimals = () => {
 
                                     (invoiceData.taxPriceOption === 'Yes. I will enter prices inclusive of tax'? 
                                         (
-                                            invoiceData.tax === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
+                                            invoiceData.tax === ""? `0.00${invoiceData.currencySymbol}`: `${invoiceData.tax}${".00"}${invoiceData.currencySymbol}`
                                         ): 
                                             `${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     )}
