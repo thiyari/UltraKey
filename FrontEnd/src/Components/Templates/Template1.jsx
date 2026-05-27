@@ -265,11 +265,11 @@ const decimals = () => {
                         </div>
                         <div className='row'>
                             <div className='col-sm-6' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Invoice Date</p></div>
-                            <div className='col-sm-6'style={{textAlign: "right"}}><p>{new Date().toLocaleDateString('en-GB')}</p></div>
+                            <div className='col-sm-6'style={{textAlign: "right"}}><p>{invoiceData.createdDate ? new Date(invoiceData.createdDate).toLocaleDateString('en-GB') : ''}</p></div>
                         </div>
                         <div className='row' >
                             <div className='col-sm-6' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Due Date</p></div>
-                            <div className='col-sm-6'style={{textAlign: "right"}}><p>{future_date(invoices.dueDate)}</p></div>
+                            <div className='col-sm-6'style={{textAlign: "right"}}><p>{invoiceData.dueDate ? new Date(invoiceData.dueDate).toLocaleDateString('en-GB') : ''}</p></div>
                         </div>
                         <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
                             <div className='col-sm-6' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{translate.totalDue}</p></div>
@@ -277,17 +277,13 @@ const decimals = () => {
                                     {
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
-                                            (grandTotal() +
-                                            (Math.round((tax.percentage / 100) * grandTotal()))) -
-                                            payments.paid
+                                            invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {    
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
-                                            (grandTotal() +
-                                            (Math.round((tax.percentage / 100) * grandTotal()))) -
-                                            payments.paid
+                                            invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                 </p></div>
