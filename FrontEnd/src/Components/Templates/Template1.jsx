@@ -189,7 +189,7 @@ const decimals = () => {
       margin: 0,
       border: "2px solid #236ca0",
       boxSizing: "border-box",
-      fontSize: "16px"
+      fontSize: "14px"
     }}>
         <div className='row mt-4'>
             <div className='col-sm-3'>
