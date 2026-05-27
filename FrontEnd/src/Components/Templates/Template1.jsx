@@ -91,16 +91,6 @@ const [translate, setTranslate] = useState({
       totalDue: "",
 });
 
-  const future_date = (days) => {
-    // Today's date
-    const today = new Date();
-    // Add 14 days
-    const futureDate = new Date(today);
-    futureDate.setDate(today.getDate() + days);
-
-    return futureDate.toLocaleDateString('en-GB');
-  }
-
   const invoice_number = (prefix, number, suffix) => {
     if (prefix != "" && suffix == "") {
         return `${prefix}-${number}`;
