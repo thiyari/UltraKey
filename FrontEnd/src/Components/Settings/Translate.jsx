@@ -114,7 +114,7 @@ const Translate = () => {
     } catch (err) {
       alert(err);
     }
-        navigate("/pdf");
+        navigate("/");
   }
 
   return (
