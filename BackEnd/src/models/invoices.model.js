@@ -152,6 +152,10 @@ const invoicesSchema = new mongoose.Schema(
         type: String,
         required: false,
     },
+    currencySymbol: {
+        type: String,
+        required: false,
+    },
     tax: {
         type: String,
         required: false,

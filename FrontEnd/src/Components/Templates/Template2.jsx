@@ -24,7 +24,9 @@ const [invoiceData, setInvoiceData] = useState({
             invoiceNumber: "",
             createdDate: "",
             dueDate: "",
-            tax: ""
+            tax: "",
+            termsAndConditions: "",
+            currencySymbol: "",
 });
     //const { formData } = useFormContext();
 const [general, setGeneral] = useState({
@@ -161,7 +163,9 @@ const [translate, setTranslate] = useState({
             invoiceNumber: result.invoiceNumber || "",
             createdDate: result.createdDate || "",
             dueDate: result.dueDate || "",
-            tax: result.tax || ""
+            tax: result.tax || "",
+            termsAndConditions: result.termsAndConditions || "",
+            currencySymbol: result.currencySymbol || "",
         });
       } catch (error) {
         console.log("Document not found");
