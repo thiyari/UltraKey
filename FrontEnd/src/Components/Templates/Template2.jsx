@@ -301,7 +301,8 @@ const [translate, setTranslate] = useState({
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.hrsQty}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{translate.service}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.ratePrice}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.adjust}</th>
+                        {invoices.hideAdjustField === "Yes" && (<th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center", display: "none"}}>{translate.adjust}</th>)}
+                        {invoices.hideAdjustField === "No" && (<th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.adjust}</th>)}
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "right", paddingRight: "30px"}}>{translate.subTotal}</th>
                         </tr>
                     </thead>
@@ -321,7 +322,8 @@ const [translate, setTranslate] = useState({
                                         `${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                                 </td>
-                                <td style={{textAlign: "center"}}>0.00%</td>
+                                {invoices.hideAdjustField === "Yes" && (<td style={{textAlign: "center", display: "none"}}>0.00%</td>)}
+                                {invoices.hideAdjustField === "No" && (<td style={{textAlign: "center"}}>0.00%</td>)}   
                                 <td style={{textAlign: "right", paddingRight: "30px"}}>
                                     {
                                         payments.currencyPosition === "left" && 
