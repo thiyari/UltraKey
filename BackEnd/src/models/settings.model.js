@@ -224,10 +224,6 @@ const settingsSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    discount: {
-      type: String,
-      required: false,
-    },
     total: {
       type: String,
       required: false,
