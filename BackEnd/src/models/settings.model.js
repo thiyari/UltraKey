@@ -161,14 +161,6 @@ const settingsSchema = new mongoose.Schema(
     genericPayment: {
       type: String,
       required: false,
-    },
-    discount: {
-      type: String,
-      required: false,
-    },
-    paid: {
-      type: String,
-      required: false,
     }
   },
   tax: {

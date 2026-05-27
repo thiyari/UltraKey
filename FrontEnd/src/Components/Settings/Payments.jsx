@@ -37,8 +37,6 @@ const Payments = () => {
       paymentPageFooter: "",
       bank: "",
       genericPayment: "",
-      discount: "",
-      paid: ""
     });
 
 
@@ -78,8 +76,6 @@ const Payments = () => {
         paymentPageFooter: payments.paymentPageFooter,
         bank: payments.bank,
         genericPayment: payments.genericPayment,
-        discount: payments.discount,
-        paid: payments.paid
       });
     } catch (error) {
       console.log("Document not found");
@@ -117,8 +113,6 @@ const Payments = () => {
             paymentPageFooter: data.paymentPageFooter,
             bank: data.bank,
             genericPayment: data.genericPayment,
-            discount: data.discount,
-            paid: data.paid
           }     
         },
         {
@@ -301,37 +295,6 @@ const Payments = () => {
                 <p className="m-2">
                 PayPal Gateway</p>
             </div>
-
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="paid" className="col-sm-3 col-form-label"><b>Paid</b></label>
-                <div className="col-sm-4">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        placeholder="Paid"
-                        value={data.paid??""}
-                        onChange={(e)=>{setData((prev)=>({...prev, paid: e.target.value}))}}
-                        />
-                </div>
-                <div className="col-sm-5"></div>
-              </div>
-
-
-              <div className="form-group row mt-4" align="left">
-                <label htmlFor="discount" className="col-sm-3 col-form-label"><b>Discount</b></label>
-                <div className="col-sm-4">
-                    <input 
-                        type="text"  
-                        className="form-control mb-2" 
-                        placeholder='Discount'
-                        value={data.discount??""}
-                        onChange={(e)=>{setData((prev)=>({...prev, discount: e.target.value}))}}
-                        />
-                </div>
-                <div className="col-sm-5"></div>
-              </div>
 
 
               <div className="form-group row mt-4" align="left">
