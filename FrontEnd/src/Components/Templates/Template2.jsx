@@ -285,7 +285,7 @@ const [translate, setTranslate] = useState({
                         
                             <div className='col-sm-11 mt-4'>
                                 <div className='row'>
-                                    <div dangerouslySetInnerHTML={{__html: invoices.termsAndConditions }} />
+                                    <div dangerouslySetInnerHTML={{__html: invoiceData.termsAndConditions }} />
                                 </div>
                             </div>
                             <div className='col-sm-1'></div>
