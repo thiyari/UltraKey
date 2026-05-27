@@ -355,7 +355,7 @@ const decimals = () => {
                             </div>
                         </div>
                         <div className='row'>
-                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>GST ({invoiceData.tax})%</p></div>
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>GST ({invoiceData.tax}%)</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}>
                                 <p>
                                     {

@@ -375,7 +375,7 @@ const [translate, setTranslate] = useState({
                             </div>
                             <hr className='row'></hr>
                                 <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "green"}}>{translate.discount}</p></div>
+                                <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "green"}}>Discount</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     <p style={{color: "green"}}>
                                         {
@@ -391,7 +391,7 @@ const [translate, setTranslate] = useState({
                             </div>
                             <hr className='row'></hr>
                             <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right"}}><p>GST ({invoiceData.tax})%</p></div>
+                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right"}}><p>GST ({invoiceData.tax}%)</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}>
                                     <p>
                                         {
