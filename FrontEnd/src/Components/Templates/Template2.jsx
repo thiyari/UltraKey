@@ -237,15 +237,17 @@ const [translate, setTranslate] = useState({
                       </p>               
                       <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: business.address}}/>
                       <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: business.info}} /> 
+                      <p style={{fontFamily: "Calibri"}} dangerouslySetInnerHTML={{__html: business.website}} /> 
                   </div>   
                   <div className='col-sm-2'></div>
               </div>
               <div className='row mt-4'>
                   <div className='col-sm-10' style={{padding: "10px 10px 10px 30px", backgroundColor: '#236ca0', color: 'white', textAlign:'left'}}>
                       <b>To:</b><br></br>
-                      <p style={{fontFamily: "Calibri"}}>
-                          {invoices.toAddress}
-                      </p>
+                      <p style={{fontFamily: "Calibri"}}>{`${invoiceData.client.firstname} ${invoiceData.client.lastname}`}</p>
+                      <p style={{fontFamily: "Calibri"}}>{invoiceData.client.address}</p>
+                      <p style={{fontFamily: "Calibri"}}>{invoiceData.client.extraInfo}</p>
+                      <p style={{fontFamily: "Calibri"}}>{invoiceData.client.website}</p>
                   </div>
                   <div className='col-sm-2'></div>
               </div>
