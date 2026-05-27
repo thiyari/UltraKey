@@ -111,17 +111,6 @@ const [translate, setTranslate] = useState({
     }
   }
   
-    const grandTotal = () => {
-      let subTotal = [];
-      let grandTotal = 0;
-      general.lineItems.map((item, index) => {
-          subTotal[index] = item.price * item.qty;
-      })
-      subTotal.map((item)=>{
-          grandTotal += item 
-      })
-      return grandTotal;
-    }
     
   const thousand_seperator = (num) => {
     return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, payments.thousandSeperator);
@@ -164,13 +153,13 @@ const [translate, setTranslate] = useState({
         const response = await axios.get(`${apiUrl}/api/invoices`);
         const result = response.data.data[0];
         setInvoiceData({
-            lineItems: [result.lineItems.map((item, index) => ({
+            lineItems: result.lineItems.map((item, index) => ({
                 qty: item.qty || 0,
                 title: item.title || "",  
                 adjust: item.adjust || "",
                 price: item.price || 0,
                 description: item.description || ""
-            }))],
+            })),
             subTotal: result.subTotal || 0,
             GST: result.GST || 0,
             discount: result.discount || 0,
@@ -321,7 +310,7 @@ const [translate, setTranslate] = useState({
                     </thead>
                     <tbody>
                         {
-                              general.lineItems.map((item, index) => (
+                              invoiceData.lineItems.map((item, index) => (
                                 <tr key={index}>
                                 <td style={{textAlign: "center"}}>{item.qty}</td>
                                 <td style={{textAlign: "left"}}>{item.title}<br></br><label className={"text-muted"}>{item.description}</label></td>
@@ -377,11 +366,11 @@ const [translate, setTranslate] = useState({
                                     <p>
                                         {
                                             payments.currencyPosition === "left" && 
-                                            `${payments.currencySymbol}${thousand_seperator(grandTotal())}${payments.decimalSeperator}${decimals()}`
+                                            `${payments.currencySymbol}${thousand_seperator(invoiceData.subTotal)}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
                                             payments.currencyPosition === "right" && 
-                                            `${thousand_seperator(grandTotal())}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                            `${thousand_seperator(invoiceData.subTotal)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                     </p>   
                                 </div>
@@ -393,11 +382,11 @@ const [translate, setTranslate] = useState({
                                     <p style={{color: "green"}}>
                                         {
                                             payments.currencyPosition === "left" && 
-                                            `${payments.currencySymbol}${thousand_seperator(payments.discount)}${payments.decimalSeperator}${decimals()}`
+                                            `${payments.currencySymbol}${thousand_seperator(invoiceData.discount)}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
                                             payments.currencyPosition === "right" && 
-                                            `${thousand_seperator(payments.discount)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                            `${thousand_seperator(invoiceData.discount)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                     </p>   
                                 </div>
@@ -412,18 +401,18 @@ const [translate, setTranslate] = useState({
 
                                         (tax.price === 'Yes. I will enter prices inclusive of tax'? 
                                             (
-                                                tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
+                                                tax.percentage === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                             ): 
-                                                `${payments.currencySymbol}${thousand_seperator(Math.round((tax.percentage/100) * (grandTotal() - payments.discount)))}${payments.decimalSeperator}${decimals()}`
+                                                `${payments.currencySymbol}${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}`
                                         )}
                                         {
                                         payments.currencyPosition === "right" && 
 
                                         (tax.price === 'Yes. I will enter prices inclusive of tax'? 
                                             (
-                                                tax.percentage === ""? "₹0.00": `${"₹"}${tax.percentage}${".00"}`
+                                                tax.percentage === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                             ): 
-                                                `${thousand_seperator(Math.round((tax.percentage/100) * (grandTotal() - payments.discount)))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                                `${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         )}
                                     </p></div>
                             </div>
@@ -432,29 +421,26 @@ const [translate, setTranslate] = useState({
                                 <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "#236ca0"}}>Paid</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     {
-                                    (payments.paid == ((grandTotal() - payments.discount) +
-                                                (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount))))?
+                                    (payments.paid == ((invoiceData.subTotal - invoiceData.discount) + invoiceData.GST)?
                                     <p style={{color: "#236ca0"}}>
                                         {
                                             payments.currencyPosition === "left" && 
-                                            `${"-"}${payments.currencySymbol}${thousand_seperator(((grandTotal() - payments.discount) +
-                                                (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))))}${payments.decimalSeperator}${decimals()}`
+                                            `${"-"}${payments.currencySymbol}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
                                             payments.currencyPosition === "right" && 
-                                            `${"-"}${thousand_seperator(((grandTotal() - payments.discount) +
-                                                (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))))}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                            `${"-"}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                     </p>:
                                     <p style={{color: "#236ca0"}}>
 
                                         {
                                             payments.currencyPosition === "left" &&
-                                            `${payments.currencySymbol}${thousand_seperator(payments.paid)}${payments.decimalSeperator}${decimals()}`
+                                            `${payments.currencySymbol}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}`
                                         }
                                         {
                                             payments.currencyPosition === "right" &&
-                                            `${thousand_seperator(payments.paid)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                            `${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                         }
                                 
                                     </p>)
@@ -468,17 +454,17 @@ const [translate, setTranslate] = useState({
                                     {
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
-                                            ((grandTotal() - payments.discount) +
-                                            (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))) -
-                                            payments.paid
+                                            ((invoiceData.subTotal - invoiceData.discount) +
+                                            (Math.round((tax.percentage / 100) * (invoiceData.subTotal - invoiceData.discount)))) -
+                                            invoiceData.paid
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {    
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
-                                            ((grandTotal() - payments.discount) +
-                                            (Math.round((tax.percentage / 100) * (grandTotal() - payments.discount)))) -
-                                            payments.paid
+                                            ((invoiceData.subTotal - invoiceData.discount) +
+                                            (Math.round((tax.percentage / 100) * (invoiceData.subTotal - invoiceData.discount)))) -
+                                            invoiceData.paid
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                     </p></div>
