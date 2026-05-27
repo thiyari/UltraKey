@@ -262,7 +262,7 @@ const decimals = () => {
                             <div className='col-sm-6'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
                                     {
                                         payments.currencyPosition === "left"
-                                        && `${payments.currencySymbol}${thousand_seperator(
+                                        && `${invoiceData.currencySymbol}${thousand_seperator(
                                             invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
@@ -270,7 +270,7 @@ const decimals = () => {
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
                                             invoiceData.totalDue
-                                        )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                        )}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                                 </p></div>
                         </div>
@@ -304,22 +304,22 @@ const decimals = () => {
                                 <td style={{textAlign: "center"}}>
                                     { 
                                         payments.currencyPosition === "left" && 
-                                        `${payments.currencySymbol}${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}`
+                                        `${invoiceData.currencySymbol}${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
                                        payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                        `${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                                 </td>
                                 <td style={{textAlign: "center"}}>0.00%</td>
                                 <td style={{textAlign: "center"}}>
                                     {
                                         payments.currencyPosition === "left" && 
-                                        `${payments.currencySymbol}${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}`
+                                        `${invoiceData.currencySymbol}${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
                                         payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                        `${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                                 </td>
                                 </tr>
@@ -343,11 +343,11 @@ const decimals = () => {
                                 <p>
                                     {
                                         payments.currencyPosition === "left" && 
-                                        `${payments.currencySymbol}${thousand_seperator(invoiceData.subTotal)}${payments.decimalSeperator}${decimals()}`
+                                        `${invoiceData.currencySymbol}${thousand_seperator(invoiceData.subTotal)}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
                                         payments.currencyPosition === "right" && 
-                                        `${thousand_seperator(invoiceData.subTotal)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                        `${thousand_seperator(invoiceData.subTotal)}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                                 </p>   
                             </div>
@@ -363,7 +363,7 @@ const decimals = () => {
                                         (
                                             tax.percentage === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                         ): 
-                                            `${payments.currencySymbol}${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}`
+                                            `${invoiceData.currencySymbol}${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}`
                                     )}
                                     {
                                     payments.currencyPosition === "right" && 
@@ -372,7 +372,7 @@ const decimals = () => {
                                         (
                                             tax.percentage === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                         ): 
-                                            `${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                            `${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     )}
                                 </p></div>
                         </div>
@@ -384,22 +384,22 @@ const decimals = () => {
                                 <p style={{color: "red"}}>
                                     {
                                         payments.currencyPosition === "left" && 
-                                        `${"-"}${payments.currencySymbol}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}`
+                                        `${"-"}${invoiceData.currencySymbol}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
                                         payments.currencyPosition === "right" && 
-                                        `${"-"}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                        `${"-"}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                                 </p>:
                                 <p style={{color: "red"}}>
 
                                     {
                                         payments.currencyPosition === "left" &&
-                                        `${payments.currencySymbol}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}`
+                                        `${invoiceData.currencySymbol}${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {
                                         payments.currencyPosition === "right" &&
-                                        `${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                        `${thousand_seperator(invoiceData.paid)}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                             
                                 </p>)
@@ -411,7 +411,7 @@ const decimals = () => {
                             <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
                                     {
                                         payments.currencyPosition === "left"
-                                        && `${payments.currencySymbol}${thousand_seperator(
+                                        && `${invoiceData.currencySymbol}${thousand_seperator(
                                             invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
@@ -419,7 +419,7 @@ const decimals = () => {
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
                                             invoiceData.totalDue
-                                        )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
+                                        )}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                             
                                 </p></div>
