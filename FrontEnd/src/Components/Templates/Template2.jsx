@@ -301,7 +301,8 @@ const [translate, setTranslate] = useState({
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.hrsQty}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{translate.service}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.ratePrice}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.subTotal}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.adjust}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "right", paddingRight: "30px"}}>{translate.subTotal}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -320,7 +321,8 @@ const [translate, setTranslate] = useState({
                                         `${thousand_seperator(item.price).trim()}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     }
                                 </td>
-                                <td style={{textAlign: "center"}}>
+                                <td style={{textAlign: "center"}}>0.00%</td>
+                                <td style={{textAlign: "right", paddingRight: "30px"}}>
                                     {
                                         payments.currencyPosition === "left" && 
                                         `${invoiceData.currencySymbol}${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}`
@@ -389,7 +391,7 @@ const [translate, setTranslate] = useState({
                             </div>
                             <hr className='row'></hr>
                             <div className='row'>
-                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right"}}><p>{tax.name}</p></div>
+                                <div className='col-sm-7' style={{fontWeight: "bold", textAlign: "right"}}><p>GST ({invoiceData.tax})%</p></div>
                                 <div className='col-sm-5'style={{textAlign: "right"}}>
                                     <p>
                                         {

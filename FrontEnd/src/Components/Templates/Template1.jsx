@@ -293,7 +293,7 @@ const decimals = () => {
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "left"}}>{translate.service}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.ratePrice}</th>
                         <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.adjust}</th>
-                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "center"}}>{translate.subTotal}</th>
+                        <th scope="col" style={{backgroundColor: "#236ca0", color: "white", textAlign: "right", paddingRight: "30px"}}>{translate.subTotal}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -314,7 +314,7 @@ const decimals = () => {
                                     }
                                 </td>
                                 <td style={{textAlign: "center"}}>0.00%</td>
-                                <td style={{textAlign: "center"}}>
+                                <td style={{textAlign: "right", paddingRight: "30px"}}>
                                     {
                                         payments.currencyPosition === "left" && 
                                         `${invoiceData.currencySymbol}${thousand_seperator(item.qty*item.price).trim()}${payments.decimalSeperator}${decimals()}`
@@ -355,7 +355,7 @@ const decimals = () => {
                             </div>
                         </div>
                         <div className='row'>
-                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>{tax.name}</p></div>
+                            <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>GST ({invoiceData.tax})%</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}>
                                 <p>
                                     {
