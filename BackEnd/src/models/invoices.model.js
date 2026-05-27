@@ -140,7 +140,7 @@ const invoicesSchema = new mongoose.Schema(
         type: String,
         required: false,
     },
-    createDate: {
+    createdDate: {
         type: Date,
         required: false,
     },
