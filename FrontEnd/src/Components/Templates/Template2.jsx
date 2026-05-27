@@ -397,7 +397,7 @@ const [translate, setTranslate] = useState({
 
                                         (invoiceData.taxPriceOption === 'Yes. I will enter prices inclusive of tax'? 
                                             (
-                                                invoiceData.tax === ""? "₹1.00": `${"₹"}${invoiceData.tax}${".00"}`
+                                                invoiceData.tax === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                             ): 
                                                 `${invoiceData.currencySymbol}${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}`
                                         )}
@@ -406,7 +406,7 @@ const [translate, setTranslate] = useState({
 
                                         (invoiceData.taxPriceOption === 'Yes. I will enter prices inclusive of tax'? 
                                             (
-                                                invoiceData.tax === ""? "₹1.00": `${"₹"}${invoiceData.tax}${".00"}`
+                                                invoiceData.tax === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                             ): 
                                                 `${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                         )}
