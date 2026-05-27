@@ -5,6 +5,27 @@ import axios from 'axios';
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const Template1 = () => {
 
+const [invoiceData, setInvoiceData] = useState({
+            lineItems: [{
+              qty: 0,
+              title: "",
+              adjust: "",
+              price: 0,
+              description: ""
+            }],
+            subTotal: 0,
+            GST: 0,
+            discount: 0,
+            paid: 0,
+            totalDue: 0,
+            client: "",
+            prefix: "",
+            suffix: "",
+            invoiceNumber: "",
+            createdDate: "",
+            dueDate: "",
+            tax: ""
+});
   //const { formData } = useFormContext();
 const [general, setGeneral] = useState({
       yearStart: "",
@@ -81,9 +102,9 @@ const [translate, setTranslate] = useState({
   }
 
   const invoice_number = (prefix, number, suffix) => {
-    if (prefix != null && suffix == null) {
+    if (prefix != "" && suffix == "") {
         return `${prefix}-${number}`;
-    } else if (suffix != null && prefix == null) {
+    } else if (suffix != "" && prefix == "") {
         return `${number}-${suffix}`;
     } else {
         return ""
@@ -136,12 +157,47 @@ const decimals = () => {
     }  
   },[]);  
 
+
+  const fetchInvoices = useCallback(async () => {   
+    try {
+        const response = await axios.get(`${apiUrl}/api/invoices`);
+        const result = response.data.data[0];
+        setInvoiceData({
+            lineItems: [result.lineItems.map((item, index) => ({
+                qty: item.qty || 0,
+                title: item.title || "",  
+                adjust: item.adjust || "",
+                price: item.price || 0,
+                description: item.description || ""
+            }))],
+            subTotal: result.subTotal || 0,
+            GST: result.GST || 0,
+            discount: result.discount || 0,
+            paid: result.paid || 0,
+            totalDue: result.totalDue || 0,
+            client: result.client || "",
+            prefix: result.prefix || "",
+            suffix: result.suffix || "",
+            invoiceNumber: result.invoiceNumber || "",
+            createdDate: result.createdDate || "",
+            dueDate: result.dueDate || "",
+            tax: result.tax || ""
+        });
+      } catch (error) {
+        console.log("Document not found");
+      }
+  },[]);
+
+
+
   useEffect(() => {
     fetchSettings();
-  }, [fetchSettings]);  
+    fetchInvoices();
+  }, [fetchSettings, fetchInvoices]);  
 
 
   return (
+
     <div className='container-fluid' 
     style={{
       margin: 0,
@@ -204,7 +260,7 @@ const decimals = () => {
                         <div className='row'>
                             <div className='col-sm-6' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Invoice Number</p></div>
                             <div className='col-sm-6' style={{textAlign: "right"}}>
-                                <p>{invoice_number(invoices.prefix, invoices.nextNumber, invoices.suffix)}</p>   
+                                <p>{invoice_number(invoiceData.prefix, invoiceData.invoiceNumber, invoiceData.suffix)}</p>   
                             </div>
                         </div>
                         <div className='row'>
