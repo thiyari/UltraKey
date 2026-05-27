@@ -386,7 +386,7 @@ const decimals = () => {
                             <div className='col-sm-7' style={{textAlign: "right", padding: "3px 10px 3px 0px"}}><p>Paid</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}>
                                 {
-                                (payments.paid == (invoiceData.subTotal + invoiceData.GST)?
+                                (invoiceData.paid == (invoiceData.subTotal + invoiceData.GST)?
                                 <p style={{color: "red"}}>
                                     {
                                         payments.currencyPosition === "left" && 
@@ -415,20 +415,16 @@ const decimals = () => {
                         <div className='row' style={{backgroundColor: "#236ca0", padding: "10px"}}>
                             <div className='col-sm-7' style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>{translate.totalDue}</p></div>
                             <div className='col-sm-5'style={{textAlign: "right"}}><p style={{color: "white", fontWeight: "bold"}}>
-                                                                    {
+                                    {
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
-                                            (invoiceData.subTotal +
-                                            (Math.round((tax.percentage / 100) * invoiceData.subTotal))) -
-                                            payments.paid
+                                            invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {    
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
-                                            (invoiceData.subTotal +
-                                            (Math.round((tax.percentage / 100) * invoiceData.subTotal))) -
-                                            payments.paid
+                                            invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                             

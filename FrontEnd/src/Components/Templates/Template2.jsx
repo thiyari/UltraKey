@@ -421,7 +421,7 @@ const [translate, setTranslate] = useState({
                                 <div className='col-sm-7' style={{fontWeight:"bold", textAlign: "right"}}><p style={{color: "#236ca0"}}>Paid</p></div>
                                 <div className='col-sm-5' style={{textAlign: "right"}}>
                                     {
-                                    (payments.paid == ((invoiceData.subTotal - invoiceData.discount) + invoiceData.GST)?
+                                    (invoiceData.paid == ((invoiceData.subTotal - invoiceData.discount) + invoiceData.GST)?
                                     <p style={{color: "#236ca0"}}>
                                         {
                                             payments.currencyPosition === "left" && 
@@ -454,17 +454,13 @@ const [translate, setTranslate] = useState({
                                     {
                                         payments.currencyPosition === "left"
                                         && `${payments.currencySymbol}${thousand_seperator(
-                                            ((invoiceData.subTotal - invoiceData.discount) +
-                                            (Math.round((tax.percentage / 100) * (invoiceData.subTotal - invoiceData.discount)))) -
-                                            invoiceData.paid
+                                            invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}`
                                     }
                                     {    
                                         payments.currencyPosition === "right"
                                         && `${thousand_seperator(
-                                            ((invoiceData.subTotal - invoiceData.discount) +
-                                            (Math.round((tax.percentage / 100) * (invoiceData.subTotal - invoiceData.discount)))) -
-                                            invoiceData.paid
+                                            invoiceData.totalDue
                                         )}${payments.decimalSeperator}${decimals()}${payments.currencySymbol}`
                                     }
                                     </p></div>
