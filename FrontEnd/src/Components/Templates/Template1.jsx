@@ -361,18 +361,18 @@ const decimals = () => {
                                     {
                                     payments.currencyPosition === "left" && 
 
-                                    (tax.price === 'Yes. I will enter prices inclusive of tax'? 
+                                    (invoiceData.taxPriceOption === 'Yes. I will enter prices inclusive of tax'? 
                                         (
-                                            tax.percentage === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
+                                            invoiceData.tax === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                         ): 
                                             `${invoiceData.currencySymbol}${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}`
                                     )}
                                     {
                                     payments.currencyPosition === "right" && 
 
-                                    (tax.price === 'Yes. I will enter prices inclusive of tax'? 
+                                    (invoiceData.taxPriceOption === 'Yes. I will enter prices inclusive of tax'? 
                                         (
-                                            tax.percentage === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
+                                            invoiceData.tax === ""? "₹0.00": `${"₹"}${invoiceData.tax}${".00"}`
                                         ): 
                                             `${thousand_seperator(invoiceData.GST)}${payments.decimalSeperator}${decimals()}${invoiceData.currencySymbol}`
                                     )}
