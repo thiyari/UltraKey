@@ -352,6 +352,7 @@ const submitHandler = async (e) => {
             dueDate: dueDate,
             currency: currency,
             currencySymbol: currencySymbol,
+            taxPriceOption: taxPriceOption,
             tax: tax
           },
           {

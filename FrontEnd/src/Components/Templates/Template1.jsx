@@ -26,6 +26,7 @@ const [invoiceData, setInvoiceData] = useState({
             dueDate: "",
             termsAndConditions: "",
             currencySymbol: "",
+            taxPriceOptions: "",
             tax: ""
 });
   //const { formData } = useFormContext();
@@ -163,6 +164,7 @@ const decimals = () => {
             createdDate: result.createdDate || "",
             dueDate: result.dueDate || "",
             tax: result.tax || "",
+            taxPriceOption: result.taxPriceOption || "",
             currencySymbol: result.currencySymbol || "",
             termsAndConditions: result.termsAndConditions || "",
         });

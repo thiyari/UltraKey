@@ -25,6 +25,7 @@ const [invoiceData, setInvoiceData] = useState({
             createdDate: "",
             dueDate: "",
             tax: "",
+            taxPriceOption: "",
             termsAndConditions: "",
             currencySymbol: "",
 });
@@ -164,6 +165,7 @@ const [translate, setTranslate] = useState({
             createdDate: result.createdDate || "",
             dueDate: result.dueDate || "",
             tax: result.tax || "",
+            taxPriceOption: result.taxPriceOption || "",
             termsAndConditions: result.termsAndConditions || "",
             currencySymbol: result.currencySymbol || "",
         });

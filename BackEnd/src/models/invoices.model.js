@@ -156,6 +156,10 @@ const invoicesSchema = new mongoose.Schema(
         type: String,
         required: false,
     },
+    taxPriceOption: {
+        type: String,
+        required: false,
+    },
     tax: {
         type: String,
         required: false,
