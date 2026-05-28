@@ -37,8 +37,8 @@ const InvoiceTable = () => {
       const formattedRows = response.data.data.map((invoice) => ({
         id: invoice._id,
         invoiceNumber: invoice.invoiceNumber,
-        clientName:
-          invoice.client?.businessOrClientName || "N/A",
+        clientName: invoice.client?.businessOrClientName || "N/A",
+        clientEmail: invoice.client?.email || "N/A",
         totalDue: invoice.totalDue,
         status: invoice.status,
         createdDate: invoice.createdDate,
@@ -67,9 +67,19 @@ const InvoiceTable = () => {
       flex: 1,
     },
     {
-      field: "clientName",
+      field: "client",
       headerName: "Client",
       flex: 1.5,
+      renderCell: (params) => {
+        return (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span>{params.row.clientName}</span>
+            <span style={{ fontSize: 12, color: "gray" }}>
+              {params.row.clientEmail}
+            </span>
+          </div>
+        );
+      },
     },
     {
       field: "totalDue",
@@ -115,6 +125,7 @@ const InvoiceTable = () => {
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
 
         <button
+            type="button"
             onClick={() => handleClick(params.row)}
             style={{
             background: "transparent",
@@ -145,6 +156,7 @@ const InvoiceTable = () => {
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
         pageSizeOptions={[3, 5, 10, 20]}
+        getRowHeight={() => "auto"}
       />
     </Box>
   );
