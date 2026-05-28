@@ -7,6 +7,7 @@ import PopupEditClientForm from './Popup/PopupEditClientForm';
 import PopupCreateClientForm from './Popup/PopupCreateClientForm';
 import PopupInput from './Popup/PopupInput';
 import { useNavigate } from "react-router-dom";
+import InvoiceTable from './InvoiceTable';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const statusOptions = ['Draft','Sent', 'Viewed','Partial','Overdue','Paid','Canceled']
@@ -718,6 +719,7 @@ const submitHandler = async (e) => {
             </div>
           </div>
       </div>
+      <InvoiceTable />
       </div>
       </form>
     </div>

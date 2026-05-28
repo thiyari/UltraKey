@@ -5,10 +5,6 @@ class InvoicesRepository {
     return await Invoices.create(invoicesData);
   }
 
-  async findAll() {
-    return await Invoices.find();
-  }
-
   async findById(id) {
     return await Invoices.findById(id);
   }

@@ -5,7 +5,7 @@ const router = express.Router();
 const invoicesController = require("../controllers/invoices.controller");
 
 router.post("/", invoicesController.create);
-router.get("/", invoicesController.getAll);
+router.get("/", invoicesController.getInvoices);
 router.get("/:id", invoicesController.getById);
 router.put("/:id", invoicesController.update);
 router.delete("/:id", invoicesController.delete);

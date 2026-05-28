@@ -5,9 +5,6 @@ class InvoicesService {
     return await invoicesRepository.create(settingsData);
   }
 
-  async getInvoices() {
-    return await invoicesRepository.findAll();
-  }
 
   async getInvoicesById(id) {
     const invoices = await invoicesRepository.findById(id);
