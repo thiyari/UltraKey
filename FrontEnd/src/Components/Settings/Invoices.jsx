@@ -87,7 +87,7 @@ const Invoices = () => {
       console.error("Failed to update invoice number:", err);
     }
 
-  },[]);
+  },[apiUrl]);
 
   useEffect(() => {
     fetchSettings();

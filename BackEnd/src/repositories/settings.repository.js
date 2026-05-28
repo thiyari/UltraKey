@@ -29,7 +29,6 @@ class SettingsRepository {
     
     // only update provided invoice fields
     if (data.invoices) {
-      console.log(data.invoices)
       for (const [key, value] of Object.entries(data.invoices)) {
         if (value !== undefined) {
           update[`invoices.${key}`] = value;
