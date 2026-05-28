@@ -44,7 +44,7 @@ const Invoices = () => {
     });    
 
     const items = ["Invoice Viewed","Invoice Paid"];
-
+    const [nextInvoiceNumber, setNextInvoiceNumber] = useState(0);
 
 
   const fetchSettings = useCallback(async () => {
@@ -78,7 +78,8 @@ const Invoices = () => {
   const fetchInvoices = useCallback(async () => {
     try {
       const response = await axios.get(`${apiUrl}/api/invoices/latest-invoice-number`);
-      const latestInvoiceNumber = response.data.latestInvoiceNumber;
+      const nextNumber = Number(response.data.latestInvoiceNumber)+1;
+      setNextInvoiceNumber(nextNumber);
       // Do something with the latest invoice number, e.g., update state
     } catch (error) {
       console.error("Error fetching invoices:", error);
@@ -209,7 +210,14 @@ const Invoices = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.nextNumber??""}
-                        onChange={(e)=>{setData((prev)=>({...prev, nextNumber: e.target.value}))}}
+                        onChange={(e)=>{
+                          if(data.autoIncrement === "Yes"){
+                            console.log(nextInvoiceNumber);
+                            setData((prev)=>({...prev, nextNumber: nextInvoiceNumber.toString()}))
+                          } else {
+                            setData((prev)=>({...prev, nextNumber: e.target.value}))
+                          }
+                        }}
                         />
                 </div>
                 <div className="col-sm-5"></div>
