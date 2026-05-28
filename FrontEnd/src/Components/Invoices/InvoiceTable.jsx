@@ -115,15 +115,14 @@ const InvoiceTable = () => {
         <button
             onClick={() => handleClick(params.row)}
             style={{
-            padding: "6px 10px",
-            background: "#1976d2",
-            color: "white",
+            background: "transparent",
             border: "none",
-            borderRadius: "4px",
             cursor: "pointer",
+            fontSize: "20px",
+            color: "#1976d2"
             }}
         >
-            View
+            <i className="fa-solid fa-file"></i>
         </button>
         );
     },
