@@ -47,6 +47,17 @@ class SettingsService {
 
     return deletedSettings;
   }
+
+
+  async updateNextInvoiceNumber(data) {
+    const updatedSettings = await settingsRepository.updateNextInvoiceNumber(data);
+
+    if (!updatedSettings) {
+      throw new Error("Settings not found");
+    }
+
+    return updatedSettings;
+  }
 }
 
 module.exports = new SettingsService();

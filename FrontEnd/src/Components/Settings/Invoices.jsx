@@ -43,8 +43,6 @@ const Invoices = () => {
     });    
 
     const items = ["Invoice Viewed","Invoice Paid"];
-    const [nextInvoiceNumber, setNextInvoiceNumber] = useState(0);
-
 
   const fetchSettings = useCallback(async () => {
     
@@ -77,30 +75,17 @@ const Invoices = () => {
     try {
       const response = await axios.get(`${apiUrl}/api/invoices/latest-invoice-number`);
       const nextNumber = Number(response.data.latestInvoiceNumber)+1;
-      setNextInvoiceNumber(nextNumber);
       // Do something with the latest invoice number, e.g., update state
-    } catch (error) {
-      console.error("Error fetching invoices:", error);
-    }
 
-    /*
-    try {
-      await axios.put(
-        `${apiUrl}/api/settings`,
-        { invoices: {
-          key: "invoices",
-          nextNumber: nextInvoiceNumber.toString(),
-          }
+      await axios.patch(`${apiUrl}/api/settings`, {
+        invoices: {
+          nextNumber: nextNumber.toString(),
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      });
+      setData((prev)=>({...prev, nextNumber: nextNumber.toString()}));
     } catch (err) {
-      alert(err);
-    } */
+      console.error("Failed to update invoice number:", err);
+    }
 
   },[]);
 
@@ -210,8 +195,8 @@ const Invoices = () => {
                         type="checkbox" 
                         checked={data.autoIncrement === "Yes"}
                         onChange={(e) => {(e.target.checked)? 
-                          setData((prev)=>({...prev, autoIncrement: "Yes", nextNumber: nextInvoiceNumber.toString()})):
-                          setData((prev)=>({...prev, autoIncrement: "No", nextNumber: ""}))}}
+                          setData((prev)=>({...prev, autoIncrement: "Yes"})):
+                          setData((prev)=>({...prev, autoIncrement: "No"}))}}
                         id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Increment Invoice numbers by one. Recommended.

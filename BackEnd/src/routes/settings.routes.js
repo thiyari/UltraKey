@@ -7,6 +7,7 @@ const settingsController = require("../controllers/settings.controller");
 router.post("/", settingsController.create);
 router.get("/", settingsController.getAll);
 router.put("/", settingsController.findOneAndUpdate);
+router.patch("/",settingsController.updateNextInvoiceNumber);
 router.get("/:id", settingsController.getById);
 router.put("/:id", settingsController.update);
 router.delete("/:id", settingsController.delete);
