@@ -12,7 +12,6 @@ function Header() {
             <li className="nav-item dropdown list-unstyled">
               <a className="nav-link dropdown-toggle no-arrow" href="#" role="button" data-bs-toggle="dropdown"><i className="fa-solid fa-ellipsis-vertical p-1"></i></a>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="/client">Clients Panel</a></li>
                 <li><a className="dropdown-item" href="/new-quote">Quotes Panel</a></li>
                 <li><a className="dropdown-item" href="/new-invoice">Invoices Panel</a></li>
               </ul>
@@ -48,7 +47,7 @@ function Header() {
               <a className="nav-link" href="/translate">Translate</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/pdf">PDF</a>
+              <a className="nav-link" href="/client">Clients</a>
             </li>
           </ul>
         </div>
