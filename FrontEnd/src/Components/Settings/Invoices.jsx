@@ -192,7 +192,9 @@ const Invoices = () => {
                     <input className="form-check-input" 
                         type="checkbox" 
                         checked={data.autoIncrement === "Yes"}
-                        onChange={(e) => {(e.target.checked)? setData((prev)=>({...prev, autoIncrement: "Yes"})):setData((prev)=>({...prev, autoIncrement: "No"}))}}
+                        onChange={(e) => {(e.target.checked)? 
+                          setData((prev)=>({...prev, autoIncrement: "Yes", nextNumber: nextInvoiceNumber.toString()})):
+                          setData((prev)=>({...prev, autoIncrement: "No", nextNumber: ""}))}}
                         id="flexCheckDefault"/>
                     <label className="form-check-label" htmlFor="flexCheckDefault" style={{fontSize: "16px"}}>
                       Yes. Increment Invoice numbers by one. Recommended.
