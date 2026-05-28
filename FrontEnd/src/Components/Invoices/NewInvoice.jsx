@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, useRef} from 'react'
 import LineItems from './LineItems';
 import Payments from './Payments';
 import Tabs from '../Common/Tabs/Tabs';
@@ -14,7 +14,7 @@ const currencyOptions = ['Select Currency','INR','USD']
 const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
 
 const NewInvoice = () => {
-  
+  const didInit = useRef(false);
   const [lineItemCards, setLineItemCards] = useState([
     { id: Date.now(), 
       number: 1,
@@ -211,7 +211,10 @@ const NewInvoice = () => {
       setTermsAndConditions(invoices.termsAndConditions);
       setPrefix(invoices.prefix);
       setSuffix(invoices.suffix);
-      setInvoiceNumber(invoices.nextNumber);
+      if (!didInit.current) {
+        setInvoiceNumber(invoices.nextNumber);
+        didInit.current = true;
+      }
       setDueDays(invoices.dueDate);
       setThousandSeperator(payments.thousandSeperator);
       setNumberOfDecimals(payments.numberOfDecimals);
