@@ -23,6 +23,7 @@ const InvoiceTable = () => {
     const handleClick = (row) => {
         navigate(`/pdf/${row.id}`);
     };
+    
   const formatedDate = (dateString) => {
     const date = new Date(dateString).toLocaleString('en-IN', {
       timeZone: 'Asia/Kolkata',
@@ -82,13 +83,18 @@ const InvoiceTable = () => {
       field: "title",
       headerName: "Title",
       flex: 1,
+      renderCell: (params) => (
+        <div style={{ display: "flex", fontSize: 12, color: "blue" }}>
+          <span style={{ fontWeight: "bold" }}>{params.row.title}</span>
+        </div>
+      )
     },
     {
       field: "Number",
       headerName: "Number",
       flex: 1,
       renderCell: (params) => (
-        <div style={{ display: "flex"}}>
+        <div style={{ display: "flex", fontSize: 12, color: "blue" }}>
           <span style={{ fontWeight: "bold" }}>{params.row.prefix ? params.row.prefix + '-' : ''}</span>
           <span style={{ fontWeight: "bold" }}>{params.row.invoiceNumber}</span>
           <span style={{ fontWeight: "bold" }}>{params.row.suffix ? '-' + params.row.suffix : ''}</span>
@@ -101,11 +107,9 @@ const InvoiceTable = () => {
       flex: 1.5,
       renderCell: (params) => {
         return (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span>{params.row.clientName}</span>
-            <span style={{ fontSize: 12 }}>
-              {params.row.clientEmail}
-            </span>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 12 }}>
+            <span style={{ color: "blue" }}>{params.row.clientName}</span>
+            <span>{params.row.clientEmail}</span>
           </div>
         );
       },
@@ -114,6 +118,13 @@ const InvoiceTable = () => {
       field: "status",
       headerName: "Statuses",
       flex: 1,
+      renderCell: (params) => {
+        return (
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 12 }}>
+            <span style={{ fontWeight: "bold" }}>{params.row.status}</span>
+          </div>
+        );
+      }
     },
     {
       field: "CreatedDate",
@@ -132,8 +143,8 @@ const InvoiceTable = () => {
       flex: 1,
       renderCell: (params) => {
         return (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span style={{ fontWeight: "bold" }}>{params.row.currencySymbol}{params.row.total.toFixed(2)}</span>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 12 }}>
+            <span style={{ fontWeight: "bold" }}>Total: {params.row.currencySymbol}{params.row.total.toFixed(2)}</span>
           </div>
         );
       }
@@ -153,9 +164,9 @@ const InvoiceTable = () => {
             onClick={() => handleClick(params.row)}
             style={{
             background: "transparent",
-            border: "none",
+            border: "1px solid #1976d2",
             cursor: "pointer",
-            fontSize: "20px",
+            fontSize: "18px",
             color: "#1976d2"
             }}
         >
@@ -173,6 +184,7 @@ const InvoiceTable = () => {
       renderCell: (params) => {
         return (
           <div style={{ display: "flex", flexDirection: "column", fontSize: 12 }}>
+            <span>Published</span>
             <span>{params.row.date ? formatedDate(params.row.date) : ""}</span>
           </div>
         );
