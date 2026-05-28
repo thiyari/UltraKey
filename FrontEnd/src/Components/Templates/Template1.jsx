@@ -3,7 +3,7 @@ import React, {useState, useEffect, useCallback} from 'react'
 import axios from 'axios';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
-const Template1 = () => {
+const Template1 = ({ id }) => {
 
 const [invoiceData, setInvoiceData] = useState({
             lineItems: [{
@@ -142,8 +142,8 @@ const decimals = () => {
 
   const fetchInvoices = useCallback(async () => {   
     try {
-        const response = await axios.get(`${apiUrl}/api/invoices`);
-        const result = response.data.data[0];
+        const response = await axios.get(`${apiUrl}/api/invoices/${id}`);
+        const result = response.data.data;
         setInvoiceData({
             lineItems: result.lineItems.map((item, index) => ({
                 qty: item.qty || 0,

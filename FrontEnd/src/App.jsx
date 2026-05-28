@@ -31,7 +31,7 @@ function App() {
             <Route path="/payments" element = {<Payments/>} />
             <Route path="/tax" element = {<Tax/>} />
             <Route path="/emails" element = {<Emails/>} />
-            <Route path="/pdf" element = {<PDF/>} />
+            <Route path="/pdf/:id" element = {<PDF/>} />
             <Route path="/translate" element = {<Translate/>} />
             <Route path="/template1" element = {<Template1/>} />
             <Route path="/template2" element = {<Template2/>} />

@@ -6,10 +6,13 @@ import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_SERVER_URL;
 const InvoiceTable = () => {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
@@ -18,8 +21,7 @@ const InvoiceTable = () => {
 
   const [rowCount, setRowCount] = useState(0);
     const handleClick = (row) => {
-        console.log("Clicked row:", row.id);
-        // example: navigate or open modal
+        navigate(`/pdf/${row.id}`);
     };
   const fetchInvoices = async () => {
 
@@ -27,7 +29,7 @@ const InvoiceTable = () => {
       setLoading(true);
 
       const response = await axios.get(
-        `http://localhost:5000/api/invoices?page=${
+        `${apiUrl}/api/invoices?page=${
           paginationModel.page + 1
         }&limit=${paginationModel.pageSize}`
       );
