@@ -114,10 +114,6 @@ const settingsSchema = new mongoose.Schema(
     customCSS: {
       type: String,
       required: false,
-    },
-    toAddress: {
-      type: String,
-      required: false,
     }
   },      
   payments: {

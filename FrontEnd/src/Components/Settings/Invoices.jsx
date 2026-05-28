@@ -40,7 +40,6 @@ const Invoices = () => {
       notices: [],
       template: "",
       customCSS: "",
-      toAddress: ""
     });    
 
     const items = ["Invoice Viewed","Invoice Paid"];
@@ -68,7 +67,6 @@ const Invoices = () => {
         notices: invoices.notices,
         template: invoices.template,
         customCSS: invoices.customCSS,
-        toAddress: invoices.toAddress
       });
     } catch (error) {
       console.log("Document not found");
@@ -84,6 +82,26 @@ const Invoices = () => {
     } catch (error) {
       console.error("Error fetching invoices:", error);
     }
+
+    /*
+    try {
+      await axios.put(
+        `${apiUrl}/api/settings`,
+        { invoices: {
+          key: "invoices",
+          nextNumber: nextInvoiceNumber.toString(),
+          }
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      alert(err);
+    } */
+
   },[]);
 
   useEffect(() => {
@@ -120,7 +138,6 @@ const Invoices = () => {
           notices: data.notices,
           template: data.template,
           customCSS: data.customCSS,
-          toAddress: data.toAddress 
           }
         },
         {
@@ -354,28 +371,6 @@ const Invoices = () => {
                 </div>
                 <div className="col-sm-3"></div>
               </div>
-
-
-
-
-              <div className="form-group row mt-2" align="left">
-                <label htmlFor="toAddress" className="col-sm-3 col-form-label"><b>To Address</b></label>
-                <div className="col-sm-6">
-                  <textarea 
-                      className="form-control" 
-                      placeholder=""
-                      rows="4"
-                      value={data.toAddress??""}
-                      onChange={(e)=>{
-                          setData((prev)=>({...prev,toAddress:e.target.value}))
-                        }}
-                      ></textarea>
-                  <label className="form-label text-muted" style={{fontSize: "0.6rem"}}><i>Add your full address and format it anyway you like. Basic HTML is allowed.</i></label>
-                </div>
-                <div className="col-sm-3"></div>
-              </div>
-
-
 
 
               <div className="form-group row mt-2" align="left">
