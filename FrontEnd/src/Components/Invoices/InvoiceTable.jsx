@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
+import { Button } from "@mui/material";
 
 const InvoiceTable = () => {
   const [rows, setRows] = useState([]);
@@ -16,8 +17,12 @@ const InvoiceTable = () => {
   });
 
   const [rowCount, setRowCount] = useState(0);
-
+    const handleClick = (row) => {
+        console.log("Clicked row:", row.id);
+        // example: navigate or open modal
+    };
   const fetchInvoices = async () => {
+
     try {
       setLoading(true);
 
@@ -97,6 +102,30 @@ const InvoiceTable = () => {
           ? new Date(params.value).toISOString().split("T")[0] 
           : "",
     },
+    {
+    field: "actions",
+    headerName: "Actions",
+    flex: 1,
+    sortable: false,
+    filterable: false,
+    renderCell: (params) => {
+        return (
+        <button
+            onClick={() => handleClick(params.row)}
+            style={{
+            padding: "6px 10px",
+            background: "#1976d2",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            }}
+        >
+            View
+        </button>
+        );
+    },
+    }
   ];
 
   return (

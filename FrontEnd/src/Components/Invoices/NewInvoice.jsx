@@ -6,7 +6,6 @@ import axios from 'axios';
 import PopupEditClientForm from './Popup/PopupEditClientForm';
 import PopupCreateClientForm from './Popup/PopupCreateClientForm';
 import PopupInput from './Popup/PopupInput';
-import { useNavigate } from "react-router-dom";
 import InvoiceTable from './InvoiceTable';
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
@@ -387,7 +386,6 @@ const submitHandler = async (e) => {
       } catch (error) {
         console.log("Error in publishing invoice: ", error);
       }
-      navigate("/pdf");
 }
 
   return (
