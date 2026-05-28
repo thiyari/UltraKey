@@ -75,9 +75,20 @@ const Invoices = () => {
     }  
   },[]);  
 
+  const fetchInvoices = useCallback(async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/api/invoices/latest-invoice-number`);
+      console.log("Invoices fetched successfully:", response.data.latestInvoiceNumber);
+      
+    } catch (error) {
+      console.error("Error fetching invoices:", error);
+    }
+  },[]);
+
   useEffect(() => {
     fetchSettings();
-  }, [fetchSettings]);  
+    fetchInvoices();
+  }, [fetchSettings, fetchInvoices]);  
 
 
 

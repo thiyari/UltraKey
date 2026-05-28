@@ -132,7 +132,7 @@ const InvoiceTable = () => {
       flex: 1.2,
       renderCell: (params) => {return (
         <div style={{ display: "flex", flexDirection: "column", fontSize: 12}}>
-          <span><i class="fa-regular fa-calendar-days fa-xl"></i>  {params.row.createdDate? new Date(params.row.createdDate).toISOString().split("T")[0] : ""}</span>
+          <span><i className="fa-regular fa-calendar-days fa-xl"></i>  {params.row.createdDate? new Date(params.row.createdDate).toISOString().split("T")[0] : ""}</span>
           <span>Due: {params.row.dueDate? new Date(params.row.dueDate).toISOString().split("T")[0] : ""}</span>
         </div>
       )}

@@ -1,4 +1,5 @@
 const invoicesService = require("../services/invoices.service");
+const Invoice = require("../models/invoices.model");
 
 class InvoicesController {
   
@@ -18,10 +19,25 @@ class InvoicesController {
           }
   }
 
+  async getLatestInvoiceNumber(req, res) {
+
+    try {
+      const latestInvoice = await Invoice.findOne()
+        .sort({ createdAt: -1 })
+        .select("invoiceNumber");
+      res.json({
+        latestInvoiceNumber: latestInvoice ? latestInvoice.invoiceNumber : null
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  };
+
+
   async getInvoices(req, res) {
   // controllers/invoiceController.js
-
-  const Invoice = require("../models/invoices.model");
 
     try {
       const page = parseInt(req.query.page) || 1;
