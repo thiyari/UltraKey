@@ -23,6 +23,19 @@ const InvoiceTable = () => {
     const handleClick = (row) => {
         navigate(`/pdf/${row.id}`);
     };
+  const formatedDate = (dateString) => {
+    const date = new Date(dateString).toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    })
+    return date
+  }
+
   const fetchInvoices = async () => {
 
     try {
@@ -160,7 +173,7 @@ const InvoiceTable = () => {
       renderCell: (params) => {
         return (
           <div style={{ display: "flex", flexDirection: "column", fontSize: 12 }}>
-            <span>{params.row.createdAt ? new Date(params.row.createdAt).toISOString().split("T")[0] : ""}</span>
+            <span>{params.row.date ? formatedDate(params.row.date) : ""}</span>
           </div>
         );
       }
