@@ -112,6 +112,8 @@ const InvoiceTable = () => {
     filterable: false,
     renderCell: (params) => {
         return (
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+
         <button
             onClick={() => handleClick(params.row)}
             style={{
@@ -124,6 +126,8 @@ const InvoiceTable = () => {
         >
             <i className="fa-solid fa-file"></i>
         </button>
+
+        </div>
         );
     },
     }
