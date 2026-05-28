@@ -100,7 +100,7 @@ const InvoiceTable = () => {
   ];
 
   return (
-    <Box sx={{ height: 600, width: "100%" }} className="mb-3">
+    <Box sx={{ width: "100%" }} className="mb-3">
       <DataGrid
         rows={rows}
         columns={columns}
