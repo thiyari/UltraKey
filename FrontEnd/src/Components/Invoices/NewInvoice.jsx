@@ -48,7 +48,7 @@ const NewInvoice = () => {
   const [status, setStatus] = useState(statusOptions[0]);
   const [currency, setCurrency] = useState(currencyOptions[0]);
   const [taxPriceOption, setTaxPriceOption] = useState(taxPriceOptions[0]);
-  const [paymentMethods, setPaymentMethods] = useState("No");
+  const [paymentMethods, setPaymentMethods] = useState(false);
   const [currencySymbol, setCurrencySymbol] = useState("");
   const [tax, setTax] = useState("");
   const [taxPercentage, setTaxPercentage] = useState("");
@@ -385,6 +385,7 @@ const submitHandler = async (e) => {
             setDueDate("");
             setCurrency("");
             setTax("");
+            setPaymentMethods(false);
 
       } catch (error) {
         console.log("Error in publishing invoice: ", error);
@@ -660,24 +661,22 @@ const submitHandler = async (e) => {
                     />
                     <label className='form-label small mt-3'><strong>Payment Methods</strong></label>
                     <div className="form-check">
-                      <input className="form-check-input" 
-                          type="checkbox" 
-                          checked={paymentMethods === "Yes"}
-                          onChange={(e) => {
-                                  const checked = e.target.checked;
-                                  // Update level 1
-                                  setPaymentMethods(checked ? "Yes" : "No")
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={paymentMethods}
+                        onChange={(e) => {
+                          const checked = e.target.checked;
+                          setPaymentMethods(checked);
 
-                                  // Update level 2 select values
-                                  setPaymentCards((prev) =>
-                                    prev.map((card) => ({
-                                      ...card,
-                                      paymentMethod: checked ? "Generic" : ""
-                                    }))
-                                  );
-                          }}
-                        
-                          id="flexCheckDefault"/>
+                          setPaymentCards((prev) =>
+                            prev.map((card) => ({
+                              ...card,
+                              paymentMethod: checked ? "Generic" : ""
+                            }))
+                          );
+                        }}
+                      />
                       <label className="form-check-label" htmlFor="flexCheckDefault">Generic</label>
                     </div>
                   </div>
