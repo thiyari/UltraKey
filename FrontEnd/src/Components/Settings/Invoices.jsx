@@ -210,14 +210,7 @@ const Invoices = () => {
                         type="text"  
                         className="form-control mb-2" 
                         value={data.nextNumber??""}
-                        onChange={(e)=>{
-                          if(data.autoIncrement === "Yes"){
-                            console.log(nextInvoiceNumber);
-                            setData((prev)=>({...prev, nextNumber: nextInvoiceNumber.toString()}))
-                          } else {
-                            setData((prev)=>({...prev, nextNumber: e.target.value}))
-                          }
-                        }}
+                        onChange={(e)=>{setData((prev)=>({...prev, nextNumber: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
