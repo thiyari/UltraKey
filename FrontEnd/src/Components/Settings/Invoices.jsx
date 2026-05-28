@@ -71,28 +71,9 @@ const Invoices = () => {
     }  
   },[]);  
 
-  const fetchInvoices = useCallback(async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/api/invoices/latest-invoice-number`);
-      const nextNumber = Number(response.data.latestInvoiceNumber)+1;
-      // Do something with the latest invoice number, e.g., update state
-
-      await axios.patch(`${apiUrl}/api/settings`, {
-        invoices: {
-          nextNumber: nextNumber.toString(),
-        },
-      });
-      setData((prev)=>({...prev, nextNumber: nextNumber.toString()}));
-    } catch (err) {
-      console.error("Failed to update invoice number:", err);
-    }
-
-  },[apiUrl]);
-
   useEffect(() => {
     fetchSettings();
-    fetchInvoices();
-  }, [fetchSettings, fetchInvoices]);  
+  }, [fetchSettings]);  
 
 
 

@@ -291,6 +291,8 @@ useEffect(() => {
 ]);
 
 
+
+
 const thousand_seperator = (num) => {
   return num.toString().replace(/(?<=\d)(?=(\d{2})+\d$)/g, thousandSeperator);
 }
@@ -377,14 +379,26 @@ const submitHandler = async (e) => {
             setTermsAndConditions("");
             setClient(null);
             setStatus("");
-            setPrefix("");
-            setSuffix("");
             setOrderNumber("");
             setCreatedDate("");
             setDueDate("");
             setCurrency("");
             setTax("");
             setPaymentMethods(false);
+
+      try{
+        await axios.patch(`${apiUrl}/api/settings`, {
+          invoices: {
+            nextNumber: invoiceNumber ? (Number(invoiceNumber) + 1).toString() : "",
+          },
+        });
+        location.reload();
+      } catch (err) {
+        console.log("Error updating next invoice number in settings: ", err);
+      }      
+
+
+
 
       } catch (error) {
         console.log("Error in publishing invoice: ", error);
