@@ -78,8 +78,8 @@ const Invoices = () => {
   const fetchInvoices = useCallback(async () => {
     try {
       const response = await axios.get(`${apiUrl}/api/invoices/latest-invoice-number`);
-      console.log("Invoices fetched successfully:", response.data.latestInvoiceNumber);
-      
+      const latestInvoiceNumber = response.data.latestInvoiceNumber;
+      // Do something with the latest invoice number, e.g., update state
     } catch (error) {
       console.error("Error fetching invoices:", error);
     }
