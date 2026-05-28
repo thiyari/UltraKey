@@ -379,7 +379,6 @@ const submitHandler = async (e) => {
             setStatus("");
             setPrefix("");
             setSuffix("");
-            setInvoiceNumber("");
             setOrderNumber("");
             setCreatedDate("");
             setDueDate("");
