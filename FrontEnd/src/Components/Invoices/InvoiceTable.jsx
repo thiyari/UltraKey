@@ -36,14 +36,18 @@ const InvoiceTable = () => {
 
       const formattedRows = response.data.data.map((invoice) => ({
         id: invoice._id,
+        title: invoice.title,
         invoiceNumber: invoice.invoiceNumber,
+        prefix: invoice.prefix,
+        suffix: invoice.suffix,
         clientName: invoice.client?.businessOrClientName || "N/A",
         clientEmail: invoice.client?.email || "N/A",
-        totalDue: invoice.totalDue,
+        total: invoice.subTotal,
         status: invoice.status,
         createdDate: invoice.createdDate,
         dueDate: invoice.dueDate,
-        currency: invoice.currency,
+        currencySymbol: invoice.currencySymbol,
+        date: invoice.createdAt,
       }));
 
       setRows(formattedRows);
@@ -62,9 +66,21 @@ const InvoiceTable = () => {
 
   const columns = [
     {
-      field: "invoiceNumber",
-      headerName: "Invoice #",
+      field: "title",
+      headerName: "Title",
       flex: 1,
+    },
+    {
+      field: "Number",
+      headerName: "Number",
+      flex: 1,
+      renderCell: (params) => (
+        <div style={{ display: "flex"}}>
+          <span style={{ fontWeight: "bold" }}>{params.row.prefix ? params.row.prefix + '-' : ''}</span>
+          <span style={{ fontWeight: "bold" }}>{params.row.invoiceNumber}</span>
+          <span style={{ fontWeight: "bold" }}>{params.row.suffix ? '-' + params.row.suffix : ''}</span>
+        </div>
+      ),
     },
     {
       field: "client",
@@ -74,7 +90,7 @@ const InvoiceTable = () => {
         return (
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span>{params.row.clientName}</span>
-            <span style={{ fontSize: 12, color: "gray" }}>
+            <span style={{ fontSize: 12 }}>
               {params.row.clientEmail}
             </span>
           </div>
@@ -82,37 +98,32 @@ const InvoiceTable = () => {
       },
     },
     {
-      field: "totalDue",
-      headerName: "Total Due",
-      flex: 1,
-    },
-    {
       field: "status",
-      headerName: "Status",
+      headerName: "Statuses",
       flex: 1,
     },
     {
-      field: "currency",
-      headerName: "Currency",
-      flex: 1,
-    },
-    {
-      field: "createdDate",
+      field: "CreatedDate",
       headerName: "Created",
       flex: 1.2,
-      renderCell: (params) =>
-        params.value
-          ? new Date(params.value).toISOString().split("T")[0] 
-          : "",
+      renderCell: (params) => {return (
+        <div style={{ display: "flex", flexDirection: "column", fontSize: 12}}>
+          <span><i class="fa-regular fa-calendar-days fa-xl"></i>  {params.row.createdDate? new Date(params.row.createdDate).toISOString().split("T")[0] : ""}</span>
+          <span>Due: {params.row.dueDate? new Date(params.row.dueDate).toISOString().split("T")[0] : ""}</span>
+        </div>
+      )}
     },
     {
-      field: "dueDate",
-      headerName: "Due Date",
-      flex: 1.2,
-      renderCell: (params) =>
-        params.value
-          ? new Date(params.value).toISOString().split("T")[0] 
-          : "",
+      field: "total",
+      headerName: "Total",
+      flex: 1,
+      renderCell: (params) => {
+        return (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span style={{ fontWeight: "bold" }}>{params.row.currencySymbol}{params.row.total.toFixed(2)}</span>
+          </div>
+        );
+      }
     },
     {
     field: "actions",
@@ -141,6 +152,18 @@ const InvoiceTable = () => {
         </div>
         );
     },
+    },
+    {
+      field: "publishedDate",
+      headerName: "Date",
+      flex: 1,
+      renderCell: (params) => {
+        return (
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 12 }}>
+            <span>{params.row.createdAt ? new Date(params.row.createdAt).toISOString().split("T")[0] : ""}</span>
+          </div>
+        );
+      }
     }
   ];
 
