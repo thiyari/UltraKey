@@ -71,6 +71,7 @@ const NewInvoice = () => {
   const [numberOfDecimals, setNumberOfDecimals] = useState("");
   const [decimalSeperator, setDecimalSeperator] = useState("");
   const [totalDue,setTotalDue] = useState(0);
+  const [autoIncrement, setAutoIncrement] = useState("No");
   const [client, setClient] = useState({
       address: "",
       email: "",
@@ -215,6 +216,7 @@ const NewInvoice = () => {
       setThousandSeperator(payments.thousandSeperator);
       setNumberOfDecimals(payments.numberOfDecimals);
       setDecimalSeperator(payments.decimalSeperator);
+      setAutoIncrement(invoices.autoIncrement);
     } catch (error) {
       console.log("Settings Document not found");
     } 
@@ -383,12 +385,14 @@ const submitHandler = async (e) => {
             setPaymentMethods(false);
 
       try{
-        const res = await axios.patch(`${apiUrl}/api/settings`, {
-          invoices: {
-            nextNumber: invoiceNumber ? (Number(invoiceNumber) + 1).toString() : "",
-          },
-        });
-        setInvoiceNumber(res.data.data.invoices.nextNumber);
+        if(autoIncrement === "Yes"){ 
+          const res = await axios.patch(`${apiUrl}/api/settings`, {
+            invoices: {
+              nextNumber: invoiceNumber ? (Number(invoiceNumber) + 1).toString() : "",
+            },
+          });
+          setInvoiceNumber(res.data.data.invoices.nextNumber);
+        }
       } catch (err) {
         console.log("Error updating next invoice number in settings: ", err);
       }      
