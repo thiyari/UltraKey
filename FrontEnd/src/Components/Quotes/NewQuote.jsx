@@ -9,6 +9,7 @@ const currencyOptions = ['Default Currency','USD','INR']
 const taxPriceOptions = ['Yes. I will enter prices inclusive of tax','No. I will enter prices exclusive of tax']
 const discussionOptions = ['Allow Comments','Allow tracebacks and pingbacks']
 
+
 const NewQuote = () => {
   
   const [lineItemCards, setLineItemCards] = useState([
@@ -94,7 +95,18 @@ const NewQuote = () => {
                           <strong>Line Items</strong>
                         </div>
                         <div className="card-body" align="left">
-                            <LineItems cards={lineItemCards} deleteCard={deleteLineItemCard}/>
+                            <LineItems 
+                            cards={lineItemCards} 
+                            deleteCard={deleteLineItemCard}
+                            onSelectedIndexChange = {()=>{}}
+                            handleLineItemsChange={()=>{}}
+                            selectedTax={()=>{}}
+                            onTaxable={()=>{}}
+                            currencySymbol=""
+                            thousandSeperator={()=>{}}
+                            decimalSeperator=""
+                            numberOfDecimals=""
+                            />
                             <div className="row">
                               <div className="col-sm-6" align="left">
                                 <a className='btn btn-outline-primary rounded-0' onClick={addLineItemCard}>Add Another Item</a>
