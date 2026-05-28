@@ -387,12 +387,12 @@ const submitHandler = async (e) => {
             setPaymentMethods(false);
 
       try{
-        await axios.patch(`${apiUrl}/api/settings`, {
+        const res = await axios.patch(`${apiUrl}/api/settings`, {
           invoices: {
             nextNumber: invoiceNumber ? (Number(invoiceNumber) + 1).toString() : "",
           },
         });
-        location.reload();
+        setInvoiceNumber(res.data.data.invoices.nextNumber);
       } catch (err) {
         console.log("Error updating next invoice number in settings: ", err);
       }      
