@@ -2,6 +2,7 @@ import React, {useState,useCallback} from 'react'
 import RichTextEditor from '../Common/Editor/RichTextEditor'
 import CheckBoxes from '../Common/CheckBoxes';
 import '../Common/Editor/editor.css';
+import Tabs from '../Common/Tabs/Tabs';
 
 const Emails = () => {
 
@@ -133,7 +134,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setQuoteContent(html)}}/>
+                        <Tabs content={initialContent} onChangeHTML={(html)=>{setQuoteContent(html)}}/>
                       </div>    
                 <div className="col-sm-1"></div>          
                 </div>
@@ -202,7 +203,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setInvoiceContent(html)}}/>
+                        <Tabs content={initialContent} onChangeHTML={(html)=>{setInvoiceContent(html)}}/>
                       </div>    
                 <div className="col-sm-1"></div>          
                 </div>
@@ -273,7 +274,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentReceivedContent(html)}}/>
+                        <Tabs content={initialContent} onChangeHTML={(html)=>{setpaymentReceivedContent(html)}}/>
                       </div>    
                 <div className="col-sm-1"></div>                    
                 </div>
@@ -341,7 +342,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setpaymentRemainderContent(html)}}/>
+                        <Tabs content={initialContent} onChangeHTML={(html)=>{setpaymentRemainderContent(html)}}/>
                       </div>     
                 <div className="col-sm-1"></div>                   
                 </div>
@@ -386,7 +387,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <RichTextEditor value={initialContent} onChangeHTML={(html)=>{setFooterContent(html)}}/>
+                        <Tabs content={initialContent} onChangeHTML={(html)=>{setFooterContent(html)}}/>
                       </div>             
                 <div className="col-sm-1"></div>           
                 </div>
