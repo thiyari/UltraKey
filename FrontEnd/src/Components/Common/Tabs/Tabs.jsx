@@ -12,6 +12,7 @@ const Tabs = ({  content, onChangeHTML}) => {
                                 <ul className="nav nav-tabs card-header-tabs">
                                   <li className="nav-item">
                                     <button
+                                      type="button"
                                       className={`nav-link ${
                                         activeTab === "editor" ? "active" : ""
                                       }`}
@@ -23,6 +24,7 @@ const Tabs = ({  content, onChangeHTML}) => {
 
                                   <li className="nav-item">
                                     <button
+                                      type="button"
                                       className={`nav-link ${
                                         activeTab === "preview" ? "active" : ""
                                       }`}
