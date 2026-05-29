@@ -38,6 +38,7 @@ const NewInvoice = () => {
     },
   ]);
 
+  const [refreshKey, setRefreshKey] = useState(0);
   const [title, setTitle] = useState("");
   const [orderNumber, setOrderNumber] = useState("");
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
@@ -364,7 +365,7 @@ const submitHandler = async (e) => {
             },
           }
         );
-
+            setRefreshKey(prev => prev + 1);
             setTitle("");
             setDescription("");
             setLineItemCards([]);
@@ -393,6 +394,7 @@ const submitHandler = async (e) => {
           });
           setInvoiceNumber(res.data.data.invoices.nextNumber);
         }
+        
       } catch (err) {
         console.log("Error updating next invoice number in settings: ", err);
       }      
@@ -732,7 +734,7 @@ const submitHandler = async (e) => {
             </div>
           </div>
       </div>
-      <InvoiceTable />
+      <InvoiceTable refreshKey={refreshKey} />
       </div>
       </form>
     </div>

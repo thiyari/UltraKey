@@ -9,7 +9,8 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_API_SERVER_URL;
-const InvoiceTable = () => {
+
+const InvoiceTable = ({refreshKey}) => {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ const InvoiceTable = () => {
 
   useEffect(() => {
     fetchInvoices();
-  }, [paginationModel]);
+  }, [paginationModel, refreshKey]);
 
   const columns = [
     {
