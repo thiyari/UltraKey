@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Dropdowns from '../Common/Dropdowns';
 
-const Payments = ({cards, handlePaymentItemsChange, deleteCard}) => {
+const Payments = ({cards, handlePaymentItemsChange, deleteCard, onCurrencySymbol}) => {
 const [selectedPayments, setSelectedPayments] = "";
 const [selectedStatus, setSelectedStatus] = "";
 const paymentOptions = ["select method","Generic", "Cash", "Card"]
@@ -29,7 +29,7 @@ const statusOptions = ['select status','paid','overdue']
                         </div>
                         <div className='col-sm-2'>
                             <div className='form-group' align='left'>
-                                <label className="form-label small">Amount (₹)</label>
+                                <label className="form-label small">Amount ({onCurrencySymbol || '₹'})</label>
                                 <input type="text" className="form-control form-control-sm rounded-0"
                                     value={card.amount}
                                     onChange={(e)=>handlePaymentItemsChange(card.id, "amount", e.target.value)} 

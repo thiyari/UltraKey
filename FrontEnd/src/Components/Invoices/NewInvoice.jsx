@@ -517,7 +517,8 @@ const submitHandler = async (e) => {
                           <Payments 
                           cards={paymentCards} 
                           handlePaymentItemsChange={handlePaymentItemsChange}
-                          deleteCard={deletePaymentCard}/>
+                          deleteCard={deletePaymentCard}
+                          onCurrencySymbol={currencySymbol}/>
                           <button type="button" className='btn btn-outline-primary rounded-0' onClick={addPaymentCard}>Add Another Payment</button>
                         </div>
                     </div>
