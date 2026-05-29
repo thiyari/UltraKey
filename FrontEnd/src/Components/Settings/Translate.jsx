@@ -36,6 +36,7 @@ const Translate = () => {
       ratePrice: "",
       adjust: "",
       subTotal: "",
+      discount: "",
       total: "",
       totalDue: "",
     });
@@ -60,6 +61,7 @@ const Translate = () => {
         ratePrice: translate.ratePrice,
         adjust: translate.adjust,
         subTotal: translate.subTotal,
+        discount: translate.discount,
         total: translate.total,
         totalDue: translate.totalDue,
       });
@@ -101,6 +103,7 @@ const Translate = () => {
             ratePrice: data.ratePrice,
             adjust: data.adjust,
             subTotal: data.subTotal,
+            discount: data.discount,
             total: data.total,
             totalDue: data.totalDue,
           }     
@@ -283,6 +286,21 @@ const Translate = () => {
                         placeholder='Sub Total'
                         value={data.subTotal??""}
                         onChange={(e)=>{setData((prev)=>({...prev, subTotal: e.target.value}))}}
+                        />
+                </div>
+                <div className="col-sm-5"></div>
+              </div>
+
+
+              <div className="form-group row mt-4" align="left">
+                <label htmlFor="discount" className="col-sm-3 col-form-label"><b>Discount</b></label>
+                <div className="col-sm-4">
+                    <input 
+                        type="text"  
+                        className="form-control mb-2" 
+                        placeholder="Discount"
+                        value={data.discount??""}
+                        onChange={(e)=>{setData((prev)=>({...prev, discount: e.target.value}))}}
                         />
                 </div>
                 <div className="col-sm-5"></div>
