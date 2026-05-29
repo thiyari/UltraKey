@@ -134,7 +134,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <Tabs content={initialContent} onChangeHTML={(html)=>{setQuoteContent(html)}}/>
+                        <Tabs content={quoteContent} onChangeHTML={(html)=>{setQuoteContent(html)}}/>
                       </div>    
                 <div className="col-sm-1"></div>          
                 </div>
@@ -203,7 +203,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <Tabs content={initialContent} onChangeHTML={(html)=>{setInvoiceContent(html)}}/>
+                        <Tabs content={invoiceContent} onChangeHTML={(html)=>{setInvoiceContent(html)}}/>
                       </div>    
                 <div className="col-sm-1"></div>          
                 </div>
@@ -274,7 +274,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <Tabs content={initialContent} onChangeHTML={(html)=>{setpaymentReceivedContent(html)}}/>
+                        <Tabs content={paymentReceivedContent} onChangeHTML={(html)=>{setpaymentReceivedContent(html)}}/>
                       </div>    
                 <div className="col-sm-1"></div>                    
                 </div>
@@ -342,7 +342,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <Tabs content={initialContent} onChangeHTML={(html)=>{setpaymentRemainderContent(html)}}/>
+                        <Tabs content={paymentRemainderContent} onChangeHTML={(html)=>{setpaymentRemainderContent(html)}}/>
                       </div>     
                 <div className="col-sm-1"></div>                   
                 </div>
@@ -387,7 +387,7 @@ const Emails = () => {
                 <div className="col-sm-8">
                       {/* Using Text Editor Component */}
                       <div className="app">
-                        <Tabs content={initialContent} onChangeHTML={(html)=>{setFooterContent(html)}}/>
+                        <Tabs content={footerContent} onChangeHTML={(html)=>{setFooterContent(html)}}/>
                       </div>             
                 <div className="col-sm-1"></div>           
                 </div>
