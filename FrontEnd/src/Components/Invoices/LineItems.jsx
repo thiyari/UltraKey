@@ -14,10 +14,11 @@ const LineItems = ({
     availableItems
 }) => {
 
-  //let options = ['Add new items manually', 'Add pre-define line items']  
+  /*
+  let options = ['Add new items manually', 'Add pre-define line items']  
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-/*
+
     const handleUp = () => {
     const newIndex =
       selectedIndex === 0
@@ -65,7 +66,7 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
     handleLineItemsChange(cardId, "title", selectedItem.title);
     handleLineItemsChange(cardId, "price", selectedItem.price);
     handleLineItemsChange(cardId, "description", selectedItem.description || "");
-    handleLineItemsChange(cardId, "qty", "1");
+    handleLineItemsChange(cardId, "qty", selectedItem.qty || "");
 };
 
 
