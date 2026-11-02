@@ -80,6 +80,7 @@ const PopupEditClientForm = ({open,onClose,username,refreshClients}) => {
               website: formData.website
         }
       );
+      alert("client details updated");
       refreshClients();
       onClose();
     } catch (err) {

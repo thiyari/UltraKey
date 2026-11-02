@@ -365,6 +365,7 @@ const submitHandler = async (e) => {
             },
           }
         );
+            alert("Invoice Published");
             setRefreshKey(prev => prev + 1);
             setTitle("");
             setDescription("");
@@ -403,6 +404,7 @@ const submitHandler = async (e) => {
 
 
       } catch (error) {
+        alert("Please check the fields")
         console.log("Error in publishing invoice: ", error);
       }
 }

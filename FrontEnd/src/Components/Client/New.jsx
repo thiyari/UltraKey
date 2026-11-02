@@ -40,6 +40,7 @@ const New = () => {
       } catch (err) {
         alert(err);
       }
+    alert("New Client Added Successfully");
     setBusinessOrClientName("");
     setEmail("");
     setUsername("");
