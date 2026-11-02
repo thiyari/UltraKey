@@ -10,7 +10,8 @@ const LineItems = ({
     currencySymbol,
     thousandSeperator,
     decimalSeperator,
-    numberOfDecimals
+    numberOfDecimals,
+    availableItems
 }) => {
 
   let options = ['Add new items manually', 'Add pre-define line items']  
@@ -51,6 +52,22 @@ const LineItems = ({
     onSelectedIndexChange(index);
 
    } 
+
+
+const handlePredefinedItemSelect = (cardId, itemId) => {
+
+    const selectedItem = availableItems.find(
+        (item) => item._id === itemId
+    );
+
+    if (!selectedItem) return;
+
+    handleLineItemsChange(cardId, "title", selectedItem.title);
+    handleLineItemsChange(cardId, "price", selectedItem.price);
+    handleLineItemsChange(cardId, "description", selectedItem.description || "");
+    handleLineItemsChange(cardId, "qty", "1");
+};
+
 
   return (
       <div>
@@ -138,13 +155,17 @@ const LineItems = ({
 
                                     {/* Select dropdown */}
                                     <select className="form-select form-select-sm rounded-0"
-                                        value={options[selectedIndex]}
-                                        onChange={handleSelect}
+                                        defaultValue=""
+                                        onChange={(e) =>
+                                            handlePredefinedItemSelect(card.id, e.target.value)
+                                        }
                                     >
-                                        {options.map((option, index) => (
-                                        <option key={index} value={option}>
-                                            {option}
-                                        </option>
+                                        <option value="">Select the pre-defined item</option>
+
+                                        {availableItems.map((item) => (
+                                            <option key={item._id} value={item._id}>
+                                                {item.title} - {currencySymbol}{item.price}
+                                            </option>
                                         ))}
                                     </select>
 

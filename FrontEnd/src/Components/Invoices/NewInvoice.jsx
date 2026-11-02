@@ -73,6 +73,7 @@ const NewInvoice = () => {
   const [decimalSeperator, setDecimalSeperator] = useState("");
   const [totalDue,setTotalDue] = useState(0);
   const [autoIncrement, setAutoIncrement] = useState("No");
+  const [availableItems, setAvailableItems] = useState([]);
   const [client, setClient] = useState({
       address: "",
       email: "",
@@ -168,63 +169,52 @@ const NewInvoice = () => {
       return  date;
   };
 
-
-  const fetchSettings = useCallback(async () => {
-    
+const fetchSettings = useCallback(async () => {
   try {
-      const response = await axios.get(`${apiUrl}/api/settings`);
-      
-      const general = response.data.data[0].general;
-      const payments = response.data.data[0].payments;
-      const tax = response.data.data[0].tax;
-      const invoices = response.data.data[0].invoices;
+    const response = await axios.get(`${apiUrl}/api/settings`);
 
-      console.log("Settings Document exists");
-      
-      if(selectedItemIndex === 1){
-      // Convert backend items into frontend card structure
-      const formattedItems = general.lineItems.map((item, index) => ({
-        id: Date.now() + index,
-        number: index + 1,
-        qty: item.qty || "",
-        title: item.title || "",
+    const general = response.data.data[0].general;
+    const payments = response.data.data[0].payments;
+    const tax = response.data.data[0].tax;
+    const invoices = response.data.data[0].invoices;
+
+    console.log("Settings Document exists");
+
+    // Store all available items
+    setAvailableItems(general.lineItems || []);
+
+    // Initially display one empty invoice item
+    setLineItemCards([
+      {
+        id: Date.now(),
+        number: 1,
+        qty: "",
+        title: "",
         adjust: "",
-        price: item.price || "",
-        description: item.description || ""
-      }));
-
-        setLineItemCards(formattedItems);
-      } else {
-        setLineItemCards([
-            { 
-              id: Date.now(), 
-              number: 1,
-              qty: "",
-              title: "",
-              adjust: "",
-              price: "",
-              description: ""
-            }]
-        )
+        price: "",
+        description: ""
       }
-      setCurrencySymbol(payments.currencySymbol);
-      setTaxPercentage(tax.percentage)
-      setTermsAndConditions(invoices.termsAndConditions);
-      setPrefix(invoices.prefix);
-      setSuffix(invoices.suffix);
-      setInvoiceNumber(invoices.nextNumber);
-      setDueDays(invoices.dueDate);
-      setThousandSeperator(payments.thousandSeperator);
-      setNumberOfDecimals(payments.numberOfDecimals);
-      setDecimalSeperator(payments.decimalSeperator);
-      setAutoIncrement(invoices.autoIncrement);
-    } catch (error) {
-      console.log("Settings Document not found");
-    } 
+    ]);
 
-  },[selectedItemIndex]);
+    setCurrencySymbol(payments.currencySymbol);
+    setTaxPercentage(tax.percentage);
+    setTermsAndConditions(invoices.termsAndConditions);
+    setPrefix(invoices.prefix);
+    setSuffix(invoices.suffix);
+    setInvoiceNumber(invoices.nextNumber);
+    setDueDays(invoices.dueDate);
+    setThousandSeperator(payments.thousandSeperator);
+    setNumberOfDecimals(payments.numberOfDecimals);
+    setDecimalSeperator(payments.decimalSeperator);
+    setAutoIncrement(invoices.autoIncrement);
 
+  } catch (error) {
+    console.log("Settings Document not found", error);
+  }
+}, []);
     
+
+
 const fetchClients = useCallback(async () => {
   try {
         const response = await axios.get(`${apiUrl}/api/clients`);
@@ -438,16 +428,16 @@ const submitHandler = async (e) => {
                         </div>
                         <div className="card-body" align="left">
                             <LineItems
-                            onSelectedIndexChange = {handleSelectedIndex} 
-                            cards={lineItemCards} 
-                            handleLineItemsChange={handleLineItemsChange}
-                            deleteCard={deleteLineItemCard}
-                            selectedTax={taxable}
-                            onTaxable={(selected)=>setTaxable(selected)}
-                            currencySymbol={currencySymbol}
-                            thousandSeperator={(number)=>thousand_seperator(number)}
-                            decimalSeperator={decimalSeperator}
-                            numberOfDecimals={decimals()}
+                              cards={lineItemCards}
+                              availableItems={availableItems}
+                              handleLineItemsChange={handleLineItemsChange}
+                              deleteCard={deleteLineItemCard}
+                              selectedTax={taxable}
+                              onTaxable={(selected) => setTaxable(selected)}
+                              currencySymbol={currencySymbol}
+                              thousandSeperator={(number) => thousand_seperator(number)}
+                              decimalSeperator={decimalSeperator}
+                              numberOfDecimals={decimals()}
                             />
                             <div className="row">
                               <div className="col-sm-6" align="left">
