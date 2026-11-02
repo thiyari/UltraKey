@@ -56,6 +56,13 @@ const LineItems = ({
 
 */
 const handlePredefinedItemSelect = (cardId, itemId) => {
+    
+    if (itemId === "") {
+        ["title", "price", "description", "qty"].forEach(field =>
+            handleLineItemsChange(cardId, field, "")
+        );
+        return;
+    }
 
     const selectedItem = availableItems.find(
         (item) => item._id === itemId
@@ -63,8 +70,8 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
 
     if (!selectedItem) return;
 
-    handleLineItemsChange(cardId, "title", selectedItem.title);
-    handleLineItemsChange(cardId, "price", selectedItem.price);
+    handleLineItemsChange(cardId, "title", selectedItem.title || "");
+    handleLineItemsChange(cardId, "price", selectedItem.price || "");
     handleLineItemsChange(cardId, "description", selectedItem.description || "");
     handleLineItemsChange(cardId, "qty", selectedItem.qty || "");
 };
@@ -83,7 +90,7 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Qty</label>
                                 <input type="text" className="form-control form-control-sm rounded-0" placeholder='1'
-                                    value={card.qty}
+                                    value={card.qty ?? ""}
                                     onChange={(e)=>handleLineItemsChange(card.id, "qty", e.target.value)}
                                     />
                             </div>
@@ -92,7 +99,7 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Item Title</label>
                                 <input type="text" className="form-control form-control-sm rounded-0"
-                                    value={card.title}
+                                    value={card.title ?? ""}
                                     onChange={(e)=>handleLineItemsChange(card.id, "title", e.target.value)}
                                 />
                             </div>
@@ -101,7 +108,7 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Adjust (%)</label>
                                 <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"
-                                    value={card.adjust}
+                                    value={card.adjust ?? ""}
                                     onChange={(e)=>handleLineItemsChange(card.id, "adjust", e.target.value)}                                
                                 />
                             </div>
@@ -110,7 +117,7 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
                             <div className='form-group' align='left'>
                                 <label className="form-label small">Rate ({currencySymbol})</label>
                                 <input type="text" placeholder='0' className="form-control form-control-sm rounded-0"
-                                    value={card.price}
+                                    value={card.price ?? ""}
                                     onChange={(e)=>handleLineItemsChange(card.id, "price", e.target.value)}
                                 />
                             </div>
@@ -129,7 +136,7 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
                                 <input type="text" 
                                     placeholder='Brief description of the work carried out for this line item (optional)' 
                                     className="form-control form-control-sm rounded-0"
-                                    value={card.description}
+                                    value={card.description ?? ""}
                                     onChange={(e)=>handleLineItemsChange(card.id, "description", e.target.value)}
                                     />
                             </div>
