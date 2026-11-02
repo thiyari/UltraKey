@@ -14,10 +14,10 @@ const LineItems = ({
     availableItems
 }) => {
 
-  let options = ['Add new items manually', 'Add pre-define line items']  
+  //let options = ['Add new items manually', 'Add pre-define line items']  
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-
+/*
     const handleUp = () => {
     const newIndex =
       selectedIndex === 0
@@ -53,7 +53,7 @@ const LineItems = ({
 
    } 
 
-
+*/
 const handlePredefinedItemSelect = (cardId, itemId) => {
 
     const selectedItem = availableItems.find(
@@ -169,14 +169,12 @@ const handlePredefinedItemSelect = (cardId, itemId) => {
                                         ))}
                                     </select>
 
-                            {/* Down button */}
+                             {/*   
                             <button type="button" className="px-3" onClick={handleDown} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-down" style={{color: "blue"}}></i></button>
 
-
-                            {/* Up button */}
                             <button type="button" className="px-3" onClick={handleUp} style={{border: "1px solid blue"}}><i className="fa-solid fa-chevron-up" style={{color: "blue"}}></i></button>
 
-
+                                */}
                             </div>
                         </div>
                         <div className='col-sm-6' align='right'>
